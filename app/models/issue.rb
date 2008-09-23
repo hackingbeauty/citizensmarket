@@ -7,8 +7,4 @@ class Issue < ActiveRecord::Base
     "#{category} - #{name}"
   end
   
-  def bug_fix
-    #fixme
-  end
-  
 end
