@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  stock_symbol: MyString
+  description: 
+  logo_url: MyString
+  website_url: MyString
+  google_cid: 1
+
+two:
+  name: MyString
+  stock_symbol: MyString
+  description: 
+  logo_url: MyString
+  website_url: MyString
+  google_cid: 1

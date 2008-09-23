@@ -1,0 +1,12 @@
+<p>
+  <strong>Name:</strong><%=h @company.name %>
+</p>
+<p>
+  <strong>Description:</strong><%=h @company.description %>
+</p>
+
+<%= link_to 'Edit', edit_object_url %>
+|
+<%= link_to 'Back', collection_url %>
+|
+<%= link_to 'New Review', new_company_review_url(@company) %>

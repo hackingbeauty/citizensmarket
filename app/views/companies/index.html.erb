@@ -1,0 +1,21 @@
+<h1>Listing Companies</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  <%- @companies.each do |company|%>
+    <tr>
+      <td><%=h company.name %></td>
+      <td><%=h company.description %></td>
+    
+      <td><%=link_to 'Show', object_url(company) %></td>
+      <td><%=link_to 'Edit', edit_object_url(company) %></td>
+      <td><%=link_to 'Destroy', object_url(company), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+<br/>
+
+<%= link_to 'New Company', new_object_url %>

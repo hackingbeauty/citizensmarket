@@ -1,0 +1,17 @@
+<div id="review_new">
+  <div class="content_header">
+    <h1>New Review</h1>
+  </div>
+  <div class="content_body">
+
+    <%= error_messages_for :review %>
+
+    <% form_for(:review_presenter, :url => collection_url) do |f| %>
+      <%= render :partial => "form", :locals => { :f => f } %>
+      <div class="submit">
+        <%= image_submit_tag "button_submit.gif" %>
+      </div>
+      <br>
+    <% end %>
+  </div>
+</div>

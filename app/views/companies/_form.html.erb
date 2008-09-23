@@ -1,0 +1,16 @@
+<fieldset id="company_form">
+  
+  <div style="float: right; padding-right: 20px;" id="company_logo"></div>
+  <label for="company_name">Name:</label>
+  <%= f.text_field :name, :size => 35 %>
+  <br class="left">
+  <label for="company_stock_symbol">Stock Symbol:</label>
+  <%= f.text_field :stock_symbol, :size => 15 %>
+  <br class="left">
+  <label for="company_website_url">Website Url:</label>
+  <%= f.text_field :website_url, :size => 35 %>
+  <br class="left">
+  <label for="company_description">Description:</label>
+  <%= f.text_area :description, :cols => 110, :rows => 5, :class => 'expanding' %>
+  
+</fieldset>

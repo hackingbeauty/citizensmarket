@@ -1,0 +1,16 @@
+<div class="review_issue">
+  <% fields_for "review_presenter[review_issues][]", review_issue do |review_issue_form| %>
+    <label for="review_issue">Issue:</label>
+    <%= review_issue_form.collection_select :issue_id, Issue.find(:all), :id, :name_with_category, {:prompt => true} %>
+    <br class="left">
+  
+    <div class="star_rating">
+      <label for="review_rating">Rating:</label>
+      <% (1..10).each do |rating| %>
+        <input name="star_<%=review_issue_counter %>" type="radio" class="star-rating {split:2}" value="<%=rating %>"/> 
+      <% end %>
+      <%= review_issue_form.hidden_field :rating, :class => 'rating_value' %>
+      <br class="left">
+    </div>
+  <% end %>
+</div>

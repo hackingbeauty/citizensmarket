@@ -1,0 +1,221 @@
+body {
+	font-family: "trebuchet ms",verdana,arial,helvetica,sans-serif;
+	color: #191919;
+}
+
+a {
+	color: #0f0087;
+}
+
+h1 {
+	font-size: 16px;
+	font-weight: bold;
+	color: #333;
+}
+
+textarea {
+  padding: 5px;
+}
+
+br {
+	clear: both;
+}
+br.left {
+	clear: left;
+}
+br.right {
+	clear: right;
+}
+
+#header{
+	width:974px;
+	height:66px;
+	padding-top: 10px;
+}
+
+#header #nav{
+	width:550px;
+	display:inline;
+	color: #0f0087;
+	font-size:12px; 
+	float:right;
+	padding-top: 15px;
+	text-align:right;
+
+}
+
+#header #nav a {
+	color:#292929;
+	font-weight:bold;
+	text-decoration:none; 
+	padding:0 5px 0 5px;
+}
+
+#header span#tag_line {
+	color: #676767;
+	font-weight:bold;
+	text-decoration:none; 
+	padding:0 5px 0 5px;
+}
+
+
+#globalnav {
+	width:974px;
+	background: #7bb933;
+	padding: 5px;
+	margin-bottom: 15px;
+}
+#globalnav li {
+	display: inline;
+	padding-right: 10px;
+	padding-left: 10px;
+	border-left: 2px solid #fff;
+}
+#globalnav li a{
+	text-decoration: none;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+}
+#globalnav li:first-child {
+	border-left-width: 0;
+}
+
+
+	
+	
+#newcontainer{
+	background: url(/images/home_header_bg.png) no-repeat;
+	width:977px;
+	height:298px;
+	margin:5px 0 8px 0px;
+	border:0px solid blue;
+	padding-bottom: 10px;
+}
+
+#home div#main {
+	
+	padding: 10px;
+	border: 1px solid #b8b8b8;
+}
+
+div.feature {
+	padding: 10px;
+	border: 1px solid #b8b8b8;
+	background-color: #f4f4f4;
+	margin-bottom: 30px;
+}
+
+#home h2 {
+	font-weight:bold;
+	font-size:18px;
+	color: #74ac31;
+	padding-bottom: 5px;
+}
+
+#home h4 {
+	font-weight:bold;
+}
+
+#home p {
+	padding-bottom: 5px;
+}
+
+#home #main .section {
+	padding-bottom: 10px;
+}
+
+#home li {
+	list-style-image: url(/images/css/bullet_arrow_right.gif);
+	margin-left: 25px;
+	padding-bottom: 5px;
+}
+
+.quote {
+	font-style: italic;
+}
+.quote_source {
+	padding-top: 5px;
+	float: right;
+}
+
+blockquote.pullquote {
+	padding:12px 0;
+	margin: 5px 15px 8px 0;
+	float:left;
+	width:180px;
+	text-align: center;
+	border-top:3px double #ccc;
+	border-bottom:3px double #ccc;
+    border-left:0;
+    border-right:0;
+	line-height:1.6em;
+    background:#fefefe;
+}
+blockquote.pullquote.right {
+	margin: 5px 0 8px 15px;
+	float:right;
+}
+blockquote.pullquote p {
+	margin:0 !important;
+	font-size:1.4em;
+	color:#666;
+	font-weight:bold;
+}
+
+.content_header {
+	background: #f7f7f7 url(../images/css/content_box_hdr_bg.gif) repeat-x;
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	border-top: 1px solid #b8b8b8;
+	border-left: 1px solid #b8b8b8;
+	border-right: 1px solid #b8b8b8;
+}
+
+.content_body {
+	padding: 10px;
+	border-bottom: 1px solid #b8b8b8;
+	border-left: 1px solid #b8b8b8;
+	border-right: 1px solid #b8b8b8;
+}
+
+
+#company_new {
+	margin-top: 25px;
+}
+
+
+#footer {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-align: center;
+}
+#footer #copyright {
+	margin-top: 10px;
+}
+#footer #links a {
+	color: #000000;
+}
+#footer #copyright p {
+	font-size: 10px;
+}
+
+form label { 
+	display: block;  /* block float the labels to left column, set a width */
+	float: left; 
+	width: 150px; 
+	padding-bottom: 10px;
+	padding-right: 5px;
+	margin: 5px 0 0; /* set top margin same as form input - textarea etc. elements */
+	text-align: right;
+}
+
+div.submit {
+	padding-top: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 164px;
+}
+
