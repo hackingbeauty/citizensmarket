@@ -1,9 +1,17 @@
 <fieldset id="review_form">
   
-  <div id="review_issues">
-    <%=render :partial => "review_issue", :collection => @review.review_issues %>
+  <label for="review_issue">Issue:</label>
+  <%= f.collection_select :issue_id, Issue.find(:all), :id, :name_with_category, {:prompt => true} %>
+  <br class="left">
+
+  <div class="star_rating">
+    <label for="review_rating">Rating:</label>
+    <% (1..10).each do |rating| %>
+      <input name="star" type="radio" class="star-rating {split:2}" value="<%=rating %>"/> 
+    <% end %>
+    <%= f.hidden_field :rating, :class => 'rating_value' %>
+    <br class="left">
   </div>
-  <p><%= add_associated_link "Add an issue", @review.review_issues.build %></p>
   
   <label for="review_body">Review:</label>
   <%= f.text_area :body, :cols => 110, :rows => 5, :class => 'expanding' %>

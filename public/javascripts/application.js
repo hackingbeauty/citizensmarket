@@ -56,12 +56,7 @@ $(document).ready (function() {
           $(this).parent().children('.rating_value').val(value); 
         }
     });
-    
-    jQuery.fn.increment = function() {
-      return this.each(function(){
-        $(this).val(parseInt($(this).val()) + 1);
-      });
-    };
+
     
     
 	  

@@ -4,7 +4,7 @@
   </div>
   <div class="content_body">
 
-    <%= error_messages_for :review %>
+    <%= error_messages_for :review_presenter %>
 
     <% form_for(:review_presenter, :url => collection_url) do |f| %>
       <%= render :partial => "form", :locals => { :f => f } %>
