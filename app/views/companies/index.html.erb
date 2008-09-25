@@ -1,21 +1,30 @@
-<h1>Listing Companies</h1>
+<div id="company_index" class="yui-gc">
+	<div class="yui-u first">
+		
+		<h1>Listing Companies</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-  </tr>
-  <%- @companies.each do |company|%>
-    <tr>
-      <td><%=h company.name %></td>
-      <td><%=h company.description %></td>
-    
-      <td><%=link_to 'Show', object_url(company) %></td>
-      <td><%=link_to 'Edit', edit_object_url(company) %></td>
-      <td><%=link_to 'Destroy', object_url(company), :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
-<br/>
+    <%- @companies.each do |company|%>
+      <div class="company">
+        <div class="score rounded">
+          <%=company.score %>
+        </div>
+        <div class="info">
+          <h2><%=company.name %></h2>
+          <span class="brands"><strong>Brands:</strong> <%=company.brands.join(", ")%>, <%=link_to '9 more brands', ''%></span>
+          <span class="more"><%=link_to "Learn more", object_url(company), :class => 'arrow' %></span>
+        </div>
+        <br>
+      </div>
+    <% end %>
 
-<%= link_to 'New Company', new_object_url %>
+
+    <%=link_to 'New Company', new_object_url %>
+		
+	</div>
+	<div class="yui-u">
+		
+		Filtering controls
+		
+	</div>
+</div>
+
