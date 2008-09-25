@@ -64,6 +64,28 @@ $(document).ready (function() {
           $(this).parent().children('.rating_value').val(value); 
         }
     });
+    
+    $('.tablink').click(function () {
+      clicked_tab = $(this);
+      if (clicked_tab.attr('tab') == "follow_link") {
+        return true
+      } else {
+        $(".tablink").each(function (i) {
+          if ($(this).hasClass("on")) {
+            $(this).removeClass("on");
+            $(this).next().removeClass("tabimg_right_on").addClass("tabimg_right_off");
+            $(this).prev().removeClass("tabimg_left_on").addClass("tabimg_left_off");
+            $('#' + $(this).attr('tab')).fadeOut(function() {
+              $('#' + clicked_tab.attr('tab')).fadeIn();
+            });
+          };
+        });
+        clicked_tab.addClass("on");
+        clicked_tab.next().addClass("tabimg_right_on");
+        clicked_tab.prev().addClass("tabimg_left_on");
+        return false;
+      }
+    });
 
     
     

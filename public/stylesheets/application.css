@@ -25,6 +25,11 @@ h2 {
 	font-weight: bold;
 	color: #333;
 }
+h3 {
+	font-size: 14px;
+	font-weight: bold;
+	color: #333;
+}
 
 #bd h1 {
 	padding-top: 5px;
@@ -199,12 +204,6 @@ blockquote.pullquote p {
 	border-right: 1px solid #b8b8b8;
 }
 
-
-#company_new {
-	margin-top: 25px;
-}
-
-
 #footer {
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -274,6 +273,9 @@ a.arrow {
 	padding-right: 15px;
 }
 
+.form_box {
+	margin-top: 35px;
+}
 
 .content_box{
 	width:775px;
@@ -298,7 +300,7 @@ a.arrow {
 	border:0px solid red;
 
 }
-.content_box .header .tablink_on{
+.content_box .header .on {
 	background: url(/images/css/contentBoxHdrTab_bg.gif) repeat-x;
 }
 .content_box .header .separator{
@@ -335,9 +337,15 @@ a.arrow {
 	font-weight: bold;
 	color: #7d0509;
 }
+
+.content_box #content div.tab_content {
+	display: none;
+}
+.content_box #content div.show {
+	display: block;
+}
 	
-	
-.content_box .content {
+.content_box #content {
 	padding: 10px;
 	background-color: #fff;
 }
