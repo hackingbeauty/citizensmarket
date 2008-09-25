@@ -16,12 +16,18 @@ a:hover{
 }
 
 h1 {
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
+}
+h2 {
 	font-size: 16px;
 	font-weight: bold;
 	color: #333;
 }
 
 #bd h1 {
+	padding-top: 5px;
 	padding-bottom: 10px;
 }
 
@@ -272,7 +278,7 @@ a.arrow {
 .content_box{
 	width:775px;
 	height:auto;
-	margin-top: 35px;
+	margin-top: 10px;
 	padding-top: 5px;
 	background-color:#f7f7f7;
 	border: 1px solid #CCC;
