@@ -17,6 +17,14 @@ $(document).ready (function() {
   			  autoPad: true,
   			  antiAlias: true
   });
+  $('.content_box').corner({
+  			  tl: { radius: 10 },
+  			  tr: { radius: 10 },
+  			  bl: false,
+  			  br: false,
+  			  autoPad: true,
+  			  antiAlias: true
+  });
   
   $('textarea.expanding').autogrow();
   

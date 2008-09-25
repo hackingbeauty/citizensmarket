@@ -11,6 +11,9 @@ a {
 	color: #0f0087;
 	text-decoration: none;
 }
+a:hover{
+	text-decoration: underline;
+}
 
 h1 {
 	font-size: 16px;
@@ -263,4 +266,72 @@ div.submit {
 a.arrow {
 	background: url(/images/arrow.png) no-repeat right 4px;
 	padding-right: 15px;
+}
+
+
+.content_box{
+	width:775px;
+	height:auto;
+	margin-top: 35px;
+	padding-top: 5px;
+	background-color:#f7f7f7;
+	border: 1px solid #CCC;
+}
+.content_box .header{
+	width:775px;
+	height:35px;
+	background: url(/images/css/contentBoxHdr_bg.gif) repeat-x;
+
+}
+.content_box .header .tablink,
+.content_box .header .tablink_on{
+	float:left;
+	padding:8px 8px 0px 8px;
+	margin: 0px;		
+	height:35px;
+	border:0px solid red;
+
+}
+.content_box .header .tablink_on{
+	background: url(/images/css/contentBoxHdrTab_bg.gif) repeat-x;
+}
+.content_box .header .separator{
+	background: url(/images/css/contentBoxHdrTab_sep.gif) no-repeat;
+}
+.content_box .header .tablink a:hover{
+	color:#333;
+	text-decoration: none;
+}
+.content_box .header .tabimg_left_on,
+.content_box .header .tabimg_right_on,
+.content_box .header .tabimg_left_off,
+.content_box .header .tabimg_right_off,
+.content_box .header .tabimg_left,
+.content_box .header .tabimg_right{
+	float:left;
+	width:9px;
+	height:35px;
+	margin: 0px;		
+}
+.content_box .header .tabimg_left_on{
+	background: url(/images/css/contentBoxHdrTabOn_left.gif) no-repeat;
+}
+.content_box .header .tabimg_right_on{
+	background: url(/images/css/contentBoxHdrTabOn_right.gif) no-repeat;
+}
+.content_box .header .tabimg_right{
+	background: url(/images/css/contentBoxHdrTab_right.gif) no-repeat;
+}
+.content_box .header .tabimg_left{
+	background: url(/images/css/contentBoxHdrTab_left.gif) no-repeat;
+}
+.content_box .header .strong a{
+	font-weight: bold;
+	color: #7d0509;
+}
+	
+	
+.content_box .content {
+	padding: 10px;
+	background-color: #fff;
 }
