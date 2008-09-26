@@ -1,13 +1,12 @@
 class Company < ActiveRecord::Base
   
   has_many  :reviews, :dependent => :destroy
+  has_many  :brands
   
   validates_presence_of   :name, :on => :create, :message => "can't be blank"
   
-  # Temporary method that outputs a randomly sized array of brands for view purposes
-  def brands
-    brands = ["Axe", "Dove", "Lux", "Pond's", "Sunsilk", "Vasoline", "Clif", "Comfort", "Sunlight", "Surf"]
-    brands[0, rand(9)+1]
+  def brand_names
+    brands.map(&:name)
   end
   
   def score

@@ -5,12 +5,17 @@ namespace :db do
     
     Rake::Task['db:populate_issues'].invoke
     
-    [Company, Review, ReviewIssue].each(&:delete_all)
+    [Company, Brand, Review, ReviewIssue].each(&:delete_all)
     
     Company.populate 10 do |company|
       company.name = Faker::Company.name
       company.description = Populator.sentences(2..10)
       company.website_url = "http://www.#{Faker::Internet.domain_name}"
+      Brand.populate 0..20 do |brand|
+        brand.company_id = company.id
+        brand.name = Populator.words(1..3).titleize
+        brand.description = Populator.sentences(2..10)
+      end
       Review.populate 0..10 do |review|
         ReviewIssue.populate 0..5 do |review_issue|
           review_issue.review_id = review.id
@@ -18,7 +23,7 @@ namespace :db do
           review_issue.rating = rand(9) + 1
         end
         review.company_id = company.id
-        review.body = Populator.sentences(2..10)
+        review.body = Populator.sentences(10..30)
         review.status = ['draft', 'published']
       end
     end
