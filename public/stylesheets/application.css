@@ -30,6 +30,10 @@ h3 {
 	font-weight: bold;
 	color: #333;
 }
+h4 {
+	font-weight: bold;
+	color: #333;
+}
 
 #bd h1 {
 	padding-top: 5px;
@@ -348,4 +352,71 @@ a.arrow {
 .content_box #content {
 	padding: 10px;
 	background-color: #fff;
+}
+
+#company_overview h4 {
+	margin-top: 10px;
+	margin-bottom: 3px;
+}
+
+#company_overview .info_box {
+	float: right;
+	width: 250px;
+	padding: 10px;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #CCC;
+	background: #f7f7f7;
+}
+
+#company_overview .info_box li {
+	padding-bottom: 10px;
+}
+
+#company_overview .info_box label {
+	font-weight: bold;
+}
+
+#company_overview .info_box div.logo {
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#company_overview .attribution {
+	font-size: 10px;
+	font-style: italic;
+	float: right;
+}
+
+#company_overview #news li {
+	padding-bottom: 10px;
+}
+#company_overview #news label {
+	display: block;
+}
+
+#company_overview div.score{
+	float: left;
+	background-color: #7bb933;
+	color: #333;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 4px;
+	margin-top: 15px;
+}
+
+#company_overview div.score_container{
+	margin-bottom: 5px;
+	margin-left: 15px;
+}
+
+#company_overview div.score_container label{
+	margin-left: 10px;
+	font-size: 12px;
+	color: #333;
+	font-weight: bold;
+	position: relative;
+	top: 10px;
 }

@@ -12,4 +12,9 @@ module ApplicationHelper
     end
   end
   
+  def favicon(domain)
+    # TODO: cache
+    "http://www.google.com/s2/favicons?domain=#{domain}"
+  end
+  
 end
