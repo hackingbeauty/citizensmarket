@@ -399,7 +399,6 @@ a.arrow {
 
 #company_overview div.score{
 	float: left;
-	background-color: #7bb933;
 	color: #333;
 	font-weight: bold;
 	font-size: 12px;
@@ -420,3 +419,21 @@ a.arrow {
 	position: relative;
 	top: 10px;
 }
+
+.color_five {
+	background-color: #2a9641;
+}
+.color_four {
+	background-color: #a6d96a;
+}
+.color_three {
+	background-color: #d6b57e;
+}
+.color_two {
+	background-color: #f46d43;
+}
+.color_one {
+	background-color: #d25754;
+}
+
+

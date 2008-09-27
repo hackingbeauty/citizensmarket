@@ -12,15 +12,6 @@
   <%= stylesheet_link_tag("jquery.autocomplete") %>
   <%= stylesheet_link_tag("jquery.rating") %>
   <%= yield(:stylesheets) %>
-  
-  <%= javascript_include_tag 'jquery', 'jquery-ui', 'jrails' %>
-  <%= javascript_include_tag 'jquery/metadata' %>
-  <%= javascript_include_tag 'jquery/templates' %>
-  <%= javascript_include_tag 'jquery/curvycorners' %>
-  <%= javascript_include_tag 'jquery/autocomplete' %>
-  <%= javascript_include_tag 'jquery/autogrow' %>
-  <%= javascript_include_tag 'jquery/rating' %>
-  <%= javascript_include_tag('application') %>
 
 </head>
 <body>
@@ -36,6 +27,15 @@
       <%=render :partial => "layouts/footer"%>
     </div> 
   </div>
+  
+  <%= javascript_include_tag 'jquery', 'jquery-ui', 'jrails' %>
+  <%= javascript_include_tag 'jquery/metadata' %>
+  <%= javascript_include_tag 'jquery/templates' %>
+  <%= javascript_include_tag 'jquery/curvycorners' %>
+  <%= javascript_include_tag 'jquery/autocomplete' %>
+  <%= javascript_include_tag 'jquery/autogrow' %>
+  <%= javascript_include_tag 'jquery/rating' %>
+  <%= javascript_include_tag('application') %>
 
 </body>
 </html>
