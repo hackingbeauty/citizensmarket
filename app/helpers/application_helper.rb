@@ -17,4 +17,52 @@ module ApplicationHelper
     "http://www.google.com/s2/favicons?domain=#{domain}"
   end
   
+  def fixed_star_rating(rating, opts = {})
+    dom_id = opts[:dom_id] || ""
+    
+    (1..10).inject("") do |html, i|
+      if rating == i
+        html += "<input name='star_#{dom_id}' type='radio' class='star-rating {split:2}' disabled='disabled' checked='checked'/>\n"
+      else
+        html += "<input name='star_#{dom_id}' type='radio' class='star-rating {split:2}' disabled='disabled'/>\n"
+      end
+    end
+  end
+  
+  # Truncate the text at a specific word count.
+  def snippet(text, wordcount)
+      # TODO: This could be better written to normalize based on word size
+    text.split[0..(wordcount-1)].join(" ") +(text.split.size > wordcount ? "..." : "")
+  end 
+  
+  # Temporary method to return a random hash for existing gravatar images
+  def gravatar_hash
+    hashes = ['767fc9c115a1b989744c755db47feb60',
+              '5915fd742d0c26f6a584f9d21f991b9c',
+              'b0b357b291ac72bc7da81b4d74430fe6',
+              'a558f2098da8edf67d9a673739d18aff',
+              '86debe7ed7ece0f968097a768dcbd5cb',
+              '88e6c74e20866a91285dadb3347b2f01',
+              '47a39c211cc16924d9fc6ad6249fb260',
+              '987da1e668e6eb5cde64b52a477764ec',
+              '69cc6c0327eaf95a3d730992f898a0cf',
+              '8379aabc84ecee06f48d8ca48e09eef4',
+              'd212b7b6c54f0ccb2c848d23440b33ba',
+              'f4510afa5a1ceb6ae7c058c25051aed9',
+              '1a33e7a69df4f675fcd799edca088ac2',
+              'cb16a513e9017648da8f9b8335ba882e',
+              'f73048cc21035713618d5ffa690001f4',
+              '8821184e40ef08b2b0631f9bb1b5cf58',
+              'eecc887dff6e1e42103590c76f215d87']
+    hashes[rand(hashes.size)]
+  end
+  
+  def user_name
+    "#{Faker::Name.first_name} #{('A'..'Z').to_a[rand(25)]}."
+  end
+  
+  def location
+    "#{Faker::Address.city}, #{Faker::Address.us_state_abbr}"
+  end
+  
 end
