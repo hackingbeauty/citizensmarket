@@ -420,6 +420,58 @@ a.arrow {
 	top: 10px;
 }
 
+.review {
+	padding-bottom: 15px;
+	padding-top: 15px;
+	border-bottom: 1px solid #7bb933;
+	
+}
+.review div.reviewer {
+	padding-left: 10px;
+	font-size: 11px;
+}
+.review div.reviewer .avatar {
+	float: left;
+	padding-right: 10px;
+}
+.review div.reviewer .comment_count {
+	padding-top: 5px;
+}
+.review div.content {
+	float: left;
+}
+.review div.content .heading {
+	float: left;
+	width: 560px;
+	padding-bottom: 10px;
+	
+}
+.review div.content .body {
+	float: left;
+	margin-bottom: 10px;
+}
+.review div.content .heading .time_ago {
+	float: right;
+	font-size: 11px;
+	font-style: italic;
+}
+.review div.content .heading .star_rating {
+	font-weight: bold;
+	font-size: 11px;
+}
+.review div.content .heading .review_rating {
+	font-size: 11px;
+	padding-bottom: 8px;
+}
+.review div.content .footer a.comment{
+	background: url(/images/comment.png) no-repeat left 50%;
+	padding-left: 20px;
+}
+.review div.content .footer .thumbs{
+	position: relative;
+	top: 5px;
+}
+
 .color_five {
 	background-color: #2a9641;
 }

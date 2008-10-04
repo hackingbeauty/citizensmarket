@@ -29,6 +29,7 @@ Rails::Initializer.run do |config|
   config.gem 'json', :version => '1.1.3'
   config.gem 'populator', :version => '0.2.4'
   config.gem 'faker', :version => '0.3.1'
+  config.gem 'RedCloth', :version => '4.0.3'
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.

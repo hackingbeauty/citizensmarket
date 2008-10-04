@@ -23,7 +23,7 @@ namespace :db do
           review_issue.rating = rand(9) + 1
         end
         review.company_id = company.id
-        review.body = Populator.sentences(10..30)
+        review.body = Populator.paragraphs(2..10)
         review.status = ['draft', 'published']
       end
     end
