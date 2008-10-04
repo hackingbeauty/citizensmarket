@@ -14,4 +14,8 @@ class CompaniesController < ResourceController::Base
     render :text => CompanyLookup.get_logo(params[:stock_symbol])
   end
   
+  def test
+    #test
+  end
+  
 end
