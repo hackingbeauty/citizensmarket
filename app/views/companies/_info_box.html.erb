@@ -4,16 +4,9 @@
     <%=image_tag 'logo1.png' %>
   </div>
   <ul>
-    <li><label>Type:</label> Public (Euronext: OR)</li>
-    <li><label>Founded:</label> 1909</li>
-    <li><label>Founder:</label> Eugène Schueller</li>
-    <li><label>Headquarters:</label> Clichy , France</li>
-    <li><label>Key people:</label> Jean-Paul Agon (CEO), Lindsay Owen-Jones (Chairman of the board), Liliane Bettencourt (Non-executive director and major shareholder)</li>
-    <li><label>Revenue:</label> €17.06 billion (2007)</li>
-    <li><label>Operating income:</label> €2.827 billion (2007)</li>
-    <li><label>Profit:</label> €2.039 billion (2007)</li>
-    <li><label>Employees:</label> 63,360 (2007)</li>
-    <li><label>Website:</label> <%=link_to 'www.loreal.com','http://www.loreal.com', :target => '_blank'%></li>
+    <% @company.info.each do |info_label, info_value| %>
+    <li><label><%=info_label %>:</label> <%=info_value %></li>
+    <% end %>
   </ul>
   <div class="attribution">
     <label>Source:</label> <%=link_to 'Wikipedia', 'http://en.wikipedia.org/wiki/L%27Or%C3%A9al'%>

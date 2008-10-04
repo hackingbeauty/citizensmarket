@@ -11,6 +11,17 @@ namespace :db do
       company.name = Faker::Company.name
       company.description = Populator.sentences(2..10)
       company.website_url = "http://www.#{Faker::Internet.domain_name}"
+      company.info = { "Type" => "Public (Euronext: OR)", 
+                       "Founded" => "1909",
+                       "Founder" => "Eugène Schueller",
+                       "Headquarters" => "Clichy , France",
+                       "Key people" => "Jean-Paul Agon (CEO), Lindsay Owen-Jones (Chairman of the board), Liliane Bettencourt (Non-executive director and major shareholder)",
+                       "Revenue" => "€17.06 billion (2007)",
+                       "Operating Income" => "€2.827 billion (2007)",
+                       "Profit" => "€2.039 billion (2007)",
+                       "Employees" => "63,360 (2007)",
+                       "Website" => "www.loreal.com"
+                        }
       Brand.populate 0..20 do |brand|
         brand.company_id = company.id
         brand.name = Populator.words(1..3).titleize
