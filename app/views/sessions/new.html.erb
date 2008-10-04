@@ -1,0 +1,28 @@
+<div id="session_new" class="form_box">
+<div class="content_header">
+<h2>Log In</h2>
+</div>
+
+<div class="content_body">
+<% form_tag session_path do -%>
+<fieldset id="user_form">
+
+<p><%= label_tag 'email' %>
+<%= text_field_tag 'login', @login %></p>
+  <br class="left">
+
+<p><%= label_tag 'password' %>
+<%= password_field_tag 'password', nil %></p>
+  <br class="left">
+<!-- Uncomment this if you want this functionality
+<p><%= label_tag 'remember_me', 'Remember me' %>
+<%= check_box_tag 'remember_me', '1', @remember_me %></p>
+-->
+</fieldset>
+<div class="submit">
+<p><%= image_submit_tag "button_submit.gif" %></p>
+</div>
+
+<% end -%>
+<p>Don't have an account yet? <%=link_to 'Create one' , new_user_path %>
+</div>
