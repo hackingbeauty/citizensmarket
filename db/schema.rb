@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20080926171738) do
     t.string   "name"
     t.string   "stock_symbol"
     t.text     "description"
+    t.text     "info"
     t.string   "logo_url"
     t.string   "website_url"
     t.integer  "google_cid"

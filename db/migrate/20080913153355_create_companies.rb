@@ -4,6 +4,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.string  :name
       t.string  :stock_symbol
       t.text    :description
+      t.text    :info         # seralized hash
       t.string  :logo_url
       t.string  :website_url
       t.integer :google_cid
