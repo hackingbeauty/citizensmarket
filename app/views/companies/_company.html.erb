@@ -1,0 +1,11 @@
+<div class="company">
+  <div class="score rounded">
+    <%=company.score %>
+  </div>
+  <div class="info">
+    <h2><%=company.name %></h2>
+    <span class="brands"><strong>Brands:</strong> <%=brand_name_list(company, :truncate => true) %></span>
+    <span class="more"><%=link_to "Learn more", object_url(company), :class => 'arrow' %></span>
+  </div>
+  <br>
+</div>

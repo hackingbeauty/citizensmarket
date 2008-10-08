@@ -240,7 +240,7 @@ div.submit {
 	width: 164px;
 }
 
-#company_index div.company{
+.company{
 	padding-top: 10px;
 	padding-bottom: 10px;
 	border-bottom: ;
@@ -248,7 +248,7 @@ div.submit {
 	margin-right: 15px;
 }
 
-#company_index div.company div.score{
+.company div.score{
 	float: left;
 	background-color: #7bb933;
 	color: #333;
@@ -258,16 +258,16 @@ div.submit {
 	margin-top: 15px;
 }
 
-#company_index div.company div.info{
+.company div.info{
 	margin-left: 50px;
 }
 
-#company_index div.company h2{
+.company h2{
 	font-size: 14px;
 	font-weight: bold;
 }
 
-#company_index div.company span.brands{
+.company span.brands{
 	color: #666;
 	display: block;
 }
