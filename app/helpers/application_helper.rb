@@ -65,13 +65,4 @@ module ApplicationHelper
     "#{Faker::Address.city}, #{Faker::Address.us_state_abbr}"
   end
 
-  def signin_or_logout_link
-    if logged_in?
-      linkhtml = link_to "Log Out", session_url, :method => "delete"
-      else
-      linkhtml = link_to "Sign In", new_session_url
-    end
-    linkhtml
-  end
-
 end

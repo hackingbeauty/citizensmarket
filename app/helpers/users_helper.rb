@@ -89,5 +89,27 @@ module UsersHelper
       link_to_login_with_IP content_text, options
     end
   end
+  
+  #
+  # Log Out or Sign In link depending on if the user is logged in
+  #
+  def signin_or_logout_link
+    if logged_in?
+      link_to "Log Out", logout_url, :method => "delete"
+    else
+      link_to "Sign In", login_url
+    end
+  end
+  
+  #
+  # My Profile or Register link depending on if the user is logged in
+  #
+  def profile_or_register_link
+    if logged_in?
+      link_to_current_user :content_text => 'My Account'
+    else
+      link_to "Register", signup_url
+    end
+  end
 
 end
