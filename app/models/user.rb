@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
 
+  has_many :user_issues
+  has_many :issues, :through => :user_issues
+  has_many :peer_ratings
+
   before_validation :copy_email_to_login
 
   validates_presence_of     :login

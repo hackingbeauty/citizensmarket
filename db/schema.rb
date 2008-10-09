@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081004203137) do
+ActiveRecord::Schema.define(:version => 20081009234713) do
 
   create_table "brands", :force => true do |t|
     t.text     "name"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(:version => 20081004203137) do
     t.datetime "updated_at"
   end
 
+  create_table "peer_ratings", :force => true do |t|
+    t.integer  "review_id"
+    t.integer  "user_id"
+    t.float    "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "review_issues", :force => true do |t|
     t.integer  "review_id"
     t.integer  "issue_id"
@@ -51,6 +59,15 @@ ActiveRecord::Schema.define(:version => 20081004203137) do
     t.text     "body"
     t.string   "status",     :null => false
     t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "user_issues", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "issue_id"
+    t.float    "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -3,6 +3,7 @@ class Review < ActiveRecord::Base
   belongs_to  :company
   has_many    :review_issues
   has_many    :issues, :through => :review_issues
+  has_many    :peer_ratings
 
   # Define State Machine states and transitions
   include AASM
