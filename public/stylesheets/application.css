@@ -54,6 +54,11 @@ br.right {
 	clear: right;
 }
 
+.avatar {
+	border: 1px solid #b3b3b3;
+	padding: 2px;
+}
+
 #header{
 	width:974px;
 	height:66px;
@@ -209,9 +214,11 @@ blockquote.pullquote p {
 }
 
 #footer {
+	padding-top: 15px;
 	margin-top: 15px;
 	margin-bottom: 15px;
 	text-align: center;
+	border-top: 1px solid #e6e6e6;
 }
 #footer #copyright {
 	margin-top: 10px;
@@ -240,7 +247,7 @@ div.submit {
 	width: 164px;
 }
 
-#company_index div.company{
+.company{
 	padding-top: 10px;
 	padding-bottom: 10px;
 	border-bottom: ;
@@ -248,7 +255,7 @@ div.submit {
 	margin-right: 15px;
 }
 
-#company_index div.company div.score{
+.company div.score{
 	float: left;
 	background-color: #7bb933;
 	color: #333;
@@ -258,16 +265,16 @@ div.submit {
 	margin-top: 15px;
 }
 
-#company_index div.company div.info{
+.company div.info{
 	margin-left: 50px;
 }
 
-#company_index div.company h2{
+.company h2{
 	font-size: 14px;
 	font-weight: bold;
 }
 
-#company_index div.company span.brands{
+.company span.brands{
 	color: #666;
 	display: block;
 }
@@ -488,4 +495,61 @@ a.arrow {
 	background-color: #d25754;
 }
 
+#user_profile {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+#user_profile h1 {
+	font-size: 20px;
+	padding-top: 10px;
+}
+#user_profile .avatar {
+	float: left;
+	margin-right: 10px;
+}
+#user_profile .info {
+	margin: 20px 10px 10px 10px;
+	padding: 10px;
+	background-color: #f8ffd5;
+	border: 1px solid #a7aa9a;
+}
+#user_profile .info li {
+	padding-bottom: 5px;
+}
+#user_profile .info label {
+	float: left;
+	width: 75px;
+	padding-right: 5px;
+	color: #7f7f7f;
+	text-align: right;
+}
+
+#activity_feed {
+	padding-top: 10px;
+}
+#activity_feed h2 {
+	padding-right: 3px;
+	padding-bottom: 3px;
+	border-bottom: 1px solid #b3b3b3;
+}
+#activity_feed .event {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-left: 20px;
+	border-bottom: 1px solid #ccc;
+}
+#activity_feed .event .heading {
+	padding-bottom: 5px;
+	font-weight: bold;
+}
+#activity_feed .event .description {
+	padding-bottom: 3px;
+	margin-left: 20px;
+}
+#activity_feed .event .icon {
+	position: relative;
+	top: 3px;
+	left: -15px;
+}
 

@@ -1,6 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  
+
   def render_tabs(tabs)
     tabs.inject("") do |tab_html, tab|
       tab[:on] ? tab_state = 'on' : tab_state = 'off'
@@ -11,15 +11,15 @@ module ApplicationHelper
       tab_html += "<div class='tabimg_right_#{tab_state}'>&nbsp;</div>"
     end
   end
-  
+
   def favicon(domain)
     # TODO: cache
     "http://www.google.com/s2/favicons?domain=#{domain}"
   end
-  
+
   def fixed_star_rating(rating, opts = {})
     dom_id = opts[:dom_id] || ""
-    
+
     (1..10).inject("") do |html, i|
       if rating == i
         html += "<input name='star_#{dom_id}' type='radio' class='star-rating {split:2}' disabled='disabled' checked='checked'/>\n"
@@ -28,13 +28,13 @@ module ApplicationHelper
       end
     end
   end
-  
+
   # Truncate the text at a specific word count.
   def snippet(text, wordcount)
       # TODO: This could be better written to normalize based on word size
     text.split[0..(wordcount-1)].join(" ") +(text.split.size > wordcount ? "..." : "")
-  end 
-  
+  end
+
   # Temporary method to return a random hash for existing gravatar images
   def gravatar_hash
     hashes = ['767fc9c115a1b989744c755db47feb60',
@@ -56,13 +56,13 @@ module ApplicationHelper
               'eecc887dff6e1e42103590c76f215d87']
     hashes[rand(hashes.size)]
   end
-  
+
   def user_name
     "#{Faker::Name.first_name} #{('A'..'Z').to_a[rand(25)]}."
   end
-  
+
   def location
     "#{Faker::Address.city}, #{Faker::Address.us_state_abbr}"
   end
-  
+
 end
