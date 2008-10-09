@@ -4,9 +4,11 @@
     <%=image_tag 'logo1.png' %>
   </div>
   <ul>
-    <% @company.info.each do |info_label, info_value| %>
-    <li><label><%=info_label %>:</label> <%=info_value %></li>
-    <% end %>
+	<% unless @company.info.nil? %>
+    	<% @company.info.each do |info_label, info_value| %>
+    	<li><label><%=info_label %>:</label> <%=info_value %></li>
+    	<% end %>
+	<% end %>
   </ul>
   <div class="attribution">
     <label>Source:</label> <%=link_to 'Wikipedia', 'http://en.wikipedia.org/wiki/L%27Or%C3%A9al'%>
