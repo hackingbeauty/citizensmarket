@@ -1,0 +1,80 @@
+
+<div id="user_profile" class="yui-g">
+	<div class="yui-u first">
+		
+		<div class="heading">
+  		<%=image_tag "http://www.gravatar.com/avatar/94e0f2c094797c9d417f5434154d98e2?s=50&d=monsterid", :class => 'avatar'%>
+      <h1><%=@user.email %></h1>
+    </div>
+    <br/>
+    <div class="info rounded">
+      <ul>
+        <li><label>Name: </label><span>Jim Patterson</span></li>
+        <li><label>Location: </label><span>Cambridge, MA</span></li>
+        <li><label>Blog: </label><span><%=link_to 'www.csrblog.net', '' %></span></li>
+        <li><label>Reviews: </label><span><%=link_to '7', '' %></span></li>
+      </ul>
+    </div>
+		
+	</div>
+	<div id="activity_feed" class="yui-u">
+		
+		<h2>Most Recent Activity <%=image_tag 'feed.png' %></h2>
+		
+		<div class="event">
+		  <div class="heading">
+  		  <%=image_tag 'review.png', :class => 'icon' %>
+  		  <span class="username"><%=link_to 'jpatterson@citizensmarket.org', '' %></span> -
+  		  <span class="when">2 hours ago</span>
+		  </div>
+		  <div class="description">
+		    Posted a review of <%=link_to 'Unilever', '' %> (4 out of 10 stars)
+		  </div>
+		</div>
+		
+		<div class="event">
+		  <div class="heading">
+  		  <%=image_tag 'user_comment.png', :class => 'icon' %>
+  		  <span class="username"><%=link_to 'jpatterson@citizensmarket.org', '' %></span> -
+  		  <span class="when">1 day ago</span>
+		  </div>
+		  <div class="description">
+		    Commented on a review of <%=link_to 'ExxonMobile', '' %>
+		  </div>
+		</div>
+		
+		<div class="event">
+		  <div class="heading">
+  		  <%=image_tag 'thumbs_up.png', :class => 'icon' %>
+  		  <span class="username"><%=link_to 'jpatterson@citizensmarket.org', '' %></span> -
+  		  <span class="when">1 day ago</span>
+		  </div>
+		  <div class="description">
+		    Likes a review of <%=link_to 'ExxonMobile', '' %>
+		  </div>
+		</div>
+		
+		<div class="event">
+		  <div class="heading">
+  		  <%=image_tag 'review.png', :class => 'icon' %>
+  		  <span class="username"><%=link_to 'jpatterson@citizensmarket.org', '' %></span> -
+  		  <span class="when">5 days ago</span>
+		  </div>
+		  <div class="description">
+		    Posted a review of <%=link_to 'Proctor & Gamble', '' %> (8 out of 10 stars)
+		  </div>
+		</div>
+		
+		<div class="event">
+		  <div class="heading">
+  		  <%=image_tag 'thumbs_down.png', :class => 'icon' %>
+  		  <span class="username"><%=link_to 'jpatterson@citizensmarket.org', '' %></span> -
+  		  <span class="when">1 day ago</span>
+		  </div>
+		  <div class="description">
+		    Dislikes a review of <%=link_to 'Kimberly-Clark', '' %>
+		  </div>
+		</div>
+		
+	</div>
+</div>

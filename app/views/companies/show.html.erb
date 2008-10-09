@@ -8,27 +8,25 @@
       {:label => 'Related Companies'},
       {:label => 'Write a Review', :tab => 'follow_link', :link => new_company_review_url(@company)}
       ] %>
-    </div>
-
-    <div id="content">
-      <div id="company_overview" class="tab_content show">
-        <%=render :partial => "info_box" %>
-        <%=render :partial => "overview_scores" %>
-        <%=render :partial => "description" %>
-        <%=render :partial => "brands" %>
-        <%=render :partial => "news" %>
-        <br>
-      </div>
-
-      <div id="scores_and_reviews" class="tab_content">
-        <h3>Reviews</h3>
-        <%=render :partial => "/reviews/review", :collection => @company.reviews %>
-      </div>
-
-      <div id="related_companies" class="tab_content">
-        <%=render :partial => "company", :collection => Company.all[1..5] %>
-      </div>
-
-    </div>
-
   </div>
+
+  <div id="content">
+    <div id="company_overview" class="tab_content show">
+      <%=render :partial => "info_box" %>
+      <%=render :partial => "overview_scores" %>
+      <%=render :partial => "description" %>
+      <%=render :partial => "brands" %>
+      <%=render :partial => "news" %>
+      <br>
+    </div>
+
+    <div id="scores_and_reviews" class="tab_content">
+      <h3>Reviews</h3>
+      <%=render :partial => "/reviews/review", :collection => @company.reviews %>
+    </div>
+
+    <div id="related_companies" class="tab_content">
+      <%=render :partial => "company", :collection => Company.all[1..5] %>
+    </div>
+  </div>
+</div>

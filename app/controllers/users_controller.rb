@@ -62,6 +62,10 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path
   end
+  
+  def show
+    @user = find_user
+  end
 
   # There's no page here to update or destroy a user.  If you add those, be
   # smart -- make sure you check that the visitor is authorized to do so, that they
@@ -69,6 +73,6 @@ class UsersController < ApplicationController
 
 protected
   def find_user
-    @user = User.find(params[:id])
+    @user ||= User.find(params[:id])
   end
 end
