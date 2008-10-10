@@ -87,7 +87,33 @@ $(document).ready (function() {
       }
     });
 
-    
+    $("#slider").slider({ 
+                min: 1, 
+                max: 10,
+                stepping: 1, 
+                startValue: 5,
+                slide: function(e,ui) {
+                   $("#slider-value").html(ui.value);
+                   switch (Math.round(parseInt(ui.value)/2)) {
+                    case 5:
+                      var color = "#2a9641";
+                      break;
+                    case 4:
+                      var color = "#a6d96a";
+                      break;
+                    case 3:
+                      var color = "#d6b57e";
+                      break;
+                    case 2:
+                      var color = "#f46d43";
+                      break;
+                    case 1:
+                      var color = "#d25754";
+                      break;
+                   }
+                   $("#slider-value").css('color',color);
+                }
+    });    
     
 	  
 });

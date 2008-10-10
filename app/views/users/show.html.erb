@@ -4,7 +4,7 @@
 		
 		<div class="heading">
   		<%=image_tag "http://www.gravatar.com/avatar/94e0f2c094797c9d417f5434154d98e2?s=50&d=monsterid", :class => 'avatar'%>
-      <h1><%=@user.email %></h1>
+      <h1><%=@user.login %></h1>
     </div>
     <br/>
     <div class="info rounded">
@@ -14,6 +14,18 @@
         <li><label>Blog: </label><span><%=link_to 'www.csrblog.net', '' %></span></li>
         <li><label>Reviews: </label><span><%=link_to '7', '' %></span></li>
       </ul>
+    </div>
+    
+    <div>
+      
+      <h2>My Issues:</h2>
+      <div class="slider-control">
+        <label class="slider-label">Environment: </label>
+        <div id="slider" class="slider">
+          <div class="ui-slider-handle"></div>	
+        </div><div id="slider-value" class="slider-value">5</div>
+      </div>  
+      
     </div>
 		
 	</div>
