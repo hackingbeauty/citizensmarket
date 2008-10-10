@@ -1,6 +1,7 @@
 class Review < ActiveRecord::Base
   
   belongs_to  :company
+  belongs_to  :user
   has_many    :review_issues
   has_many    :issues, :through => :review_issues
   has_many    :peer_ratings

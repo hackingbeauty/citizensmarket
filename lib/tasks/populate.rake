@@ -5,8 +5,33 @@ namespace :db do
     
     Rake::Task['db:populate_issues'].invoke
     
-    [Company, Brand, Review, ReviewIssue].each(&:delete_all)
+    User.delete_all
     
+    User.populate 1 do |user|
+       user.login =  "jimp79"
+       user.name = "Jim Patterson"
+       user.email = "jpatterson@citizensmarket.org"
+       user.profile = { :location => 'Cambridge, MA', 
+                        :website => 'www.foo.com'}
+       activated_at = 1.second.ago
+       user.state = 'active'
+       user.crypted_password = '9f23bb6c86d772dac3a317bd5212ba730ee12cda'
+       user.salt = '9355ca6b77d8f6bb9567f14d0ade416ef0963517'
+     end
+    
+    User.populate 10 do |user|
+      first_name = Faker::Name.first_name
+      last_name = Faker::Name.last_name
+      user.login =  first_name + last_name.first
+      user.name = first_name + " " + last_name
+      user.email = Faker::Internet.email
+      user.profile = {:location => Faker::Address.city + ", " + Faker::Address.us_state_abbr, 
+                      :website => "www." + Faker::Internet.domain_name}
+      activated_at = 1.second.ago
+      user.state = 'active'
+    end
+    
+    [Company, Brand, Review, ReviewIssue].each(&:delete_all)
     Company.populate 10 do |company|
       company.name = Faker::Company.name
       company.description = Populator.sentences(2..10)
@@ -33,6 +58,7 @@ namespace :db do
           review_issue.issue_id = Issue.all.rand.id
           review_issue.rating = rand(9) + 1
         end
+        review.user_id = User.all.rand.id
         review.company_id = company.id
         review.body = Populator.paragraphs(2..10)
         review.status = ['draft', 'published']

@@ -439,7 +439,7 @@ a.arrow {
 }
 .review div.reviewer .avatar {
 	float: left;
-	padding-right: 10px;
+	margin-right: 10px;
 }
 .review div.reviewer .comment_count {
 	padding-top: 5px;
@@ -541,6 +541,9 @@ a.arrow {
 }
 #activity_feed .event .heading {
 	padding-bottom: 5px;
+	font-weight: bold;
+}
+#activity_feed .event .heading .when{
 	font-weight: bold;
 }
 #activity_feed .event .description {

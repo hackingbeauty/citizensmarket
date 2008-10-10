@@ -1,11 +1,11 @@
 <!-- (1/4, 3/4) -->
 <div class="review yui-gf">
 	<div class="reviewer yui-u first">
-		  <%=image_tag "http://www.gravatar.com/avatar/#{gravatar_hash}?s=53&d=monsterid", :class => 'avatar'%>
+		  <%=image_tag "http://www.gravatar.com/avatar/#{gravatar_hash}?s=50&d=monsterid", :class => 'avatar'%>
 		<div class="info">
-		  <p><%=link_to user_name, '' %><p>
-		  <p><%=location %><p>
-		  <p class="comment_count"><%=image_tag "user_comment.png" %> <%=link_to "#{rand(50)+1} reviews", '' %></p>
+		  <p><%=link_to_user(review.user)%><p>
+		  <p><%=review.user.profile[:location] %><p>
+		  <p class="comment_count"><%=image_tag "user_comment.png" %> <%=link_to_user(review.user, :content_text => "#{review.user.reviews.size} Reviews")%></p>
 		</div>
 	</div>
 	<div class="content yui-u">

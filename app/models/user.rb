@@ -6,9 +6,12 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
 
+  has_many :reviews
   has_many :user_issues
   has_many :issues, :through => :user_issues
   has_many :peer_ratings
+  
+  serialize :profile, Hash
 
   before_validation :copy_email_to_login
 
@@ -30,7 +33,7 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :profile
 
 
 
