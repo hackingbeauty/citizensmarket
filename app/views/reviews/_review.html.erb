@@ -4,7 +4,7 @@
 		  <%=image_tag "http://www.gravatar.com/avatar/#{gravatar_hash}?s=50&d=monsterid", :class => 'avatar'%>
 		<div class="info">
 		  <p><%=link_to_user(review.user)%><p>
-		  <p><%=review.user.profile[:location] %><p>
+		  <p><% unless review.user.profile.nil? %><%=review.user.profile[:location] %><% end %><p>
 		  <p class="comment_count"><%=image_tag "user_comment.png" %> <%=link_to_user(review.user, :content_text => "#{review.user.reviews.size} Reviews")%></p>
 		</div>
 	</div>

@@ -6,6 +6,9 @@ class Review < ActiveRecord::Base
   has_many    :issues, :through => :review_issues
   has_many    :peer_ratings
 
+  validates_presence_of :user_id
+
+
   # Define State Machine states and transitions
   include AASM
   
