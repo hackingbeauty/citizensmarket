@@ -33,8 +33,13 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :profile
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :profile, :issue_weights
 
+  after_create{ |user|
+    for issue in Issue.find(:all)
+      UserIssue.create!(:user_id => user.id, :issue_id => issue.id, :weight => 1.0)
+    end
+  }
 
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.

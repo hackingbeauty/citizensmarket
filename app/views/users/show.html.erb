@@ -16,20 +16,18 @@
       </ul>
     </div>
     
-    <div>
       
-      <h2>My Issues:</h2>
-      <div class="slider-control">
-        <label class="slider-label">Environment: </label>
-        <div id="slider" class="slider">
-          <div class="ui-slider-handle"></div>	
-        </div><div id="slider-value" class="slider-value">5</div>
-      </div>  
-      
-    </div>
+    <div id="user_issues_errors" style="width: 600px;">
+	
+	<h2>My Issues:</h2>
+	<div id="user_issues">
+		<%= render :partial => 'users/user_issues', :locals => {:user => @user, :user_issues => @user.user_issues, :container_div_id => 'user_issues', :errors_div_id => 'user_issues_errors'} %>
 		
 	</div>
-	<div id="activity_feed" class="yui-u">
+
+</div>
+
+<div id="activity_feed" class="yui-u">
 		
 		<h2>Most Recent Activity <%=image_tag 'feed.png' %></h2>
 		

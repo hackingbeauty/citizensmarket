@@ -19,5 +19,8 @@
     <li><%=link_to "Submit a Review", root_url %></li>
     <li><%=link_to "Donate", root_url %></li>
     <li><%=link_to "Participate", root_url %></li>
+	<% unless session[:user].nil? %>
+		<li><%=link_to "My Account", user_url(session[:user])%></li>
+	<% end %>
   </ul>
 </div>

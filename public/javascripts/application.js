@@ -88,7 +88,7 @@ $(document).ready (function() {
     });
 
     $("#slider").slider({ 
-                min: 1, 
+                min: 0, 
                 max: 10,
                 stepping: 1, 
                 startValue: 5,
@@ -113,7 +113,7 @@ $(document).ready (function() {
                    }
                    $("#slider-value").css('color',color);
                 }
-    });    
-    
-	  
+    });      
+
+	
 });

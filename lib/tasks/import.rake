@@ -145,7 +145,7 @@ namespace :import do
           new_category_name = category_xml.attributes['old_cat_name']
         end
         new_issue_hash = {
-          "name" => x.attributes['old_cat_name'],
+          "name" => x.attributes['old_top_name'],
           "description" => x.attributes['old_desc'],
           "category" => new_category_name
         }
