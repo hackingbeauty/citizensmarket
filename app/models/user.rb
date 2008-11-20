@@ -73,6 +73,10 @@ class User < ActiveRecord::Base
                                 :issue_id => issue.id, 
                                 :weight => 50}})
   end
+  
+  def issue_weight(issue)
+    UserIssue.find_by_issue_id(issue, :conditions => {:user_id => self.id}).weight
+  end
 
   protected
 

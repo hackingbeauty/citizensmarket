@@ -33,7 +33,7 @@
   	                <%=issue %>
   	              </div>
   	              <div class="score">
-  	                50
+  	                <%=@user.issue_weight(Issue.find_by_name(issue)) %>
   	              </div>
   	              <br>
   	            </div>
