@@ -3,7 +3,7 @@
 	<div class="yui-u first">
 		
 		<div class="heading">
-  		<%=image_tag "http://www.gravatar.com/avatar/94e0f2c094797c9d417f5434154d98e2?s=50&d=monsterid", :class => 'avatar'%>
+  		<%=image_tag @user.gravatar_url(:size => 50), :class => 'avatar'%>
       <h1><%=@user.login %></h1>
     </div>
     <br/>
@@ -17,11 +17,12 @@
     </div>
     
       
-    <div id="user_issues_errors" style="width: 600px;">
+    <div id="user_issues_errors" style="width: 600px;"></div>
 	
-	<h2>My Issues:</h2>
-	<div id="user_issues">
-		<%= render :partial => 'users/user_issues', :locals => {:user => @user, :user_issues => @user.user_issues, :container_div_id => 'user_issues', :errors_div_id => 'user_issues_errors'} %>
+	  <h2>My Issues:</h2>
+	  <div id="user_issues">
+	  
+		<%#= render :partial => 'users/user_issues', :locals => {:user => @user, :user_issues => @user.user_issues, :container_div_id => 'user_issues', :errors_div_id => 'user_issues_errors'} %>
 		
 	</div>
 
