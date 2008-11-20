@@ -22,10 +22,25 @@
 	  <h2>My Issues</h2>
 	  <div id="user_issues">
 		  <%#= render :partial => 'users/user_issues', :locals => {:user => @user, :user_issues => @user.user_issues, :container_div_id => 'user_issues', :errors_div_id => 'user_issues_errors'} %>
-	    <% Issue.all.each do |issue| %>
-	    
-	      <%= issue.name%>
-	    
+	    <% Issue.by_category.each do |category, issues| %>
+	      <div>
+	        <h3><%=category %></h3>
+	        <ul>
+  	        <% issues.each do |issue| %>
+  	          <li>
+  	            <div>
+  	              <div class="issue">
+  	                <%=issue %>
+  	              </div>
+  	              <div class="score">
+  	                50
+  	              </div>
+  	              <br>
+  	            </div>
+  	          </li>
+  	        <% end %>
+	        </ul>
+	      </div>
 	    <% end %>
 	  </div>
 
