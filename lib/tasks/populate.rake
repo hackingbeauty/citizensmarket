@@ -31,6 +31,8 @@ namespace :db do
       user.state = 'active'
     end
     
+    User.all.each(&:initialize_default_issue_weights)
+    
     [Company, Brand, Review, ReviewIssue].each(&:delete_all)
     Company.populate 10 do |company|
       company.name = Faker::Company.name

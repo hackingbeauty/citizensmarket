@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
   is_gravtastic
+  
+  after_create :initialize_default_issue_weights
+  after_destroy :destroy_user_issue_weights
 
   has_many :reviews
   has_many :user_issues
@@ -62,13 +65,21 @@ class User < ActiveRecord::Base
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
   end
+  
+  def initialize_default_issue_weights
+    UserIssue.delete_all(:user_id => self.id)
+    UserIssue.create(
+      Issue.all.map { |issue| { :user_id => self.id, 
+                                :issue_id => issue.id, 
+                                :weight => 50}})
+  end
 
   protected
 
-    def make_activation_code
-        self.deleted_at = nil
-        self.activation_code = self.class.make_token
-    end
+  def make_activation_code
+      self.deleted_at = nil
+      self.activation_code = self.class.make_token
+  end
 
   def copy_email_to_login
     if self.email != self.login and ! self.deleted?
@@ -80,6 +91,10 @@ class User < ActiveRecord::Base
       end
       self.login=self.email
     end
+  end
+  
+  def destroy_user_issue_weights
+    UserIssue.delete_all(:user_id => self.id)
   end
 
 end
