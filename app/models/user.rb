@@ -84,6 +84,15 @@ class User < ActiveRecord::Base
       UserIssue.update_all("weight = #{value.to_i}", "user_id = #{self.id} AND issue_id = #{key[6..8].to_i}")
     end
   end
+  
+  # Methods to return seralized profile attributes
+  def location
+    profile[:location]
+  end
+  
+  def website
+    profile[:website]
+  end
 
   protected
 

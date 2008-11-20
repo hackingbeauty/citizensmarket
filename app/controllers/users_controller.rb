@@ -67,6 +67,13 @@ class UsersController < ApplicationController
     @user = find_user
   end
   
+  def update
+    respond_to do |format|
+        format.html
+        format.js {render :text => "Test"}
+      end
+  end
+  
   def issue_weights
     @user = find_user
     # Only update if the user being updated is the one that is logged in
