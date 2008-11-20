@@ -1,0 +1,24 @@
+<% form_tag(issue_weights_user_url, :method => :put) do -%>
+  <% Issue.by_category.each do |category, issues| %>
+    <div>
+      <h3><%=category %></h3>
+      <ul>
+        <% issues.each do |issue| %>
+        <% issue = Issue.find_by_name(issue) %>
+          <li>
+            <div>
+              <div class="issue">
+                <%=issue.name %>
+              </div>
+              <div class="score">
+                <%=text_field_tag "issue_#{issue.id}", @user.issue_weight(issue), :size => 2 %>
+              </div>
+              <br>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%=submit_tag "Update Issue Weights" %>
+<% end %>

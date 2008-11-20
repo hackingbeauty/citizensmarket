@@ -77,6 +77,13 @@ class User < ActiveRecord::Base
   def issue_weight(issue)
     UserIssue.find_by_issue_id(issue, :conditions => {:user_id => self.id}).weight
   end
+  
+  def update_issue_weights(params)
+    params.each do |key, value|
+      next unless key[0..5] == "issue_"
+      UserIssue.update_all("weight = #{value.to_i}", "user_id = #{self.id} AND issue_id = #{key[6..8].to_i}")
+    end
+  end
 
   protected
 

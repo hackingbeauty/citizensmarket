@@ -13,7 +13,8 @@ ActionController::Routing::Routes.draw do |map|
 
 
 
-  map.resources :users
+  map.resources :users,
+                :member => {:issue_weights => :put}
 
   map.resource :session
 

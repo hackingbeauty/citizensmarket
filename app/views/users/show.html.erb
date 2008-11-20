@@ -21,27 +21,11 @@
 	
 	  <h2>My Issues</h2>
 	  <div id="user_issues">
-		  <%#= render :partial => 'users/user_issues', :locals => {:user => @user, :user_issues => @user.user_issues, :container_div_id => 'user_issues', :errors_div_id => 'user_issues_errors'} %>
-	    <% Issue.by_category.each do |category, issues| %>
-	      <div>
-	        <h3><%=category %></h3>
-	        <ul>
-  	        <% issues.each do |issue| %>
-  	          <li>
-  	            <div>
-  	              <div class="issue">
-  	                <%=issue %>
-  	              </div>
-  	              <div class="score">
-  	                <%=@user.issue_weight(Issue.find_by_name(issue)) %>
-  	              </div>
-  	              <br>
-  	            </div>
-  	          </li>
-  	        <% end %>
-	        </ul>
-	      </div>
-	    <% end %>
+	    <% if @user == current_user %>
+		    <%=render :partial => "issues_edit"%>
+		  <% else %>
+        <%=render :partial => "issues_show"%>
+      <% end %>
 	  </div>
 
 </div>
