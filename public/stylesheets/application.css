@@ -504,6 +504,12 @@ a.arrow {
 	font-size: 20px;
 	padding-top: 10px;
 }
+#user_profile h2 {
+	padding-right: 3px;
+	padding-top: 15px;
+	padding-bottom: 3px;
+	border-bottom: 1px solid #b3b3b3;
+}
 #user_profile .avatar {
 	float: left;
 	margin-right: 10px;
@@ -528,11 +534,7 @@ a.arrow {
 #activity_feed {
 	padding-top: 10px;
 }
-#activity_feed h2 {
-	padding-right: 3px;
-	padding-bottom: 3px;
-	border-bottom: 1px solid #b3b3b3;
-}
+
 #activity_feed .event {
 	padding-top: 10px;
 	padding-bottom: 10px;
