@@ -22,6 +22,11 @@
 	  <h2>My Issues</h2>
 	  <div id="user_issues">
 		  <%#= render :partial => 'users/user_issues', :locals => {:user => @user, :user_issues => @user.user_issues, :container_div_id => 'user_issues', :errors_div_id => 'user_issues_errors'} %>
+	    <% Issue.all.each do |issue| %>
+	    
+	      <%= issue.name%>
+	    
+	    <% end %>
 	  </div>
 
 </div>
