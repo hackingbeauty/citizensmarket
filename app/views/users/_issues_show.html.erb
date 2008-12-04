@@ -1,15 +1,15 @@
-<% Issue.by_category.each do |category, issues| %>
+<% IssueCategory.all.each do |issue_category| %>
   <div>
-    <h3><%=category %></h3>
+    <h3><%=issue_category.name %></h3>
     <ul>
-      <% issues.each do |issue| %>
+      <% issue_category.issues.each do |issue| %>
         <li>
           <div>
             <div class="issue">
-              <%=issue %>
+              <%=issue.name %>
             </div>
             <div class="score">
-              <%=@user.issue_weight(Issue.find_by_name(issue)) %>
+              <%=@user.issue_weight(issue) %>
             </div>
             <br>
           </div>
