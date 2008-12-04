@@ -1,39 +1,27 @@
 <div id="scores">
-  <h4>Social Issue Scores</h4>
+  <h3>Social Issue Scores</h3>
   
-  <div style="float: left;">
-  
-    <div class="score_container">
-      <div class="score color_five rounded">9.1</div>
-      <label>Environment</label>
+  <% IssueCategory.all.each do |issue_category| %>
+    <div class="category">
+      <div class="score_container">
+        <%=random_score %>
+        <label class="category"><%=issue_category.name %></label>
+      </div>
+      <br class="left">
+      <ul>
+        <% issue_category.issues.each do |issue| %>
+          <li>
+            <div class="score_container">
+              <%=random_score %>
+              <label><%=issue.name %></label>
+            </div>
+            <br class="left">
+          </li>
+        <% end %>
+      </ul>
     </div>
-    <br class="left">
-    <div class="score_container">
-      <div class="score color_four rounded">8.7</div>
-      <label>Society</label>
-    </div>
-    <br class="left">
-    <div class="score_container">
-      <div class="score color_three rounded">6.6</div>
-      <label>Economic Development</label>
-    </div>
-    <br class="left">
-  
-  </div>
-  
-  <div  style="float: right; padding-right: 100px;">
     
-    <div class="score_container">
-      <div class="score color_one rounded">2.2</div>
-      <label>Labor Practices</label>
-    </div>
-    <br class="left">
-    <div class="score_container">
-      <div class="score color_two rounded">4.0</div>
-      <label>Product Responsibility</label>
-    </div>
-    <br class="left">
   
-  </div>
-  <br class="left">
+  <% end %>
+  
 </div>
