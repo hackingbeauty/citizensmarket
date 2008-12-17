@@ -3,7 +3,7 @@ class CreatePeerRatings < ActiveRecord::Migration
     create_table :peer_ratings do |t|
       t.integer :review_id
       t.integer :user_id
-      t.float :score
+      t.integer :score
       
       t.timestamps
     end

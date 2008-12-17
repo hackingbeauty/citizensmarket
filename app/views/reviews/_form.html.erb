@@ -1,7 +1,27 @@
 <fieldset id="review_form">
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+
+	<!-- 
+		cats_and_issues structure{
+			'category_name' => {
+				'issue_id' => 'issue_name',
+				'issue_id' => 'issue_name',
+			}
+			'category_name' => {
+				... and so on
+			}
+		}	
+	-->
+	<label for="review_issue_pickers">Issue(s):</label>
+	<div id="issue_pickers">
+		<%= render :partial => 'issues/issue_picker', :locals => {:parent_div_id => 'issue_pickers', :removable => false }%>
+	</div>
+	<%= link_to_remote 'add another', 
+			:url => {:controller => 'issues', :action => 'issue_picker', :parent_div_id => 'issue_pickers'},
+			:update => {:success => 'issue_pickers'}, :position => 'bottom' %>
+	
+	
   
-  <label for="review_issue">Issue:</label>
-  <%= f.collection_select :issue_id, Issue.find(:all), :id, :name_with_category, {:prompt => true} %>
   <br class="left">
 
   <div class="star_rating">

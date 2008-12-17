@@ -1,5 +1,6 @@
 class CompaniesController < ResourceController::Base
   
+  
   def suggestions
     @results = CompanyLookup.suggest(params[:q])
     render :text => @results.join("\n")

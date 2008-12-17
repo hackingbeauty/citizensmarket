@@ -1,5 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  
+  map.resources :peer_ratings
+
+  map.connect '/issues/issue_picker', :controller => 'issues', :action => 'issue_picker'
   map.resources :issues
+
 
   map.connect '/users/update_issue_weights', :controller => 'issue_weights', :action => 'update'
   
@@ -11,8 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
   map.reset_password '/reset_password', :controller => 'users', :action => 'reset_password'
 
-
-
+  
   map.resources :users
 
   map.resource :session

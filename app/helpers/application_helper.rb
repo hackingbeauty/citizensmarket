@@ -1,6 +1,15 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  def categorized_issues_hash
+    output = {}
+    for issue_category in Issue.find(:all).map{|x| x.category}.uniq
+      output[issue_category] = {}
+      issues.select{|x| x.category == issue_category}.map{|x| output[issue_category][x.id] = x.name}
+    end
+    output
+  end
+
   def render_tabs(tabs)
     tabs.inject("") do |tab_html, tab|
       tab[:on] ? tab_state = 'on' : tab_state = 'off'

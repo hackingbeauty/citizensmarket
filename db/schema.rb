@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20081009234713) do
   create_table "peer_ratings", :force => true do |t|
     t.integer  "review_id"
     t.integer  "user_id"
-    t.float    "score"
+    t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,13 +50,13 @@ ActiveRecord::Schema.define(:version => 20081009234713) do
   create_table "review_issues", :force => true do |t|
     t.integer  "review_id"
     t.integer  "issue_id"
-    t.integer  "rating",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "reviews", :force => true do |t|
     t.text     "body"
+    t.integer  "rating",     :null => false
     t.string   "status",     :null => false
     t.integer  "company_id"
     t.datetime "created_at"

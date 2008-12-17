@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
     for issue in Issue.find(:all)
       UserIssue.create!(:user_id => user.id, :issue_id => issue.id, :weight => 1.0)
     end
+    user.activate
+    user.save
   }
 
 

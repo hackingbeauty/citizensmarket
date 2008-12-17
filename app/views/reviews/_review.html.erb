@@ -5,28 +5,31 @@
 		<div class="info">
 		  <p><%=link_to_user(review.user)%><p>
 		  <p><% unless review.user.profile.nil? %><%=review.user.profile[:location] %><% end %><p>
-		  <p class="comment_count"><%=image_tag "user_comment.png" %> <%=link_to_user(review.user, :content_text => "#{review.user.reviews.size} Reviews")%></p>
+		  <p class="comment_count"> <%=link_to_user(review.user, :content_text => "#{review.user.reviews.size} Reviews")%></p>
 		</div>
 	</div>
 	<div class="content yui-u">
 		<div class="heading">
-		  <div class="review_rating">13 of 17 people found this review helpful</div>
-      <span class="star_rating">
-        <%=fixed_star_rating(rand(10)+1, :dom_id => dom_id(review)) %> - Research & Development<br>
-        <%=fixed_star_rating(rand(10)+1, :dom_id => dom_id(review)) %> - Conservation
+	  <span class="star_rating">
+		<%=fixed_star_rating(review.rating, :dom_id => dom_id(review))%>&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>
       </span>
-      <span class="time_ago">written <%= time_ago_in_words((rand(365)+1).days.ago) %> ago</span>
+      <span class="time_ago">written <%= time_ago_in_words(review.created_at) %> ago</span>
     </div>
     <div class="body">
       <%=textilize(snippet(review.body, 100)) %>
-    </div>
+    </div><br>
     <div class="footer">
       <%=link_to 'Comment', '', :class => 'comment' %> |
       <%=link_to 'Permalink', '' %> |
       Was this review helpful to you?
-      <span class="thumbs">
-        <%=link_to image_tag('thumbs_down.png'), '' %>
-        <%=link_to image_tag('thumbs_up.png'), '' %>
+      	<% if current_user.nil? %>
+			<%=link_to image_tag('thumbs_down.png'), login_url, :confirm => 'You must login to leave feedback.  Click OK to log in.' %>
+    		<%=link_to image_tag('thumbs_up.png'), login_url, :confirm => 'You must login to leave feedback.  Click OK to log in.' %>
+		<% else %>
+	  		<span class="thumbs">
+        		<%=link_to image_tag('thumbs_down.png'), new_peer_rating_url(:vote => "down", :review_id => review.id) %>
+        		<%=link_to image_tag('thumbs_up.png'), new_peer_rating_url(:vote => "up", :review_id => review.id) %>
+		<% end %>
       </span>
     </div>
 	</div>
