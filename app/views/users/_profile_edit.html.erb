@@ -1,0 +1,36 @@
+<ul>
+  <li><label>Name: </label><span id="name" class="editable"><%=h @user.name %></span></li>
+  <li><label>Email: </label><span id="email" class="editable"><%=h @user.email %></span></li>
+  <li><label>Location: </label><span id="location" class="editable"><%=h @user.location %></span></li>
+  <li><label>Website: </label><span id="website" class="editable"><%=auto_link h(@user.website) %></span></li>
+  <li><label>Reviews: </label><span><%=link_to '7', '' %></span></li>
+</ul>
+
+<%=request_forgery_protection_token%>
+<%=form_authenticity_token%>
+
+<script type="text/javascript">
+
+$(document).ready (function() {
+  
+  jQuery.ajaxSetup({ 
+    'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+  })
+  
+  $("#user_profile .editable").editable(function(value, settings) { 
+       
+       $.post(
+         "<%=user_url(@user)%>",
+         "_method=put&<%=request_forgery_protection_token%>=<%=form_authenticity_token%>&value="+value,
+         null,
+         "text"
+       )
+       return value;
+    }, { 
+       submit  : 'OK',
+   });
+  
+  
+});
+
+</script>

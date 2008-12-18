@@ -10,4 +10,17 @@ module CompaniesHelper
     end
   end
   
+  def random_score
+    score = rand(100)
+    color_class = case score
+      when 0..20 : "color_one"
+      when 21..40 : "color_two"
+      when 41..60 : "color_three"
+      when 61..80 : "color_four"
+      when 81..100 : "color_five"
+    end
+    score = score / 10.0
+    "<div class=\"score #{color_class} rounded\">#{score}</div>"
+  end
+  
 end

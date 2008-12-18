@@ -66,6 +66,20 @@ class UsersController < ApplicationController
   def show
     @user = find_user
   end
+  
+  def update
+    respond_to do |format|
+        format.html
+        format.js {render :text => "Test"}
+      end
+  end
+  
+  def issue_weights
+    @user = find_user
+    # Only update if the user being updated is the one that is logged in
+    @user.update_issue_weights(params) if current_user == @user
+    redirect_to user_url(@user)
+  end
 
   # There's no page here to update or destroy a user.  If you add those, be
   # smart -- make sure you check that the visitor is authorized to do so, that they

@@ -12,7 +12,7 @@
   <%= stylesheet_link_tag("jquery.autocomplete") %>
   <%= stylesheet_link_tag("jquery.rating") %>
   <%= stylesheet_link_tag("jquery.flora/flora.all.css") %>
-  <%= stylesheet_link_tag("jquery-ui-slider-additions.css")%>
+  <%#= stylesheet_link_tag("jquery-ui-slider-additions.css")%>
   <%= yield(:stylesheets) %>
   
   <%= javascript_include_tag 'jquery', 'jquery-ui', 'jrails' %>
@@ -22,6 +22,7 @@
   <%= javascript_include_tag 'jquery/autocomplete' %>
   <%= javascript_include_tag 'jquery/autogrow' %>
   <%= javascript_include_tag 'jquery/rating' %>
+  <%= javascript_include_tag 'jquery/jeditable' %>
   <%= javascript_include_tag('application') %>
   <%= javascript_include_tag 'accessibleUISlider.jQuery' %>
   <%= javascript_include_tag 'cm_chained_selects.js'%>

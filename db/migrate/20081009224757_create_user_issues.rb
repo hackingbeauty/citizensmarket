@@ -3,7 +3,7 @@ class CreateUserIssues < ActiveRecord::Migration
     create_table :user_issues do |t|
       t.integer :user_id
       t.integer :issue_id
-      t.float :weight
+      t.integer :weight
       
       t.timestamps
     end
