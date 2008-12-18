@@ -106,7 +106,7 @@ module UsersHelper
   #
   def profile_or_register_link
     if logged_in?
-      link_to_current_user :content_text => 'My Account'
+      link_to_current_user :content_text => 'My Profile'
     else
       link_to "Register", signup_url
     end

@@ -1,16 +1,24 @@
 <div class="info_box rounded">
-  <h4>Company at a Glance</h4>
-  <div class="logo">
-    <%=image_tag 'logo1.png' %>
+  <div id="description">
+    <h3>Company Description</h3>
+    <div>
+      <%=@company.description %>
+    </div>
+    <div class="attribution">
+      <label>Source:</label> <%=link_to 'Wikipedia', 'http://en.wikipedia.org/wiki/L%27Or%C3%A9al'%>
+    </div>
+    <br class="right">
   </div>
-  <ul>
-	<% unless @company.info.nil? %>
-    	<% @company.info.each do |info_label, info_value| %>
-    	<li><label><%=info_label %>:</label> <%=info_value %></li>
-    	<% end %>
-	<% end %>
-  </ul>
-  <div class="attribution">
-    <label>Source:</label> <%=link_to 'Wikipedia', 'http://en.wikipedia.org/wiki/L%27Or%C3%A9al'%>
+  
+  <div id="brands">
+    <h3>Brands</h3>
+    <ul>
+      <% @company.brands.each do |brand| %>
+        <li>
+          <%=brand.name %>
+        </li>
+      <% end %>
+    </ul>
   </div>
+  
 </div>

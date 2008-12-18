@@ -16,8 +16,8 @@ ActionController::Routing::Routes.draw do |map|
   map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
   map.reset_password '/reset_password', :controller => 'users', :action => 'reset_password'
 
-  
-  map.resources :users
+  map.resources :users,
+                :member => {:issue_weights => :put}
 
   map.resource :session
 

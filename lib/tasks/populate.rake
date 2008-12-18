@@ -31,6 +31,8 @@ namespace :db do
       user.state = 'active'
     end
     
+    User.all.each(&:initialize_default_issue_weights)
+    
     [Company, Brand, Review, ReviewIssue].each(&:delete_all)
     Company.populate 10 do |company|
       company.name = Faker::Company.name
@@ -87,7 +89,32 @@ namespace :db do
       issues << issue.merge({:name => 'Indirect Economic Impacts', :description => 'Infrastructure Development, Other Indirect Impacts'})
     end
     
-
+    Hash.new.with_options :category => "Society" do |issue|
+      issues << issue.merge({:name => 'Corruption & Bribery', :description => 'Illegal Influence: Incidences, Oversight, Training, Response'})
+      issues << issue.merge({:name => 'Public Policy', :description => 'Legal Influence: Lobbying, Political Contributions'})
+      issues << issue.merge({:name => 'Anti-Competitive Behavior', :description => 'Anti-Trust, Monopoly Practices'})
+      issues << issue.merge({:name => 'Executive Compensation', :description => 'Executive Pay & Benefits, Golden Parachutes'})
+      issues << issue.merge({:name => 'Investment & Procurement Practices', :description => 'Sustainability Screening for Suppliers / Investments, Employee Training'})
+      issues << issue.merge({:name => 'Security Practices', :description => 'Operations in Conflict Zones, Complicity With Repressive Security Forces'})
+      issues << issue.merge({:name => 'Indigenous Rights', :description => 'Land Appropriations and Other Violations of Rights of Indigenous Peoples'})
+      issues << issue.merge({:name => 'Reporting & Disclosure', :description => 'Transparency, Quality of Sustainability Reports and Publicly Available Data'})
+    end
+    
+    Hash.new.with_options :category => "Labor Practices" do |issue|
+      issues << issue.merge({:name => 'Employment Stability & Benefits', :description => 'Workforce Turnover, Family Benefits, Child Care, Retirement, Health Care'})
+      issues << issue.merge({:name => 'Labor/Management Relations', :description => 'Unions, Freedom of Association and Collective Bargaining'})
+      issues << issue.merge({:name => 'Occupational Health & Safety', :description => 'Injury & Fatality Rates, Prevention Measures'})
+      issues << issue.merge({:name => 'Training & Education', :description => 'Performance Reviews, Professional Development, Managing Career Endings'})
+      issues << issue.merge({:name => 'Diversity & Equal Opportunity', :description => 'Parity in Wages and Executive/Board Representation, Cultural Competence, for Minorities, Women, LGBT, People With Disabilities'})
+      issues << issue.merge({:name => 'Forced, Compulsory or Child Labor', :description => 'Slavery, Human Trafficking, Child Labor'})
+    end
+    
+    Hash.new.with_options :category => "Product Responsibility" do |issue|
+      issues << issue.merge({:name => 'Customer Health & Safety', :description => 'Quality Assurance, Consumer Illnesses/Injuries/Fatalities'})
+      issues << issue.merge({:name => 'Labeling & Marketing Communications', :description => 'Responsible Advertising, Consumer Information'})
+      issues << issue.merge({:name => 'Customer Privacy', :description => 'Consumer Complaints, Loss of Consumer Data'})
+      issues << issue.merge({:name => 'Animal Testing', :description => 'Humane, Inhumane, Use of Alternatives'})
+    end
     
     Issue.create(issues)
     

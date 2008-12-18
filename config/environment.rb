@@ -27,9 +27,10 @@ Rails::Initializer.run do |config|
   config.gem 'rubyist-aasm', :version => '2.0.2', :lib => 'aasm', :source => 'http://gems.github.com'
   config.gem 'hpricot', :version => '0.6.161'
   config.gem 'json', :version => '1.1.3'
-  config.gem 'populator', :version => '0.2.4'
+  config.gem 'populator'
   config.gem 'faker', :version => '0.3.1'
   config.gem 'RedCloth', :version => '4.0.3'
+  config.gem 'gravtastic', :version => '2.0.0'
 
   # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.

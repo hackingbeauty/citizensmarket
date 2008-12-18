@@ -113,7 +113,7 @@ $(document).ready (function() {
                    }
                    $("#slider-value").css('color',color);
                 }
-    });      
+    });
 
 	
 });

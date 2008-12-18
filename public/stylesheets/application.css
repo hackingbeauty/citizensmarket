@@ -361,14 +361,14 @@ a.arrow {
 	background-color: #fff;
 }
 
-#company_overview h4 {
-	margin-top: 10px;
-	margin-bottom: 3px;
+#scores_and_overview h3 {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
-#company_overview .info_box {
+#scores_and_overview .info_box {
 	float: right;
-	width: 250px;
+	width: 350px;
 	padding: 10px;
 	margin-left: 10px;
 	margin-top: 10px;
@@ -377,34 +377,29 @@ a.arrow {
 	background: #f7f7f7;
 }
 
-#company_overview .info_box li {
-	padding-bottom: 10px;
+#scores_and_overview .info_box #brands li {
+	padding-bottom: 5px;
+	padding-left: 15px;
 }
 
-#company_overview .info_box label {
+#scores_and_overview .info_box label {
 	font-weight: bold;
 }
 
-#company_overview .info_box div.logo {
-	text-align: center;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
 
-#company_overview .attribution {
+#scores_and_overview .attribution {
+	padding-top: 15px;
 	font-size: 10px;
 	font-style: italic;
 	float: right;
 }
 
-#company_overview #news li {
-	padding-bottom: 10px;
-}
-#company_overview #news label {
-	display: block;
+
+#scores_and_overview div.category ul {
+	margin-left: 40px;
 }
 
-#company_overview div.score{
+#scores_and_overview div.score{
 	float: left;
 	color: #333;
 	font-weight: bold;
@@ -413,18 +408,20 @@ a.arrow {
 	margin-top: 15px;
 }
 
-#company_overview div.score_container{
+#scores_and_overview div.score_container{
 	margin-bottom: 5px;
 	margin-left: 15px;
 }
 
-#company_overview div.score_container label{
+#scores_and_overview div.score_container label{
 	margin-left: 10px;
 	font-size: 12px;
 	color: #333;
-	font-weight: bold;
 	position: relative;
 	top: 10px;
+}
+#scores_and_overview div.score_container label.category{
+	font-size: 16px;
 }
 
 .review {
@@ -504,6 +501,12 @@ a.arrow {
 	font-size: 20px;
 	padding-top: 10px;
 }
+#user_profile h2 {
+	padding-right: 3px;
+	padding-top: 15px;
+	padding-bottom: 3px;
+	border-bottom: 1px solid #b3b3b3;
+}
 #user_profile .avatar {
 	float: left;
 	margin-right: 10px;
@@ -524,15 +527,29 @@ a.arrow {
 	color: #7f7f7f;
 	text-align: right;
 }
+#user_profile #user_issues h3 {
+	margin-top: 5px;
+	padding: 3px;
+	background-color: #ccc;
+	text-transform: uppercase;
+}
+#user_profile #user_issues li {
+	margin-top: 5px;
+	padding: 3px 3px 3px 10px;
+	border-bottom: 1px solid #ccc;
+}
+#user_profile #user_issues li .issue{
+	float: left;
+}
+#user_profile #user_issues li .score{
+	float: right;
+	margin-right: 10px;
+}
 
 #activity_feed {
 	padding-top: 10px;
 }
-#activity_feed h2 {
-	padding-right: 3px;
-	padding-bottom: 3px;
-	border-bottom: 1px solid #b3b3b3;
-}
+
 #activity_feed .event {
 	padding-top: 10px;
 	padding-bottom: 10px;
