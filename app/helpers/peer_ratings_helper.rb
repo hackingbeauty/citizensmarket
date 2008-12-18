@@ -1,0 +1,2 @@
+module PeerRatingsHelper
+end

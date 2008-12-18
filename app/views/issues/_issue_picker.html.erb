@@ -1,0 +1,19 @@
+
+
+<!-- expects: index, selected_id = nil, parent_div_id, removable(boolean) -->
+<% unique = Time.now.to_i + rand(100)%>
+
+<div id="issue_picker_<%= unique %>">
+
+<% if defined?(selected_id) %>
+	<%= select_tag "issues[#{unique}]", options_for_select(Issue.find(:all).map{|x| [x.name, x.id]}, selected_id) %>
+<% else %>
+	<%= select_tag "issues[#{unique}]", options_for_select(Issue.find(:all).map{|x| [x.name, x.id]}) %>
+<% end %>
+
+<% if removable %>
+	<%= link_to_function 'remove', '$("#issue_picker_'+unique.to_s+'").empty(); return false;' %>
+<% end %>
+
+</div>
+

@@ -1,0 +1,71 @@
+
+
+<!-- expects:  user, user_issues as array, container_div_id, errors_div_id -->
+
+<% form_remote_for :issue_weights, nil, :url => {:controller => 'issue_weights', :action => 'update'}, 
+		:update => {:success => container_div_id, :failure => errors_div_id} do |f|
+%>
+
+	<%= hidden_field_tag 'user_id', user.id %>
+	<%= hidden_field_tag 'container_div_id', container_div_id %>
+	<%= hidden_field_tag 'errors_div_id', errors_div_id %>
+
+<table border="1">
+	
+
+<% for user_issue in user_issues %>
+
+	<tr>
+		<td width="150px">			
+			<label class="slider-label"><%= user_issue.issue.name %>: </label>
+		</td>
+		<td width="250px">
+	
+				<div class="slider-control" id="user_issue_<%= user_issue.id %>_slider-control">		
+        			<div id="user_issue_<%= user_issue.id %>_slider" class="slider">
+          				<div class="ui-slider-handle"></div>	
+        			</div><div id="user_issue_<%= user_issue.id %>_slider-value" class="slider-value"><%= user_issue.weight.to_i %></div>
+    			</div><br>
+				<%= hidden_field_tag 'issue_weights['+user_issue.id.to_s+']', user_issue.weight, :id => 'issue_weight_input_'+user_issue.id.to_s %>
+
+				<script type="text/javascript">
+					$("#user_issue_<%= user_issue.id %>_slider").slider({ 
+	                	min: 0, 
+	                	max: 10,
+	                	stepping: 1, 
+	                	startValue: <%= user_issue.weight %>,
+	                	slide: function(e,ui) {
+	                   		$("#user_issue_<%= user_issue.id %>_slider-value").html(ui.value);
+	                   		$("#issue_weight_input_<%= user_issue.id %>").attr('value', ui.value);
+							switch (Math.round(parseInt(ui.value)/2)) {
+	                    		case 5:
+	                      			var color = "#2a9641";
+	                      			break;
+	                    		case 4:
+	                      			var color = "#a6d96a";
+	                      			break;
+	                    		case 3:
+	                      			var color = "#d6b57e";
+	                      			break;
+	                    		case 2:
+	                      			var color = "#f46d43";
+	                      			break;
+	                    		case 1:
+	                      			var color = "#d25754";
+	                      			break;
+								case 0:
+									var color = "#000";
+									break;
+	                   		}
+							
+	                   		$("#user_issue_<%= user_issue.id %>_slider-value").css('color',color);
+	                	}
+	    			});
+				</script>
+		</td>
+	</tr>
+
+<% end %>
+	<tr><td colspan="2" align="right"><%= submit_tag 'Save' %></td></tr>
+</table>
+<% end %>
