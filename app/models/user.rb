@@ -89,11 +89,11 @@ class User < ActiveRecord::Base
   
   # Methods to return seralized profile attributes
   def location
-    profile[:location]
+    profile[:location] unless profile.blank?
   end
   
   def website
-    profile[:website]
+    profile[:website] unless profile.blank?
   end
 
   protected
