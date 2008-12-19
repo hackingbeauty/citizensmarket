@@ -15,8 +15,8 @@ namespace :db do
                         :website => 'www.foo.com'}
        activated_at = 1.second.ago
        user.state = 'active'
-       user.crypted_password = '9f23bb6c86d772dac3a317bd5212ba730ee12cda'
-       user.salt = '9355ca6b77d8f6bb9567f14d0ade416ef0963517'
+       user.crypted_password = 'dfe4762468fa6db3de50508c6c767ff1fed56246'
+       user.salt = '582c2f30572263ed428158aa64f4d264555aaf3d'
      end
     
     User.populate 10 do |user|
