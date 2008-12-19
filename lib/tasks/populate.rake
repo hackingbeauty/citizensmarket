@@ -58,7 +58,6 @@ namespace :db do
         ReviewIssue.populate 0..5 do |review_issue|
           review_issue.review_id = review.id
           review_issue.issue_id = Issue.all.rand.id
-          review_issue.rating = rand(9) + 1
         end
         review.user_id = User.all.rand.id
         review.company_id = company.id

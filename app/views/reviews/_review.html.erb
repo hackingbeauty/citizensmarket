@@ -11,7 +11,7 @@
 	<div class="content yui-u">
 		<div class="heading">
 	  <span class="star_rating">
-		<%=fixed_star_rating(review.rating, :dom_id => dom_id(review))%>&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>
+		<%#=fixed_star_rating(review.rating, :dom_id => dom_id(review))%>&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>
       </span>
       <span class="time_ago">written <%= time_ago_in_words(review.created_at) %> ago</span>
     </div>

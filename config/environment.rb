@@ -25,7 +25,7 @@ Rails::Initializer.run do |config|
   config.gem 'resource_controller', :version => '0.5.2'
   config.gem 'active_presenter', :version => '0.0.3'
   config.gem 'rubyist-aasm', :version => '2.0.2', :lib => 'aasm', :source => 'http://gems.github.com'
-  config.gem 'hpricot', :version => '0.6.161'
+  config.gem 'hpricot'
   config.gem 'json', :version => '1.1.3'
   config.gem 'populator'
   config.gem 'faker', :version => '0.3.1'
