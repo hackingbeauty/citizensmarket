@@ -13,6 +13,8 @@ class Company < AbstractCompany
   def arbitrary_method
     "I am Jack's profound disappointment"
   end
+  
+
 end
 
 module Namespaced

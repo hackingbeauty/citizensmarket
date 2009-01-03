@@ -17,6 +17,40 @@ class Review < ActiveRecord::Base
   aasm_state :published
   aasm_initial_state :preview
   
+  ##########################################################
+  ######## SCORING SYSTEM
+  
+  def review_score
+    # return cached if cached
+    output = 0
+    peer_ratings.each do |pr|
+      output += pr.score
+    end
+    output
+  end
+  
+  def non_negative_quality_factor
+    qf = quality_factor
+    y = non_negative_quality_factor_y
+    
+    (Math.exp(qf)/(Math.exp(1) - y)**qf)
+  end
+  def non_negative_quality_factor_y
+    0.07
+  end
+    
+  def quality_factor
+    # return cached if it exists
+    y = Review.quality_factor_y
+    output = user.contributor_level + (y * review_score)
+  end
+  def self.quality_factor_y
+    1
+  end
+  ######## end SCORING SYSTEM
+  ##########################################################
+  
+  
   def build_issues(hash)
     for issue_id in hash.values.uniq
       review_issue = ReviewIssue.new(:issue_id => issue_id, :review_id => id)
