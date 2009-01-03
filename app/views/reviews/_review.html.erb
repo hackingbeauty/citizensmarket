@@ -10,10 +10,22 @@
 	</div>
 	<div class="content yui-u">
 		<div class="heading">
+	  
+			<hr color="red">
+				<font color="red">temporary:</font><br>
+				peer ratings: <font color="blue"><b>(<%= review.peer_ratings.map{|x| '['+x.score.to_s+']'}.join(', ') %>)</b></font><br>
+				review score (RS): <font color="blue"><b><%= review.review_score %></b></font><br>
+				quality factor (QF): <font color="blue"><b><%= review.quality_factor %></b></font><br>
+				non-negative quality factor (NNQF): <font color="blue"><b><%= review.non_negative_quality_factor %></b></font><br>
+		  	<hr color="red">
+	
 	  <span class="star_rating">
 		<%=fixed_star_rating(review.rating, :dom_id => dom_id(review))%>&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>
       </span>
-      <span class="time_ago">written <%= time_ago_in_words(review.created_at) %> ago</span>
+		<br>	
+	
+		
+  <span class="time_ago">written <%= time_ago_in_words(review.created_at) %> ago</span>
     </div>
     <div class="body">
       <%=textilize(snippet(review.body, 100)) %>

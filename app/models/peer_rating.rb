@@ -11,6 +11,6 @@ class PeerRating < ActiveRecord::Base
   
   
   VOTE_UP = 1
-  VOTE_DOWN = 0
+  VOTE_DOWN = -1
 
 end

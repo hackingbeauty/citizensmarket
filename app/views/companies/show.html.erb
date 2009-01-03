@@ -12,8 +12,25 @@
 
   <div id="content">
     <div id="scores_and_overview" class="tab_content show">
-      <%=render :partial => "info_box" %>
-      <%#=render :partial => "overview_scores" %>
+ 	<%=render :partial => "info_box" %>
+      	
+		<hr color="red">
+		<font color="red">temporary:</font><br>  
+		     <% unless current_user.nil? %>
+				<font size="4">My Company Score: </font><font size="4" color="blue"><b><%= sprintf('%.2f', current_user.my_company_score(@company)) %></b></font><br>
+			<% end %>
+		
+			<font size="4">Issue Scores</font> (not shown if nil)
+			<ul>
+			<% Issue.all.each do |issue| %>
+				<% s = @company.issue_score(issue) %>
+				<% next if s.nil? %>
+				<li><%= issue.name %>: <font color="blue"><b><%= sprintf('%.2f', s) %></font></b></li>
+			<% end %>
+			</ul>
+		<hr color="red">
+		
+		<%#=render :partial => "overview_scores" %>
       <br>
     </div>
 
