@@ -11,7 +11,7 @@
 	<div class="content yui-u">
 		<div class="heading">
 	  <span class="star_rating">
-		<%=fixed_star_rating(review.rating, :dom_id => dom_id(review))%>&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>
+		<%#=fixed_star_rating(review.rating, :dom_id => dom_id(review))%>&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>
       </span>
       <span class="time_ago">written <%= time_ago_in_words(review.created_at) %> ago</span>
     </div>
@@ -27,8 +27,8 @@
     		<%=link_to image_tag('thumbs_up.png'), login_url, :confirm => 'You must login to leave feedback.  Click OK to log in.' %>
 		<% else %>
 	  		<span class="thumbs">
-        		<%=link_to image_tag('thumbs_down.png'), new_peer_rating_url(:vote => "down", :review_id => review.id) %>
-        		<%=link_to image_tag('thumbs_up.png'), new_peer_rating_url(:vote => "up", :review_id => review.id) %>
+        		<%=link_to image_tag('thumbs_down.png'), vote_down_review_peer_ratings_url(review), :method => :post %>
+        		<%=link_to image_tag('thumbs_up.png'), vote_up_review_peer_ratings_url(review), :method => :post %>
 		<% end %>
       </span>
     </div>

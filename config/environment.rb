@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.1.1' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -25,7 +25,7 @@ Rails::Initializer.run do |config|
   config.gem 'resource_controller', :version => '0.5.2'
   config.gem 'active_presenter', :version => '0.0.3'
   config.gem 'rubyist-aasm', :version => '2.0.2', :lib => 'aasm', :source => 'http://gems.github.com'
-  config.gem 'hpricot', :version => '0.6.161'
+  config.gem 'hpricot'
   config.gem 'json', :version => '1.1.3'
   config.gem 'populator'
   config.gem 'faker', :version => '0.3.1'
