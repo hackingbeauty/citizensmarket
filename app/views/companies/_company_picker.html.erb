@@ -1,0 +1,7 @@
+
+<!-- expects:  company_id = nil -->
+
+<% company_id = nil unless defined?(company_id)%>
+
+<%= select_tag 'company_picker_id', options_for_select(Company.all.map{|x| [x.name, x.id]}, company_id) %>
+

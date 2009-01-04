@@ -94,8 +94,9 @@ class User < ActiveRecord::Base
     numerator = 0
     denominator = 0
     user_issues.each do |ui|
-      next if ui.weight.nil?
-      numerator += ui.weight * company.issue_score(ui.issue).to_f
+      issue_score = company.issue_score(ui.issue)
+      next if issue_score.nil?
+      numerator += ui.weight * issue_score
       denominator += ui.weight
     end
     return numerator if denominator.nil?  # if user has all weights set to 0, equivalent to all weights set to 1, because all weights are set equally

@@ -5,11 +5,21 @@ class ReviewsController < ResourceController::Base
   belongs_to :company
   
   def new
-    @review = Review.new    
+    if params[:company_id].nil?
+      @review = Review.new
+    else
+      @review = Review.new(:company => Company.find(params[:company_id]))
+    end
+    
   end
   
   def create
-    @review = Review.new(:company_id => params[:company_id], :body => params[:review_presenter][:body], :user_id => params[:review_presenter][:user_id], :rating => params[:review_presenter][:rating])
+    
+    if params[:company_picker_id].nil?
+      @review = Review.new(:company_id => params[:company_id], :body => params[:review_presenter][:body], :user_id => params[:review_presenter][:user_id], :rating => params[:review_presenter][:rating])
+    else
+      @review = Review.new(:company_id => params[:company_picker_id], :body => params[:review_presenter][:body], :user_id => params[:review_presenter][:user_id], :rating => params[:review_presenter][:rating])
+    end
     
     if @review.save
       @review.build_issues(params[:issues])

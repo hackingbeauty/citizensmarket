@@ -7,7 +7,7 @@
     <%= error_messages_for :review_presenter %>
 
     <% form_for(:review_presenter, :url => collection_url) do |f| %>
-      <%= render :partial => "form", :locals => { :f => f } %>
+      <%= render :partial => "form", :locals => { :f => f, :review => @review } %>
       <div class="submit">
         <%= image_submit_tag "button_submit.gif" %>
       </div>

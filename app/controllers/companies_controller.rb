@@ -1,6 +1,10 @@
 class CompaniesController < ResourceController::Base
   
   
+  def company_picker
+    render :partial => 'company_picker'
+  end
+  
   def suggestions
     @results = CompanyLookup.suggest(params[:q])
     render :text => @results.join("\n")
