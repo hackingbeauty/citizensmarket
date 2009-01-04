@@ -1,7 +1,7 @@
 <!-- (1/4, 3/4) -->
 <div class="review yui-gf">
 	<div class="reviewer yui-u first">
-		  <%=image_tag "http://www.gravatar.com/avatar/#{gravatar_hash}?s=50&d=monsterid", :class => 'avatar'%>
+		  <%=image_tag "dummy_user.jpg", :class => 'avatar'%>
 		<div class="info">
 		  <p><%=link_to_user(review.user)%><p>
 		  <p><% unless review.user.profile.nil? %><%=review.user.profile[:location] %><% end %><p>
