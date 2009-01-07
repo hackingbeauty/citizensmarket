@@ -14,7 +14,7 @@
     <div id="scores_and_overview" class="tab_content show">
  	<%=render :partial => "info_box" %>
       	
-		<div style="border: solid thin red; background-color: #ffdddd; width: 400px;">
+		<div style="border: solid thin red; background-color: #ffeeee; width: 400px;">
 			<span style="color: red; font-size: 8pt;">Note: this section is temporary, to be used by cm team to observe algorithm behavior</span><br>
 		     <% unless current_user.nil? %>
 				<font size="4">My Company Score: </font><font size="4" color="blue"><b><%= sprintf('%.2f', current_user.my_company_score(@company)) %></b></font><br>

@@ -21,7 +21,8 @@ class PeerRatingsController < ResourceController::Base
       pr.user_id = current_user.id
       pr.score = score
     end.save!
-    redirect_to company_url(review.company)
+    #redirect_to company_url(review.company)
+    render :partial => 'reviews/feedback_given'
   end
   
 end

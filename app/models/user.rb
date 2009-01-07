@@ -108,6 +108,11 @@ class User < ActiveRecord::Base
   ######## end SCORING SYSTEM
   ##########################################################
 
+  def has_rated(review)
+    {PeerRating => true, NilClass => false}[PeerRating.find(:first, :conditions => "review_id = #{review.id} and user_id = #{id}").class]
+  end
+  
+  
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
   # uff.  this is really an authorization, not authentication routine.

@@ -8,7 +8,7 @@
 		  <p class="comment_count"> <%=link_to_user(review.user, :content_text => "#{review.user.reviews.size} Reviews")%></p>
 		
 			<br><br>
-			<div style="border: solid thin red; background-color: #ffdddd; margin: 5px;">
+			<div style="border: solid thin red; background-color: #ffeeee; margin: 20px 5px 0;">
 				<span style="color: red; font-size: 8pt;">temporary to observe algorithms.  <b>THIS USER:</b></span><br>
 				lifetime reviews (LR): <font color="blue"><%= review.user.lifetime_reviews %></font><br>
 				lifetime review score (LRS): <font color="blue"><%= review.user.lifetime_review_score %></font><br>
@@ -35,23 +35,29 @@
       <%=textilize(snippet(review.body, 100)) %>
     </div><br>
     <div class="footer">
-      <%=link_to 'Comment', '', :class => 'comment' %> |
-      <%=link_to 'Permalink', '' %> |
-      Was this review helpful to you?
-      	<% if current_user.nil? %>
-			<%=link_to image_tag('thumbs_down.png'), login_url, :confirm => 'You must login to leave feedback.  Click OK to log in.' %>
-    		<%=link_to image_tag('thumbs_up.png'), login_url, :confirm => 'You must login to leave feedback.  Click OK to log in.' %>
+      	<%=link_to 'Comment', '', :class => 'comment' %> |
+	    <%=link_to 'Permalink', '' %>
+	</div>
+	<div class="footer" id="thumbs_for_review_<%= review.id %>">
+		<% if current_user.has_rated(review) %>
+			<%= render :partial => "reviews/feedback_given" %>
 		<% else %>
-	  		<span class="thumbs">
-        		<%=link_to image_tag('thumbs_down.png'), vote_down_review_peer_ratings_url(review), :method => :post %>
-        		<%=link_to image_tag('thumbs_up.png'), vote_up_review_peer_ratings_url(review), :method => :post %>
+			Was this review helpful to you?
+			<% if current_user.nil? %>
+				<span class="thumbs">
+					<%=link_to image_tag('thumbs_down.png'), login_url, :confirm => 'You must login to leave feedback.  Click OK to log in.' %>
+    				<%=link_to image_tag('thumbs_up.png'), login_url, :confirm => 'You must login to leave feedback.  Click OK to log in.' %>
+				</span>
+			<% else %>
+				<span class="thumbs">
+					<%=link_to_remote image_tag('thumbs_down.png'), :url => vote_down_review_peer_ratings_url(review), :method => :post, :update => "thumbs_for_review_#{review.id}"  %>
+       				<%=link_to_remote image_tag('thumbs_up.png'), :url => vote_up_review_peer_ratings_url(review), :method => :post, :update => "thumbs_for_review_#{review.id}" %>
+				</span>
+			<% end %>
 		<% end %>
-      </span>
-		
-		
     </div>
 
-	<div style="border: solid thin red; background-color: #ffdddd;">
+	<div style="border: solid thin red; background-color: #ffeeee; width: 350px; margin: 20px 5px 0;">
 		<span style="color: red; font-size: 8pt;">Note: this section is temporary, to be used by cm team to observe algorithm behavior.  <b>THIS REVIEW:</b></span><br>
 		peer ratings: <font color="blue"><b>(<%= review.peer_ratings.map{|x| '['+x.score.to_s+']'}.join(', ') %>)</b></font><br>
 		review score (RS): <font color="blue"><b><%= review.review_score %></b></font><br>
