@@ -6,19 +6,23 @@
 		  <p><%=link_to_user(review.user)%><p>
 		  <p><% unless review.user.profile.nil? %><%=review.user.profile[:location] %><% end %><p>
 		  <p class="comment_count"> <%=link_to_user(review.user, :content_text => "#{review.user.reviews.size} Reviews")%></p>
+		
+			<br><br>
+			<div style="border: solid thin red; background-color: #ffdddd; margin: 5px;">
+				<span style="color: red; font-size: 8pt;">temporary to observe algorithms.  <b>THIS USER:</b></span><br>
+				lifetime reviews (LR): <font color="blue"><%= review.user.lifetime_reviews %></font><br>
+				lifetime review score (LRS): <font color="blue"><%= review.user.lifetime_review_score %></font><br>
+				contributor score (CS): <font color="blue"><%= review.user.contributor_score %></font><br>
+				contributor level: <font color="blue"><%= review.user.contributor_level %></font><br>
+				
+			</div>
+		
 		</div>
 	</div>
 	<div class="content yui-u">
 		<div class="heading">
 	  
-			<hr color="red">
-				<font color="red">temporary:</font><br>
-				peer ratings: <font color="blue"><b>(<%= review.peer_ratings.map{|x| '['+x.score.to_s+']'}.join(', ') %>)</b></font><br>
-				review score (RS): <font color="blue"><b><%= review.review_score %></b></font><br>
-				quality factor (QF): <font color="blue"><b><%= review.quality_factor %></b></font><br>
-				non-negative quality factor (NNQF): <font color="blue"><b><%= review.non_negative_quality_factor %></b></font><br>
-		  	<hr color="red">
-	
+			
 	  <span class="star_rating">
 		<%=fixed_star_rating(review.rating, :dom_id => dom_id(review))%>&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>
       </span>
@@ -43,7 +47,18 @@
         		<%=link_to image_tag('thumbs_up.png'), vote_up_review_peer_ratings_url(review), :method => :post %>
 		<% end %>
       </span>
+		
+		
     </div>
+
+	<div style="border: solid thin red; background-color: #ffdddd;">
+		<span style="color: red; font-size: 8pt;">Note: this section is temporary, to be used by cm team to observe algorithm behavior.  <b>THIS REVIEW:</b></span><br>
+		peer ratings: <font color="blue"><b>(<%= review.peer_ratings.map{|x| '['+x.score.to_s+']'}.join(', ') %>)</b></font><br>
+		review score (RS): <font color="blue"><b><%= review.review_score %></b></font><br>
+		quality factor (QF): <font color="blue"><b><%= review.quality_factor %></b></font><br>
+		non-negative quality factor (NNQF): <font color="blue"><b><%= sprintf('%.3f', review.non_negative_quality_factor) %></b></font><br>
+  	</div>
+	
 	</div>
 </div>
 

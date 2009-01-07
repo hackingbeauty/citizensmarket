@@ -7,6 +7,8 @@ strong {
 	font-weight: bold;
 }
 
+
+
 a {
 	color: #0f0087;
 	text-decoration: none;
@@ -492,6 +494,7 @@ a.arrow {
 	background-color: #d25754;
 }
 
+
 #user_profile {
 	padding-top: 15px;
 	padding-bottom: 15px;
@@ -592,4 +595,13 @@ a.arrow {
   margin-left: 5px;
   font-size: 16px;
   font-weight: bold;
+}
+
+span internal_notes{
+	font-size: 1;
+	font-color: red;
+}
+
+div internal_notes{
+	border: solid thin red;
 }
