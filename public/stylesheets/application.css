@@ -115,8 +115,40 @@ br.right {
 	border-left-width: 0;
 }
 
+/* policy docs - last updated by Luke Jan 2009 */ 
+div terms{}
+div.terms .section{
+	margin: 25px;
+}
+div.terms .section .subsection{
+	margin: 15px;
+}
+div.terms .section li{
+	padding-left: 30px;
+}	
+div.terms .section p{
+	margin: 7px;
+}
+div.terms ul.bulleted{
+	padding-left: 30px;
+	padding-bottom: 20px;
+}
+div.terms ul.bulleted li{
+	list-style-type: disc;
+	padding-left: 0px;
+	padding-top: 7px;
+}
+div.terms ol{
+	padding-left: 35px;
+	padding-bottom: 20px;
+}
+div.terms ol li{
+	list-style-type: decimal;
+	padding-left: 0px;
+	padding-top: 4px;
+}
+/* end policy docs */
 
-	
 	
 #newcontainer{
 	background: url(/images/home_header_bg.png) no-repeat;

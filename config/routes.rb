@@ -33,6 +33,12 @@ ActionController::Routing::Routes.draw do |map|
                      :collection => { :vote_up => :post, :vote_down => :post }
   end
 
+  map.connect '/about', :controller => 'home', :action => 'about'
+  map.connect '/terms', :controller => 'home', :action => 'terms'
+  map.connect '/attribution', :controller => 'home', :action => 'attribution'
+  map.connect '/privacy', :controller => 'home', :action => 'privacy'
+  map.connect '/dmca', :controller => 'home', :action => 'dmca'
+  map.connect '/contact', :controller => 'home', :action => 'contact'
   map.resource :home
 
   map.root :controller => "home", :action => "show"
