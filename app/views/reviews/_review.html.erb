@@ -22,6 +22,9 @@
 	<div class="content yui-u">
 		<div class="heading">
 	  
+		<% if show_company %>
+			
+		<% end %>
 			
 	  <span class="star_rating">
 		<%=fixed_star_rating(review.rating, :dom_id => dom_id(review))%>&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>

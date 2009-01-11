@@ -39,6 +39,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/privacy', :controller => 'home', :action => 'privacy'
   map.connect '/dmca', :controller => 'home', :action => 'dmca'
   map.connect '/contact', :controller => 'home', :action => 'contact'
+  map.connect '/take_action', :controller => 'home', :action => 'take_action'
   map.resource :home
 
   map.root :controller => "home", :action => "show"

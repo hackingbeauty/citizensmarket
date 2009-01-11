@@ -81,7 +81,7 @@ module UsersHelper
   #
   def link_to_current_user(options={})
     if current_user
-      link_to_user current_user, options
+      edit_user_link(current_user, options)
     else
       content_text = options.delete(:content_text) || 'not signed in'
       # kill ignored options from link_to_user

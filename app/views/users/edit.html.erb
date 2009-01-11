@@ -1,0 +1,116 @@
+
+<% raise "current_user != @user;  we need security here" unless current_user == @user %>
+
+<h1>My Profile</h1>
+
+<div class="content_box">
+  	<div class="header">
+    	<%= render_tabs [
+      		{:label => 'My Info', :on => true},
+      		{:label => 'My Priorities'},
+      		{:label => 'My Reviews'},
+      		{:label => 'My Stats'},
+		] %>
+  	</div>
+	
+	<div id="my_info" class="tab_content">
+		<div id="user_profile" class="yui-g">
+			<div class="yui-u first">
+				<div class="heading">
+		  			<%=image_tag @user.gravatar_url(:size => 50), :class => 'avatar'%>
+		      		<h1><%=h @user.login %></h1>
+				</div>
+			</div>
+			<br/>
+			<div class="info rounded">
+		    	<%=render :partial => "profile_edit"%>
+			</div>
+		</div>
+	</div>
+	
+	<div id="my_priorities" class="tab_content">
+		<div id="user_profile" class="yui-g">
+			<div id="user_issues_errors" style="width: 600px;"></div>
+
+			<h2>My Issues</h2>
+			<div id="user_issues">
+				<%=render :partial => "issues_edit"%>
+			</div>
+		</div>
+	</div>
+	
+	<div id="my_reviews" class="tab_content">
+		<% for review in @user.reviews %>
+			<%= render :partial => 'reviews/review', :locals => {:review => review, :show_company => true} %>
+		<% end %>
+	</div>
+	
+	<div id="my_stats" class="tab_content">
+		<div id="activity_feed" class="yui-u">
+
+			<h2>Most Recent Activity <%=image_tag 'feed.png' %></h2>
+
+			<div class="event">
+				<div class="heading">
+					<%=image_tag 'review.png', :class => 'icon' %>
+					<span class="username"><%=link_to 'jimp79', '' %></span> -
+					<span class="when">2 hours ago</span>
+				</div>
+				<div class="description">
+					Posted a review of <%=link_to 'Unilever', '' %> (4 out of 10 stars)
+				</div>
+			</div>
+
+			<div class="event">
+				<div class="heading">
+					<%=image_tag 'user_comment.png', :class => 'icon' %>
+					<span class="username"><%=link_to 'jimp79', '' %></span> -
+					<span class="when">1 day ago</span>
+				</div>
+				<div class="description">
+					Commented on a review of <%=link_to 'ExxonMobile', '' %>
+				</div>
+			</div>
+
+			<div class="event">
+				<div class="heading">
+					<%=image_tag 'thumbs_up.png', :class => 'icon' %>
+					<span class="username"><%=link_to 'jimp79', '' %></span> -
+					<span class="when">1 day ago</span>
+				</div>
+				<div class="description">
+					Likes a review of <%=link_to 'ExxonMobile', '' %>
+				</div>
+			</div>
+
+			<div class="event">
+				<div class="heading">
+					<%=image_tag 'review.png', :class => 'icon' %>
+					<span class="username"><%=link_to 'jimp79', '' %></span> -
+					<span class="when">5 days ago</span>
+				</div>
+				<div class="description">
+					Posted a review of <%=link_to 'Proctor & Gamble', '' %> (8 out of 10 stars)
+				</div>
+			</div>
+
+			<div class="event">
+				<div class="heading">
+					<%=image_tag 'thumbs_down.png', :class => 'icon' %>
+					<span class="username"><%=link_to 'jimp79', '' %></span> -
+					<span class="when">1 day ago</span>
+				</div>
+				<div class="description">
+					Dislikes a review of <%=link_to 'Kimberly-Clark', '' %>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+</div>
+	
+	
+			
+
