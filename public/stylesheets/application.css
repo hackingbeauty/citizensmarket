@@ -7,6 +7,36 @@ strong {
 	font-weight: bold;
 }
 
+/* Company list requirements */
+#company-list {width: 100%;}
+#company-list caption {
+  text-transform: uppercase;
+  color: #555;
+  font-size: 123%;
+  padding: 25px 0;
+  font-weight: bold;
+}
+#company-list th {
+  background-color: #29830c; 
+  color: #fff;
+  height: 27px;
+  padding: 0 15px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  }
+#company-list td{ text-align: center; padding: 10px 15px;}
+
+#company-list .name {width: 32%; text-align: left;}
+#company-list .name a{color: #29830c; font-size: 108%; font-weight: bold;}
+
+#company-list .brands {width: 38%; text-align: left;}
+#company-list td.brands{color: #848484;}
+#company-list .brands a{color: #29830c; text-transform: uppercase;}
+
+.odd {background-color: #fff;}
+.even {background-color: #f5fbf2;}
+
 
 
 a {
