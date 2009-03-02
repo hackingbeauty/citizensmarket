@@ -9,10 +9,11 @@ module ActionController
   class AbstractRequest
     extend ActiveSupport::Memoizable
 
-    def self.relative_url_root=(*args)
+    def self.relative_url_root=(relative_url_root)
       ActiveSupport::Deprecation.warn(
         "ActionController::AbstractRequest.relative_url_root= has been renamed." +
         "You can now set it with config.action_controller.relative_url_root=", caller)
+      ActionController::Base.relative_url_root=relative_url_root
     end
 
     HTTP_METHODS = %w(get head put post delete options)
@@ -120,9 +121,19 @@ module ActionController
     end
 
     # Check response freshness (Last-Modified and ETag) against request
-    # If-Modified-Since and If-None-Match conditions.
+    # If-Modified-Since and If-None-Match conditions. If both headers are
+    # supplied, both must match, or the request is not considered fresh.
     def fresh?(response)
-      not_modified?(response.last_modified) || etag_matches?(response.etag)
+      case
+      when if_modified_since && if_none_match 
+        not_modified?(response.last_modified) && etag_matches?(response.etag) 
+      when if_modified_since 
+        not_modified?(response.last_modified) 
+      when if_none_match 
+        etag_matches?(response.etag) 
+      else 
+        false 
+      end 
     end
 
     # Returns the Mime type for the \format used in the request.
@@ -167,7 +178,7 @@ module ActionController
       parameter_format = parameters[:format]
 
       if parameter_format
-        parameter_format.to_sym
+        parameter_format
       elsif xhr?
         :js
       else
@@ -176,8 +187,7 @@ module ActionController
     end
 
     def cache_format
-      parameter_format = parameters[:format]
-      parameter_format && parameter_format.to_sym
+      parameters[:format]
     end
 
     # Returns true if the request's "X-Requested-With" header contains
