@@ -9,9 +9,12 @@ describe "/reviews/edit.html.erb" do
       :body => "value for body",
       :status => "value for status"
     )
+    template.stub!(:object_url).and_return(review_path(@review)) 
+    template.stub!(:collection_url).and_return('') 
   end
 
   it "should render edit form" do
+
     render "/reviews/edit.html.erb"
     
     response.should have_tag("form[action=#{review_path(@review)}][method=post]") do

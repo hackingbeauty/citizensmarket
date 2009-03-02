@@ -2,7 +2,7 @@
 
 <%= error_messages_for :review %>
 
-<% form_for(:review, :url => object_url, :html => { :method => :put }) do |f| %>
+<% form_for(@review, :url => object_url(@review), :html => { :method => :put }) do |f| %>
   <%= render :partial => "form", :locals => { :f => f } %>
   <p>
     <%=submit_tag "Update"%>

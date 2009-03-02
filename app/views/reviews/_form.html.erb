@@ -6,16 +6,16 @@
 	
 	<label for="company_picker_container">Company: </label>
 	<div id="company_picker_container">
-		<% if review.company.nil? %>
+		<% if @review.company.nil? %>
 			<%= render :partial => 'companies/company_picker' %>
 		<% else %>
-			<h2><%= review.company.name %></h2>
+			<h2><%= @review.company.name %></h2>
 			<%= link_to_remote 'change', :url => {:controller => 'companies', :action => 'company_picker'}, :update => {:success => 'company_picker_container', :failure => 'errors'} %>
 		<% end %>
 		
 	</div>
 	<br><br>
-	<%= f.hidden_field :user_id, :value => current_user.id %>
+	<%= f.hidden_field :user_id, :value => current_user %>
 	
 	<label for="review_issue_pickers">Issue(s):</label>
 	<div id="issue_pickers">

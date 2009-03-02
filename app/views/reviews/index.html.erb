@@ -10,9 +10,9 @@
   <tr>
     <td><%=h review.body %></td>
     <td><%=h review.status %></td>
-    <td><%= link_to 'Show', object_url %></td>
+    <td><%= link_to 'Show', object_url(review) %></td>
     <td><%= link_to 'Edit', edit_object_url(review) %></td>
-    <td><%= link_to 'Destroy', object_url, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', object_url(review), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
