@@ -1,14 +1,18 @@
 
 
 <!-- expects: index, selected_id = nil, parent_div_id, removable(boolean) -->
-<% unique = Time.now.to_i + rand(100)%>
+<% unique = Time.now.to_i + rand(100)
+  @issues = Issue.find(:all, :select => "id, name")
+  
+%>
 
 <div id="issue_picker_<%= unique %>">
 
+	
 <% if defined?(selected_id) %>
-	<%= select_tag "issues[#{unique}]", options_for_select(Issue.find(:all).map{|x| [x.name, x.id]}, selected_id) %>
+	<%= select_tag "issues[#{unique}]", options_from_collection_for_select(@issues, 'id', 'name', selected_id) %>
 <% else %>
-	<%= select_tag "issues[#{unique}]", options_for_select(Issue.find(:all).map{|x| [x.name, x.id]}) %>
+	<%= select_tag "issues[#{unique}]", options_from_collection_for_select(@issues, 'id', 'name') %>
 <% end %>
 
 <% if removable %>
