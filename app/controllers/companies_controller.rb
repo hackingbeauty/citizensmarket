@@ -18,5 +18,10 @@ class CompaniesController < ResourceController::Base
   def lookup_logo
     render :text => CompanyLookup.get_logo(params[:stock_symbol])
   end
+
+  def find_score
+    #@companies = CompanyLookup.by_name(:all)
+    @title = "blah"
+  end
   
 end
