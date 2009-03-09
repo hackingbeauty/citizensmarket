@@ -4,6 +4,9 @@ class Issue < ActiveRecord::Base
   has_many    :reviews, :through => :review_issues
   has_many    :user_issues
   
+  validates_presence_of :name, :description, :category
+  validates_uniqueness_of :name, :scope => :category
+  
   # Scopes all issues within a given category
   # i.e. - Issue.issues_in_category "Society"
   named_scope :issues_in_category, lambda { |*args| {:conditions => {:category => args.first}}}
