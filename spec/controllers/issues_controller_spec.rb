@@ -14,17 +14,17 @@ describe IssuesController do
       assigns[:issues].should == [mock_issue]
     end
 
-    describe "with mime type of xml" do
-  
-      it "should render all issues as xml" do
-        request.env["HTTP_ACCEPT"] = "application/xml"
-        Issue.should_receive(:find).with(:all).and_return(issues = mock("Array of Issues"))
-        issues.should_receive(:to_xml).and_return("generated XML")
-        get :index
-        response.body.should == "generated XML"
-      end
-    
-    end
+    # describe "with mime type of xml" do
+    #   
+    #   it "should render all issues as xml" do
+    #     request.env["HTTP_ACCEPT"] = "application/xml"
+    #     Issue.should_receive(:find).with(:all).and_return(issues = mock("Array of Issues"))
+    #     issues.should_receive(:to_xml).and_return("generated XML")
+    #     get :index
+    #     response.body.should == "generated XML"
+    #   end
+    # 
+    # end
 
   end
 
@@ -36,17 +36,17 @@ describe IssuesController do
       assigns[:issue].should equal(mock_issue)
     end
     
-    describe "with mime type of xml" do
-
-      it "should render the requested issue as xml" do
-        request.env["HTTP_ACCEPT"] = "application/xml"
-        Issue.should_receive(:find).with("37").and_return(mock_issue)
-        mock_issue.should_receive(:to_xml).and_return("generated XML")
-        get :show, :id => "37"
-        response.body.should == "generated XML"
-      end
-
-    end
+    # describe "with mime type of xml" do
+    # 
+    #   it "should render the requested issue as xml" do
+    #     @request.env["HTTP_ACCEPT"] = "application/xml"
+    #     Issue.should_receive(:find).with("37").and_return(mock_issue)
+    #     mock_issue.should_receive(:to_xml).and_return("generated XML")
+    #     get :show, :id => "37", :format => :xml
+    #     response.body.should == "generated XML"
+    #   end
+    # 
+    # end
     
   end
 
