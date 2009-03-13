@@ -1,6 +1,5 @@
 class CompaniesController < ResourceController::Base
-  
-  
+
   def company_picker
     render :partial => 'company_picker'
   end
@@ -20,8 +19,7 @@ class CompaniesController < ResourceController::Base
   end
 
   def find_score
-    #@companies = CompanyLookup.by_name(:all)
-    @title = "blah"
+    
   end
   
 end

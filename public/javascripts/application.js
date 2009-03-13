@@ -76,8 +76,8 @@ $(document).ready (function() {
             $(this).next().removeClass("tabimg_right_on").addClass("tabimg_right_off");
             $(this).prev().removeClass("tabimg_left_on").addClass("tabimg_left_off");
             $('#' + $(this).attr('tab')).fadeOut(function() {
-              $('#' + clicked_tab.attr('tab')).fadeIn();
-            });
+               $('#' + clicked_tab.attr('tab')).fadeIn();
+             });
           };
         });
         clicked_tab.addClass("on");
