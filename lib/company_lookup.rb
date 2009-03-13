@@ -12,12 +12,12 @@ module  CompanyLookup
   def self.by_name(q)
     q = CGI::escape(q)
     doc = Hpricot(open("http://finance.google.com/finance?q=#{q}"))
-    self.parse_google_finance(doc)
+    self.make_company(doc)
   end
 
   def self.by_google_cid(cid)
     doc = Hpricot(open("http://finance.google.com/finance?cid=#{cid}"))
-    self.parse_google_finance(doc)
+    self.make_company(doc)
   end
 
   def self.get_logo_url(stock_symbol)
@@ -55,19 +55,44 @@ module  CompanyLookup
       ""
     end
   end
-
+  
   private
+  
+  def self.make_company(doc)
+    c = self.parse_google_finance(doc)
+    c.description = self.get_wikipedia_description(c.name)
+    c
+  end
+  
   def self.parse_google_finance(doc)
-    company_header = doc.search("#companyheader")
+    company_header = doc.search(".company-header")
     summary = doc.search("#summary")
     # Parse Google Finance Page and return a new Company object
     Company.new do |c|
       c.name = company_header.search("h1").inner_html
       c.stock_symbol = company_header.to_s.match(/\(Public, .+\)/).to_s.match(/[A-Z]+:[A-Z]+/).to_s
-      c.description = summary.search(".companySummary").inner_html.gsub(/<a\b[^>]*>.*?<\/a>/,'').gsub(146.chr,"'").gsub(176.chr,"").strip
+      
       c.logo_url = get_logo_url(c.stock_symbol)
       c.website_url = summary.search("#fs-chome").inner_html.strip
-      c.google_cid = company_header.to_s.match(/<a.*cid=(\d+)[^>]*>Discuss.*<\/a>/)[1]
+      c.google_cid = doc.search("#groups").to_s.match(/<a.*cid=(\d+)[^>]*>More discussions.*<\/a>/)[1]
     end
   end
+  
+  def self.get_wikipedia_description(name)
+    url_name = name.gsub(' ', '_').gsub(/[\.,]+/, '')
+    doc = Hpricot(open("http://en.wikipedia.org/wiki/#{url_name}"))
+    
+    raw_description = doc.search('#bodyContent').search("//p")[0].to_s
+    
+    self.clean_up_wikipedia_description(raw_description)
+  end
+  
+  def self.clean_up_wikipedia_description(raw_description)
+    output = raw_description.gsub(/<a[^>]*>/, '') # remove <a> tags while preserving their inner html
+    output = output.gsub(/<\/a>/, '') 
+    output = output.gsub(/<sup .*(?=<\/sup>)<\/sup>/m, '') # this is link-to-outside, like [1], [2] etc
+    output = output.gsub('<p>', '').gsub('</p>', '') # grab only the <p>'s inner html
+    output
+  end
+  
 end
