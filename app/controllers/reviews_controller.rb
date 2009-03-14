@@ -23,7 +23,7 @@ class ReviewsController < ResourceController::Base
     
     if @review.save
       @review.build_issues(params[:issues])
-      redirect_to company_url(params[:company_id])
+      redirect_to company_url(@review.company_id)
     else
       raise "@review did not save, errors are: "+ @review.errors.full_messages.join(', ')
       render :action => "new"
