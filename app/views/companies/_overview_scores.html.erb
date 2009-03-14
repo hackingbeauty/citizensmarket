@@ -1,27 +1,21 @@
-<div id="scores">
-  <h3>Social Issue Scores</h3>
-  
-  <% IssueCategory.all.each do |issue_category| %>
-    <div class="category">
-      <div class="score_container">
-        <%=random_score %>
-        <label class="category"><%=issue_category.name %></label>
-      </div>
-      <br class="left">
-      <ul>
-        <% issue_category.issues.each do |issue| %>
-          <li>
-            <div class="score_container">
-              <%=random_score %>
-              <label><%=issue.name %></label>
-            </div>
-            <br class="left">
-          </li>
+<div id="company-issue-score">
+    <table summary="This table charts a company's core for each issue.">
+        <tr>
+            <th id="issue">Issue</th>
+            <th id="issue-score">Issue Score</th>
+            <th id="total-reviews">Total Reviews</th>
+        </tr>
+        <% Issue.all.each do |issue| %>
+        <% s = @company.issue_score(issue) %>
+        <% next if s.nil? %>
+        <tr>
+            <td class="main-issue">Main Issue Category</td>
+        </tr>
+        <tr class="shade">
+            <td class="sub-issue"><%= issue.name %></td>
+            <td class="issue-score score-of-<%= sprintf('%.0f', s) %>"><span><%= sprintf('%.0f', s) %></span></td>
+            <td class="total">4</td>
+        </tr>
         <% end %>
-      </ul>
-    </div>
-    
-  
-  <% end %>
-  
-</div>
+    </table>
+</div><!-- end company-issue-score -->

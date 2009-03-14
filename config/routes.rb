@@ -31,7 +31,8 @@ ActionController::Routing::Routes.draw do |map|
     review.resources :peer_ratings,
                      :collection => { :vote_up => :post, :vote_down => :post }
   end
-
+  
+  map.connect '/score', :controller => 'companies', :action => 'find_score'
   map.connect '/about', :controller => 'home', :action => 'about'
   map.connect '/terms', :controller => 'home', :action => 'terms'
   map.connect '/attribution', :controller => 'home', :action => 'attribution'

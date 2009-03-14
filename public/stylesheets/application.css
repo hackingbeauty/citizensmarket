@@ -1,3 +1,5 @@
+/******************** General Styles ********************/
+
 body {
 	font-family: "trebuchet ms",verdana,arial,helvetica,sans-serif;
 	color: #191919;
@@ -6,8 +8,6 @@ body {
 strong {
 	font-weight: bold;
 }
-
-
 
 a {
 	color: #0f0087;
@@ -323,7 +323,7 @@ a.arrow {
 }
 
 .content_box{
-	width:775px;
+	/*width:775px;*/
 	height:auto;
 	margin-top: 10px;
 	padding-top: 5px;
@@ -331,7 +331,7 @@ a.arrow {
 	border: 1px solid #CCC;
 }
 .content_box .header{
-	width:775px;
+	/*width:775px;*/
 	height:35px;
 	background: url(/images/css/contentBoxHdr_bg.gif) repeat-x;
 
@@ -636,4 +636,113 @@ span internal_notes{
 
 div internal_notes{
 	border: solid thin red;
+}
+
+/******************** =Browse Company Page *******************/
+
+div#company-issue-score {
+	width:100%;
+	position:relative;
+	top:2px;
+}
+
+div#company-issue-score table {
+	border-spacing:0px;
+}
+
+h1 {
+	color:#555555;
+	text-transform:uppercase;
+	margin:34px 0;
+}
+
+div#company-issue-score th {
+	background-color:#7BB933;
+	color:white;
+	text-transform:uppercase;
+	text-align:left;
+	/*font-size:1.4em;*/
+	padding:2px 14px;
+}
+
+div#company-issue-score th#issue-score {
+	text-align:center;
+	width:200px;
+}
+
+div#company-issue-score th#total-reviews {
+	text-align:center;
+	width:200px;
+}
+
+div#company-issue-score td {
+	padding:6px 14px;
+}
+
+div#company-issue-score td span {
+	visibility:hidden;
+}
+
+div#company-issue-score td.main-issue,
+div#company-issue-score td.sub-issue {
+	width:300px;
+}
+
+div#company-issue-score td.issue-score {
+	width:200px;
+	text-align:center;
+}
+
+div#company-issue-score td.total {
+	width:200px;
+}
+
+div#company-issue-score td.main-issue {
+	text-transform:uppercase;
+}
+
+div#company-issue-score td.sub-issue {
+	text-indent:10px;
+}
+
+div#company-issue-score tr.shade td {
+	background-color:#f5fbf2;
+}
+
+div#company-issue-score tr.last td {
+	border-bottom:1px solid #cce3c4;
+}
+
+div#company-issue-score tr td.total {
+	text-align:center;
+}
+
+/********** Scores **********/
+
+div#company-issue-score td.score-of-1 {
+	background: url('/images/icons/icon-stars-sprite.png') 49px 8px no-repeat;
+}
+
+div#company-issue-score td.score-of-2 {
+	background: url('/images/icons/icon-stars-sprite.png') 49px -12px no-repeat;
+}
+
+div#company-issue-score td.score-of-3 {
+	background: url('/images/icons/icon-stars-sprite.png') 49px -33px no-repeat;
+}
+
+div#company-issue-score td.score-of-4 {
+	background: url('/images/icons/icon-stars-sprite.png') 49px -52px no-repeat;
+}
+
+div#company-issue-score td.score-of-5 {
+	background: url('/images/icons/icon-stars-sprite.png') 49px -72px no-repeat;
+}
+
+div#company-issue-score td.score-of-6 {
+	background: url('/images/icons/icon-stars-sprite.png') 49px -92px no-repeat;
+}
+
+div#company-issue-score td.score-of-7 {
+	background: url('/images/icons/icon-stars-sprite.png') 49px -113px no-repeat;	
 }
