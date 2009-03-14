@@ -3,6 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/issues/issue_picker', :controller => 'issues', :action => 'issue_picker'
   map.resources :issues
 
+
   map.connect '/users/update_issue_weights', :controller => 'issue_weights', :action => 'update'
   
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
@@ -13,11 +14,9 @@ ActionController::Routing::Routes.draw do |map|
   map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
   map.reset_password '/reset_password', :controller => 'users', :action => 'reset_password'
 
-  map.resources :users,
-                :member => {:issue_weights => :put}
+  map.resources :users, :member => {:issue_weights => :put}
 
   map.resource :session
-
 
   map.connect '/companies/company_picker', :controller => 'companies', :action => 'company_picker'
   map.resources :companies,
@@ -32,7 +31,8 @@ ActionController::Routing::Routes.draw do |map|
     review.resources :peer_ratings,
                      :collection => { :vote_up => :post, :vote_down => :post }
   end
-
+  
+  map.connect '/score', :controller => 'companies', :action => 'find_score'
   map.connect '/about', :controller => 'home', :action => 'about'
   map.connect '/terms', :controller => 'home', :action => 'terms'
   map.connect '/attribution', :controller => 'home', :action => 'attribution'

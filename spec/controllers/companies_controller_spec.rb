@@ -10,7 +10,8 @@ describe CompaniesController do
 
   describe "GET 'edit'" do
     it "should be successful" do
-      get 'edit'
+      Company.should_receive(:find).with("1").and_return(mock_model(Company))
+      get 'edit', :id => "1"
       response.should be_success
     end
   end
@@ -31,7 +32,7 @@ describe CompaniesController do
 
   describe "GET 'show'" do
     it "should be successful" do
-      get 'show'
+      get :show, :id => "1"
       response.should be_success
     end
   end

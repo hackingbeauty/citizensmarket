@@ -1,6 +1,4 @@
-class PeerRatingsController < ResourceController::Base
-  actions :vote_up, :vote_down
-  
+class PeerRatingsController < ApplicationController
   # Create PeerRatings by POSTing to
   # /reviews/:review_id/peer_ratings/vote_up
   # /reviews/:review_id/peer_ratings/vote_down
@@ -15,7 +13,7 @@ class PeerRatingsController < ResourceController::Base
   
   private
   def create(score)
-    review = Review.find(params[:review_id])
+    return if !Review.find(params[:review_id])
     PeerRating.new do |pr|
       pr.review_id = review.id
       pr.user_id = current_user.id
