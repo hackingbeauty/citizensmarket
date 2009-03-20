@@ -8,13 +8,13 @@
         <% Issue.all.each do |issue| %>
         <% s = @company.issue_score(issue) %>
         <% next if s.nil? %>
-        <tr>
-            <td class="main-issue">Main Issue Category</td>
+        <tr class="main-issue-row">
+            <td colspan="3" class="main-issue"><%= issue.category %></td>
         </tr>
         <tr class="shade">
             <td class="sub-issue"><%= issue.name %></td>
-            <td class="issue-score score-of-<%= sprintf('%.0f', s) %>"><span><%= sprintf('%.0f', s) %></span></td>
-            <td class="total">4</td>
+            <td class="issue-score score-of-<%= sprintf('%.0f', s) %>"><%= issue_score_star_rating(sprintf('%.2f', s)) %></td>
+            <td class="total"><%= @company.reviews_for_issue(issue).size %></td>
         </tr>
         <% end %>
     </table>

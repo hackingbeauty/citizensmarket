@@ -5,7 +5,9 @@ div.cancel,div.star{float:left;width:17px;height:15px;text-indent:-999em;cursor:
 div.cancel,div.cancel a{background:url('/images/delete.gif') no-repeat 0 -16px}
 div.star,div.star a{background:url('/images/star.gif') no-repeat 0 0px}
 div.cancel a,div.star a{display:block;width:16px;height:100%;background-position:0 0px;border:1 solid #FF0000}
-div.star_on a{background-position:0 -16px!important}
+/*div.star_on a{background-position:0 -16px!important}*/
+div.star a {background-position:0 -16px!important}
+div.star_yellow a {background-position:0 -33px!important}
 div.star_hover a,div.star_live a:hover{background-position:0 -32px}
 /* Read Only CSS */
 div.star_readonly a,div.star_readonly a:hover{cursor:default !important}
