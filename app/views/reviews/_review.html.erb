@@ -7,7 +7,21 @@
 		  <p><% unless review.user.profile.nil? %><%=review.user.profile[:location] %><% end %><p>
 		  <p class="comment_count"> <%=link_to_user(review.user, :content_text => "#{review.user.reviews.size} Reviews")%></p>
 		
+<<<<<<< HEAD:app/views/reviews/_review.html.erb
 			
+=======
+			<br><br>
+			<div>
+			<!--<div style="border: solid thin red; background-color: #ffeeee; margin: 20px 5px 0;">-->
+				<span style="color: red; font-size: 8pt;">temporary to observe algorithms.  <b>THIS USER:</b></span><br>
+				lifetime reviews (LR): <font color="blue"><%= review.user.lifetime_reviews %></font><br>
+				lifetime review score (LRS): <font color="blue"><%= review.user.lifetime_review_score %></font><br>
+				contributor score (CS): <font color="blue"><%= review.user.contributor_score %></font><br>
+				contributor level: <font color="blue"><%= review.user.contributor_level %></font><br>
+				
+			</div>
+		
+>>>>>>> 2c033b496ca2628d36393355d1389c5a551f8027:app/views/reviews/_review.html.erb
 		</div>
 	</div>
 	<div class="content yui-u">

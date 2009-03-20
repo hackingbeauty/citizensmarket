@@ -2,7 +2,6 @@ class Company < ActiveRecord::Base
   
   has_many  :reviews, :dependent => :destroy
   has_many  :brands
-  #has_may   :issues
   serialize :info, Hash
   
   validates_presence_of   :name, :on => :create, :message => "can't be blank"
@@ -25,23 +24,25 @@ class Company < ActiveRecord::Base
     end
     
     return nil if denominator == 0
-    
-    # logger.info "blah"
-    
-    numerator.to_f / denominator.to_f
-    
-    
-    
+
+    numerator.to_f / denominator.to_f    
+     
   end
 
   ######## end SCORING SYSTEM
   ##########################################################
+  def floor_to(x)
+      (self * 10**x).floor.to_f / 10**x
+    end
   
   
   def reviews_for_issue(issue)
     Review.find(:all, :include => "issues", :conditions => "reviews.company_id = #{id} and review_issues.issue_id = #{issue.id}")
   end
   
+  def total_reviews
+    num = Review.find(:all,:conditions => "reviews.company_id = #{id}" )
+  end
   
   def brand_names
     brands.map(&:name)
