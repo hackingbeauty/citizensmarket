@@ -8,7 +8,8 @@
 		  <p class="comment_count"> <%=link_to_user(review.user, :content_text => "#{review.user.reviews.size} Reviews")%></p>
 		
 			<br><br>
-			<div style="border: solid thin red; background-color: #ffeeee; margin: 20px 5px 0;">
+			<div>
+			<!--<div style="border: solid thin red; background-color: #ffeeee; margin: 20px 5px 0;">-->
 				<span style="color: red; font-size: 8pt;">temporary to observe algorithms.  <b>THIS USER:</b></span><br>
 				lifetime reviews (LR): <font color="blue"><%= review.user.lifetime_reviews %></font><br>
 				lifetime review score (LRS): <font color="blue"><%= review.user.lifetime_review_score %></font><br>
