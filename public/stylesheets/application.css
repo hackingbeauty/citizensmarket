@@ -643,7 +643,7 @@ div internal_notes{
 div#company-issue-score {
 	width:100%;
 	position:relative;
-	top:2px;
+	top:3px;
 }
 
 div#company-issue-score table {
@@ -665,8 +665,12 @@ div#company-issue-score th {
 	padding:2px 14px;
 }
 
+div#company-issue-score th#issue {
+	width:400px;
+}
+
 div#company-issue-score th#issue-score {
-	text-align:center;
+	text-align:left;
 	width:200px;
 }
 
@@ -681,6 +685,10 @@ div#company-issue-score td {
 
 div#company-issue-score td span {
 	visibility:hidden;
+}
+
+div#company-issue-score tr.main-issue-row {
+	border-top:1px solid #7BB933;
 }
 
 div#company-issue-score td.main-issue,
@@ -719,30 +727,32 @@ div#company-issue-score tr td.total {
 
 /********** Scores **********/
 
+/*
 div#company-issue-score td.score-of-1 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px 8px no-repeat;
+	background: url('/images/icons/icon-stars-sprite.png') 49px 7px no-repeat;
 }
 
 div#company-issue-score td.score-of-2 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -12px no-repeat;
+	background: url('/images/icons/icon-stars-sprite.png') 49px -22px no-repeat;
 }
 
 div#company-issue-score td.score-of-3 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -33px no-repeat;
+	background: url('/images/icons/icon-stars-sprite.png') 49px -49px no-repeat;
 }
 
 div#company-issue-score td.score-of-4 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -52px no-repeat;
+	background: url('/images/icons/icon-stars-sprite.png') 49px -77px no-repeat;
 }
 
 div#company-issue-score td.score-of-5 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -72px no-repeat;
+	background: url('/images/icons/icon-stars-sprite.png') 49px -104px no-repeat;
 }
 
 div#company-issue-score td.score-of-6 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -92px no-repeat;
+	background: url('/images/icons/icon-stars-sprite.png') 49px -133px no-repeat;
 }
 
 div#company-issue-score td.score-of-7 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -113px no-repeat;	
+	background: url('/images/icons/icon-stars-sprite.png') 49px -160px no-repeat;	
 }
+*/

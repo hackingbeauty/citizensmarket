@@ -17,7 +17,7 @@ class Issue < ActiveRecord::Base
   def self.categories
     @categories ||= all(:select => :category, :group => :category, :order => :category).map(&:category)
   end
-  
+    
   # Returns a hash with the issue category as the key and an array of issue names as the value.
   # Useful for rendering a grouped list of issues.
   # i.e. - {"Environment" => ["Conservation", "Biodiversity", ...], ...}
