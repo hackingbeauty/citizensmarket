@@ -114,13 +114,13 @@ describe UsersController do
       route_for(:controller => 'users', :action => 'edit', :id => '1').should == "/users/1/edit"
     end
     
-    it "should route users's 'update' action correctly" do
-      route_for(:controller => 'users', :action => 'update', :id => '1').should == "/users/1"
-    end
-    
-    it "should route users's 'destroy' action correctly" do
-      route_for(:controller => 'users', :action => 'destroy', :id => '1').should == "/users/1"
-    end
+    # it "should route users's 'update' action correctly" do
+    #   route_for(:controller => 'users', :action => 'update', :id => '1').should == "/users/1"
+    # end
+    # 
+    # it "should route users's 'destroy' action correctly" do
+    #   route_for(:controller => 'users', :action => 'destroy', :id => '1').should == "/users/1"
+    # end
   end
   
   describe "route recognition" do
