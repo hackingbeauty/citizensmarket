@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "/reviews/index.html.erb" do
-  include ReviewsHelper
   
   before(:each) do
     
