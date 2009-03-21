@@ -10,7 +10,7 @@ div.star a {background-position:0 -16px!important}
 div.star_yellow a {background-position:0 -33px!important}
 div.star_hover a,div.star_live a:hover{background-position:0 -32px}
 /* Read Only CSS */
-div.star_readonly a,div.star_readonly a:hover{cursor:default !important}
+div.star_readonly a,div.star_readonly a:hover{cursor:default !important;margin-left:0px !important;}
 /* Partial Star CSS */
 div.star{background:transparent!important;overflow:hidden!important}
 /* END jQuery.Rating Plugin CSS */
