@@ -5,17 +5,22 @@
             <th id="issue-score">Issue Score</th>
             <th id="total-reviews">Total Reviews</th>
         </tr>
-        <% Issue.all.each do |issue| %>
-        <% s = @company.issue_score(issue) %>
-        <% next if s.nil? %>
-        <tr class="main-issue-row">
-            <td colspan="3" class="main-issue"><%= issue.category %></td>
-        </tr>
-        <tr class="shade">
-            <td class="sub-issue"><%= issue.name %></td>
-            <td class="issue-score score-of-<%= sprintf('%.0f', s) %>"><%= issue_score_star_rating(sprintf('%.2f', s)) %></td>
-            <td class="total"><%= @company.reviews_for_issue(issue).size %></td>
-        </tr>
+        <% seen_before = {} %>
+        <% Issue.all(:order => :category).each do |issue| %>
+          <% category = issue.category %>
+          <% s = @company.issue_score(issue) %>
+          <% next if s.nil? %>
+          <% if seen_before[category].nil? %>
+            <% seen_before[category] = true %>
+            <tr class="main-issue-row">
+                <td colspan="3" class="main-issue"><%= category %></td>
+            </tr>
+          <% end %>
+          <tr class="shade">
+              <td class="sub-issue"><%= issue.name %></td>
+              <td class="issue-score score-of-<%= sprintf('%.0f', s) %>"><%= issue_score_star_rating(sprintf('%.2f', s)) %></td>
+              <td class="total"><%= @company.reviews_for_issue(issue).size %></td>
+          </tr>
         <% end %>
     </table>
 </div><!-- end company-issue-score -->

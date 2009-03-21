@@ -1,4 +1,4 @@
-/******************** General Styles ********************/
+/******************** =General Styles ********************/
 
 body {
 	font-family: "trebuchet ms",verdana,arial,helvetica,sans-serif;
@@ -61,6 +61,8 @@ br.right {
 	padding: 2px;
 }
 
+/******************** =Header ********************/
+
 #header{
 	width:974px;
 	height:66px;
@@ -92,6 +94,11 @@ br.right {
 	padding:0 5px 0 5px;
 }
 
+/******************** =Search ********************/
+
+#search {
+	float:right;
+}
 
 #globalnav {
 	width:974px;
@@ -150,13 +157,19 @@ div.terms ol li{
 /* end policy docs */
 
 	
-#newcontainer{
+#newcontainer {
 	background: url(/images/home_header_bg.png) no-repeat;
 	width:977px;
 	height:298px;
 	margin:5px 0 8px 0px;
 	border:0px solid blue;
 	padding-bottom: 10px;
+}
+
+#newcontainer span {
+	padding:15px 0 0 40px;
+	font-size:28px;
+	text-align:center;
 }
 
 #home div#main {
