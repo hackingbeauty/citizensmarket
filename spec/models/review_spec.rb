@@ -4,7 +4,9 @@ describe Review do
   before(:each) do
     @valid_attributes = {
       :body => "value for body",
-      :status => "value for status"
+      :status => "value for status",
+      :rating => 1,
+      :user_id => 1
     }
   end
 

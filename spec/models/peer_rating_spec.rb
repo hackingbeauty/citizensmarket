@@ -2,10 +2,13 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe PeerRating do
   before(:each) do
+    @user = mock_model(User, :valid? => true)
+    @review = mock_model(Review, :valid? => true)
+
     @valid_attributes = {
-      :review_id => "1",
-      :user_id => "1",
-      :score => "1"
+      :score => "1",
+      :user => @user,
+      :review => @review
     }
   end
 
