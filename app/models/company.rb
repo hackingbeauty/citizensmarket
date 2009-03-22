@@ -9,6 +9,12 @@ class Company < ActiveRecord::Base
   ##########################################################
   ######## SCORING SYSTEM
   
+  class << self
+    def suggest(name)
+      find(:all, :conditions => ["name like ?", name + '%']).map{|record| record.name} if name
+    end
+  end
+  
   def issue_score(issue)
     # return cached if it exists
     
@@ -52,6 +58,8 @@ class Company < ActiveRecord::Base
   def score
     rand(100) / 10.0
   end
+  
+  
   
 
   
