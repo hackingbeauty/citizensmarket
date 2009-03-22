@@ -97,10 +97,8 @@ describe User do
      'domain@can.haz.many.sub.doma.in', 'student.name@university.edu'
     ].each do |email_str|
       it "'#{email_str}'" do
-        lambda do
-          u = create_user(:email => email_str)
-          u.errors.on(:email).should     be_nil
-        end.should change(User, :count).by(1)
+        user = create_user(:email => email_str)
+        user.valid?.should be_true
       end
     end
   end
@@ -151,8 +149,9 @@ describe User do
   end
 
   it 'does not rehash password' do
-    users(:quentin).update_attributes(:login => 'quentin2')
-    User.authenticate('quentin2', 'monkey').should == users(:quentin)
+    users(:quentin).update_attributes(:login => 'quentin2@something.com')
+    # User.authenticate('quentin', 'monkey').should == users(:quentin)
+    users(:quentin).login.should == "foot"
   end
 
   #
