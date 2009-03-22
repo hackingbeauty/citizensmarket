@@ -22,9 +22,9 @@ describe Company do
 end
 
 describe Company, " Suggest and Lookup" do
-  
+  fixtures :companies
   before do
-    @company = Company.lookup_by_name("Apple Inc.")
+    @company = Company.find_by_name("Apple Inc.")
   end
   
   it "should suggest a company name" do

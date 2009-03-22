@@ -6,7 +6,7 @@ class Review < ActiveRecord::Base
   has_many    :issues, :through => :review_issues
   has_many    :peer_ratings
 
-  validates_presence_of :user_id
+  validates_presence_of :user_id, :rating
   
   # Define State Machine states and transitions
   include AASM
@@ -42,9 +42,13 @@ class Review < ActiveRecord::Base
   def quality_factor
     # return cached if it exists
     y = Review.quality_factor_y
+<<<<<<< HEAD:app/models/review.rb
     output = user.contributor_level + (y * review_score)
     output = 0 if output < 0
     output
+=======
+    output = user.contributor_level + (y * review_score) if user
+>>>>>>> a78ea412e7ae8f7ed1b0731961df2bfdfb280be6:app/models/review.rb
   end
   def self.quality_factor_y
     1

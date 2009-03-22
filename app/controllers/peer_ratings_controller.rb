@@ -1,4 +1,5 @@
-class PeerRatingsController < ApplicationController
+class PeerRatingsController < ResourceController::Base
+  belongs_to :review
   # Create PeerRatings by POSTing to
   # /reviews/:review_id/peer_ratings/vote_up
   # /reviews/:review_id/peer_ratings/vote_down

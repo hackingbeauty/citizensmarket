@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "/reviews/show.html.erb" do
-  include ReviewsHelper
   
   before(:each) do
     assigns[:review] = @review = stub_model(Review,

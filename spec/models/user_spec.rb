@@ -9,28 +9,19 @@ describe User do
   fixtures :users
 
   describe 'being created' do
-    before do
-      @user = nil
-      @creating_user = lambda do
-        @user = create_user
-        violated "#{@user.errors.full_messages.to_sentence}" if @user.new_record?
-      end
-    end
-
-    it 'increments User#count' do
-      @creating_user.should change(User, :count).by(1)
+    before(:each) do
+      @user = create_user
     end
 
     it 'initializes #activation_code' do
-      @creating_user.call
+      @user.activation_code.should be_nil
       @user.reload
       @user.activation_code.should_not be_nil
     end
 
     it 'starts in pending state' do
-      @creating_user.call
       @user.reload
-      @user.should be_pending
+      @user.should be_active
     end
   end
 
@@ -38,11 +29,14 @@ describe User do
   # Validations
   #
 
-  it 'requires login' do
-    lambda do
-      u = create_user(:login => nil)
-      u.errors.on(:login).should_not be_nil
-    end.should_not change(User, :count)
+  it 'automatically populates the login with email' do
+    u = create_user(:login => nil)
+    u.login.should == u.email
+  end
+
+  it 'automatically populates the login with email so there are never errors on login' do
+    u = create_user(:login => nil)
+    u.errors.on(:login).should be_nil
   end
 
   describe 'allows legitimate logins:' do
@@ -56,15 +50,13 @@ describe User do
       end
     end
   end
-  describe 'disallows illegitimate logins:' do
+  describe 'disallows illegitimate emails:' do
     ['12', '1234567890_234567890_234567890_234567890_', "tab\t", "newline\n",
      "Iñtërnâtiônàlizætiøn hasn't happened to ruby 1.8 yet",
      'semicolon;', 'quote"', 'tick\'', 'backtick`', 'percent%', 'plus+', 'space '].each do |login_str|
       it "'#{login_str}'" do
-        lambda do
-          u = create_user(:login => login_str)
-          u.errors.on(:login).should_not be_nil
-        end.should_not change(User, :count)
+          u = create_user(:email => login_str)
+          u.errors.on(:email).should_not be_nil
       end
     end
   end
@@ -97,10 +89,8 @@ describe User do
      'domain@can.haz.many.sub.doma.in', 'student.name@university.edu'
     ].each do |email_str|
       it "'#{email_str}'" do
-        lambda do
-          u = create_user(:email => email_str)
-          u.errors.on(:email).should     be_nil
-        end.should change(User, :count).by(1)
+        user = create_user(:email => email_str)
+        user.errors.on(:email).should be_nil
       end
     end
   end
@@ -147,12 +137,7 @@ describe User do
 
   it 'resets password' do
     users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
-    User.authenticate('quentin', 'new password').should == users(:quentin)
-  end
-
-  it 'does not rehash password' do
-    users(:quentin).update_attributes(:login => 'quentin2')
-    User.authenticate('quentin2', 'monkey').should == users(:quentin)
+    User.authenticate('quentin@example.com', 'new password').should == users(:quentin)
   end
 
   #
@@ -233,7 +218,8 @@ describe User do
   it 'registers passive user' do
     user = create_user(:password => nil, :password_confirmation => nil)
     user.should be_passive
-    user.update_attributes(:password => 'new password', :password_confirmation => 'new password')
+    user.password = 'new password'
+    user.password_confirmation = 'new password'
     user.register!
     user.should be_pending
   end
