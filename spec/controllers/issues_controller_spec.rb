@@ -157,7 +157,7 @@ describe IssuesController do
   describe "responding to DELETE destroy" do
 
     it "should destroy the requested issue" do
-      Issue.should_receive(:find).with("37").and_return(mock_issue)
+      Issue.should_receive(:find).with("37").and_return(mock_issue(:destroy => true))
       mock_issue.should_receive(:destroy)
       delete :destroy, :id => "37"
     end

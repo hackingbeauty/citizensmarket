@@ -1,52 +1,41 @@
 <div id="home">
   <%=render :partial => "get_started"%>
-
   <div class="yui-gc">
-  	<div class="yui-u first">
-		
-  		<div id="main" class="rounded">
-        <div class="section">
-    		  <h2>Our Vision</h2>
-    		  <p>
-      		  The private sector has phenomenal power to create change in the world, for good or for ill. In today's marketplace, however, companies are often not rewarded or punished for their social impact. And consumers are not exercising their market power on social issues. Consumers have demonstrated a growing interest in corporate social responsibility (CSR), but they need reliable information and tools to make responsible marketplace decisions.
-      		  </p>
-      		  <p>
-        		  We have a vision where consumers will think about CSR as naturally as they think about product price and quality today. The hidden costs behind products will be uncovered and social performance will be fully integrated into business strategy. Companies will compete on every issue in our database, including global warming, sweatshops and job parity for women and minorities. The opportunity is unprecedented - and the potential is unlimited.
-      		  </p>
-          </div>
-          <div class="section">
-    		    <h2>What people are saying</h2>
-    		    <p class="quote">
-    		      Lorem ipsum dolor sit amet, consectetur adipisicing elit, <span class="pullquote right">sed do eiusmod tempor incididunt ut labore</span> et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    		    </p>
-    		    <p class="quote_source">- Lorem ipsum dolor</p>
-          </div>
-  		</div>
-		
-		
-  	</div>
+      <div class="yui-u first">
+  	      <div id="main" class="rounded">
+              <div class="section">
+        	      <h2>Our Vision</h2>
+        	      <p>The private sector has phenomenal power to create change in the world, for good or for ill. In today's marketplace, however, companies are often not rewarded or punished for their social impact. And consumers are not exercising their market power on social issues. Consumers have demonstrated a growing interest in corporate social responsibility (CSR), but they need reliable information and tools to make responsible marketplace decisions.</p>
+          		  <p>We have a vision where consumers will think about CSR as naturally as they think about product price and quality today. The hidden costs behind products will be uncovered and social performance will be fully integrated into business strategy. Companies will compete on every issue in our database, including global warming, sweatshops and job parity for women and minorities. The opportunity is unprecedented - and the potential is unlimited.</p>
+              </div><!-- end section -->
+              <div class="section">
+        	      <h2>What people are saying</h2>
+        	      <div>
+            	      <blockquote cite="http://www.citizensmarket.com">
+            	          <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+                      </blockquote>
+        		  </div>
+              </div><!-- end section -->
+          </div><!-- end main -->
+  	</div><!-- end yui-u -->
   	<div class="yui-u">
-		
+  	    <div class="feature rounded">
+  		    <h2>Featured Review</h2>
+  		    <h4><%=link_to "Chevron", '' %></h4>
+  		    <p>Chevron’s subsidiary Texaco intentionally dumped 19 billion gallons of toxic wastewater and accidentally spilled 16 million gallons of crude oil into Ecuador’s Amazonian rainforest between 1972 and 1991, in what may be the worst oil-related environmental disaster in history. (By comparison, the Exxon Valdez spilled 10.8 million gallons of crude in Alaska.) Chevron is now the subject of an ongoing Ecuadoran class action lawsuit involving... <%=link_to 'more', ''%>
+  		    </p>
+  		</div><!-- end feature -->
   		<div class="feature rounded">
-  		  <h2>Featured Review</h2>
-  		  <h4><%=link_to "Chevron", '' %></h4>
-  		  <p>
-    		  Chevron’s subsidiary Texaco intentionally dumped 19 billion gallons of toxic wastewater and accidentally spilled 16 million gallons of crude oil into Ecuador’s Amazonian rainforest between 1972 and 1991, in what may be the worst oil-related environmental disaster in history. (By comparison, the Exxon Valdez spilled 10.8 million gallons of crude in Alaska.) Chevron is now the subject of an ongoing Ecuadoran class action lawsuit involving... <%=link_to 'more', ''%>
-  		  </p>
-  		</div>
-		
-  		<div class="feature rounded">
-  		  <h2>Recent Reviews</h2>
-        <ul>
-          <li><%=link_to "The Clorox Company", '' %></li>
-          <li><%=link_to "Procter & Gamble", '' %></li>
-          <li><%=link_to "ExxonMobil", '' %></li>
-          <li><%=link_to "L'Oreal", '' %></li>
-          <li><%=link_to "Henkel", '' %></li>
-        </ul>
-  		</div>
-		
-  	</div>
-  </div>
-</div>
+  		    <h2>Recent Reviews</h2>
+            <ul>
+              <li><%=link_to "The Clorox Company", '' %></li>
+              <li><%=link_to "Procter &amp; Gamble", '' %></li>
+              <li><%=link_to "ExxonMobil", '' %></li>
+              <li><%=link_to "L'Oreal", '' %></li>
+              <li><%=link_to "Henkel", '' %></li>
+            </ul>
+  		</div><!-- end feature -->
+  	</div><!-- end yui-u -->
+  </div><!-- end yui-gc -->
+</div><!-- end home -->
 

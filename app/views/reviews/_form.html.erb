@@ -13,8 +13,6 @@
 		
 	</div>
 	<br><br>
-	<%= f.hidden_field :user_id, :value => current_user %>
-	
 	<label for="review_issue_pickers">Issue(s):</label>
 	<div id="issue_pickers">
 		<%= render :partial => 'issues/issue_picker', :locals => {:parent_div_id => 'issue_pickers', :removable => false }%>

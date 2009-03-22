@@ -41,38 +41,22 @@ module ApplicationHelper
   
   # Render stars for each company issue score
   def issue_score_star_rating(score)
-
-    score_num = (score.to_i - 1 )/2
-    score_str = score.to_s[score.to_s.length - 2, 2] #Get the last 2 units after the decimal for the score
-    score_int = score_str.to_i
-
+    # The score is a number between 0.0 and 10.0
+    # Return the number of stars to be drawn
     html = Array.new
-   
-    (1..score_num).each do |i|
-      if score_num == 5
-                html << "<input name='star_rating' type='radio' class='star_yellow star-rating star_on' disabled='disabled' />\n"   
-      else
-        
-        html << "<input name='star_rating' type='radio' class='star-rating star_on' disabled='disabled' />\n"   
-      end
-      
+    stars = score.to_f.to_stars - 1
+    half_star = (stars != stars.to_i) ? true : false
+    stars.to_i.times do |i|
+      html << "<input name='star_rating' type='radio' class='star-rating star_on' disabled='disabled' />"
     end
-    
-    # If the last 2 units after the decimal are in the range of 26..74, add a split star, otherwise round down or round up
-    if score_int >= 25
-      html << "<input name='star_rating' type='radio' class='star-rating star_on' disabled='disabled' />\n"
-      html << "<input name='star_rating' type='radio' class='star-rating star_on {split:2}' disabled='disabled' checked='checked'/>\n"
-    elsif score_int >= 75
-      html << "<input name='star_rating' type='radio' class='star-rating star_on' disabled='disabled' />\n"
-      html << "<input name='star_rating' type='radio' class='star-rating star_on' disabled='disabled' checked='checked'/>\n"
+    if half_star
+      html << "<input name='star_rating' type='radio' class='star-rating star_on' disabled='disabled' checked='checked'/>" if stars > 0
+      html << "<input name='star_rating' type='radio' class='star-rating star_on {split:2}' disabled='disabled' checked='checked'/>"
     else
-      html << "<input name='star_rating' type='radio' class='star-rating star_on' disabled='disabled' checked='checked'/>\n"
+      html << "<input name='star_rating' type='radio' class='star-rating star_on' disabled='disabled' checked='checked'/>"
     end
-    
-    html.to_s
-  
+    return html.to_s
   end
-
   # Truncate the text at a specific word count.
   def snippet(text, wordcount)
       # TODO: This could be better written to normalize based on word size
