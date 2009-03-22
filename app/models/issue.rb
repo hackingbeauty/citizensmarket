@@ -18,7 +18,7 @@ class Issue < ActiveRecord::Base
   #Returns an array of categories
   # i.e. - ["Economic Development", "Environment", ...]
   def self.categories
-    all(:select => :category, :order => :category).map(&:category)
+    @categories ||= all(:select => :category, :group => :category, :order => :category).map(&:category)
   end
     
   # Returns a hash with the issue category as the key and an array of issue names as the value.
