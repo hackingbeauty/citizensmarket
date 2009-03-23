@@ -91,6 +91,38 @@ describe UsersController do
   end
 end
 
+describe UsersController, "when editing a user," do
+  
+  describe "on GET 'edit' with valid id," do
+    before do
+      get :edit, :id => 1
+    end
+    
+    it "should return success" do
+      response.should be_success
+    end
+    
+    it "should assign to @user" do
+      assigns(:user).should_not == nil
+    end
+
+    it "should render edit.html.erb" do
+      response.should render_template('edit')
+    end
+  end
+  
+  describe "on PUT 'update' with valid data," do
+    before do
+    
+    end
+  end
+  
+  it "on GET 'edit' with invalid id, it should fail" #not sure how to express this - Luke
+  
+  it "on GET 'edit' with no id, it should fail" #not sure how to express this - Luke
+  
+end
+
 describe UsersController do
   describe "route generation" do
     it "should route users's 'index' action correctly" do

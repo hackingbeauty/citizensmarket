@@ -1,6 +1,9 @@
 
 quentin:
   id:                        1
+  firstname:                 Quentin
+  lastname:                  Jones
+  profile:                   { :location: New York City, :website: qjones.net }
   login:                     quentin
   email:                     quentin@example.com
   salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')

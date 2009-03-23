@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090311013227) do
+ActiveRecord::Schema.define(:version => 20090320160417) do
 
   create_table "brands", :force => true do |t|
     t.text     "name"
@@ -56,32 +56,24 @@ ActiveRecord::Schema.define(:version => 20090311013227) do
 
   create_table "reviews", :force => true do |t|
     t.text     "body"
-    t.integer  "rating",                     :null => false
-    t.string   "status",     :default => "", :null => false
+    t.integer  "rating",     :null => false
+    t.string   "status",     :null => false
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
   end
 
-  create_table "scores", :force => true do |t|
-    t.integer  "score"
-    t.integer  "reviews"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "user_issues", :force => true do |t|
     t.integer  "user_id"
     t.integer  "issue_id"
-    t.float    "weight"
+    t.integer  "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40
-    t.string   "name",                      :limit => 100, :default => ""
     t.string   "email",                     :limit => 100
     t.string   "crypted_password",          :limit => 40
     t.string   "salt",                      :limit => 40
@@ -94,6 +86,8 @@ ActiveRecord::Schema.define(:version => 20090311013227) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "firstname",                 :limit => 100, :default => ""
+    t.string   "lastname",                  :limit => 100, :default => ""
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

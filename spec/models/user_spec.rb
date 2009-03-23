@@ -110,26 +110,26 @@ describe User do
     end
   end
 
-  describe 'allows legitimate names:' do
+  describe 'allows legitimate firstnames:' do
     ['Andre The Giant (7\'4", 520 lb.) -- has a posse',
      '', '1234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890',
     ].each do |name_str|
       it "'#{name_str}'" do
         lambda do
-          u = create_user(:name => name_str)
-          u.errors.on(:name).should     be_nil
+          u = create_user(:firstname => name_str)
+          u.errors.on(:firstname).should     be_nil
         end.should change(User, :count).by(1)
       end
     end
   end
-  describe "disallows illegitimate names" do
+  describe "disallows illegitimate firstnames" do
     ["tab\t", "newline\n",
      '1234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_',
      ].each do |name_str|
       it "'#{name_str}'" do
         lambda do
-          u = create_user(:name => name_str)
-          u.errors.on(:name).should_not be_nil
+          u = create_user(:firstname => name_str)
+          u.errors.on(:firstname).should_not be_nil
         end.should_not change(User, :count)
       end
     end
@@ -271,6 +271,7 @@ protected
   def create_user(options = {})
     record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
     record.register! if record.valid?
+    #raise "record.id is nil and errors = #{record.errors.full_messages.join(', ')}" if record.id.nil?
     record
   end
 end

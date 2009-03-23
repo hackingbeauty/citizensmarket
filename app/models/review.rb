@@ -42,13 +42,9 @@ class Review < ActiveRecord::Base
   def quality_factor
     # return cached if it exists
     y = Review.quality_factor_y
-<<<<<<< HEAD:app/models/review.rb
     output = user.contributor_level + (y * review_score)
     output = 0 if output < 0
     output
-=======
-    output = user.contributor_level + (y * review_score) if user
->>>>>>> a78ea412e7ae8f7ed1b0731961df2bfdfb280be6:app/models/review.rb
   end
   def self.quality_factor_y
     1
