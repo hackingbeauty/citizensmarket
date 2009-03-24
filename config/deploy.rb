@@ -45,4 +45,5 @@ end
 desc "Link in the production database.yml" 
 task :after_update_code do
   run "ln -nfs #{deploy_to}/#{shared_dir}/config/database.yml #{release_path}/config/database.yml" 
+  run "chmod 755 #{latest_release}/script/spin"
 end
