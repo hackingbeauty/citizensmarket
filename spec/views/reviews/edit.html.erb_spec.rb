@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 describe "/reviews/edit.html.erb" do
 
   before(:each) do
-    assigns[:review] = @user = stub_model(Review,
+    assigns[:review] = @review = stub_model(Review,
       :new_record? => false,
       :body => "value for body",
       :status => "value for status",
@@ -19,15 +19,15 @@ describe "/reviews/edit.html.erb" do
   end
 
   it "should render edit form" do
-    render "/reviews/edit.html.erb"
-    
+    render "/reviews/edit.html.erb"  
     response.should have_tag("form[action=#{review_path(@review)}][method=post]") do
       with_tag('select#company_picker_id[name=?]', "company_picker_id")
-      with_tag("input[name='star']")
-      with_tag("input#review_rating[name='review[rating]']")
       with_tag('textarea#review_body[name=?]', "review[body]")
     end
   end
+  
+  it "should include the star rating system"
+  
 end
 
 
