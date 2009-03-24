@@ -5,6 +5,7 @@ class ReviewsController < ResourceController::Base
   
   
   def create
+    
     company_id = params[:company_picker_id] || params[:company_id]
 
     @review = Review.new(
