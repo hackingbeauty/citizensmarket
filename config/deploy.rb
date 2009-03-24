@@ -47,3 +47,35 @@ task :after_update_code do
   run "ln -nfs #{deploy_to}/#{shared_dir}/config/database.yml #{release_path}/config/database.yml" 
   run "chmod 755 #{latest_release}/script/spin"
 end
+
+### the following is per advice at http://thinedgeofthewedge.blogspot.com/2007/08/mongrel-and-capistrano-20.html
+# added by Luke on 2009-03-24
+namespace :deploy do
+  namespace :thin do
+    [:stop, :start, :restart ].each do |t|
+      task t, :roles => :app do
+        invoke_command "/etc/init.d/thin #{t.to_s}"
+      end
+    end
+  end
+  
+  desc "Custom restart task for thin cluster"
+  task :restart, :roles => :app do #, :except => {:no_release => true}
+    deploy.thin.restart
+  end
+
+  desc "Custom start task for thin cluster"
+  task :start, :roles => :app do
+    deploy.thin.start
+  end
+
+  desc "Custom stop task for thin cluster"
+  task :stop, :roles => :app do
+    deploy.thin.stop
+  end
+  
+  
+end
+
+
+### end: added from http://thinedgeofthewedge.blogspot.com/2007/08/mongrel-and-capistrano-20.html
