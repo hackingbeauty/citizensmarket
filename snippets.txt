@@ -1,0 +1,11 @@
+
+==========================================================================================
+from reviews/_form.html.erb:  this should display a star rating input, but is broken, 
+currently replaced by a simple select menu showing 0.5 - 5 
+
+
+<% (1..10).each do |rating| %>
+  <input name="star" type="radio" class="star-rating {split:2}" value="<%=rating %>"/> 
+<% end %>
+<%= f.hidden_field :rating, :class => 'rating_value' %>
+==========================================================================================
