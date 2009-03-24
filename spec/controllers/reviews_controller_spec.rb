@@ -60,7 +60,7 @@ describe ReviewsController do
         post :create, :review_presenter => {
           :body => "body of review",
           :rating => 5
-        }, :company_id => 1, :issues => {1 => "other"} 
+        }, :company_id => 1, :issues => {1 => 1} 
         response.should redirect_to(company_url(1))
       end
 
