@@ -1,32 +1,33 @@
 
-<% raise "current_user != @user;  we need security here" unless current_user == @user %>
+<% unless current_user == @user %>
+	<font color="red">this isn't the logged-in user's account - need to develop security</font>
+<% end %>
 
-<h1>My Profile</h1>
+<h1>Editing My Profile</h1>
+
+<% form_for(:user, :url => user_path(@user), :html => {:method => :put}) do |f| %>
+	
+	<%= render :partial => 'form', :locals => {:f => f}%>
+	<%= f.submit "Save Profile" %>
+	
+<% end %>
+
+
+
+
+<br>
+<br>
+<hr color="red" size="6px">
+<h1><font color="red">old stuff ... to be moved to separate pages:</font></h1>
 
 <div class="content_box">
   	<div class="header">
     	<%= render_tabs [
-      		{:label => 'My Info', :on => true},
       		{:label => 'My Priorities'},
       		{:label => 'My Reviews'},
       		{:label => 'My Stats'},
 		] %>
   	</div>
-	
-	<div id="my_info" class="tab_content">
-		<div id="user_profile" class="yui-g">
-			<div class="yui-u first">
-				<div class="heading">
-		  			<%=image_tag @user.gravatar_url(:size => 50), :class => 'avatar'%>
-		      		<h1><%=h @user.login %></h1>
-				</div>
-			</div>
-			<br/>
-			<div class="info rounded">
-		    	<%=render :partial => "profile_edit"%>
-			</div>
-		</div>
-	</div>
 	
 	<div id="my_priorities" class="tab_content">
 		<div id="user_profile" class="yui-g">

@@ -9,86 +9,16 @@
       <h1><%=h @user.login %></h1>
     </div>
     <br/>
-    <div class="info rounded">
-      <% if @user == current_user %>
-		    <%=render :partial => "profile_edit"%>
-		  <% else %>
-        <%=render :partial => "profile_show"%>
-      <% end %>
-    </div>
-    
-      
-    <div id="user_issues_errors" style="width: 600px;"></div>
+   	
+	<ul>
+	  <li><label>Name: </label><span><%=h @user.firstname %><%=h @user.lastname %></span></li>
+	  <li><label>Email: </label><span><%=h @user.email %></span></li>
+	  <li><label>Location: </label><span><%=h @user.location %></span></li>
+	  <li><label>Website: </label><span><%=auto_link h(@user.website) %></span></li>
+	  <li><label>Reviews: </label><span><%=link_to @user.reviews.size, 'user_reviews_path(@user) not yet built' %></span></li>
+	</ul>
+	<br/>
+	<br/>
+    <%= link_to "Edit Profile", edit_user_path(@user) %>
 	
-	  <h2>My Issues</h2>
-	  <div id="user_issues">
-	    <% if @user == current_user %>
-		    <%=render :partial => "issues_edit"%>
-		  <% else %>
-        <%=render :partial => "issues_show"%>
-      <% end %>
-	  </div>
-
-</div>
-
-<div id="activity_feed" class="yui-u">
-		
-		<h2>Most Recent Activity <%=image_tag 'feed.png' %></h2>
-		
-		<div class="event">
-		  <div class="heading">
-  		  <%=image_tag 'review.png', :class => 'icon' %>
-  		  <span class="username"><%=link_to 'jimp79', '' %></span> -
-  		  <span class="when">2 hours ago</span>
-		  </div>
-		  <div class="description">
-		    Posted a review of <%=link_to 'Unilever', '' %> (4 out of 10 stars)
-		  </div>
-		</div>
-		
-		<div class="event">
-		  <div class="heading">
-  		  <%=image_tag 'user_comment.png', :class => 'icon' %>
-  		  <span class="username"><%=link_to 'jimp79', '' %></span> -
-  		  <span class="when">1 day ago</span>
-		  </div>
-		  <div class="description">
-		    Commented on a review of <%=link_to 'ExxonMobile', '' %>
-		  </div>
-		</div>
-		
-		<div class="event">
-		  <div class="heading">
-  		  <%=image_tag 'thumbs_up.png', :class => 'icon' %>
-  		  <span class="username"><%=link_to 'jimp79', '' %></span> -
-  		  <span class="when">1 day ago</span>
-		  </div>
-		  <div class="description">
-		    Likes a review of <%=link_to 'ExxonMobile', '' %>
-		  </div>
-		</div>
-		
-		<div class="event">
-		  <div class="heading">
-  		  <%=image_tag 'review.png', :class => 'icon' %>
-  		  <span class="username"><%=link_to 'jimp79', '' %></span> -
-  		  <span class="when">5 days ago</span>
-		  </div>
-		  <div class="description">
-		    Posted a review of <%=link_to 'Proctor & Gamble', '' %> (8 out of 10 stars)
-		  </div>
-		</div>
-		
-		<div class="event">
-		  <div class="heading">
-  		  <%=image_tag 'thumbs_down.png', :class => 'icon' %>
-  		  <span class="username"><%=link_to 'jimp79', '' %></span> -
-  		  <span class="when">1 day ago</span>
-		  </div>
-		  <div class="description">
-		    Dislikes a review of <%=link_to 'Kimberly-Clark', '' %>
-		  </div>
-		</div>
-		
-	</div>
 </div>

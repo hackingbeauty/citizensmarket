@@ -3,5 +3,5 @@
 <label>First Name: </label><span><%= f.text_field :firstname %></span><br/>
 <label>Last Name: </label><span><%= f.text_field :lastname %></span><br/>
 <label>Email: </label><span><%= f.text_field :email  %></span><br/>
-<label>Location: </label><span><%= f.text_field :location, 'profile[location]' %></span><br/>
-<label>Website: </label><span><%= f.text_field :website %></span><br/>
+<label>Location: </label><span><%= text_field_tag 'user[profile][location]', @user.location %></span><br/>
+<label>Website: </label><span><%= text_field_tag 'user[profile][website]', @user.website %></span><br/>

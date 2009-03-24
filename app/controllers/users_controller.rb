@@ -72,10 +72,20 @@ class UsersController < ApplicationController
   end
   
   def update
-    respond_to do |format|
-        format.html
-        format.js {render :text => "Test"}
+    
+    @user = User.find(params[:id])
+    
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Your user profile has been updated!"
+      respond_to do |format|
+        format.html {redirect_to :action => 'show'}
       end
+    else
+      flash.now[:error] = "There were some errors in your input."
+      respond_to do |format|
+        format.html {render :action => 'edit'}
+      end
+    end
   end
   
   def issue_weights

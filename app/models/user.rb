@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
   end
   
   ######## end SCORING SYSTEM
-  ##########################################################
+  ########d##################################################
 
   def has_rated(review)
     {PeerRating => true, NilClass => false}[PeerRating.find(:first, :conditions => "review_id = #{review.id} and user_id = #{id}").class]
@@ -164,6 +164,10 @@ class User < ActiveRecord::Base
   def website
     return nil if profile.nil?
     profile[:website]
+  end
+  def website=(value)
+    return nil if profile.nil?
+    profile[:website] = value
   end
 
   protected
