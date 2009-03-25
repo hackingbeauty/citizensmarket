@@ -13,6 +13,7 @@ a {
 	color: #0f0087;
 	text-decoration: none;
 }
+
 a:hover{
 	text-decoration: underline;
 }
@@ -22,16 +23,19 @@ h1 {
 	font-weight: bold;
 	color: #333;
 }
+
 h2 {
 	font-size: 16px;
 	font-weight: bold;
 	color: #333;
 }
+
 h3 {
 	font-size: 14px;
 	font-weight: bold;
 	color: #333;
 }
+
 h4 {
 	font-weight: bold;
 	color: #333;
@@ -49,9 +53,11 @@ textarea {
 br {
 	clear: both;
 }
+
 br.left {
 	clear: left;
 }
+
 br.right {
 	clear: right;
 }
@@ -59,6 +65,18 @@ br.right {
 .avatar {
 	border: 1px solid #b3b3b3;
 	padding: 2px;
+}
+
+.green {
+	color:#74ac31;
+}
+
+.red {
+	color:#dc4b53;
+}
+
+.blue {
+	color:blue;
 }
 
 /******************** =Header ********************/
@@ -123,7 +141,7 @@ br.right {
 }
 
 /* policy docs - last updated by Luke Jan 2009 */ 
-div terms{}
+
 div.terms .section{
 	margin: 25px;
 }
@@ -166,14 +184,40 @@ div.terms ol li{
 	padding-bottom: 10px;
 }
 
-#newcontainer span {
+/*#newcontainer span {
 	padding:15px 0 0 40px;
 	font-size:28px;
 	text-align:center;
+}*/
+
+#newcontainer p#line1,
+#newcontainer p#line2,
+#newcontainer p#line3 {
+	padding:15px 0 0 40px;
+	font-size:28px;
+	padding:15px 0 0 40px;
+	font-size:28px;
+	position:relative;
+	top:30px;
 }
 
-#home div#main {
-	
+#newcontainer p#line2 {
+	position:relative;
+	left:220px;
+}
+
+#newcontainer p#line3 {
+	position:relative;
+	left:260px;
+}
+
+#newcontainer a img {
+	position:relative;
+	top:45px;
+	left:400px;
+}
+
+#home div#main {	
 	padding: 10px;
 	border: 1px solid #b8b8b8;
 }
