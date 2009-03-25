@@ -1,12 +1,12 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  stock_symbol: MyString
-  description: 
-  logo_url: MyString
-  website_url: MyString
-  google_cid: 1
+  name: Apple Inc.
+  stock_symbol: NASDAQ:AAPL
+  description: This is a mini monopoly. Makers of the iPod
+  logo_url: http://www.apple.com/apple.png
+  website_url: http://www.apple.com/
+  google_cid: 22144
 
 two:
   name: MyString

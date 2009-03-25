@@ -62,7 +62,7 @@ module ActionView
       #   #    <option>3</option><option>4</option></select>
       #
       #   select_tag "colors", "<option>Red</option><option>Green</option><option>Blue</option>", :multiple => true
-      #   # => <select id="colors" multiple="multiple" name="colors"><option>Red</option>
+      #   # => <select id="colors" multiple="multiple" name="colors[]"><option>Red</option>
       #   #    <option>Green</option><option>Blue</option></select>
       #
       #   select_tag "locations", "<option>Home</option><option selected="selected">Work</option><option>Out</option>"
@@ -70,14 +70,15 @@ module ActionView
       #   #    <option>Out</option></select>
       #
       #   select_tag "access", "<option>Read</option><option>Write</option>", :multiple => true, :class => 'form_input'
-      #   # => <select class="form_input" id="access" multiple="multiple" name="access"><option>Read</option>
+      #   # => <select class="form_input" id="access" multiple="multiple" name="access[]"><option>Read</option>
       #   #    <option>Write</option></select>
       #
       #   select_tag "destination", "<option>NYC</option><option>Paris</option><option>Rome</option>", :disabled => true
       #   # => <select disabled="disabled" id="destination" name="destination"><option>NYC</option>
       #   #    <option>Paris</option><option>Rome</option></select>
       def select_tag(name, option_tags = nil, options = {})
-        content_tag :select, option_tags, { "name" => name, "id" => name }.update(options.stringify_keys)
+        html_name = (options[:multiple] == true && !name.to_s.ends_with?("[]")) ? "#{name}[]" : name
+        content_tag :select, option_tags, { "name" => html_name, "id" => sanitize_to_id(name) }.update(options.stringify_keys)
       end
 
       # Creates a standard text field; use these text fields to input smaller chunks of text like a username
@@ -111,7 +112,7 @@ module ActionView
       #   text_field_tag 'ip', '0.0.0.0', :maxlength => 15, :size => 20, :class => "ip-input"
       #   # => <input class="ip-input" id="ip" maxlength="15" name="ip" size="20" type="text" value="0.0.0.0" />
       def text_field_tag(name, value = nil, options = {})
-        tag :input, { "type" => "text", "name" => name, "id" => name, "value" => value }.update(options.stringify_keys)
+        tag :input, { "type" => "text", "name" => name, "id" => sanitize_to_id(name), "value" => value }.update(options.stringify_keys)
       end
 
       # Creates a label field
@@ -129,7 +130,7 @@ module ActionView
       #   label_tag 'name', nil, :class => 'small_label'
       #   # => <label for="name" class="small_label">Name</label>
       def label_tag(name, text = nil, options = {})
-        content_tag :label, text || name.to_s.humanize, { "for" => name }.update(options.stringify_keys)
+        content_tag :label, text || name.to_s.humanize, { "for" => sanitize_to_id(name) }.update(options.stringify_keys)
       end
 
       # Creates a hidden form input field used to transmit data that would be lost due to HTTP's statelessness or
@@ -281,7 +282,7 @@ module ActionView
       #   check_box_tag 'eula', 'accepted', false, :disabled => true
       #   # => <input disabled="disabled" id="eula" name="eula" type="checkbox" value="accepted" />
       def check_box_tag(name, value = "1", checked = false, options = {})
-        html_options = { "type" => "checkbox", "name" => name, "id" => name, "value" => value }.update(options.stringify_keys)
+        html_options = { "type" => "checkbox", "name" => name, "id" => sanitize_to_id(name), "value" => value }.update(options.stringify_keys)
         html_options["checked"] = "checked" if checked
         tag :input, html_options
       end
@@ -403,6 +404,7 @@ module ActionView
       # Creates a field set for grouping HTML form elements.
       #
       # <tt>legend</tt> will become the fieldset's title (optional as per W3C).
+      # <tt>options</tt> accept the same values as tag.
       #
       # === Examples
       #   <% field_set_tag do %>
@@ -414,9 +416,14 @@ module ActionView
       #     <p><%= text_field_tag 'name' %></p>
       #   <% end %>
       #   # => <fieldset><legend>Your details</legend><p><input id="name" name="name" type="text" /></p></fieldset>
-      def field_set_tag(legend = nil, &block)
+      #
+      #   <% field_set_tag nil, :class => 'format' do %>
+      #     <p><%= text_field_tag 'name' %></p>
+      #   <% end %>
+      #   # => <fieldset class="format"><p><input id="name" name="name" type="text" /></p></fieldset>
+      def field_set_tag(legend = nil, options = nil, &block)
         content = capture(&block)
-        concat(tag(:fieldset, {}, true))
+        concat(tag(:fieldset, options, true))
         concat(content_tag(:legend, legend)) unless legend.blank?
         concat(content)
         concat("</fieldset>")
@@ -463,6 +470,12 @@ module ActionView
             tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
           end
         end
+
+        # see http://www.w3.org/TR/html4/types.html#type-name
+        def sanitize_to_id(name)
+          name.to_s.gsub(']','').gsub(/[^-a-zA-Z0-9:.]/, "_")
+        end
+
     end
   end
 end

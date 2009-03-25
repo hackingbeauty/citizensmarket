@@ -2,8 +2,8 @@
 
 <%= error_messages_for :review %>
 
-<% form_for(:review, :url => object_url, :html => { :method => :put }) do |f| %>
-  <%= render :partial => "form", :locals => { :f => f } %>
+<% form_for(@review, :html => { :method => :put }) do |f| %>
+  <%= render :partial => "form", :locals => { :f => f, :review => @review } %>
   <p>
     <%=submit_tag "Update"%>
   </p>
@@ -11,4 +11,4 @@
 
 <br/>
 
-<%= link_to 'Back', collection_url %>
+<%= link_to 'Back', reviews_path %>
