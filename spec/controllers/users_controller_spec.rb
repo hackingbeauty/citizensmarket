@@ -142,7 +142,9 @@ describe UsersController, "when editing a user," do
       assigns(:user).class.should == User
     end
     
-    it "should set a flash[:notice] message"
+    it "should set a flash[:notice] message" do
+      flash[:notice].should_not be_nil
+    end
     
   end
   
@@ -179,7 +181,7 @@ describe UsersController, "when editing a user," do
   end
   
   # not sure how to express this - what is normal failure response? - Luke
-  it "on GET 'edit' with invalid id, it should fail - see comments"
+  it "on GET 'edit' with invalid id, it should fail - see comments" 
   
   # not sure how to express this either - Luke
   it "on GET 'edit' with no id, it should fail - see comments" 
