@@ -41,8 +41,10 @@
 		
 		<div id="rate_reviews" class="tab_content">
 	      	<h3>Most Recent Reviews (showing 10)</h3>
-			<% for review in Review.all.sort_by{|x| x.created_at}.reverse[1..10] %>
-				<%= render :partial => 'reviews/review', :locals => {:review => review, :show_company => true} %>
+			<% unless Review.count == 0 %>
+				<% for review in Review.all.to_a.sort_by{|x| x.created_at}.reverse[1..10] %>
+					<%= render :partial => 'reviews/review', :locals => {:review => review, :show_company => true} %>
+				<% end %>
 			<% end %>
 			
 	    </div>

@@ -7,6 +7,11 @@ include AuthenticatedTestHelper
 describe UsersController do
   fixtures :users
 
+  it 'properly loads fixtures with Hash for attribute "profile"' do
+    user = User.find(1)
+    user.profile.class.should.kind_of?(Hash)
+  end
+
   it 'allows signup' do
     lambda do
       create_user
@@ -89,6 +94,94 @@ describe UsersController do
     post :create, :user => { :login => 'quire', :email => 'quire@example.com',
       :password => 'quire69', :password_confirmation => 'quire69' }.merge(options)
   end
+end
+
+describe UsersController, "when editing a user," do
+  
+  describe "on GET 'edit' with valid id," do
+    before do
+      get :edit, :id => 1
+    end
+    
+    it "should return success" do
+      response.should be_success
+    end
+    
+    it "should assign to @user" do
+      assigns(:user).should_not == nil
+    end
+    
+    it "should get the proper user" do
+      assigns(:user).firstname.should == 'Quentin'
+    end
+    
+    it "should render edit.html.erb" do
+      response.should render_template('edit')
+    end
+  end
+  
+  describe "on PUT 'update' with valid data," do
+    before do
+      put :update, :id => 1, :user => {:firstname => 'NewFirstname', :lastname => 'NewLastname', :profile => {:location => 'newLocation', :website => 'www.NewWebsite.com'}}
+    end
+    
+    it "should return a redirect" do
+      response.should be_redirect
+    end
+    
+    it "should update the user" do
+      user = User.find(1)
+      user.firstname.should == 'NewFirstname'
+    end
+    
+    it "should redirect to show" do
+      response.should redirect_to(user_path(assigns(:user)))
+    end
+    
+    it "should assign to user" do 
+      assigns(:user).class.should == User
+    end
+    
+    it "should set a flash[:notice] message"
+    
+  end
+  
+  describe "on PUT 'update' with invalid data (firstname is invalid with 101 characters)," do
+    before do
+      put :update, :id => 2, :user => {:firstname => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", :lastname => 'NewLast', :profile => {:location => 'newLoc', :website => 'www.newWeb.com'}}
+    end
+    
+    it "should return success" do
+      response.should be_success
+    end
+    
+    it "should assign to @user" do
+      assigns(:user).class.should == User
+    end
+    
+    it "should not update the user" do
+      user = User.find(2)
+      user.lastname.should == 'Vader'
+    end
+    
+    it "should render edit" do
+      response.should render_template('edit')
+    end
+    
+    it "should assign errors" do
+      assigns(:user).errors.should_not == nil
+    end
+    
+    it "should set a flash[:error] message"
+    
+  end
+  
+  # not sure how to express this - what is normal failure response? - Luke
+  it "on GET 'edit' with invalid id, it should fail - see comments" 
+  
+  # not sure how to express this either - Luke
+  it "on GET 'edit' with no id, it should fail - see comments" 
+  
 end
 
 describe UsersController do
