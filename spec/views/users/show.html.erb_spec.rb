@@ -27,9 +27,9 @@ describe "/users/show.html.erb" do
     response.should have_text(/value\ for\ website/)
   end
   
-  
-  
-  # Diego: how do I do this?  - Luke
-  it "should have link to edit"
+  it "should have link to edit" do
+    render "/users/show.html.erb"
+    response.should have_tag("a[href=?]", edit_user_path(@user))
+  end
   
 end
