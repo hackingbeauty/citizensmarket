@@ -19,6 +19,10 @@
 	</ul>
 	<br/>
 	<br/>
-    <%= link_to "Edit Profile", edit_user_path(@user) %>
+    
+	<% if @user == current_user %>
+		<%= link_to "Edit Profile", edit_user_path(@user) %> | 
+		<%= link_to "Change Password", change_password_path %>
+	<% end %>
 	
 </div>

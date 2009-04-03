@@ -1,5 +1,17 @@
 /******************** =General Styles ********************/
 
+div#flash_notice{
+	text-align: center;
+	color: green;
+	border: solid thin green;
+	font-family: courier;
+	font-weight: bold;
+	padding: 5px;
+	background-color: #cceecc;
+	margin: 10px auto;
+	width: 400px;
+}
+
 body {
 	font-family: "trebuchet ms",verdana,arial,helvetica,sans-serif;
 	color: #191919;
