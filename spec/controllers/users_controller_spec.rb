@@ -188,7 +188,9 @@ describe UsersController, "when editing a user," do
       assigns(:user).class.should == User
     end
     
-    it "should set a flash[:notice] message"
+    it "should set a flash[:notice] message" do
+      flash[:notice].should_not be_nil
+    end
     
   end
   
@@ -218,7 +220,9 @@ describe UsersController, "when editing a user," do
       assigns(:user).errors.should_not == nil
     end
     
-    it "should set a flash[:error] message"
+    it "should set a flash[:error] message" do 
+      flash[:error].should_not be_nil
+    end
     
   end
   

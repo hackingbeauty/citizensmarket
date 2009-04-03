@@ -26,7 +26,10 @@ describe "/reviews/edit.html.erb" do
     end
   end
   
-  it "should include the star rating system"
+  it "should include the star rating system" do
+    render "/reviews/edit.html.erb"
+    response.should have_tag("select#review_rating")
+  end
   
 end
 

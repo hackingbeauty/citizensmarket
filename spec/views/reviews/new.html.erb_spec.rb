@@ -21,7 +21,10 @@ describe "/reviews/new.html.erb" do
     end
   end
   
-  it "should include the star rating system"
+  it "should include the star rating system" do
+    render "/reviews/new.html.erb"
+    response.should have_tag("select#review_presenter_rating")
+  end
 end
 
 
