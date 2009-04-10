@@ -9,8 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD:db/schema.rb
-ActiveRecord::Schema.define(:version => 20090404183709) do
+ActiveRecord::Schema.define(:version => 20090410045847) do
 
   create_table "admins", :force => true do |t|
     t.string   "email"
@@ -18,9 +17,6 @@ ActiveRecord::Schema.define(:version => 20090404183709) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-=======
-ActiveRecord::Schema.define(:version => 20090320160417) do
->>>>>>> 245fd361de43738718c027b07189ab4fb9ed412e:db/schema.rb
 
   create_table "brands", :force => true do |t|
     t.text     "name"
@@ -40,6 +36,12 @@ ActiveRecord::Schema.define(:version => 20090320160417) do
     t.integer  "google_cid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.integer  "zip"
+    t.integer  "barcode"
+    t.string   "industry"
   end
 
   create_table "headquarters", :force => true do |t|
@@ -78,8 +80,8 @@ ActiveRecord::Schema.define(:version => 20090320160417) do
 
   create_table "reviews", :force => true do |t|
     t.text     "body"
-    t.integer  "rating",     :null => false
-    t.string   "status",     :null => false
+    t.integer  "rating",                     :null => false
+    t.string   "status",     :default => "", :null => false
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -89,7 +91,7 @@ ActiveRecord::Schema.define(:version => 20090320160417) do
   create_table "user_issues", :force => true do |t|
     t.integer  "user_id"
     t.integer  "issue_id"
-    t.integer  "weight"
+    t.float    "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

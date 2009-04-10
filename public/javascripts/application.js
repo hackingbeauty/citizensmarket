@@ -58,6 +58,7 @@ $(document).ready (function() {
   			  br: { radius: 10 },
   			  autoPad: true,
   			  antiAlias: true
+  });
 
   $('#search_q').click(function(evt){
     var obj = $(this);

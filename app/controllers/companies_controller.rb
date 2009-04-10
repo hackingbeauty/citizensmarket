@@ -8,6 +8,9 @@ class CompaniesController < ResourceController::Base
   
   def edit
     @company = Company.find(params[:id])
+    if request.put?
+      redirect_to :action => "administer"
+    end
   end
   
   def destroy
