@@ -14,4 +14,15 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password").
   # filter_parameter_logging :password
   
+  private 
+  
+	# Protect a page from unauthorized access.
+  	def protect
+    	unless logged_in?
+          session[:protected_page] = request.request_uri
+          redirect_to :controller => "admin", :action => "login"
+          return false
+    	end
+  	end
+  	
 end

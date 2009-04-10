@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   # before_filter :admin_required, :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
 
-
   # render new.rhtml
   def new
     @user = User.new

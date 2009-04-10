@@ -1,5 +1,55 @@
+(function(){
+
+	//Create Namespace
+	if(!window.CM) {window['CM'] = {}}	
+
+	//Helper function to check if an element (i.e. div) exists. Argument is element id
+	var exists = function(element) {
+		if (!document.getElementById(element)) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	window['CM']['exists'] = exists;
+
+	//Shows or hides div when element is clicked, depending on action parameter (can be show or hide)
+	var deleteCompanyConfirm = function() {		
+		// $('.delete-company a').click(function(){
+		// 	var deleteBttn = this;
+		// 	$.prompt('Do you really want to delete this company?',{ 
+		// 		buttons: { Delete: true, Cancel: false }, 
+		// 		callback: function(){
+		// 			$.ajax({
+		// 		                url: deleteBttn.href.replace('/admin', '/'),
+		// 		                type: 'post',
+		// 		                dataType: 'script',
+		// 		                data: { '_method': 'delete' },
+		// 		                success: function() {
+		// 		                    // the item has been deleted
+		// 		                    // might want to remove it from the interface
+		// 		                    // or redirect or reload by setting window.location
+		// 		                }
+		// 		            });
+		// 		}
+		// 	});
+		// });		
+	}
+	window['CM']['deleteCompanyConfirm'] = deleteCompanyConfirm;
+
+})();
+		
+
+//All functions that need to be executed after page load go here
+
 $(document).ready (function() {
-  
+	
+	//If page is "Adminster Company", execute the following function
+	if (CM.exists('administer-companies')) {
+		CM.deleteCompanyConfirm();
+	}
+
   $('.rounded').corner();
   $('#globalnav').corner({
   			  tl: false,

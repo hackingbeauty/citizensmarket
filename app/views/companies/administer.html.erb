@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag("jquery-impromptu") %>
+<%= javascript_include_tag 'jquery-impromptu.2.5.min' %>
+<div id="administer-companies">  
+  <h2>Administer Companies</h2>
+  <%= link_to 'Add Company', @company, :href=>'/companies/new', :id=>'add-company-link', :class=>'submit' %></span>
+  <ul>
+  <% count = 0 %>
+  <% @companies.each do |company| %>
+    <% if count%2 == 0 %>
+    <li>
+      <span class="company-name"><%= company.name %></span>
+      <span class="edit-company"><%= link_to 'Edit', edit_company_url(company.id), :class => 'submit' %></span>
+      <span class="delete-company"><a href="/companies/destroy/<%= company.id %>" class="submit">Delete</a></span>
+    </li>
+    <% else %>
+    <li class="shade">
+      <span class="company-name"><%= company.name %></span>
+      <span class="edit-company"><%= link_to 'Edit', edit_company_url(company.id), :class => 'submit' %></span>
+      <span class="delete-company"><a href="/companies/destroy/<%= company.id %>" class="submit">Delete</a></span>
+    </li>
+    <% end %>
+    <% count += 1 %>
+  <% end %>
+  </ul>
+</div><!-- end administer-companies -->

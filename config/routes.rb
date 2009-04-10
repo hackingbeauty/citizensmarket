@@ -32,6 +32,9 @@ ActionController::Routing::Routes.draw do |map|
                      :collection => { :vote_up => :post, :vote_down => :post }
   end
   
+  # map.connect '/edit', :controller => 'companies', :action => 'edit'
+  
+  map.connect '/admin', :controller => 'companies', :action => 'administer'
   map.connect '/score', :controller => 'companies', :action => 'find_score'
   map.connect '/about', :controller => 'home', :action => 'about'
   map.connect '/terms', :controller => 'home', :action => 'terms'
@@ -40,6 +43,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/dmca', :controller => 'home', :action => 'dmca'
   map.connect '/contact', :controller => 'home', :action => 'contact'
   map.connect '/take_action', :controller => 'home', :action => 'take_action'
+  # Install the default routes as the lowest priority.
+  map.connect ':controller/:action/:id'
+  map.connect ':controller/:action/:id.:format'
   map.resource :home
 
   map.root :controller => "home", :action => "show"
