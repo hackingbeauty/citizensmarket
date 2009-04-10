@@ -36,8 +36,8 @@ old_password_holder:
   id:                        3
   login:                     old_password_holder
   email:                     salty_dog@example.com
-  salt:                      7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  salt:                      50698feabc68e3511603ae8d8fd46d172a916d7a
+  crypted_password:          4c7ddf6c7321de252bf0a853374afe2d9961c441 # 'foobar'
   created_at:                <%= 1.days.ago.to_s :db %>
 
   activation_code:           

@@ -96,6 +96,52 @@ describe UsersController do
   end
 end
 
+describe UsersController, "changing password" do
+  
+  describe "when I click 'change my password' - GET 'change_password'" do
+    before do
+      get :change_password
+    end
+    
+    it "should render a template" do
+      response.should render_template('change_password')
+    end
+    
+  end
+  
+  describe "when I click submit, and my data's good" do
+    before do
+      @user = User.find(3)
+      controller.stub!(:current_user).and_return(@user)
+      post :update_password, {:old_password => 'foobar', :password => 'foobaz', :password_confirmation => 'foobaz'}
+    end
+    
+    it "should update my password (as crypted_password) in the database" do 
+      @user = User.find(3)
+      @user.crypted_password.should == 
+      "db1b4383c440e5df9c1f35f748159911b7609e37"
+    end
+        
+    it "shouldn't give my user any error messages"
+  end
+  
+  #describe "when I click submit, but I typed my confirmation wrong" do
+  #  it "should not update current_user"
+  #  it "should not update my user in the table"
+  #  it "should redirect me back to the change password page"
+  #  it "should tell me something's wrong"
+  #end
+  
+  #describe "when I click submit, and I've typed the wrong old password" do
+  #  it "should not update current_user"
+  #  it "should not update my user in the table"
+  #  it "should redirect me back to the 'change password' page"
+  #  it "should tell me something's wrong"
+  #end
+  
+end
+  
+
 describe UsersController, "when editing a user," do
   
   describe "on GET 'edit' with valid id," do

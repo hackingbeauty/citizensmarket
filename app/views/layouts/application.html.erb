@@ -35,6 +35,9 @@
       <%=render :partial => "layouts/masthead"%>
     </div> 
     <div id="bd">
+	<% unless flash[:notice].nil? %>
+		<div id="flash_notice"><%= flash[:notice] %></div>
+	<% end %>
       <%= yield %>
     </div> 
     <div id="ft">
