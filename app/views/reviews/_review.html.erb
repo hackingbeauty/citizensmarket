@@ -62,13 +62,7 @@
 		<% end %>
     </div>
 
-	<div style="border: solid thin red; background-color: #ffeeee; width: 350px; margin: 20px 5px 0;">
-		<span style="color: red; font-size: 8pt;">Note: this section is temporary, to be used by cm team to observe algorithm behavior.  <b>THIS REVIEW:</b></span><br>
-		peer ratings: <font color="blue"><b>(<%= review.peer_ratings.map{|x| '['+x.score.to_s+']'}.join(', ') %>)</b></font><br>
-		review score (RS): <font color="blue"><b><%= review.review_score %></b></font><br>
-		quality factor (QF): <font color="blue"><b><%= review.quality_factor %></b></font><br>
-		non-negative quality factor (NNQF): <font color="blue"><b><%= sprintf('%.3f', review.non_negative_quality_factor) %></b></font><br>
-  	</div>
+	
 	
 	</div>
 </div>

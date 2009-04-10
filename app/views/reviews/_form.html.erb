@@ -27,10 +27,9 @@
 
   <div class="star_rating">
     <label for="review_rating">Rating:</label>
-    <% (1..10).each do |rating| %>
-      <input name="star" type="radio" class="star-rating {split:2}" value="<%=rating %>"/> 
-    <% end %>
-    <%= f.hidden_field :rating, :class => 'rating_value' %>
+    
+	<%= f.select :rating, (1..10).map{|x| [(x.to_f/2).to_s, x]} %>
+	
     <br class="left">
   </div>
   
