@@ -40,6 +40,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/dmca', :controller => 'home', :action => 'dmca'
   map.connect '/contact', :controller => 'home', :action => 'contact'
   map.connect '/take_action', :controller => 'home', :action => 'take_action'
+  map.connect ':controller/:action/:id'
+  map.connect ':controller/:action/:id.:format'
   map.resource :home
 
   map.root :controller => "home", :action => "show"
