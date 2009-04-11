@@ -9,7 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090320160417) do
+ActiveRecord::Schema.define(:version => 20090411040327) do
+
+  create_table "admins", :force => true do |t|
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "brands", :force => true do |t|
     t.text     "name"
@@ -27,6 +34,24 @@ ActiveRecord::Schema.define(:version => 20090320160417) do
     t.string   "logo_url"
     t.string   "website_url"
     t.integer  "google_cid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.integer  "zip"
+    t.integer  "barcode"
+    t.string   "industry"
+    t.integer  "reviews_count", :default => 0
+  end
+
+  create_table "headquarters", :force => true do |t|
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "country"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -67,7 +92,7 @@ ActiveRecord::Schema.define(:version => 20090320160417) do
   create_table "user_issues", :force => true do |t|
     t.integer  "user_id"
     t.integer  "issue_id"
-    t.integer  "weight"
+    t.float    "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
