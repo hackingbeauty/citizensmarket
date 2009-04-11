@@ -738,6 +738,23 @@ div#company-issue-score tr td.total {
 	text-align:center;
 }
 
+/** about section **/
+#bd{margin-top: 2em;}
+.left-box{
+}
+#left-nav{
+  margin: 1em auto;
+  width: 80%;
+}
+#left-nav li{
+  margin-bottom: 1em;
+}
+
+#left-nav li a{
+  font-weight: bold;
+  font-size: 108%;
+}
+
 /********** Scores **********/
 
 /*
