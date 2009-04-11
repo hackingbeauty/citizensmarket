@@ -1,15 +1,24 @@
-<div id="company_index" class="yui-gc">
-	<div class="yui-u first">
-
+<table id="company-list" summary="List of companies, their brands, scores and reviews">
+  <caption>
+    company list
+  </caption>
+  <colgroup>
+    <col class="name">
+    <col class="brands">
+    <col class="score">
+    <col class="reviews_count">
+  </colgroup>
+  <thead>
+    <th class="name">company</th>
+    <th class="brands">brands</th>
+    <th>my score</th>
+    <th>reviews</th>        
+  </thead>
+  <tfoot>
+    <td colspan="4">footer</td>
+  </tfoot>
+  <tbody>
     <%=render :partial => "company", :collection => @companies %>
-
-    <%=link_to 'New Company', new_object_url %>
-		
-	</div>
-	<div class="yui-u">
-		
-		Filtering controls
-		
-	</div>
-</div>
-
+  </tbody>
+</table>
+<%=link_to 'New Company', new_object_url %>
