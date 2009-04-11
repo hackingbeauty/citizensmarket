@@ -1,5 +1,9 @@
 class CompaniesController < ResourceController::Base
 
+  def index
+    @companies = Company.paginate :page => params[:page], :per_page => 20, :order => params[:sort] || "name asc"
+  end
+  
   def company_picker
     render :partial => 'company_picker'
   end

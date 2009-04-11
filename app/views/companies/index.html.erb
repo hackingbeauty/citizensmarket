@@ -15,7 +15,8 @@
     <th>reviews</th>        
   </thead>
   <tfoot>
-    <td colspan="4">footer</td>
+    <td colspan="4"><%= will_paginate @companies %>
+    </td>
   </tfoot>
   <tbody>
     <%=render :partial => "company", :collection => @companies %>
