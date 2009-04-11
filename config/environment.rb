@@ -22,7 +22,7 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on.
   # They can then be installed with "rake gems:install" on new installations.
-  config.gem 'resource_controller', :version => '0.5.3'
+  config.gem 'resource_controller', :version => '0.5.2'
   config.gem 'active_presenter', :version => '0.0.3'
   config.gem 'rubyist-aasm', :version => '2.0.2', :lib => 'aasm', :source => 'http://gems.github.com'
   config.gem 'hpricot'
