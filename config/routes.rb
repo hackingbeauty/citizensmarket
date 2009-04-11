@@ -33,7 +33,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.connect '/score', :controller => 'companies', :action => 'find_score'
-  map.connect '/about', :controller => 'home', :action => 'about'
+  map.connect '/about', :controller => 'about', :action => 'team'
   map.connect '/terms', :controller => 'home', :action => 'terms'
   map.connect '/attribution', :controller => 'home', :action => 'attribution'
   map.connect '/privacy', :controller => 'home', :action => 'privacy'
