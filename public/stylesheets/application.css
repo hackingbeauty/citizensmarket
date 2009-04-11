@@ -15,8 +15,13 @@ strong {
   text-transform: uppercase;
   color: #555;
   font-size: 123%;
-  padding: 25px 0;
+  padding: 1em 0;
   font-weight: bold;
+}
+
+#sort-by-form{
+  float: right;
+  margin-top: 1em;
 }
 #company-list th {
   background-color: #29830c; 
