@@ -1,5 +1,5 @@
 <form action="" method="get" id="sort-by-form">
-<input type="hidden" name="page" value="<%= params[:page] %>">
+<input type="hidden" name="page" value="<%= params[:page] || "1" %>">
 <label for="sort">Sort By</label>
 <%= select_tag("sort", 
       options_for_select(
