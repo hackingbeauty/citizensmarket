@@ -27,7 +27,7 @@ describe "/users/show.html.erb" do
     response.should have_text(/value\ for\ website/)
   end
   
-  it "should not have a link to edit" do
+  it "should not have a link to edit if you're not logged in" do
     render "/users/show.html.erb"
     response.should_not have_tag("a[href=?]", edit_user_path(@user))
   end
