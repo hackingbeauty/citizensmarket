@@ -22,6 +22,43 @@ strong {
 	font-weight: bold;
 }
 
+/* Company list requirements */
+#company-list {width: 100%;}
+#company-list caption {
+  text-transform: uppercase;
+  color: #555;
+  font-size: 123%;
+  padding: 1em 0;
+  font-weight: bold;
+}
+
+#sort-by-form{
+  float: right;
+  margin-top: 1em;
+}
+#company-list th {
+  background-color: #29830c; 
+  color: #fff;
+  height: 27px;
+  padding: 0 15px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  }
+#company-list td{ text-align: center; padding: 10px 15px;}
+
+#company-list .name {width: 32%; text-align: left;}
+#company-list .name a{color: #29830c; font-size: 108%; font-weight: bold;}
+
+#company-list .brands {width: 38%; text-align: left;}
+#company-list td.brands{color: #848484;}
+#company-list .brands a{color: #29830c; text-transform: uppercase;}
+
+.odd {background-color: #fff;}
+.even {background-color: #f5fbf2;}
+
+
+
 a {
 	color: #0f0087;
 	text-decoration: none;
@@ -133,6 +170,25 @@ br.right {
 #notice {
 	color:red;
 	font-size:1.1em;
+}
+
+#errorExplanation h2 {
+	font-size:2em;
+}
+
+#errorExplanation ul li {
+	margin:5px 0;
+	color:red;
+}
+
+/* Client Side Validation Error Messaging */
+
+label.error {
+	color:Red !important;
+	float:right;
+	margin:0 !important;
+
+	width:240px;
 }
 
 /******************** =Dialog Confirmations ********************/
@@ -1028,9 +1084,26 @@ div#company-issue-score tr td.total {
 }
 
 
-/******************** =Admin Login Form ********************/
 
-#admin-login {
+/******************** =Login & Signup Forms ********************/
+
+.form-row {
+	float:left;
+	clear:both;
+	height:80px;
+}
+
+.form-row.accept-terms {
+	height:40px;
+}
+
+.form-row.accept-terms span {
+	float:right;
+	margin-top:20px;
+}
+
+#login,
+#signup {
 	border:1px solid #ABA189;
 	margin-top:40px;
 	width:250px;
@@ -1039,9 +1112,16 @@ div#company-issue-score tr td.total {
 	-moz-border-radius-bottomright:9px;
 	-moz-border-radius-topleft:9px;
 	-moz-border-radius-topright:9px;
+	float:left;
 }
 
-#admin-login form label {
+#signup {
+	width:520px;
+	float:left;
+}
+
+#login form label,
+#signup form label {
 	text-align:left;
 	font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
 	color:#413C4D;
@@ -1052,7 +1132,8 @@ div#company-issue-score tr td.total {
 	font-weight:bold;
 }
 
-#admin-login form input {
+#login form input,
+#signup form input {
 	-moz-border-radius-bottomleft:3px;
 	-moz-border-radius-bottomright:3px;
 	-moz-border-radius-topleft:3px;
@@ -1064,9 +1145,12 @@ div#company-issue-score tr td.total {
 	color:#413C4D;
 	font-size:1.1em;
 	line-height:1.6em;
+	float:left;
+	margin-right:10px;
 }
 
-#admin-login #submit {
+#login #submit,
+#signup #submit {
 	margin-top:20px;
 	color:white;
 	text-transform:uppercase;
@@ -1079,36 +1163,24 @@ div#company-issue-score tr td.total {
 	cursor:pointer;
 }
 
-
-
-/********** Scores **********/
-
-/*
-div#company-issue-score td.score-of-1 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px 7px no-repeat;
+#agree_to_terms {
+	margin-top:20px;
 }
 
-div#company-issue-score td.score-of-2 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -22px no-repeat;
+
+/** about section **/
+#bd{margin-top: 2em;}
+.left-box{
+}
+#left-nav{
+  margin: 1em auto;
+  width: 80%;
+}
+#left-nav li{
+  margin-bottom: 1em;
 }
 
-div#company-issue-score td.score-of-3 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -49px no-repeat;
+#left-nav li a{
+  font-weight: bold;
+  font-size: 108%;
 }
-
-div#company-issue-score td.score-of-4 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -77px no-repeat;
-}
-
-div#company-issue-score td.score-of-5 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -104px no-repeat;
-}
-
-div#company-issue-score td.score-of-6 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -133px no-repeat;
-}
-
-div#company-issue-score td.score-of-7 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -160px no-repeat;	
-}
-*/
