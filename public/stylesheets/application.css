@@ -1,0 +1,58 @@
+body {
+	background: url('/images/backgrounds/back-body.png') repeat-x;
+}
+
+/*#doc4 {
+	background-color:#f3ffe9;
+}*/
+
+/******************* =Header *******************/
+
+#header {
+	border:1px solid red;
+	height:180px;
+	position:relative;
+}
+
+/* Main Nav */
+
+#header ul#nav {
+	position:absolute;
+	bottom:4px;
+}
+
+#header ul#nav li {
+	border-right:1px solid #77ae48;
+	float:left;
+	padding:0 40px;
+}
+
+#header ul#nav li a {
+	color:#77ae48;
+	font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
+	font-size:1.2em;
+	text-decoration:none;
+	text-transform:capitalize;
+}
+
+/******************* =Footer *******************/
+
+#footer {
+	clear:both;
+}
+
+/******************* =Homepage *******************/
+
+#main-content #welcome {
+	border:1px solid green;
+	color:white;
+	height:275px;
+}
+
+#main-content #latest-news {
+	background-color:#d9f7c1;
+}
+
+#main-content #reviews {
+	background-color:#f3ffe9;	
+}
