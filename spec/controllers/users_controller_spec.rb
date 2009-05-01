@@ -96,10 +96,12 @@ describe UsersController do
   end
 end
 
-describe UsersController, "when editing a user," do
-  
+describe UsersController, "when editing your profile" do
   describe "on GET 'edit' with valid id," do
     before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
+      # template.stub!(:current_user).and_return(User.find(1))
       get :edit, :id => 1
     end
     
@@ -115,13 +117,15 @@ describe UsersController, "when editing a user," do
       assigns(:user).firstname.should == 'Quentin'
     end
     
-    it "should render edit.html.erb" do
+    it "should not render edit.html.erb " do
       response.should render_template('edit')
     end
   end
   
   describe "on PUT 'update' with valid data," do
     before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
       put :update, :id => 1, :user => {:firstname => 'NewFirstname', :lastname => 'NewLastname', :profile => {:location => 'newLocation', :website => 'www.NewWebsite.com'}}
     end
     
@@ -150,6 +154,8 @@ describe UsersController, "when editing a user," do
   
   describe "on PUT 'update' with invalid data (firstname is invalid with 101 characters)," do
     before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
       put :update, :id => 2, :user => {:firstname => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", :lastname => 'NewLast', :profile => {:location => 'newLoc', :website => 'www.newWeb.com'}}
     end
     
@@ -175,6 +181,85 @@ describe UsersController, "when editing a user," do
     end
     
   
+  end
+  
+  # not sure how to express this - what is normal failure response? - Luke
+  it "on GET 'edit' with invalid id, it should fail - see comments" 
+  
+  # not sure how to express this either - Luke
+  it "on GET 'edit' with no id, it should fail - see comments" 
+  
+end
+
+describe UsersController, "when editing a user and you're not logged in" do
+  describe "on GET 'edit' with valid id," do
+    before do
+      get :edit, :id => 1
+    end
+    
+    it "should return success" do
+      response.should be_redirect
+    end
+    
+    it "should assign to @user" do
+      assigns(:user).should == nil
+    end
+    
+    it "should get the proper user" do
+      assigns(:user).should be_nil
+    end
+    
+    it "should not render edit.html.erb " do
+      response.should_not render_template('edit')
+    end
+  end
+  
+  describe "on PUT 'update' with valid data," do
+    before do
+      put :update, :id => 1, :user => {:firstname => 'NewFirstname', :lastname => 'NewLastname', :profile => {:location => 'newLocation', :website => 'www.NewWebsite.com'}}
+    end
+    
+    it "should return a redirect" do
+      response.should be_redirect
+    end
+    
+    it "should update the user" do
+      user = User.find(1)
+      user.firstname.should == 'Quentin'
+    end
+    
+    it "should redirect to show" do
+      response.should redirect_to("/session/new")
+    end
+    
+    it "should assign to user" do 
+      assigns(:user).class.should == NilClass
+    end
+    
+    it "should not set a flash[:notice] message" do
+      flash[:notice].should be_nil
+    end
+    
+  end
+  
+  describe "on PUT 'update' with invalid data (firstname is invalid with 101 characters)," do
+    before do
+      put :update, :id => 2, :user => {:firstname => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", :lastname => 'NewLast', :profile => {:location => 'newLoc', :website => 'www.newWeb.com'}}
+    end
+    
+    it "should return success" do
+      response.should be_redirect
+    end
+    
+    it "should assign to @user" do
+      assigns(:user).class.should == NilClass
+    end
+    
+    it "should not update the user" do
+      user = User.find(2)
+      user.lastname.should == 'Vader'
+    end
+    
   end
   
   # not sure how to express this - what is normal failure response? - Luke
