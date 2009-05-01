@@ -35,12 +35,12 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
-
+  validates_acceptance_of :terms_of_use, :allow_nil => false, :on => :create
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :firstname, :lastname, :password, :password_confirmation, :profile, :issue_weights
+  attr_accessible :login, :email, :firstname, :lastname, :password, :password_confirmation, :profile, :issue_weights, :terms_of_use
 
   after_create{ |user|
     for issue in Issue.find(:all)

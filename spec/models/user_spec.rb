@@ -23,6 +23,11 @@ describe User do
       @user.reload
       @user.should be_active
     end
+    
+    it 'requires for the user to agree on the terms of use' do
+      create_user(:terms_of_use => false).errors.on(:terms_of_use).should_not be_nil
+    end
+    
   end
 
   #
@@ -38,6 +43,7 @@ describe User do
     u = create_user(:login => nil)
     u.errors.on(:login).should be_nil
   end
+  
 
   describe 'allows legitimate logins:' do
     ['123', '1234567890_234567890_234567890_234567890',
@@ -269,7 +275,7 @@ describe User do
 
 protected
   def create_user(options = {})
-    record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
+    record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69', :terms_of_use => "1" }.merge(options))
     record.register! if record.valid?
     #raise "record.id is nil and errors = #{record.errors.full_messages.join(', ')}" if record.id.nil?
     record

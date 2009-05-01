@@ -3,27 +3,29 @@
 <h2>Sign up as a new user</h2>
 </div>
 <div class="content_body">
-<% @user.password = @user.password_confirmation = nil %>
-
+<div id="user-registration-form">
 <%= error_messages_for :user %>
 <% form_for :user, :url => users_path do |f| -%>
-<fieldset id="user_form">
-<p><%= label_tag 'email' %>
-<%= f.text_field :email %></p>
-  <br class="left">
-<p><%= label_tag 'password' %>
-<%= f.password_field :password %></p>
-  <br class="left">
-<p><%= label_tag 'password_confirmation', 'Confirm Password' %>
-<%= f.password_field :password_confirmation %></p>
-<br class="left">
-<p><%= label_tag 'agree_to_terms', 'necessary' %>
-<%= check_box_tag :agree_to_terms %> I agree to the <%= link_to 'Citizens Market Terms of Service', '/terms', :target => :new %>
-</p>
-
-</fieldset>
-<div class="submit">
-  <%= image_submit_tag "button_submit.gif" %>
+  <fieldset>
+    <%= f.label 'email' %>
+    <%= f.text_field :email %></p>
+  </fieldset>    
+  <fieldset>
+    <%= f.label 'password' %>
+    <%= f.password_field :password %>
+  </fieldset>
+  <fieldset>
+    <%= f.label 'password_confirmation', 'Confirm Password' %>
+    <%= f.password_field :password_confirmation %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :terms_of_use, "I agree to the #{link_to 'Terms of use', '/terms', :target => :new}" %>
+    <%= f.check_box :terms_of_use, :value => "1" %> 
+  </fieldset>
+  <div class="submit">
+    <%= image_submit_tag "button_submit.gif" %>
   </div>
 <% end -%>
+</div>
+
 </div>
