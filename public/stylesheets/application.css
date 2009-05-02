@@ -96,16 +96,8 @@ a {
 
 /* Login */
 
-#login {
-/*	background-color:#c7e8ff;
-	position:absolute;
-	right:0px;
-	width:25em;*/
-	border:1px solid red;
-	-moz-border-radius-bottomleft:6px;
-	-moz-border-radius-bottomright:6px;
-	-moz-border-radius-topleft:6px;
-	-moz-border-radius-topright:6px;
+#register {
+
 }
 
 /******************* =Main Content *******************/
@@ -221,19 +213,67 @@ a {
 	text-transform:uppercase;
 }
 
+#homepage #reviews .review p,
+#homepage #latest-news .news-item p {
+	color:#808080;
+}
+
+
+/* Register */
+
 #homepage #center-container #register {
-	border:1px solid red;
 	float:right;
 	-moz-border-radius-bottomleft:6px;
 	-moz-border-radius-bottomright:6px;
 	-moz-border-radius-topleft:6px;
 	-moz-border-radius-topright:6px;
-	background:#F5F3E0 none repeat scroll 0 0;
-	border-right:1px solid #E9E5DC;
+/*	background:#F5F3E0 none repeat scroll 0 0;*/
+	background-color:#D9F7C1;
+	border:2px solid #0b6bae;
+	padding:30px 60px;
+	width:17em;
 }
 
 
-#homepage #reviews .review p,
-#homepage #latest-news .news-item p {
-	color:#808080;
+#homepage #center-container #register h2 {
+	color:#0B6BAE;
+	font-weight:bold;
+	font-size:1.4em;
+	margin-bottom:20px;
+}
+
+#homepage #center-container #register .form-row {
+	margin-bottom:20px;
+}
+
+#homepage #center-container #register .form-row  label {
+/*	color:#0B6BAE;*/
+	font-size:1.2em;
+	display:block;
+	margin-bottom:10px;
+	color:#666666;
+	font-family:Arial,Verdana,sans-serif;
+	font-size-adjust:none;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:150%;
+}
+
+#homepage #center-container #register .form-row input {
+	border-color:#96A6C5;
+	margin-top:2px;
+	width:206px;
+}
+
+#homepage #center-container #register input#submit {
+	background-color:#0B6BAE;
+	border:3px solid white;
+	color:white;
+	font-weight:bold;
+	padding:10px;
+	-moz-border-radius-bottomleft:6px;
+	-moz-border-radius-bottomright:6px;
+	-moz-border-radius-topleft:6px;
+	-moz-border-radius-topright:6px;
 }
