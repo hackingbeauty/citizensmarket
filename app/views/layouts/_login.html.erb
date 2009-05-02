@@ -1,4 +1,4 @@
-<div id="login">
+<!-- <div id="login">
 <h2>Log In</h2>
   <% form_tag session_path do  %>
     <% if flash[:notice] %>
@@ -8,11 +8,11 @@
     <% end %>
     <div class="form-row">
       <label>*Email:</label>
-		  <%= text_field_tag 'email', @login %></p>
+          <%= text_field_tag 'email', @login %></p>
     </div>
     <div class="form-row">
       <label>*Password:</label>
-	  <%= password_field_tag 'password', nil %></p>
+      <%= password_field_tag 'password', nil %></p>
     </div>
     <%= submit_tag "log in", :id => "submit" %>
   <% end %>

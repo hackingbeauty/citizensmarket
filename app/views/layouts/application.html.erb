@@ -14,17 +14,16 @@
 <body>
     <div id="doc4" class="yui-t6">
         <div id="header" role="banner">
-            <%=render :partial => "layouts/masthead"%>
+            <%=render :partial => "layouts/header"%>
         </div> 
         <div id="main-content">
-            <%=render :partial => "welcome"%>
     	    <% unless flash[:notice].nil? %>
     		    <div id="flash_notice">
     		        <%= flash[:notice] %>
     		    </div>
     	    <% end %>
             <%= yield %>
-        </div><!-- end bd --> 
+        </div><!-- end main-content --> 
         <div id="footer">
             <%=render :partial => "layouts/footer"%>
         </div> 

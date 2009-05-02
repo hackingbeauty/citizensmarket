@@ -1,5 +1,35 @@
 body {
-	background: url('/images/backgrounds/back-body.png') repeat-x;
+/*	background: url('/images/backgrounds/back-body.png') repeat-x;*/
+	background-color:#f3ffe9;
+}
+
+h1 {
+	font-size:1.9em;
+}
+
+h2 {
+	
+}
+
+h3 {
+	
+}
+
+h4 {
+	
+}
+
+h5 {
+	
+}
+
+h6 {
+	
+}
+
+a {
+	color:#74a035;
+	text-decoration:none;
 }
 
 /*#doc4 {
@@ -9,30 +39,79 @@ body {
 /******************* =Header *******************/
 
 #header {
-	border:1px solid red;
-	height:180px;
+	height:80px;
 	position:relative;
 }
 
 /* Main Nav */
 
-#header ul#nav {
+#header #nav {
+	background: url('/images/corners/corner-main-nav.png') no-repeat;
 	position:absolute;
-	bottom:4px;
+	bottom:0px;
+	height:30px;
+	width:100%
 }
 
-#header ul#nav li {
-	border-right:1px solid #77ae48;
+/*#header #nav-left {
+	background: url('/images/corners/corner-main-nav-left.png') no-repeat;
+	position:absolute;
+	bottom:0px;
+	height:35px;
+	width:20px;
+}
+
+#header #nav-right {
+	background: url('/images/corners/corner-main-nav-right.png') no-repeat;
+	position:absolute;
+	bottom:0px;
+	right:3px;
+	height:35px;
+	width:30px;
+}*/
+
+#header #nav ul {
+	margin-top:0.3em;
+}
+
+#header #nav ul li {
+	border-right:1px solid white;
 	float:left;
-	padding:0 40px;
+	padding:0 20px;
 }
 
-#header ul#nav li a {
-	color:#77ae48;
+#header #nav ul li.last {
+	border-right:none;
+}
+
+#header #nav ul li a {
+	color:white;
+	display:block;
 	font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
 	font-size:1.2em;
+	padding-top:0.2em;
 	text-decoration:none;
 	text-transform:capitalize;
+}
+
+/* Login */
+
+#login {
+/*	background-color:#c7e8ff;
+	position:absolute;
+	right:0px;
+	width:25em;*/
+	border:1px solid red;
+	-moz-border-radius-bottomleft:6px;
+	-moz-border-radius-bottomright:6px;
+	-moz-border-radius-topleft:6px;
+	-moz-border-radius-topright:6px;
+}
+
+/******************* =Main Content *******************/
+
+#main-content {
+	margin-bottom:100px;
 }
 
 /******************* =Footer *******************/
@@ -41,18 +120,120 @@ body {
 	clear:both;
 }
 
+#footer ul#links {
+	text-align:center;
+}
+
+#footer ul#links li {
+	float:left;
+}
+
+/******************* =Search *******************/
+
+#search {
+	position:absolute;
+	bottom:4px;
+	right:0px;
+}
+
+#search input#search_q {
+	width:200px;
+}
+
 /******************* =Homepage *******************/
 
-#main-content #welcome {
-	border:1px solid green;
-	color:white;
-	height:275px;
-}
-
-#main-content #latest-news {
-	background-color:#d9f7c1;
-}
-
-#main-content #reviews {
+#homepage #yui-main {
 	background-color:#f3ffe9;	
+	padding:40px;
+	width:65%;
+}
+
+#homepage #yui-main .yui-b {
+	margin-right:0;
+}
+
+#homepage #center-container {
+	background-color:#c7e8ff;
+	float:left;
+	padding:40px;
+	width:68.8em;
+}
+
+#homepage #center-container-bottom {
+	background: url('/images/corners/corner-main-center-bottom.png') no-repeat;
+	clear:both;
+	height:23px;
+	width:100%;
+}
+
+#homepage #welcome {
+	color:white;
+	float:left;
+	height:275px;
+	width:40em;
+}
+
+#homepage #welcome h1 {
+	color:#117fbc;
+	font-size:3em;
+}
+
+#homepage #welcome p {
+	color:#808080;
+	font-size:1.1em;
+	line-height:1.4em;
+}
+
+#homepage #reviews {
+	width:38em;
+}
+
+#homepage #latest-news {
+	background-color:#d9f7c1;
+	margin-right:40px;
+	padding:40px 20px;
+}
+
+#homepage #latest-news h3,
+#homepage #reviews h3 {
+	color:#0b6bae;
+	font-size:1.4em;
+	margin-bottom:30px;
+	text-transform:uppercase;
+}
+
+#homepage #latest-news h2,
+#homepage #reviews h2 {
+	color:;
+	font-size:1.6em;
+}
+
+#homepage #reviews .review,
+#homepage #latest-news .news-item {
+	margin-bottom:40px;
+}
+
+#homepage #reviews .review .date,
+#homepage #latest-news .news-item .date {
+	color:#8e8080;
+	display:block;
+	margin-bottom:15px;
+	text-transform:uppercase;
+}
+
+#homepage #center-container #register {
+	border:1px solid red;
+	float:right;
+	-moz-border-radius-bottomleft:6px;
+	-moz-border-radius-bottomright:6px;
+	-moz-border-radius-topleft:6px;
+	-moz-border-radius-topright:6px;
+	background:#F5F3E0 none repeat scroll 0 0;
+	border-right:1px solid #E9E5DC;
+}
+
+
+#homepage #reviews .review p,
+#homepage #latest-news .news-item p {
+	color:#808080;
 }
