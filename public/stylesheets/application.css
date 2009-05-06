@@ -463,8 +463,13 @@ blockquote.pullquote p {
 
 form label { 
 	display: block;  /* block float the labels to left column, set a width */
+<<<<<<< HEAD:public/stylesheets/application.css
 /*	float: left; */
 	width: 150px; 
+=======
+	float: left; 
+	width: 170px; 
+>>>>>>> diego/master:public/stylesheets/application.css
 	padding-bottom: 10px;
 	padding-right: 5px;
 	margin: 5px 0 0; /* set top margin same as form input - textarea etc. elements */
@@ -472,7 +477,6 @@ form label {
 }
 
 div.submit {
-	padding-top: 25px;
 	margin-left: auto;
 	margin-right: auto;
 	width: 164px;
@@ -1204,4 +1208,31 @@ div#company-issue-score tr td.total {
 #left-nav li a{
   font-weight: bold;
   font-size: 108%;
+}
+*/
+
+/* forms error */
+#user-registration-form{
+  width: 500px;
+  margin: auto;
+}
+div.errorExplanation{
+  background-color: #fcecec;
+  border: 5px solid red;
+  font-size: 12px;
+  margin: 0 0 25px;
+  padding: 10px;
+}
+
+fieldset input.normal{
+  width: auto;
+}
+
+.fieldWithErrors{
+  display: inline;
+}
+
+.fieldWithErrors label {
+  color: red;
+  font-weight: bold;
 }
