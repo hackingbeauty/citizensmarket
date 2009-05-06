@@ -1,15 +1,37 @@
-<div id="company_index" class="yui-gc">
-	<div class="yui-u first">
-
+<form action="" method="get" id="sort-by-form">
+<input type="hidden" name="page" value="<%= params[:page] || "1" %>">
+<label for="sort">Sort By</label>
+<%= select_tag("sort", 
+      options_for_select(
+        [["Alphabetically Asc", "name asc"],
+         ["Alphabetically Desc", "name desc"],
+         ["Most Reviews", "reviews_count desc"],
+         ["Least Reviews", "reviews_count asc"]],
+         params[:sort]))%>
+<input type="submit" value="go!">
+</form>
+<table id="company-list" summary="List of companies, their brands, scores and reviews">
+  <caption>
+    company list
+  </caption>
+  <colgroup>
+    <col class="name">
+    <col class="brands">
+    <col class="score">
+    <col class="reviews_count">
+  </colgroup>
+  <thead>
+    <th class="name">company</th>
+    <th class="brands">brands</th>
+    <th>my score</th>
+    <th>reviews</th>        
+  </thead>
+  <tfoot>
+    <td colspan="4"><%= will_paginate @companies %>
+    </td>
+  </tfoot>
+  <tbody>
     <%=render :partial => "company", :collection => @companies %>
-
-    <%=link_to 'New Company', new_object_url %>
-		
-	</div>
-	<div class="yui-u">
-		
-		Filtering controls
-		
-	</div>
-</div>
-
+  </tbody>
+</table>
+<%=link_to 'New Company', new_object_url %>

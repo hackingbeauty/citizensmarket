@@ -145,7 +145,7 @@ class User < ActiveRecord::Base
   end
   
   def issue_weight(issue)
-    UserIssue.find_by_issue_id(issue, :conditions => {:user_id => self.id}).weight
+    user_issues.find_by_issue_id(issue).weight
   end
   
   def update_issue_weights(params)
