@@ -1,7 +1,23 @@
 class CompaniesController < ResourceController::Base
+  
+  before_filter :login_required, :only => [:administer]
 
-  def index
-    @companies = Company.paginate :page => params[:page], :per_page => 1, :order => params[:sort] || "name asc"
+  def administer
+    @companies = Company.find(:all)
+  end
+  
+  def edit
+    @company = Company.find(params[:id])
+    if request.put?
+      redirect_to :action => "administer"
+    end
+  end
+  
+  def destroy
+      @company = Company.find(params[:id])
+      if @company.destroy
+        redirect_to :action => "administer"
+      end
   end
   
   def company_picker
@@ -24,6 +40,25 @@ class CompaniesController < ResourceController::Base
 
   def total_reviews
     num = Company.find(:all)
+  end
+
+  def index
+    @companies = Company.find(:all)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @companies }
+    end
+  end
+  
+  def show_companies
+    @companies = Company.find(:all)
+  end
+  
+  def create
+    company = Company.new(params[:company])
+    if company.save
+      redirect_to :action => "administer"
+    end
   end
 
 end

@@ -2,6 +2,7 @@ class Company < ActiveRecord::Base
   
   has_many  :reviews, :dependent => :destroy
   has_many  :brands
+  has_many  :headquarters, :dependent => :destroy
   serialize :info, Hash
   
   validates_presence_of   :name, :on => :create, :message => "can't be blank"

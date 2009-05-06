@@ -1,6 +1,6 @@
-<div id="login">
-<h2>Log In</h2>
-  <% form_tag session_path do  %>
+<div id="admin-login">
+<h2>Admin Log In</h2>
+  <% form_for :admin do |form| %>
     <% if flash[:notice] %>
       <div id="notice">
         <%= flash[:notice] %>
@@ -8,12 +8,12 @@
     <% end %>
     <div class="form-row">
       <label>*Email:</label>
-		  <%= text_field_tag 'email', @login %></p>
+      <%= form.text_field :email %>
     </div>
     <div class="form-row">
       <label>*Password:</label>
-			<%= password_field_tag 'password', nil %></p>
+      <%= form.password_field :password %>
     </div>
     <%= submit_tag "log in", :id => "submit" %>
   <% end %>
-</div><!-- end login -->
+</div><!-- end admin-login -->

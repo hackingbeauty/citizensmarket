@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20090411053513) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "reviews_count", :default => 0
+
   end
 
   create_table "issues", :force => true do |t|
@@ -57,8 +58,8 @@ ActiveRecord::Schema.define(:version => 20090411053513) do
 
   create_table "reviews", :force => true do |t|
     t.text     "body"
-    t.integer  "rating",     :null => false
-    t.string   "status",     :null => false
+    t.integer  "rating",                     :null => false
+    t.string   "status",     :default => "", :null => false
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -78,7 +79,7 @@ ActiveRecord::Schema.define(:version => 20090411053513) do
   create_table "user_issues", :force => true do |t|
     t.integer  "user_id"
     t.integer  "issue_id"
-    t.integer  "weight"
+    t.float    "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
