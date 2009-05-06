@@ -14,12 +14,12 @@ class Company < ActiveRecord::Base
   
   ######## end SCORING SYSTEM
   ##########################################################
+  
   class << self
     def suggest(name)
       find(:all, :conditions => ["name like ?", name + '%']).map{|record| record.name} if name
     end
   end
-  
   
   def floor_to(x)
     (self * 10**x).floor.to_f / 10**x

@@ -65,8 +65,10 @@ class CmScores
   def self.review_quality_factor(review)
     # return cached if it exists
     review = Review.find(review) if review.class == Fixnum
-    y = CmScores::REVIEW_QUALITY_FACTOR_Y
-    output = review.user.contributor_level + (y * CmScores.review_score(review))
+    y  = CmScores::REVIEW_QUALITY_FACTOR_Y
+    cl = CmScores.user_contributor_level(review.user)
+    rs = CmScores.review_score(review)
+    output = cl + (y * rs)
     output = 0 if output < 0
     output
   end
