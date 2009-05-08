@@ -1,6 +1,4 @@
 <!-- <%=link_to image_tag('mast_logo.png'), root_url %> -->
-<%=render :partial => "layouts/login"%>
-<!-- <span id="tag_line">Your Values. Your Money. Your Choices.</span> -->
 <div id="nav">
     <ul>
     	<li><%=link_to "Take Action", '/take_action' %></li>
@@ -22,7 +20,7 @@
 <div id="search">
     <% form_for :search, :url => nil do |f| %>
     <div>
-    	<%= f.text_field :q, :value => 'search our site: find a company, review, brand, etc', :size => 60 %>
+    	<%= f.text_field :q, :value => 'Search Citizens\'s Market', :size => 60 %>
     	<%= f.submit 'Search' %>
     </div>
     <% end %>

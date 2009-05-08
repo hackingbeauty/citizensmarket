@@ -1,5 +1,4 @@
 body {
-/*	background: url('/images/backgrounds/back-body.png') repeat-x;*/
 	background-color:#f3ffe9;
 }
 
@@ -29,46 +28,58 @@ h6 {
 
 a {
 	color:#74a035;
+	font-weight:bold;
 	text-decoration:none;
 }
 
-/*#doc4 {
-	background-color:#f3ffe9;
-}*/
+em {
+	font-style:italic;
+}
+
+p {
+	color:#808080;
+}
+
+#doc4 {
+
+}
+
+#page-left {
+	background: url('/images/corners/corner-container-left.png') no-repeat;
+	float:left;
+	height:523px;
+	width:100px;
+	margin-top:-30px;
+	margin-left:-100px;
+}
+
+#page-right {
+	background: url('/images/corners/corner-container-right.png') no-repeat;
+	float:left;
+	height:523px;
+	width:100px;
+	margin-top:-30px;
+	margin-left:-200px;
+	position:relative;
+	left:200px;
+}
 
 /******************* =Header *******************/
 
 #header {
-	height:80px;
+	height:6em;
 	position:relative;
 }
 
 /* Main Nav */
 
 #header #nav {
-	background: url('/images/corners/corner-main-nav.png') no-repeat;
+	background-color:#0b6bae;
 	position:absolute;
 	bottom:0px;
 	height:30px;
 	width:100%
 }
-
-/*#header #nav-left {
-	background: url('/images/corners/corner-main-nav-left.png') no-repeat;
-	position:absolute;
-	bottom:0px;
-	height:35px;
-	width:20px;
-}
-
-#header #nav-right {
-	background: url('/images/corners/corner-main-nav-right.png') no-repeat;
-	position:absolute;
-	bottom:0px;
-	right:3px;
-	height:35px;
-	width:30px;
-}*/
 
 #header #nav ul {
 	margin-top:0.3em;
@@ -94,30 +105,45 @@ a {
 	text-transform:capitalize;
 }
 
-/* Login */
-
-#register {
-
-}
-
 /******************* =Main Content *******************/
 
 #main-content {
-	margin-bottom:100px;
+	float:left;
+	margin-bottom:3em;
 }
 
 /******************* =Footer *******************/
 
-#footer {
-	clear:both;
-}
-
 #footer ul#links {
-	text-align:center;
+	float:left;
+	margin-left:17em;
+	margin-bottom:1em;
 }
 
 #footer ul#links li {
 	float:left;
+	border-right:1px solid #808080;
+	padding:0 20px;
+}
+
+#footer ul#links li.last {
+	border:none;
+}
+
+#footer #copyright {
+	clear:both;
+}
+
+#footer #copyright img {
+
+}
+
+#footer #copyright p {
+	font-size:0.9em;
+	left:104px;
+	position:relative;
+	top:-25px;
+	width:73em;
 }
 
 /******************* =Search *******************/
@@ -129,15 +155,36 @@ a {
 }
 
 #search input#search_q {
-	width:200px;
+	color:#bcb7b7;
+	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
+	font-size:1em;
+	width:27em;
 }
+
+#search input#search_submit {
+	border:1px solid #838383;
+/*	color:#404048;
+*/	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
+	font-size:1.1em;
+	padding:0 0.2em;
+}
+
+/*border-left:1px solid #838383;
+border-top:1px solid #838383;
+color:#404048;
+display:block;
+font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
+font-size:1.8em;
+margin-bottom:0.8em;
+padding:0.2em;*/
+
 
 /******************* =Homepage *******************/
 
 #homepage #yui-main {
 	background-color:#f3ffe9;	
-	padding:40px;
-	width:65%;
+	padding:40px 0;
+	width:55%;
 }
 
 #homepage #yui-main .yui-b {
@@ -147,34 +194,38 @@ a {
 #homepage #center-container {
 	background-color:#c7e8ff;
 	float:left;
-	padding:40px;
-	width:68.8em;
-}
-
-#homepage #center-container-bottom {
-	background: url('/images/corners/corner-main-center-bottom.png') no-repeat;
-	clear:both;
-	height:23px;
+	height:383px;
+	padding:40px 0;
 	width:100%;
 }
 
+/* Welcome Section */
+
 #homepage #welcome {
-	color:white;
 	float:left;
 	height:275px;
-	width:40em;
+	width:37em;
 }
 
 #homepage #welcome h1 {
 	color:#117fbc;
-	font-size:3em;
+	font-size:4em;
 }
 
 #homepage #welcome p {
-	color:#808080;
 	font-size:1.1em;
-	line-height:1.4em;
+	line-height:2em;
 }
+
+#homepage #welcome em {
+	color:#404048;
+	display:block;
+	font-weight:bold;
+	font-size:1.8em;
+	margin-bottom:1em;
+}
+
+/* Latest Reviews  & Latest News */
 
 #homepage #reviews {
 	width:38em;
@@ -182,8 +233,8 @@ a {
 
 #homepage #latest-news {
 	background-color:#d9f7c1;
-	margin-right:40px;
-	padding:40px 20px;
+	margin-right:10px;
+	padding:40px 55px;
 }
 
 #homepage #latest-news h3,
@@ -213,67 +264,87 @@ a {
 	text-transform:uppercase;
 }
 
-#homepage #reviews .review p,
-#homepage #latest-news .news-item p {
-	color:#808080;
-}
-
-
 /* Register */
 
-#homepage #center-container #register {
+#homepage #register {
 	float:right;
-	-moz-border-radius-bottomleft:6px;
-	-moz-border-radius-bottomright:6px;
-	-moz-border-radius-topleft:6px;
-	-moz-border-radius-topright:6px;
-/*	background:#F5F3E0 none repeat scroll 0 0;*/
-	background-color:#D9F7C1;
-	border:2px solid #0b6bae;
-	padding:30px 60px;
-	width:17em;
+	width:33em;
 }
 
-
-#homepage #center-container #register h2 {
-	color:#0B6BAE;
-	font-weight:bold;
-	font-size:1.4em;
-	margin-bottom:20px;
+#homepage #register-top {
+	background: url('/images/corners/corner-register-top.png') no-repeat;
+	height:2.2em;
+	width:100%;
 }
 
-#homepage #center-container #register .form-row {
-	margin-bottom:20px;
+#homepage #register-body {
+	background: url('/images/backgrounds/back-registration-box.png') repeat-y;
+	padding:1em 3.4em;
+	width:100%;
 }
 
-#homepage #center-container #register .form-row  label {
-/*	color:#0B6BAE;*/
-	font-size:1.2em;
+#homepage #register-bottom {
+	background: url('/images/corners/corner-register-bottom.png') no-repeat;
+	height:2.2em;
+	width:100%;
+}
+
+#homepage #register h2 {
+	color:#404048;
 	display:block;
-	margin-bottom:10px;
-	color:#666666;
-	font-family:Arial,Verdana,sans-serif;
-	font-size-adjust:none;
-	font-style:normal;
-	font-variant:normal;
-	font-weight:normal;
-	line-height:150%;
+	font-family:"Lucida Grande",Helvetica,Arial,sans-serif;
+	font-size:1.8em;
+	margin-bottom:1em;
 }
 
-#homepage #center-container #register .form-row input {
-	border-color:#96A6C5;
-	margin-top:2px;
-	width:206px;
+#homepage #register label {
+	color:#404048;
+	display:block;
+	font-family:"Lucida Grande",Helvetica,Arial,sans-serif;
+	font-size:1.4em;
+	margin-bottom:0.5em;
 }
 
-#homepage #center-container #register input#submit {
-	background-color:#0B6BAE;
-	border:3px solid white;
-	color:white;
-	font-weight:bold;
-	padding:10px;
-	-moz-border-radius-bottomleft:6px;
-	-moz-border-radius-bottomright:6px;
-	-moz-border-radius-topleft:6px;
-	-moz-border-radius-topright:6px;
+#homepage #register input {
+	border-left:1px solid #838383;
+	border-top:1px solid #838383;
+	color:#404048;
+	display:block;
+	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
+	font-size:1.8em;
+	margin-bottom:0.8em;
+	padding:0.2em;	
 }
+
+#homepage #register input#submit {
+	border:1px solid #838383;
+}
+
+/* Rails is inserting a hidden div with a security token which takes up space, so let's hide it*/
+#homepage #register form input[type=hidden] {
+	display:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

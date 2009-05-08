@@ -70,23 +70,42 @@
 		var formId = document.getElementById(id);
 		$('#registerForm').validate();
 	}
-	window['CM']['formValidation'] = formValidation;	
-
+	window['CM']['formValidation'] = formValidation;
+	
+	//Clear search-box default text when user clicks inside
+	var searchBoxClearText = function(){
+		$('#search_q').click(function(){
+			this.value = "";
+		});
+	}
+	window['CM']['searchBoxClearText'] = searchBoxClearText;
+	
+	//Function to embed Flash media
+	var embedFlash = function(media,div,width,height){
+		var flashvars = {};
+		var params = {wmode:"transparent"};
+		var attributes = {};
+		swfobject.embedSWF("/swf/path-to-swf", div, height, width, "9.0.0","flash/expessInstall.swf", flashvars, params, attributes);
+	}
+	window['CM']['embedFlash'] = embedFlash;
+		
 })();
 		
 
 //All functions that need to be executed after page load go here
 
 $(document).ready (function() {
+		
+	if(CM.exists('search_q')){
+		CM.searchBoxClearText();
+	}
 	
-	//If page is "Registration", execute the following function	
 	if(CM.exists('signup')){
 		CM.formValidation('registerForm');
 	}
 
-	//If page is "Adminster Company", execute the following function
 	if (CM.exists('administer-companies')) {
 		CM.deleteCompanyConfirm();
 	}
-
+	
 });

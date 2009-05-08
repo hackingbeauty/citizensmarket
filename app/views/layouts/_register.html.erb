@@ -1,20 +1,23 @@
 <div id="register">
-    <h2>Sign Up - It's Free!</h2>
-    
-    <% form_tag session_path do  %>
-    <% if flash[:notice] %>
-      <div id="notice">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-    <div class="form-row">
-      <label>*Email:</label>
-    	  <%= text_field_tag 'email', @login %></p>
-    </div>
-    <div class="form-row">
-      <label>*Password:</label>
-      <%= password_field_tag 'password', nil %></p>
-    </div>
-    <%= submit_tag "Sign Up!", :id => "submit" %>
-    <% end %>
+    <div id="register-top"></div>
+        <div id="register-body">
+                <h2>Sign Up and Write a Review</h2>
+                <% form_tag session_path do  %>
+                <% if flash[:notice] %>
+                  <div id="notice">
+                    <%= flash[:notice] %>
+                  </div>
+                <% end %>
+                <div class="form-row">
+                  <label>*Email:</label>
+                	  <%= text_field_tag 'email', @login %></p>
+                </div>
+                <div class="form-row">
+                  <label>*Password:</label>
+                  <%= password_field_tag 'password', nil %></p>
+                </div>
+                <%= submit_tag "Sign Up!", :id => "submit" %>
+                <% end %>
+        </div><!-- end register-body -->
+    <div id="register-bottom"></div>
 </div><!-- end register -->
