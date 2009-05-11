@@ -66,9 +66,8 @@
 	window['CM']['logIn'] = logIn;
 	
 	//In-line validation for Registration form
-	var formValidation = function(id){
-		var formId = document.getElementById(id);
-		$('#registerForm').validate();
+	var formValidation = function(){
+		$('#register-form').validate();
 	}
 	window['CM']['formValidation'] = formValidation;
 	
@@ -100,8 +99,8 @@ $(document).ready (function() {
 		CM.searchBoxClearText();
 	}
 	
-	if(CM.exists('signup')){
-		CM.formValidation('registerForm');
+	if(CM.exists('register')){
+		CM.formValidation();
 	}
 
 	if (CM.exists('administer-companies')) {

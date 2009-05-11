@@ -169,16 +169,6 @@ p {
 	padding:0 0.2em;
 }
 
-/*border-left:1px solid #838383;
-border-top:1px solid #838383;
-color:#404048;
-display:block;
-font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
-font-size:1.8em;
-margin-bottom:0.8em;
-padding:0.2em;*/
-
-
 /******************* =Homepage *******************/
 
 #homepage #yui-main {
@@ -194,7 +184,7 @@ padding:0.2em;*/
 #homepage #center-container {
 	background-color:#c7e8ff;
 	float:left;
-	height:383px;
+/*	height:383px;*/
 	padding:40px 0;
 	width:100%;
 }
@@ -318,6 +308,16 @@ padding:0.2em;*/
 
 #homepage #register input#submit {
 	border:1px solid #838383;
+}
+
+#homepage #register #agree_to_terms {
+	float:left;
+}
+
+/* Registration Error Messaging */
+
+#homepage #register .error {
+	color:red;
 }
 
 /* Rails is inserting a hidden div with a security token which takes up space, so let's hide it*/
