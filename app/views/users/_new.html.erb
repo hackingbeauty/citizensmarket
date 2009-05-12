@@ -1,4 +1,4 @@
-<%= javascript_include_tag 'jquery.validate.min' %>
+<%= javascript_include_tag 'jquery.validate' %>
 <div id="register">
     <div id="register-top"></div>
         <div id="register-body">
@@ -11,18 +11,18 @@
                     <% end %>
                     <div class="form-row">
                         <label>*Email:</label>
-                        <%= text_field_tag 'email', @login, :class=>'required' %></p>
+                        <%= text_field_tag 'email', @login %></p>
                     </div>
                     <div class="form-row">
                         <label>*Password:</label>
-                        <%= password_field_tag 'password', nil, :class=>'required' %></p>
+                        <%= password_field_tag 'password', nil %></p>
                     </div>
                     <div class="form-row">
                         <label>*Confirm Password:</label>
-                        <%= password_field_tag :password_confirmation, nil, :class=>'required' %>
+                        <%= password_field_tag :confirm_password, nil %>
                     </div>
                     <div class="form-row">
-                    <%= check_box_tag :agree_to_terms %> 
+                    <%= check_box_tag :agree_to_terms, nil %> 
                     <span>I agree to the <%= link_to 'Citizens Market Terms of Service', '/terms', :target => :new %></span>
                     </div>
                     <div class="form-row">

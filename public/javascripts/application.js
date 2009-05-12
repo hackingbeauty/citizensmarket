@@ -67,7 +67,35 @@
 	
 	//In-line validation for Registration form
 	var formValidation = function(){
-		$('#register-form').validate();
+		$('#register-form').validate({
+			rules: {
+	            password: {
+	                required: true,
+	                minlength: 5,
+	            },
+	            confirm_password: {
+	                required: true,
+	                equalTo: "#password"
+	            },
+	            email: {
+	                required: true,
+	                email: true
+	            },
+	            agree_to_terms: "required"
+	        },
+	        messages: {
+	            password: {
+	                required: "Please provide a password",
+	                minLength: "Your password must be at least 5 characters long"
+	            },
+	            confirm_password: {
+	                required: "Confirm your password",
+	                equalTo: "Please enter the same password as above"
+	            },
+	            email: "Please enter a valid email address",
+	            agree_to_terms: "Please accept our policy"
+	        }
+		});
 	}
 	window['CM']['formValidation'] = formValidation;
 	

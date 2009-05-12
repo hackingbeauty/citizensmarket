@@ -308,16 +308,25 @@ p {
 
 #homepage #register input#submit {
 	border:1px solid #838383;
+	clear:both;
 }
 
 #homepage #register #agree_to_terms {
 	float:left;
+	margin-right:1em;
 }
 
 /* Registration Error Messaging */
 
-#homepage #register .error {
+#homepage #register input.error {
+	border:2px solid red;
+}
+
+#homepage #register label.error {
 	color:red;
+	position:relative;
+	top:-0.5em;
+	left:0.2em;
 }
 
 /* Rails is inserting a hidden div with a security token which takes up space, so let's hide it*/
