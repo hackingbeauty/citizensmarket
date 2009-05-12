@@ -311,12 +311,17 @@ p {
 	clear:both;
 }
 
-#homepage #register #agree_to_terms {
+/*#homepage #register #agree_to_terms {
 	float:left;
 	margin-right:1em;
 }
+*/
+#homepage #register #agree span {
+	float:right;
+	margin-right:9em;
+}
 
-/* Registration Error Messaging */
+/* Registration Form Error Messaging */
 
 #homepage #register input.error {
 	border:2px solid red;
@@ -326,8 +331,13 @@ p {
 	color:red;
 	position:relative;
 	top:-0.5em;
-	left:0.2em;
-}
+/*	left:0.2em;
+*/}
+
+/*#homepage #register #agree label.error {
+	position:absolute !important;
+	border:1px solid green;
+}*/
 
 /* Rails is inserting a hidden div with a security token which takes up space, so let's hide it*/
 #homepage #register form input[type=hidden] {

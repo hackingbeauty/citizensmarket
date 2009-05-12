@@ -21,9 +21,10 @@
                         <label>*Confirm Password:</label>
                         <%= password_field_tag :confirm_password, nil %>
                     </div>
-                    <div class="form-row">
-                    <%= check_box_tag :agree_to_terms, nil %> 
-                    <span>I agree to the <%= link_to 'Citizens Market Terms of Service', '/terms', :target => :new %></span>
+                    <div id="agree" class="form-row">
+                        <span>I agree to the <%= link_to 'Citizens Market Terms of Service', '/terms', :target => :new %></span>
+                        
+                        <%= check_box_tag :agree_to_terms, nil %> 
                     </div>
                     <div class="form-row">
                         <%= submit_tag "Sign Up", :id => "submit" %>
