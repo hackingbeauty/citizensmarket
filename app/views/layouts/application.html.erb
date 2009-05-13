@@ -16,7 +16,6 @@
         <div id="header" role="banner">
             <%=render :partial => "layouts/header"%>
         </div>
-        <div id="page-left"></div> 
         <div id="main-content">
     	    <% unless flash[:notice].nil? %>
     		    <div id="flash_notice">
@@ -25,7 +24,6 @@
     	    <% end %>
             <%= yield %>
         </div><!-- end main-content -->
-        <div id="page-right"></div>  
         <div id="footer">
             <%=render :partial => "layouts/footer"%>
         </div> 

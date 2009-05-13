@@ -41,7 +41,7 @@ p {
 }
 
 #doc4 {
-
+/*	width:90.8em;/* =  */*/
 }
 
 #page-left {
@@ -68,13 +68,15 @@ p {
 
 #header {
 	height:6em;
+/*	margin:0 5em;*/
 	position:relative;
 }
 
 /* Main Nav */
 
 #header #nav {
-	background-color:#0b6bae;
+/*	background-color:#0b6bae;*/
+	background: url('/images/backgrounds/back-header-nav.png') no-repeat;
 	position:absolute;
 	bottom:0px;
 	height:30px;
@@ -107,10 +109,12 @@ p {
 
 /******************* =Main Content *******************/
 
-#main-content {
+/*#main-content {
 	float:left;
 	margin-bottom:3em;
-}
+	margin-left:5em;
+	width:74.923em;
+}*/
 
 /******************* =Footer *******************/
 
@@ -171,9 +175,13 @@ p {
 
 /******************* =Homepage *******************/
 
+#homepage {
+	background-color:#c7e8ff;
+}
+
 #homepage #yui-main {
 	background-color:#f3ffe9;	
-	padding:40px 0;
+	padding:40px;
 	width:55%;
 }
 
@@ -181,11 +189,16 @@ p {
 	margin-right:0;
 }
 
-#homepage #center-container {
+#homepage #homepage-center-container {
 	background-color:#c7e8ff;
 	float:left;
-/*	height:383px;*/
-	padding:40px 0;
+	padding:40px 40px;
+}
+
+#homepage #homepage-center-container-bottom {
+	background: url('/images/backgrounds/back-homepage-container-bottom.png') no-repeat;
+	clear:both;
+	height:2.3em;
 	width:100%;
 }
 
@@ -194,7 +207,8 @@ p {
 #homepage #welcome {
 	float:left;
 	height:275px;
-	width:37em;
+	margin-right:49px;
+	width:32em;
 }
 
 #homepage #welcome h1 {
@@ -223,8 +237,10 @@ p {
 
 #homepage #latest-news {
 	background-color:#d9f7c1;
-	margin-right:10px;
+/*	margin-right:10px;*/
 	padding:40px 55px;
+/*	position:relative;
+	left:40px;*/
 }
 
 #homepage #latest-news h3,
@@ -311,11 +327,6 @@ p {
 	clear:both;
 }
 
-/*#homepage #register #agree_to_terms {
-	float:left;
-	margin-right:1em;
-}
-*/
 #homepage #register #agree span {
 	float:right;
 	margin-right:9em;
@@ -324,6 +335,7 @@ p {
 /* Registration Form Error Messaging */
 
 #homepage #register input.error {
+	background: url('/images/backgrounds/back-validation-error.gif') repeat-x;
 	border:2px solid red;
 }
 
@@ -331,13 +343,7 @@ p {
 	color:red;
 	position:relative;
 	top:-0.5em;
-/*	left:0.2em;
-*/}
-
-/*#homepage #register #agree label.error {
-	position:absolute !important;
-	border:1px solid green;
-}*/
+}
 
 /* Rails is inserting a hidden div with a security token which takes up space, so let's hide it*/
 #homepage #register form input[type=hidden] {
