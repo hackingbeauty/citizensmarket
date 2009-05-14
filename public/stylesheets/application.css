@@ -44,38 +44,16 @@ p {
 /*	width:90.8em;/* =  */*/
 }
 
-#page-left {
-	background: url('/images/corners/corner-container-left.png') no-repeat;
-	float:left;
-	height:523px;
-	width:100px;
-	margin-top:-30px;
-	margin-left:-100px;
-}
-
-#page-right {
-	background: url('/images/corners/corner-container-right.png') no-repeat;
-	float:left;
-	height:523px;
-	width:100px;
-	margin-top:-30px;
-	margin-left:-200px;
-	position:relative;
-	left:200px;
-}
-
 /******************* =Header *******************/
 
 #header {
 	height:6em;
-/*	margin:0 5em;*/
 	position:relative;
 }
 
 /* Main Nav */
 
 #header #nav {
-/*	background-color:#0b6bae;*/
 	background: url('/images/backgrounds/back-header-nav.png') no-repeat;
 	position:absolute;
 	bottom:0px;
@@ -84,7 +62,8 @@ p {
 }
 
 #header #nav ul {
-	margin-top:0.3em;
+	margin-left:2em;
+	margin-top:7px;
 }
 
 #header #nav ul li {
@@ -102,21 +81,23 @@ p {
 	display:block;
 	font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
 	font-size:1.2em;
-	padding-top:0.2em;
 	text-decoration:none;
 	text-transform:capitalize;
 }
 
 /******************* =Main Content *******************/
 
-/*#main-content {
+#main-content {
 	float:left;
-	margin-bottom:3em;
-	margin-left:5em;
-	width:74.923em;
-}*/
+	margin-bottom:5em;
+}
 
 /******************* =Footer *******************/
+
+#footer {
+	clear:both;
+	margin-top:5em;
+}
 
 #footer ul#links {
 	float:left;
@@ -155,6 +136,7 @@ p {
 #search {
 	position:absolute;
 	bottom:4px;
+	margin-right:5.4em;
 	right:0px;
 }
 
@@ -162,13 +144,12 @@ p {
 	color:#bcb7b7;
 	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
 	font-size:1em;
-	width:27em;
+	width:22em;
 }
 
 #search input#search_submit {
 	border:1px solid #838383;
-/*	color:#404048;
-*/	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
+	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
 	font-size:1.1em;
 	padding:0 0.2em;
 }
@@ -232,15 +213,13 @@ p {
 /* Latest Reviews  & Latest News */
 
 #homepage #reviews {
-	width:38em;
+	width:30em;
 }
 
 #homepage #latest-news {
 	background-color:#d9f7c1;
-/*	margin-right:10px;*/
-	padding:40px 55px;
-/*	position:relative;
-	left:40px;*/
+	margin-right:3.6em;
+	padding:40px 58px;
 }
 
 #homepage #latest-news h3,
@@ -336,7 +315,6 @@ p {
 
 #homepage #register input.error {
 	background: url('/images/backgrounds/back-validation-error.gif') repeat-x;
-	border:2px solid red;
 }
 
 #homepage #register label.error {

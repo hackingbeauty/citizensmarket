@@ -96,7 +96,7 @@
 					required: "Please enter your email address",
 					email: "Please enter a valid email address"
 				},
-	            agree_t_terms: "Please accept our policy"
+	            agree_to_terms: "Please accept our policy"
 	        }
 		});
 	}
