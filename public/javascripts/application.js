@@ -92,8 +92,11 @@
 	                required: "Confirm your password",
 	                equalTo: "Please enter the same password as above"
 	            },
-	            email: "Please enter a valid email address",
-	            agree_to_terms: "Please accept our policy"
+	            email: {
+					required: "Please enter your email address",
+					email: "Please enter a valid email address"
+				},
+	            agree_t_terms: "Please accept our policy"
 	        }
 		});
 	}

@@ -11,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.activate '/activate/:id', :controller => 'users', :action => 'activate'
+  map.home '/home', :controller => 'home', :action => 'show'
   map.change_password '/change_password', :controller => 'users', :action => 'change_password'
   map.update_password '/update_password', :controller => 'users', :action => 'update_password'
   map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
