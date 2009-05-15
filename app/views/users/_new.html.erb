@@ -5,7 +5,7 @@
                 <h2>Sign Up and Write a Review</h2>
                 <% form_tag register_path, :id=>"register-form" do  %>
                     <% if flash[:error] %>
-                      <div id="notice">
+                      <div id="error">
                         <%= flash[:error] %>
                       </div>
                     <% end %>

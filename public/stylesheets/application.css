@@ -253,6 +253,8 @@ p {
 
 #homepage #register {
 	float:right;
+	font-family:"Lucida Grande",Helvetica,Arial,sans-serif;
+	
 	width:33em;
 }
 
@@ -265,7 +267,6 @@ p {
 #homepage #register-body {
 	background: url('/images/backgrounds/back-registration-box.png') repeat-y;
 	padding:1em 3.4em;
-	width:100%;
 }
 
 #homepage #register-bottom {
@@ -277,7 +278,6 @@ p {
 #homepage #register h2 {
 	color:#404048;
 	display:block;
-	font-family:"Lucida Grande",Helvetica,Arial,sans-serif;
 	font-size:1.8em;
 	margin-bottom:1em;
 }
@@ -285,8 +285,8 @@ p {
 #homepage #register label {
 	color:#404048;
 	display:block;
-	font-family:"Lucida Grande",Helvetica,Arial,sans-serif;
-	font-size:1.4em;
+/*	font-family:"Lucida Grande",Helvetica,Arial,sans-serif;
+*/	font-size:1.4em;
 	margin-bottom:0.5em;
 }
 
@@ -295,8 +295,8 @@ p {
 	border-top:1px solid #838383;
 	color:#404048;
 	display:block;
-	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
-	font-size:1.8em;
+/*	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
+*/	font-size:1.8em;
 	margin-bottom:0.8em;
 	padding:0.2em;	
 }
@@ -308,7 +308,6 @@ p {
 
 #homepage #register #agree span {
 	float:right;
-	margin-right:9em;
 }
 
 /* Registration Form Error Messaging */
@@ -321,6 +320,11 @@ p {
 	color:red;
 	position:relative;
 	top:-0.5em;
+}
+
+#homepage #register #error {
+	color:red;
+	margin-bottom:2em;
 }
 
 /* Rails is inserting a hidden div with a security token which takes up space, so let's hide it*/
