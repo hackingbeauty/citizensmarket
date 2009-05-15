@@ -1,6 +1,6 @@
 body {
-	background-color:#f3ffe9;
-}
+/*	background-color:#f3ffe9;
+*/}
 
 h1 {
 	font-size:1.9em;
@@ -40,14 +40,14 @@ p {
 	color:#808080;
 }
 
-#doc4 {
-/*	width:90.8em;/* =  */*/
+li.last {
+	border-right:none !important;
 }
 
 /******************* =Header *******************/
 
 #header {
-	height:6em;
+	padding-top:2em;
 	position:relative;
 }
 
@@ -55,35 +55,77 @@ p {
 
 #header #nav {
 	background: url('/images/backgrounds/back-header-nav.png') no-repeat;
-	position:absolute;
-	bottom:0px;
+	clear:both;
 	height:30px;
-	width:100%
+}
+
+#header a#logo img {
+	float:left;
+	margin-bottom:1em;
 }
 
 #header #nav ul {
 	margin-left:2em;
-	margin-top:7px;
+	padding-top:0.6em;
 }
 
 #header #nav ul li {
 	border-right:1px solid white;
 	float:left;
-	padding:0 20px;
 }
 
-#header #nav ul li.last {
-	border-right:none;
-}
-
-#header #nav ul li a {
-	color:white;
+#header ul li a {
 	display:block;
 	font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
 	font-size:1.2em;
 	text-decoration:none;
 	text-transform:capitalize;
+	padding:0 1em;
 }
+
+#header #nav ul li a {
+	color:white;
+}
+
+/* Top Nav */
+
+#header ul#top-nav {
+	position:absolute;
+	top:3em;
+	right:0em;
+}
+
+#header ul#top-nav li {
+	border-right:2px solid #117FBC;
+	float:left;
+
+}
+
+/* Search */
+
+#header #search {
+	background: url('/images/backgrounds/back-header-nav.png') no-repeat;
+	background-color:blue;
+	float:right;
+	margin-right:1.4em;
+	position:relative;
+	top:-0.26em;
+}
+
+#header #search input#search_q {
+	color:#bcb7b7;
+	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
+	font-size:1em;
+	width:22em;
+}
+
+#header #search input#search_submit {
+	border:1px solid #838383;
+	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
+	font-size:1.1em;
+	padding:0 0.2em;
+}
+
 
 /******************* =Main Content *******************/
 
@@ -107,7 +149,7 @@ p {
 
 #footer ul#links li {
 	float:left;
-	border-right:1px solid #808080;
+	border-right:1px solid #117FBC;
 	padding:0 20px;
 }
 
@@ -131,38 +173,11 @@ p {
 	width:73em;
 }
 
-/******************* =Search *******************/
-
-#search {
-	position:absolute;
-	bottom:4px;
-	margin-right:5.4em;
-	right:0px;
-}
-
-#search input#search_q {
-	color:#bcb7b7;
-	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
-	font-size:1em;
-	width:22em;
-}
-
-#search input#search_submit {
-	border:1px solid #838383;
-	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
-	font-size:1.1em;
-	padding:0 0.2em;
-}
-
 /******************* =Homepage *******************/
 
-#homepage {
-	background-color:#c7e8ff;
-}
-
 #homepage #yui-main {
-	background-color:#f3ffe9;	
-	padding:40px;
+/*	background-color:#f3ffe9;	
+*/	padding:40px;
 	width:55%;
 }
 
@@ -173,7 +188,10 @@ p {
 #homepage #homepage-center-container {
 	background-color:#c7e8ff;
 	float:left;
-	padding:40px 40px;
+	margin-left:-4em;
+	margin-top:2em;
+	padding:2em 7em;
+	width:69em;
 }
 
 #homepage #homepage-center-container-bottom {
@@ -285,8 +303,7 @@ p {
 #homepage #register label {
 	color:#404048;
 	display:block;
-/*	font-family:"Lucida Grande",Helvetica,Arial,sans-serif;
-*/	font-size:1.4em;
+	font-size:1.4em;
 	margin-bottom:0.5em;
 }
 
@@ -295,8 +312,7 @@ p {
 	border-top:1px solid #838383;
 	color:#404048;
 	display:block;
-/*	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
-*/	font-size:1.8em;
+	font-size:1.8em;
 	margin-bottom:0.8em;
 	padding:0.2em;	
 }
@@ -314,6 +330,7 @@ p {
 
 #homepage #register input.error {
 	background: url('/images/backgrounds/back-validation-error.gif') repeat-x;
+	border:2px solid red;
 }
 
 #homepage #register label.error {

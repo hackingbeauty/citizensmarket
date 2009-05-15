@@ -1,14 +1,21 @@
-<!-- <%=link_to image_tag('mast_logo.png'), root_url %> -->
+<%=link_to image_tag('mast_logo.png'), root_url, :id => 'logo' %>
+<p id="tagline">Your Values.  Your Money.  Your Choices.</p>
+<ul id="top-nav">
+    <li><%= link_to "About Us", '/about' %></li>
+    <li><%= link_to "Contact", '/contact' %></li>
+    <li><%= link_to "Blog", '/blog' %></li>
+    <li class="last"><%= link_to "Sign In", '/signin' %></li>
+</ul>
 <div id="nav">
     <ul>
     	<li><%=link_to "Take Action", '/take_action' %></li>
     	<% if current_user.nil? %>
-			<li><%=link_to "My Profile", '/login' %></li>
+    	    <li><%=link_to "Write a Review", 'http://blog.citizensmarket.org/' %></li>
 		<% else %>
-			<li><%= link_to "My Profile", edit_user_url(current_user) %></li>
+            <!-- <li><%= link_to "My Profile", edit_user_url(current_user) %></li> -->
 		<% end %>
-        <li><%=link_to "Blog", 'http://blog.citizensmarket.org/' %></li>
-        <li class="last"><%=link_to "About Us", '/about' %></li>
+		<li class="last"><%= link_to "Company Reviews", nil %></li>
+        
         <!-- <% if current_user.nil? %>
             <li><%= link_to "Register", '/signup' %></li>
             <li><%= link_to "Sign In", '/login' %></li>
@@ -16,15 +23,16 @@
             <li><%= link_to "Logout", '/logout' %></li>
         <% end %> -->
     </ul>
+    <div id="search">
+        <% form_for :search, :url => nil do |f| %>
+        <div>
+        	<%= f.text_field :q, :value => 'Search Citizens\'s Market', :size => 60 %>
+        	<%= f.submit 'Search' %>
+        </div>
+        <% end %>
+    </div><!-- end search -->
 </div><!-- end nav -->
-<div id="search">
-    <% form_for :search, :url => nil do |f| %>
-    <div>
-    	<%= f.text_field :q, :value => 'Search Citizens\'s Market', :size => 60 %>
-    	<%= f.submit 'Search' %>
-    </div>
-    <% end %>
-</div><!-- end search -->
+
 
 <!-- <ul>
     <li><%=link_to "Take Action", '/take_action' %></li>
@@ -34,6 +42,6 @@
         <li><%= link_to "My Profile", edit_user_url(current_user) %></li>
     <% end %>
     <li><%=link_to "About Us", '/about' %></li>
-</ul>-->
+</ul> -->
 
 
