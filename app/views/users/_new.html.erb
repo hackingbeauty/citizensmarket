@@ -4,8 +4,10 @@
         <div id="register-body">
                 <h2>Sign Up and Write a Review</h2>
                 <% form_tag register_path, :id=>"register-form" do  %>
+                    <%= error_messages_for "user" %>
                     <% if flash[:error] %>
                       <div id="error">
+                          blah
                         <%= flash[:error] %>
                       </div>
                     <% end %>
@@ -28,6 +30,9 @@
                     </div>
                     <div class="form-row">
                         <%= submit_tag "Sign Up", :id => "submit" %>
+                        <span id="signin">or 
+                            <%=link_to "Sign In", '/login' %>
+                        </span>
                     </div>
                 <% end %>
         </div><!-- end register-body -->

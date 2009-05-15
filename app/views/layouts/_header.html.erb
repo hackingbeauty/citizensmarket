@@ -1,10 +1,12 @@
 <%=link_to image_tag('mast_logo.png'), root_url, :id => 'logo' %>
-<p id="tagline">Your Values.  Your Money.  Your Choices.</p>
+<p id="tagline">
+    <strong>Your Values.  Your Money.  Your Choices.</strong>
+</p>
 <ul id="top-nav">
+    <li><%= link_to "Sign In", '/login' %></li>
     <li><%= link_to "About Us", '/about' %></li>
     <li><%= link_to "Contact", '/contact' %></li>
-    <li><%= link_to "Blog", '/blog' %></li>
-    <li class="last"><%= link_to "Sign In", '/signin' %></li>
+    <li class="last"><%=link_to "Blog", 'http://blog.citizensmarket.org/' %></li>
 </ul>
 <div id="nav">
     <ul>

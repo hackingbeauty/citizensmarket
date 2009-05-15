@@ -3,7 +3,8 @@ body {
 */}
 
 h1 {
-	font-size:1.9em;
+	color:#117fbc;
+	font-size:3em;
 }
 
 h2 {
@@ -36,6 +37,10 @@ em {
 	font-style:italic;
 }
 
+strong {
+	font-weight:bold;
+}
+
 p {
 	color:#808080;
 }
@@ -51,6 +56,11 @@ li.last {
 	position:relative;
 }
 
+#header p#tagline {
+	margin-top:2.6em;
+	margin-left:11em;
+}
+
 /* Main Nav */
 
 #header #nav {
@@ -61,12 +71,12 @@ li.last {
 
 #header a#logo img {
 	float:left;
-	margin-bottom:1em;
+	margin-bottom:2em;
 }
 
 #header #nav ul {
-	margin-left:2em;
-	padding-top:0.6em;
+	margin-left:1em;
+	padding-top:0.3em;
 }
 
 #header #nav ul li {
@@ -80,7 +90,7 @@ li.last {
 	font-size:1.2em;
 	text-decoration:none;
 	text-transform:capitalize;
-	padding:0 1em;
+	padding:0.2em 1em 0 1em;
 }
 
 #header #nav ul li a {
@@ -101,15 +111,17 @@ li.last {
 
 }
 
+#header ul#top-nav li a {
+	padding-top:0.2em;
+}
+
 /* Search */
 
 #header #search {
 	background: url('/images/backgrounds/back-header-nav.png') no-repeat;
 	background-color:blue;
 	float:right;
-	margin-right:1.4em;
-	position:relative;
-	top:-0.26em;
+	margin-right:3.4em;
 }
 
 #header #search input#search_q {
@@ -132,6 +144,8 @@ li.last {
 #main-content {
 	float:left;
 	margin-bottom:5em;
+	padding:2em 1em;
+		
 }
 
 /******************* =Footer *******************/
@@ -189,29 +203,27 @@ li.last {
 	background-color:#c7e8ff;
 	float:left;
 	margin-left:-4em;
-	margin-top:2em;
-	padding:2em 7em;
-	width:69em;
+	padding:2em 3em;
+	width:75em;
 }
 
-#homepage #homepage-center-container-bottom {
+/*#homepage #homepage-center-container-bottom {
 	background: url('/images/backgrounds/back-homepage-container-bottom.png') no-repeat;
 	clear:both;
 	height:2.3em;
 	width:100%;
-}
+}*/
 
 /* Welcome Section */
 
 #homepage #welcome {
 	float:left;
 	height:275px;
-	margin-right:49px;
+	margin-left:2em;
 	width:32em;
 }
 
 #homepage #welcome h1 {
-	color:#117fbc;
 	font-size:4em;
 }
 
@@ -236,7 +248,7 @@ li.last {
 
 #homepage #latest-news {
 	background-color:#d9f7c1;
-	margin-right:3.6em;
+	margin-right:3.4em;
 	padding:40px 58px;
 }
 
@@ -267,7 +279,7 @@ li.last {
 	text-transform:uppercase;
 }
 
-/* Register */
+/* =Register */
 
 #homepage #register {
 	float:right;
@@ -284,7 +296,7 @@ li.last {
 
 #homepage #register-body {
 	background: url('/images/backgrounds/back-registration-box.png') repeat-y;
-	padding:1em 3.4em;
+	padding:1em 3.4em 4em;
 }
 
 #homepage #register-bottom {
@@ -320,10 +332,16 @@ li.last {
 #homepage #register input#submit {
 	border:1px solid #838383;
 	clear:both;
+	float:left;
 }
 
 #homepage #register #agree span {
 	float:right;
+}
+
+#homepage #register #signin {
+	float:left;
+	margin:1em 0 0 1em;
 }
 
 /* Registration Form Error Messaging */
@@ -340,8 +358,11 @@ li.last {
 }
 
 #homepage #register #error {
-	color:red;
 	margin-bottom:2em;
+}
+
+#homepage #register #error p {
+	color:red;
 }
 
 /* Rails is inserting a hidden div with a security token which takes up space, so let's hide it*/

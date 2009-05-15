@@ -192,5 +192,9 @@ class User < ActiveRecord::Base
   def destroy_user_issue_weights
     UserIssue.delete_all(:user_id => self.id)
   end
+  # 
+  # def validate
+  #   errors.add(:email, "must be valid yadablahblah") unless email.include? ("@")
+  # end
 
 end
