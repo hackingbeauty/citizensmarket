@@ -31,7 +31,8 @@ Rails::Initializer.run do |config|
   config.gem 'faker', :version => '0.3.1'
   config.gem 'RedCloth', :version => '4.0.3'
   config.gem 'gravtastic', :version => '2.0.0'
-
+  config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
+  
   # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -68,9 +69,11 @@ Rails::Initializer.run do |config|
   # like if you have constraints or database-specific column types
   # config.active_record.schema_format = :sql
 
+  config.action_mailer.delivery_method = :smtp
+  
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
-#  config.active_record.observers = :user_observer
+  config.active_record.observers = :user_observer
 
   # Load Presenters
   config.load_paths += %W( #{RAILS_ROOT}/app/presenters )
