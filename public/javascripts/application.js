@@ -69,30 +69,30 @@
 	var formValidation = function(){
 		$('#register-form').validate({
 			rules: {
-	            password: {
+	            'user[password]': {
 	                required: true,
-	                minlength: 5,
+	                minlength: 6,
 	            },
-	            confirm_password: {
+	            'user[password_confirmation]': {
 	                required: true,
-	                equalTo: "#password"
+	                equalTo: "#user_password"
 	            },
-	            email: {
+	            'user[email]': {
 	                required: true,
 	                email: true
 	            },
 	            agree_to_terms: "required"
 	        },
 	        messages: {
-	            password: {
+	            'user[password]': {
 	                required: "Please provide a password",
 	                minLength: "Your password must be at least 5 characters long"
 	            },
-	            confirm_password: {
+	            'user[password_confirmation]': {
 	                required: "Confirm your password",
 	                equalTo: "Please enter the same password as above"
 	            },
-	            email: {
+	            'user[email]': {
 					required: "Please enter your email address",
 					email: "Please enter a valid email address"
 				},

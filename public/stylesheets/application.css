@@ -1,18 +1,20 @@
+/******************* =General Styles (All Pages) *******************/
+
 body {
-/*	background-color:#f3ffe9;
-*/}
+/*	background-color:#f3ffe9;*/
+}
 
 h1 {
-	color:#117fbc;
 	font-size:3em;
 }
 
 h2 {
-	
+	font-size:2em;
+	margin:0.5em 0;
 }
 
 h3 {
-	
+	margin:0.5em 0;
 }
 
 h4 {
@@ -25,6 +27,10 @@ h5 {
 
 h6 {
 	
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color:#117fbc;
 }
 
 a {
@@ -49,7 +55,7 @@ li.last {
 	border-right:none !important;
 }
 
-/******************* =Header *******************/
+/******************* =Header (All Pages) *******************/
 
 #header {
 	padding-top:2em;
@@ -61,7 +67,7 @@ li.last {
 	margin-left:11em;
 }
 
-/* Main Nav */
+/* =Main Nav */
 
 #header #nav {
 	background: url('/images/backgrounds/back-header-nav.png') no-repeat;
@@ -97,7 +103,7 @@ li.last {
 	color:white;
 }
 
-/* Top Nav */
+/* =Top Nav */
 
 #header ul#top-nav {
 	position:absolute;
@@ -115,7 +121,7 @@ li.last {
 	padding-top:0.2em;
 }
 
-/* Search */
+/* =Search */
 
 #header #search {
 	background: url('/images/backgrounds/back-header-nav.png') no-repeat;
@@ -139,7 +145,7 @@ li.last {
 }
 
 
-/******************* =Main Content *******************/
+/******************* =Main Content (All Pages) *******************/
 
 #main-content {
 	float:left;
@@ -148,7 +154,7 @@ li.last {
 		
 }
 
-/******************* =Footer *******************/
+/******************* =Footer (All Pages) *******************/
 
 #footer {
 	clear:both;
@@ -175,10 +181,6 @@ li.last {
 	clear:both;
 }
 
-#footer #copyright img {
-
-}
-
 #footer #copyright p {
 	font-size:0.9em;
 	left:104px;
@@ -190,8 +192,7 @@ li.last {
 /******************* =Homepage *******************/
 
 #homepage #yui-main {
-/*	background-color:#f3ffe9;	
-*/	padding:40px;
+	padding:40px;
 	width:55%;
 }
 
@@ -207,14 +208,7 @@ li.last {
 	width:75em;
 }
 
-/*#homepage #homepage-center-container-bottom {
-	background: url('/images/backgrounds/back-homepage-container-bottom.png') no-repeat;
-	clear:both;
-	height:2.3em;
-	width:100%;
-}*/
-
-/* Welcome Section */
+/* =Welcome Section */
 
 #homepage #welcome {
 	float:left;
@@ -240,7 +234,7 @@ li.last {
 	margin-bottom:1em;
 }
 
-/* Latest Reviews  & Latest News */
+/* =Latest Reviews  & Latest News */
 
 #homepage #reviews {
 	width:30em;
@@ -284,7 +278,6 @@ li.last {
 #homepage #register {
 	float:right;
 	font-family:"Lucida Grande",Helvetica,Arial,sans-serif;
-	
 	width:33em;
 }
 
@@ -344,7 +337,7 @@ li.last {
 	margin:1em 0 0 1em;
 }
 
-/* Registration Form Error Messaging */
+/* =Registration Form Error Messaging */
 
 #homepage #register input.error {
 	background: url('/images/backgrounds/back-validation-error.gif') repeat-x;
@@ -370,6 +363,36 @@ li.last {
 	display:none;
 }
 
+/******************* =Terms of Use Page *******************/
+
+#terms-of-use .section {
+	margin:2em 0;
+}
+
+#terms-of-use .section p {
+	margin:0.5em 0;
+}
+
+#terms-of-use .section h2 a,
+#terms-of-use .section h3 a {
+	color:#117FBC;
+}
+
+#terms-of-use .section h3 {
+	margin-top:2em;
+}
+
+#terms-of-use .section ul li {
+	margin:1em 0;
+}
+
+#terms-of-use .section ul ul li {
+	margin:0.5em 0;
+}
+
+#terms-of-use .section ul ul {
+	margin-left:1em;
+}
 
 
 

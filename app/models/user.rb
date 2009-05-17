@@ -19,23 +19,40 @@ class User < ActiveRecord::Base
 
   before_validation :copy_email_to_login
 
-  validates_presence_of     :login
-  validates_length_of       :login,    :within => 3..40
-  validates_uniqueness_of   :login
-  validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
+  # validates_presence_of     :login
+  # validates_length_of       :login,    :within => 3..40
+  # validates_uniqueness_of   :login
+  # validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
+  # 
+  # validates_format_of       :firstname,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
+  # validates_length_of       :firstname,     :maximum => 100, :allow_nil => true
+  # validates_format_of       :lastname,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
+  # validates_length_of       :lastname,     :maximum => 100, :allow_nil => true
 
-  validates_format_of       :firstname,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
-  validates_length_of       :firstname,     :maximum => 100, :allow_nil => true
-  validates_format_of       :lastname,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
-  validates_length_of       :lastname,     :maximum => 100, :allow_nil => true
-  
+  # Max & min lengths for all fields
+  EMAIL_MAX_LENGTH = 100
+  PASSWORD_MIN_LENGTH = 6
+	PASSWORD_MAX_LENGTH = 40
+	PASSWORD_RANGE = PASSWORD_MIN_LENGTH..PASSWORD_MAX_LENGTH
+	
+	# Text box sizes for display in the views
+	EMAIL_SIZE = 20
+	PASSWORD_SIZE = 20
 
-  validates_presence_of     :email
-  validates_length_of       :email,    :within => 6..100 #r@a.wk
+  validates_presence_of     :email,
+                            :message => 'Please provide your email address'
+  validates_length_of       :email,    :maximum => EMAIL_MAX_LENGTH
   validates_uniqueness_of   :email
-  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
+	validates_format_of       :email,
+				  :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,
+				  :message => "Your email address must be valid",
+				  :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
-
+  validates_presence_of     :password,
+                            :message => 'Please provide a password'
+  validates_length_of       :password,    :maximum => PASSWORD_MAX_LENGTH				  
+	validates_confirmation_of :password
+          
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -192,7 +209,7 @@ class User < ActiveRecord::Base
   def destroy_user_issue_weights
     UserIssue.delete_all(:user_id => self.id)
   end
-  # 
+  
   # def validate
   #   errors.add(:email, "must be valid yadablahblah") unless email.include? ("@")
   # end

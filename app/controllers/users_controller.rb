@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
-  def edit
+  def edits
     @user = User.find(params[:id])
   end
 
@@ -45,13 +45,16 @@ class UsersController < ApplicationController
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
       redirect_back_or_default('/')
     else
-      flash[:error] = @user.errors
       
       # flash[:error]  = "#{@user.errors[0]} We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
       @user.errors do |error|
         flash[:error] += error
       end
-      # render :action => 'new'
+      
+      # flash[:error] = @user.errors.add :email
+      #   flash[:error] = @user.errors.add :password
+      
+      # render :controller => 'home', :action => 'show'
       redirect_to :controller => 'home', :action=>'show'
     end
   end
