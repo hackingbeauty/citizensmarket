@@ -34,7 +34,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-	color:#74a035;
+/*	color:#74a035;*/
+	color:#48c90e;
 	font-weight:bold;
 	text-decoration:none;
 }
@@ -63,7 +64,7 @@ li.last {
 }
 
 #header p#tagline {
-	margin-top:2.6em;
+	margin-top:2.7em;
 	margin-left:11em;
 }
 
@@ -273,46 +274,53 @@ li.last {
 	text-transform:uppercase;
 }
 
-/* =Register */
+/******************* =Registration & Login *******************/
 
-#homepage #register {
+#register,
+#login {
 	float:right;
 	font-family:"Lucida Grande",Helvetica,Arial,sans-serif;
 	width:33em;
 }
 
-#homepage #register-top {
+#register-top,
+#login-top {
 	background: url('/images/corners/corner-register-top.png') no-repeat;
 	height:2.2em;
 	width:100%;
 }
 
-#homepage #register-body {
+#register-body,
+#login-body {
 	background: url('/images/backgrounds/back-registration-box.png') repeat-y;
 	padding:1em 3.4em 4em;
 }
 
-#homepage #register-bottom {
+#register-bottom,
+#login-bottom {
 	background: url('/images/corners/corner-register-bottom.png') no-repeat;
 	height:2.2em;
 	width:100%;
 }
 
-#homepage #register h2 {
+#register h2,
+#login h2 {
 	color:#404048;
 	display:block;
 	font-size:1.8em;
 	margin-bottom:1em;
 }
 
-#homepage #register label {
+#register label,
+#login label {
 	color:#404048;
 	display:block;
 	font-size:1.4em;
 	margin-bottom:0.5em;
 }
 
-#homepage #register input {
+#register input,
+#login input {
 	border-left:1px solid #838383;
 	border-top:1px solid #838383;
 	color:#404048;
@@ -322,44 +330,55 @@ li.last {
 	padding:0.2em;	
 }
 
-#homepage #register input#submit {
+#register input#submit,
+#login input#submit  {
 	border:1px solid #838383;
 	clear:both;
 	float:left;
 }
 
-#homepage #register #agree span {
+#register #agree span,
+#login #agree span {
+	display:block;
 	float:right;
+	left:-0.5em;
+	position:relative;
 }
 
-#homepage #register #signin {
+#register #signin,
+#login #signin {
 	float:left;
 	margin:1em 0 0 1em;
 }
 
-/* =Registration Form Error Messaging */
+/* =Registration & Login Error Messaging */
 
-#homepage #register input.error {
+#register input.error,
+#login input.error {
 	background: url('/images/backgrounds/back-validation-error.gif') repeat-x;
 	border:2px solid red;
 }
 
-#homepage #register label.error {
+#register label.error,
+#login label.error {
 	color:red;
 	position:relative;
 	top:-0.5em;
 }
 
-#homepage #register #error {
+#register #error,
+#login #error {
 	margin-bottom:2em;
 }
 
-#homepage #register #error p {
+#register #error p,
+#login #error p {
 	color:red;
 }
 
 /* Rails is inserting a hidden div with a security token which takes up space, so let's hide it*/
-#homepage #register form input[type=hidden] {
+#register form input[type=hidden],
+#login form input[type=hidden] {
 	display:none;
 }
 
