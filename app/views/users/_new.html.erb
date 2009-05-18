@@ -4,15 +4,14 @@
         <div id="register-body">
                 <h2>Sign Up and Write a Review</h2>
                 <% form_for :user, :html => {:id=>'register-form'}, :url => register_path do |form|  %>
-                <div id="error-test">
-                    <%= error_messages_for :user %>
-                </div>
-                    <!-- <% if flash[:error] %>
-                      <div id="notice">
-                          blah
-                        <%= flash[:error] %>
-                      </div>
-                    <% end %> -->
+                    <div id="error-test">
+                        <%= error_messages_for :user %>
+                    </div>
+                    <% unless flash[:notice].nil? %>
+            		    <div id="flash_notice">
+            		        <%= flash[:notice] %>
+            		    </div>
+            	    <% end %>
                     <div class="form-row">
                         <label>*Email:</label>
                         <%= form.text_field :email,
@@ -20,7 +19,7 @@
                                             :maxlength => User::EMAIL_MAX_LENGTH %></p>
                     </div>
                     <div class="form-row">
-                        <label>*Password:</label>
+                        <label>*Password: <span class="instruction">(must be at least 6 characters long)</span></label>
                         <%= form.password_field :password,
                                             :size => User::PASSWORD_SIZE,
                                             :maxlength => User::PASSWORD_MAX_LENGTH %></p>

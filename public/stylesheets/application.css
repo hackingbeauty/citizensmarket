@@ -34,9 +34,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-/*	color:#74a035;*/
-	color:#48c90e;
-	font-weight:bold;
+	color:#74a035;
+/*	color:#48c90e;
+*/	font-weight:bold;
 	text-decoration:none;
 }
 
@@ -54,6 +54,19 @@ p {
 
 li.last {
 	border-right:none !important;
+}
+
+#flash_notice {
+	margin-bottom:1.7em;
+}
+
+#flash_notice p {
+	color:green;
+	font-weight:bold;
+}
+
+#flash_notice p.big {
+	font-size:2em;
 }
 
 /******************* =Header (All Pages) *******************/
@@ -151,7 +164,7 @@ li.last {
 #main-content {
 	float:left;
 	margin-bottom:5em;
-	padding:2em 1em;
+	padding:2em 0em;
 		
 }
 
@@ -201,12 +214,31 @@ li.last {
 	margin-right:0;
 }
 
+#homepage #homepage-center-container-top {
+	background: url('/images/backgrounds/back-home-page-container-top.png');
+	height:1.4em;
+}
+
+#homepage #homepage-center-container-bottom {
+	background: url('/images/backgrounds/back-home-page-container-bottom.png');
+	clear:both;
+	height:1.4em;
+}
+
 #homepage #homepage-center-container {
-	background-color:#c7e8ff;
+	margin-left:-3.4em;
+	width:82em;	
+}
+
+#homepage #homepage-center-container-body {
+	background-color:#daf0ff;
 	float:left;
-	margin-left:-4em;
+	width:76em;
 	padding:2em 3em;
-	width:75em;
+/*	-moz-border-radius-bottomleft:6px;
+	-moz-border-radius-bottomright:6px;
+	-moz-border-radius-topleft:6px;
+	-moz-border-radius-topright:6px;*/
 }
 
 /* =Welcome Section */
@@ -214,8 +246,7 @@ li.last {
 #homepage #welcome {
 	float:left;
 	height:275px;
-	margin-left:2em;
-	width:32em;
+	width:36em;
 }
 
 #homepage #welcome h1 {
@@ -250,7 +281,7 @@ li.last {
 #homepage #latest-news h3,
 #homepage #reviews h3 {
 	color:#0b6bae;
-	font-size:1.4em;
+	font-size:1.8em;
 	margin-bottom:30px;
 	text-transform:uppercase;
 }
@@ -293,7 +324,7 @@ li.last {
 #register-body,
 #login-body {
 	background: url('/images/backgrounds/back-registration-box.png') repeat-y;
-	padding:1em 3.4em 4em;
+	padding:0.1em 3.4em 4em;
 }
 
 #register-bottom,
@@ -317,6 +348,11 @@ li.last {
 	display:block;
 	font-size:1.4em;
 	margin-bottom:0.5em;
+}
+
+#register span.instruction,
+#login span.instruction {
+	font-size:0.7em;
 }
 
 #register input,

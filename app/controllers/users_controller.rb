@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if success && @user.errors.empty?
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      flash[:notice] = "<p class=\"big\">Thanks for signing up!</p><p>We're sending you an email with your activation code.</p>"
       redirect_back_or_default('/')
     else
       

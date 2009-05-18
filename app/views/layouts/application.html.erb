@@ -17,11 +17,7 @@
             <%=render :partial => "layouts/header"%>
         </div>
         <div id="main-content">
-    	    <% unless flash[:notice].nil? %>
-    		    <div id="flash_notice">
-    		        <%= flash[:notice] %>
-    		    </div>
-    	    <% end %>
+
             <%= yield %>
         </div><!-- end main-content -->
         <div id="footer">
