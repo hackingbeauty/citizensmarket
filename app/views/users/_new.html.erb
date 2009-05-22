@@ -4,9 +4,7 @@
         <div id="register-body">
                 <h2>Sign Up and Write a Review</h2>
                 <% form_for :user, :html => {:id=>'register-form'}, :url => register_path do |form|  %>
-                    <div id="error-test">
-                        <%= error_messages_for :user %>
-                    </div>
+                    <%= error_messages_for :user %>
                     <% unless flash[:notice].nil? %>
             		    <div id="flash_notice">
             		        <%= flash[:notice] %>
@@ -33,7 +31,7 @@
                     <div id="agree" class="form-row">
                         <span>I agree to the <%= link_to 'Citizens Market Terms of Service', '/terms', :target => :new %></span>
                         
-                        <%= check_box_tag :agree_to_terms, nil %> 
+                        <%= form.check_box :agree_to_terms %> 
                     </div>
                     <div class="form-row">
                         <%= submit_tag "Sign Up", :id => "submit" %>

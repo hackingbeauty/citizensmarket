@@ -13,8 +13,6 @@
 	}
 	window['CM']['exists'] = exists;
 	
-	
-	
 	//Confirmation when deleting a company
 	var deleteCompanyConfirm = function() {		
 		$('.delete-company').click(function(){
@@ -83,7 +81,7 @@
 	                required: true,
 	                email: true
 	            },
-	            agree_to_terms: "required"
+	            'user[agree_to_terms]': "required"
 	        },
 	        messages: {
 	            'user[password]': {
@@ -98,7 +96,7 @@
 					required: "Please enter your email address",
 					email: "Please enter a valid email address"
 				},
-	            agree_to_terms: "Please accept our policy"
+	            'user[agree_to_terms]': "Please accept our policy"
 	        }
 		});
 	}

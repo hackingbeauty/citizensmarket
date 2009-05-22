@@ -35,8 +35,7 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
 	color:#74a035;
-/*	color:#48c90e;
-*/	font-weight:bold;
+	font-weight:bold;
 	text-decoration:none;
 }
 
@@ -67,6 +66,7 @@ li.last {
 
 #flash_notice p.big {
 	font-size:2em;
+	margin-bottom:0.2em;
 }
 
 /******************* =Header (All Pages) *******************/
@@ -85,8 +85,7 @@ li.last {
 
 #header #nav {
 	background: url('/images/backgrounds/back-header-nav.png') no-repeat;
-/*	background: url('/images/backgrounds/back-header-nav2.png') no-repeat;
-*/	clear:both;
+	clear:both;
 	height:30px;
 }
 
@@ -239,7 +238,8 @@ li.last {
 /*	-moz-border-radius-bottomleft:6px;
 	-moz-border-radius-bottomright:6px;
 	-moz-border-radius-topleft:6px;
-	-moz-border-radius-topright:6px;*/
+	-moz-border-radius-topright:6px;
+*/
 }
 
 /* =Welcome Section */
@@ -407,14 +407,19 @@ li.last {
 	top:-0.5em;
 }
 
-#register #error,
-#login #error {
-	margin-bottom:2em;
+#register .errorExplanation h2 {
+	color:red;
+/*	margin-bottom:0;
+*/}
+
+#register .errorExplanation p {
+	color:#000000;
+	margin-bottom:0.5em;
 }
 
-#register #error p,
-#login #error p {
+#register .errorExplanation ul {
 	color:red;
+	margin-bottom:1.8em;
 }
 
 /* Rails is inserting a hidden div with a security token which takes up space, so let's hide it*/

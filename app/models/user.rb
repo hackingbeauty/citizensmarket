@@ -48,11 +48,11 @@ class User < ActiveRecord::Base
 				  :message => "Your email address must be valid",
 				  :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
-  validates_presence_of     :password,
-                            :message => 'Please provide a password'
+  validates_presence_of     :password
   validates_length_of       :password,    :maximum => PASSWORD_MAX_LENGTH				  
-	validates_confirmation_of :password
-          
+  # validates_confirmation_of :password
+	validates_acceptance_of   :agree_to_terms
+                            # :allow_nil => false
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
