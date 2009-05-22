@@ -14,23 +14,22 @@
                         <label>*Email:</label>
                         <%= form.text_field :email,
                                             :size => User::EMAIL_SIZE,
-                                            :maxlength => User::EMAIL_MAX_LENGTH %></p>
+                                            :maxlength => User::EMAIL_MAX_LENGTH %>
                     </div>
                     <div class="form-row">
                         <label>*Password: <span class="instruction">(must be at least 6 characters long)</span></label>
                         <%= form.password_field :password,
                                             :size => User::PASSWORD_SIZE,
-                                            :maxlength => User::PASSWORD_MAX_LENGTH %></p>
+                                            :maxlength => User::PASSWORD_MAX_LENGTH %>
                     </div>
                     <div class="form-row">
                         <label>*Confirm Password:</label>
                         <%= form.password_field :password_confirmation,
                                             :size => User::PASSWORD_SIZE,
-                                            :maxlength => User::PASSWORD_MAX_LENGTH %></p>
+                                            :maxlength => User::PASSWORD_MAX_LENGTH %>
                     </div>
                     <div id="agree" class="form-row">
-                        <span>I agree to the <%= link_to 'Citizens Market Terms of Service', '/terms', :target => :new %></span>
-                        
+                        <span>I agree to the <%= link_to 'Citizens Market Terms of Service', '/terms' %></span>
                         <%= form.check_box :agree_to_terms %> 
                     </div>
                     <div class="form-row">
