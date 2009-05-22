@@ -7,9 +7,7 @@
   <link rel="shortcut icon" href="/favicon.ico" />
   <%= stylesheet_link_tag "reset-fonts-grids" %>
   <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag 'jquery' %>
-  <%= javascript_include_tag 'application' %>  
-  <%= yield(:stylesheets) %>
+  <%= yield :head %>
 </head>
 <body>
     <div id="doc4" class="yui-t6">
@@ -17,7 +15,6 @@
             <%=render :partial => "layouts/header"%>
         </div>
         <div id="main-content">
-
             <%= yield %>
         </div><!-- end main-content -->
         <div id="footer">

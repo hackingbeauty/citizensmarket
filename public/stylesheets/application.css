@@ -85,7 +85,8 @@ li.last {
 
 #header #nav {
 	background: url('/images/backgrounds/back-header-nav.png') no-repeat;
-	clear:both;
+/*	background: url('/images/backgrounds/back-header-nav2.png') no-repeat;
+*/	clear:both;
 	height:30px;
 }
 
@@ -243,27 +244,31 @@ li.last {
 
 /* =Welcome Section */
 
-#homepage #welcome {
+#homepage .welcome {
 	float:left;
 	height:275px;
 	width:36em;
 }
 
-#homepage #welcome h1 {
+#homepage .welcome h1 {
 	font-size:4em;
 }
 
-#homepage #welcome p {
+#homepage .welcome p {
 	font-size:1.1em;
 	line-height:2em;
 }
 
-#homepage #welcome em {
+#homepage .welcome em {
 	color:#404048;
-	display:block;
 	font-weight:bold;
 	font-size:1.8em;
 	margin-bottom:1em;
+}
+
+#homepage .welcome.rotation2,
+#homepage .welcome.rotation3 {
+	display:none;
 }
 
 /* =Latest Reviews  & Latest News */

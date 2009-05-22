@@ -12,7 +12,9 @@
 		}
 	}
 	window['CM']['exists'] = exists;
-
+	
+	
+	
 	//Confirmation when deleting a company
 	var deleteCompanyConfirm = function() {		
 		$('.delete-company').click(function(){

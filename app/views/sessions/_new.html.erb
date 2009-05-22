@@ -1,4 +1,7 @@
-<%= javascript_include_tag 'jquery.validate' %>
+<% content_for :head do %>
+  <%= javascript_include_tag 'jquery' %>
+  <%= javascript_include_tag 'application' %>
+<% end %>
 <div id="login">
     <div id="login-top"></div>
         <div id="login-body">

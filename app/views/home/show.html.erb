@@ -1,11 +1,23 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'jquery' %>
+  <%= javascript_include_tag 'application' %>
+<% end %>
 <div id="homepage">
     <div id="homepage-center-container">
         <div id="homepage-center-container-top"></div>
         <div id="homepage-center-container-body">
-            <div id="welcome">
+            <div class="welcome">
                 <h1>Citizens Market</h1>
                 <em>Your Money.  Your Choices.  Your Values.</em>
                 <p>Wouldn't it be great to live in a world where citizens can make informed purchasing decisions, and where corporations are driven to behave ethically and sustainably?  We think so.  How do we intend to accomplish such a thing?  <a href="#nogo" title="Find Out How Citizen's Market Works">Find out now</a>.</p>
+                <!-- <div class="review">
+                    <img src="images/vanessia.jpg" alt="Vanessia Wu" />
+                    <h2>BP</h2>
+                    <p>Reviewed by: <em>Vanessia Wu</em></p>
+                    <p>My score: 1</p>
+                    <h3>Poor record on lobbying spending<h3>
+                    <p>BP has a relatively poor record with respect to how much it spends on lobbying the U.S. federal government. According to The Center for Public Integrity, BP spent $2,281,000 on federal lobbying in 2004, more than than any other non-U.S. oil company. (2004 is the latest year for which data is available.).</p>
+                </div><!-- end review --> -->
             </div><!-- end welcome -->
             <%=render :partial => "users/new"%>
         </div><!-- end home-page-center-container-body -->

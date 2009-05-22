@@ -45,17 +45,17 @@ class UsersController < ApplicationController
       flash[:notice] = "<p class=\"big\">Thanks for signing up!</p><p>We're sending you an email with your activation code.</p>"
       redirect_back_or_default('/')
     else
-      
       # flash[:error]  = "#{@user.errors[0]} We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      # flash[:notice] = "problemo"
       @user.errors do |error|
         flash[:error] += error
       end
-      
       # flash[:error] = @user.errors.add :email
       #   flash[:error] = @user.errors.add :password
-      
+      render :template => '/home/show'
+      # render flash[:error]
       # render :controller => 'home', :action => 'show'
-      redirect_to :controller => 'home', :action=>'show'
+      # redirect_to :controller => 'home', :action=>'show'
     end
   end
 

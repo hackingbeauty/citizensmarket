@@ -1,3 +1,7 @@
+<% content_for :js_foot do %>
+    <%= javascript_include_tag 'jquery' %>
+    <%= javascript_include_tag 'application' %>
+<% end %>
 <div id="login">
 <h2>Admin Log In</h2>
   <% form_for :admin do |form| %>
