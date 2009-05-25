@@ -3,11 +3,13 @@
     <strong>Your Values.  Your Money.  Your Choices.</strong>
 </p>
 <ul id="top-nav">
-    <li><%= link_to "Sign In", '/login', :id => 'login-link' %></li>
-    <li><%= link_to "About Us", '/about' %></li>
-    <li><%= link_to "Contact", '/contact' %></li>
-    <li><%=link_to "Blog", 'http://blog.citizensmarket.org/' %></li>
-    <li class="last"><%= link_to "Donate", '/donate' %></li>
+    <% if !current_user.nil? %>
+        <li><%= link_to "My Profile", '/my_profile' %></li>
+        <li><%= link_to "Contact", '/contact' %></li>
+        <li><%=link_to "Blog", 'http://blog.citizensmarket.org/' %></li>
+        <li><%= link_to "Donate", '/donate' %></li>
+        <li class="last"><%= link_to "Logout", '/logout' %></li>
+    <% end %>
 </ul>
 <div id="nav">
     <ul>
@@ -15,36 +17,21 @@
     	<% if current_user.nil? %>
     	    <li><%=link_to "Write a Review", 'http://blog.citizensmarket.org/' %></li>
 		<% else %>
-            <!-- <li><%= link_to "My Profile", edit_user_url(current_user) %></li> -->
+		
 		<% end %>
 		<li class="last"><%= link_to "Company Reviews", nil %></li>
-        
-        <!-- <% if current_user.nil? %>
-            <li><%= link_to "Register", '/signup' %></li>
-            <li><%= link_to "Sign In", '/login' %></li>
-        <% else %>
-            <li><%= link_to "Logout", '/logout' %></li>
-        <% end %> -->
     </ul>
-    <div id="search">
-        <% form_for :search, :url => nil do |f| %>
-        <div>
-        	<%= f.text_field :q, :value => 'Search Citizens\'s Market', :size => 60 %>
-        	<%= f.submit 'Search' %>
-        </div>
-        <% end %>
-    </div><!-- end search -->
-</div><!-- end nav -->
-
-
-<!-- <ul>
-    <li><%=link_to "Take Action", '/take_action' %></li>
     <% if current_user.nil? %>
-        <li><%=link_to "My Profile", '/login' %></li>
+        <%= render :partial => "layouts/login" %>
     <% else %>
-        <li><%= link_to "My Profile", edit_user_url(current_user) %></li>
+        <div id="search">
+            <% form_for :search, :url => nil do |f| %>
+                <div>
+                	<%= f.text_field :q, :value => 'Search Citizens Market', :size => 60 %>
+                	<%= f.submit 'Search' %>
+                </div>
+            <% end %>
+        </div><!-- end search -->
     <% end %>
-    <li><%=link_to "About Us", '/about' %></li>
-</ul> -->
-
+</div><!-- end nav -->
 

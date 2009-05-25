@@ -242,6 +242,47 @@ li.last {
 */
 }
 
+/* =Login Section */
+
+#header #nav #login {
+/*	background-color:#0B6BAE;
+*/	background: url('/images/corners/corner-login-top.png') center top no-repeat;
+	margin-top:-7em;
+}
+
+#header #nav #login h2 {
+	display:none;
+}
+
+#header #nav #login form {
+	background-color:#0B6BAE;
+	margin-top:2em;
+	padding-left:2em;
+/*	margin:1em 0 0 2em;
+*/}
+
+#header #nav #login .form-row {
+	clear:both;
+	width:22em;
+}
+
+#header #nav #login .form-row label {
+	color:white;
+	float:left;
+}
+
+#header #nav #login .form-row input {
+	float:right;
+	font-size:0.8em;
+}
+
+#header #nav #login .form-row input#submit {
+	font-size:0.8em;
+	margin-top:-3.1em;
+	position:relative;
+	left:5em;
+}
+
 /* =Welcome Section */
 
 #homepage .welcome {
@@ -310,7 +351,7 @@ li.last {
 	text-transform:uppercase;
 }
 
-/******************* =Registration & Login *******************/
+/******************* =Registration & =Login *******************/
 
 #register,
 #login {
@@ -409,8 +450,7 @@ li.last {
 
 #register .errorExplanation h2 {
 	color:red;
-/*	margin-bottom:0;
-*/}
+}
 
 #register .errorExplanation p {
 	color:#000000;

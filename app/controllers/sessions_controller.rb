@@ -19,12 +19,14 @@ class SessionsController < ApplicationController
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
       redirect_back_or_default('/')
-      flash[:notice] = "Logged in successfully"
+      flash[:login_notice] = "Logged in successfully"
     else
+      flash[:notice] = "Cannot log you in"
       note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]
-      render :action => 'new'
+      render :template => '/home/show'
+      # render :action => 'new'
     end
   end
 

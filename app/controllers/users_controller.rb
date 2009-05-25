@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   end
   
   def update_password
-    
     if User.authenticate(current_user.login, params[:old_password])
       @user = current_user
       if @user.update_attributes(:password => params[:password], :password_confirmation => params[:password_confirmation])
@@ -91,9 +90,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    
     @user = User.find(params[:id])
-    
     if @user.update_attributes(params[:user])
       flash[:notice] = "Your user profile has been updated!"
       respond_to do |format|

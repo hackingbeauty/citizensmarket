@@ -47,7 +47,6 @@ class User < ActiveRecord::Base
 				  :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,
 				  :message => "Your email address must be valid",
 				  :with => Authentication.email_regex, :message => Authentication.bad_email_message
-
   validates_presence_of     :password
   validates_length_of       :password,    :maximum => PASSWORD_MAX_LENGTH				  
   # validates_confirmation_of :password
