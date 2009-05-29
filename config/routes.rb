@@ -3,12 +3,12 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/issues/issue_picker', :controller => 'issues', :action => 'issue_picker'
   map.resources :issues
 
-
   map.connect '/users/update_issue_weights', :controller => 'issue_weights', :action => 'update'
   
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
+  map.session '/session', :controller => 'sessions', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.activate '/activate/:id', :controller => 'users', :action => 'activate'
   map.home '/home', :controller => 'home', :action => 'show'

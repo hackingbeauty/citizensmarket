@@ -1,7 +1,7 @@
 /******************* =General Styles (All Pages) *******************/
 
 body {
-/*	background-color:#f3ffe9;*/
+
 }
 
 h1 {
@@ -245,8 +245,7 @@ li.last {
 /* =Login Section */
 
 #header #nav #login {
-/*	background-color:#0B6BAE;
-*/	background: url('/images/corners/corner-login-top.png') center top no-repeat;
+	background: url('/images/corners/corner-login-top.png') center top no-repeat;
 	margin-top:-7em;
 }
 
@@ -256,14 +255,14 @@ li.last {
 
 #header #nav #login form {
 	background-color:#0B6BAE;
-	margin-top:2em;
-	padding-left:2em;
-/*	margin:1em 0 0 2em;
-*/}
+	height:6em;
+	margin-top:1.3em;
+	padding-left:4em;
+}
 
 #header #nav #login .form-row {
 	clear:both;
-	width:22em;
+	width:24em;
 }
 
 #header #nav #login .form-row label {
@@ -277,10 +276,30 @@ li.last {
 }
 
 #header #nav #login .form-row input#submit {
+	cursor:pointer;
 	font-size:0.8em;
-	margin-top:-3.1em;
-	position:relative;
-	left:5em;
+}
+
+#header #login input {
+	border-left:1px solid #838383;
+	border-top:1px solid #838383;
+	color:#404048;
+	display:block;
+	font-size:1.8em;
+	margin-bottom:0.8em;
+	padding:0.2em;
+	width:19em;	
+}
+
+#header #login input#submit  {
+	border:1px solid #838383;
+	clear:both;
+	float:left;
+	width:5em;
+}
+
+#header #login form input[type=hidden] {
+	display:none;
 }
 
 /* =Welcome Section */
