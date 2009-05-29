@@ -33,13 +33,15 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.connect '/score', :controller => 'companies', :action => 'find_score'
-  map.connect '/about', :controller => 'home', :action => 'about'
+  map.connect '/about', :controller => 'about', :action => 'team'
   map.connect '/terms', :controller => 'home', :action => 'terms'
   map.connect '/attribution', :controller => 'home', :action => 'attribution'
   map.connect '/privacy', :controller => 'home', :action => 'privacy'
   map.connect '/dmca', :controller => 'home', :action => 'dmca'
   map.connect '/contact', :controller => 'home', :action => 'contact'
   map.connect '/take_action', :controller => 'home', :action => 'take_action'
+  map.connect ':controller/:action/:id'
+  map.connect ':controller/:action/:id.:format'
   map.resource :home
 
   map.root :controller => "home", :action => "show"

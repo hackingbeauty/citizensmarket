@@ -1,58 +1,6 @@
-<h1>Take Action!</h1>
-
-<div class="content_box">
-  	<div class="header">
-    	<%= render_tabs [
-      		{:label => 'How to Participate', :on => true},
-      		{:label => 'Submit a Review'},
-      		{:label => 'Rate Reviews'},
-      		{:label => 'Browse Companies', :tab => 'follow_link', :link => companies_url},
-			{:label => 'Donate'},
-		] %>
-  	</div>
-
-	<div id="content">
-		<div id="how_to_participate" class="tab_content">
-			<%= image_tag 'under_construction.jpg' %><br>
-			
-			This is where our tutorial will be.  This is not the conceptual intro (like the <a href="http://girleffect.org">girleffect.org</a> video), but rather the "this-is-how-you-research-and-then-fill-out-a-review" tutorial.
-			
-		</div>
-
-		<div id="submit_a_review" class="tab_content">
-			
-			<% if current_user.nil? %>
-				
-				You must be logged in to write reviews:
-				
-				<%= render :partial => 'sessions/new' %>
-				
-			<% else %>
-				<% form_for(:review_presenter, :url => reviews_url) do |f| %>
-		      		<%= render :partial => "reviews/form", :locals => { :f => f, :review => Review.new } %>
-		      		<div class="submit">
-		        		<%= image_submit_tag "button_submit.gif" %>
-		      		</div>
-		      		<br>
-		    	<% end %>
-			<% end %>
-			
-		</div>
-		
-		<div id="rate_reviews" class="tab_content">
-	      	<h3>Most Recent Reviews (showing 10)</h3>
-			<% unless Review.count == 0 %>
-				<% for review in Review.all.to_a.sort_by{|x| x.created_at}.reverse[1..10] %>
-					<%= render :partial => 'reviews/review', :locals => {:review => review, :show_company => true} %>
-				<% end %>
-			<% end %>
-			
-	    </div>
-	
-		<div id="donate" class="tab_content">
-			
-			<%= image_tag 'under_construction.jpg' %><br>
-			
-			This is where users will be able to donate to Citizens Market.  Luke's recommendation:  a little blurb on "thank you so much for considering a donation.  Every cent helps, blah blah blah."  Finally, a link to Get Started With Your Donation.  (donation workflow will most likely be a series of screens).
-			
-		</div>
+<div id="yui-main">
+  <div class="yui-b">
+    <%= render :partial => "how_to_participate"%>
+  </div>
+</div>
+<%= render :partial => "side_navigation" %>
