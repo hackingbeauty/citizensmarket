@@ -6,9 +6,11 @@
     <% if !current_user.nil? %>
         <li><%= link_to "My Profile", '/my_profile' %></li>
         <li><%= link_to "Contact", '/contact' %></li>
-        <li><%=link_to "Blog", 'http://blog.citizensmarket.org/' %></li>
+        <li><%= link_to "Blog", 'http://blog.citizensmarket.org/' %></li>
         <li><%= link_to "Donate", '/donate' %></li>
         <li class="last"><%= link_to "Logout", '/logout' %></li>
+    <% else %>
+
     <% end %>
 </ul>
 <div id="nav">
@@ -22,7 +24,7 @@
 		<li class="last"><%= link_to "Company Reviews", nil %></li>
     </ul>
     <% if current_user.nil? %>
-        <%= render :partial => "layouts/login" %>
+        <%= render :partial => "sessions/new" %>
     <% else %>
         <div id="search">
             <% form_for :search, :url => nil do |f| %>

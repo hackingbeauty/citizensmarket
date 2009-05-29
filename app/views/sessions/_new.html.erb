@@ -2,29 +2,25 @@
     <div id="login-top"></div>
         <div id="login-body">
             <h2>Log In</h2>
-            <% form_tag session_path do %>
-            <% if flash[:login_notice] %>
-              <div id="login-error">
-                <%= flash[:login_notice] %>
-              </div>
-            <% end %>
+            <% form_tag session_path do  %>
+                <%= error_messages_for :session %>
+                <% if flash[:notice] %>
+                    <div id="notice">
+                        <%= flash[:notice] %>
+                    </div>
+                <% end %>
                 <div class="form-row">
-                    <label for"email">*Email:</label>
-              		  <%= text_field_tag 'email', @login %>
+                    <label for="email">*Email:</label>
+                    <%= text_field_tag 'email', @login %>
                 </div>
                 <div class="form-row">
-                    <label>*Password:</label>
-              	    <%= password_field_tag 'password', nil %>
+                    <label for="password">*Password:</label>
+                    <%= password_field_tag 'password', nil %>
                 </div>
                 <div class="form-row">
-                    
-                </div>
-                <div class="form-row">
-                    <%= submit_tag "Log In", :id => "submit" %>
+                    <%= submit_tag "log In", :id => "login-submit" %>
                 </div>
             <% end %>
         </div><!-- end login-body -->
     <div id="login-bottom"></div>
 </div><!-- end login -->
-
-
