@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
   is_gravtastic
-  
+    
   after_create :initialize_default_issue_weights
   after_destroy :destroy_user_issue_weights
 

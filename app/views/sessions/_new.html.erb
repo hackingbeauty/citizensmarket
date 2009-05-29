@@ -10,12 +10,21 @@
                     </div>
                 <% end %>
                 <div class="form-row">
-                    <label for="email">*Email:</label>
-                    <%= text_field_tag 'email', @login %>
+                    <label for="email">Email:</label>
+                    <%= text_field_tag 'email' %>
                 </div>
                 <div class="form-row">
-                    <label for="password">*Password:</label>
-                    <%= password_field_tag 'password', nil %>
+                    <label for="password">Password:</label>
+                    <%= password_field_tag 'password'%>
+                </div>
+                <div class="form-row remember-forgot">
+                    <div id="remember">
+                        <label for="remember_me">Remember Me?</label>
+                        <%= check_box_tag 'remember_me', '1', @remember_me %>
+                    </div>
+                    <div>
+                        <%= link_to 'Forgot your password?', forgot_password_path %>
+                    </div>
                 </div>
                 <div class="form-row">
                     <%= submit_tag "log In", :id => "login-submit" %>

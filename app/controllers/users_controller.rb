@@ -23,6 +23,10 @@ class UsersController < ApplicationController
       render :action => 'change_password'
     end
   end
+  
+  def forgot_password
+    
+  end
 
   # render new.rhtml
   def new

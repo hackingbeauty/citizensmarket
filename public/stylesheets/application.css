@@ -72,13 +72,14 @@ li.last {
 /******************* =Header (All Pages) *******************/
 
 #header {
-	padding-top:2em;
 	position:relative;
 }
 
 #header p#tagline {
 	margin-top:2.7em;
 	margin-left:11em;
+	position:relative;
+	top:2.7em;
 }
 
 /* =Main Nav */
@@ -121,7 +122,6 @@ li.last {
 
 #header ul#top-nav {
 	position:absolute;
-	top:3em;
 	right:0em;
 }
 
@@ -164,8 +164,7 @@ li.last {
 #main-content {
 	float:left;
 	margin-bottom:5em;
-	padding:2em 0em;
-		
+	margin-top:2em;		
 }
 
 /******************* =Footer (All Pages) *******************/
@@ -292,8 +291,8 @@ li.last {
 	cursor:pointer;
 	font-size:0.8em;
 	border:1px solid #838383;
-	clear:both;
-
+	position:relative;
+	top:-2.4em;
 	width:5em;
 }
 
@@ -310,6 +309,24 @@ li.last {
 
 #header #login form input[type=hidden] {
 	display:none;
+}
+
+#header #login .form-row.remember-forgot div {
+	float:left;
+}
+
+#header #login .form-row.remember-forgot div#remember {
+	border:1px solid red;
+	width:11em;
+}
+
+#header #login .form-row.remember-forgot div a {
+	margin-left:1.5em;
+}
+
+#header #login .form-row.remember-forgot label,
+#header #login .form-row.remember-forgot a {
+	font-size:0.9em ;
 }
 
 /* =Welcome Section */
