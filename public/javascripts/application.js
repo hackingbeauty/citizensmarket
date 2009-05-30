@@ -43,30 +43,33 @@
 	}//end function
 	window['CM']['deleteCompanyConfirm'] = deleteCompanyConfirm;
 	
-	//Login modal 
-	var logIn = function(){
-		$('#login-link').click(function(e){
+	//Forgot Password modal 
+	var forgotPassword = function(){
+		$('#forgot-password-link').click(function(e){
 				e.preventDefault();
-				var contact = "asdfasdfasdfs";
-				// load the contact form using ajax
-				$.get("/login", function(data){
-					// create a modal dialog with the data
-					$(data).modal({
-						close: false,
-						position: ["15%",],
-						overlayId: 'contact-overlay',
-						containerId: 'contact-container',
-						onOpen: contact.open,
-						onShow: contact.show,
-						onClose: contact.close
-					});
-				});// end get
+				var imageLarge = "<p>blah blah</p>"
+				$.prompt(imageLarge,{ 
+					// buttons: { Delete: true, Close: false }, 
+				});
+				// ajax call
+				// $.get("/forgot", function(data){
+				// 	// create a modal dialog with the data
+				// 	$(data).modal({
+				// 		close: false,
+				// 		position: ["15%",],
+				// 		overlayId: 'contact-overlay',
+				// 		containerId: 'contact-container',
+				// 		onOpen: contact.open,
+				// 		onShow: contact.show,
+				// 		onClose: contact.close
+				// 	});
+				// });// end get
 		});// end click
 	}//end function
-	window['CM']['logIn'] = logIn;
+	window['CM']['forgotPassword'] = forgotPassword;
 	
 	//In-line validation for Registration form
-	var formValidation = function(){
+	var registrationFormValidation = function(){
 		$('#register-form').validate({
 			rules: {
 	            'user[password]': {
@@ -100,7 +103,7 @@
 	        }
 		});
 	}
-	window['CM']['formValidation'] = formValidation;
+	window['CM']['registrationFormValidation'] = registrationFormValidation;
 	
 	//Clear search-box default text when user clicks inside
 	var searchBoxClearText = function(){
@@ -131,11 +134,17 @@ $(document).ready (function() {
 	}
 	
 	if(CM.exists('register')){
-		CM.formValidation();
+		CM.registrationFormValidation();
 	}
 
 	if (CM.exists('administer-companies')) {
 		CM.deleteCompanyConfirm();
 	}
+	
+	if (CM.exists('login')) {
+		CM.forgotPassword();
+	}
+	
+	
 	
 });

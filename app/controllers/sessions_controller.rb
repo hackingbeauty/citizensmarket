@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       render :template => '/users/dashboard'
       # redirect_back_or_default('/')
     else
-      flash[:login_notice] = "Incorrect Email/Password Combination"
+      flash[:message] = "Incorrect Email/Password Combination"
       note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]

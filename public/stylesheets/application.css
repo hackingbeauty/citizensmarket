@@ -72,6 +72,7 @@ li.last {
 /******************* =Header (All Pages) *******************/
 
 #header {
+	margin-bottom:1em;
 	position:relative;
 }
 
@@ -108,7 +109,7 @@ li.last {
 #header ul li a {
 	display:block;
 	font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
-	font-size:1.2em;
+	font-size:1.1em;
 	text-decoration:none;
 	text-transform:capitalize;
 	padding:0.2em 1em 0 1em;
@@ -163,8 +164,7 @@ li.last {
 
 #main-content {
 	float:left;
-	margin-bottom:5em;
-	margin-top:2em;		
+	margin-bottom:5em;	
 }
 
 /******************* =Footer (All Pages) *******************/
@@ -234,18 +234,14 @@ li.last {
 	float:left;
 	width:76em;
 	padding:2em 3em;
-/*	-moz-border-radius-bottomleft:6px;
-	-moz-border-radius-bottomright:6px;
-	-moz-border-radius-topleft:6px;
-	-moz-border-radius-topright:6px;
-*/
 }
 
 /* =Login Section */
 
 #header #nav #login {
 	background: url('/images/corners/corner-login-top.png') center top no-repeat;
-	margin-top:-7em;
+	margin-top:-8em;
+	position:relative;
 }
 
 #header #nav #login-top {
@@ -261,72 +257,83 @@ li.last {
 	padding:0;
 }
 
+#header #nav #login a {
+	color:white;
+}
+
 #header #nav #login h2 {
 	display:none;
 }
 
+#header #nav #login #login-body {
+	background-color:#0B6BAE;	
+}
+
+#header #nav #login #login-body #message {
+	color:red;
+	font-weight:bold;
+	left:10em;
+	position:absolute;
+	top:0.4em;
+}
+
 #header #nav #login form {
-	background-color:#0B6BAE;
-	height:6em;
-	margin-top:-0.6em;
-	padding-left:4em;
+	height:6.6em;
+	padding-left:1.6em;
 }
 
 #header #nav #login .form-row {
 	clear:both;
-	width:24em;
+	width:29em;
 }
 
 #header #nav #login .form-row label {
+	font-size:1em;
+	text-align:right;
+	width:7.5em;
+}
+
+#header #nav #login .form-row label,
+#header #nav #login .form-row input {
 	color:white;
 	float:left;
+	font-size:1em;
 }
 
 #header #nav #login .form-row input {
+	color:black;
 	float:right;
-	font-size:0.8em;
+	width:20em;
+}
+
+#header #nav #login .form-row #remember {
+	float:left;
+	height:1.5em;
+	width:9.3em;
+}
+
+#header #nav #login .form-row #remember input {
+	width:1em;
+}
+
+#header #nav #login .form-row #forgot-password-link {
+	float:left;
+	height:2em;
+	margin-left:2em;
 }
 
 #header #nav #login .form-row input#login-submit {
 	cursor:pointer;
 	font-size:0.8em;
 	border:1px solid #838383;
+	height:2em;
 	position:relative;
-	top:-2.4em;
+	top:-2.6em;
 	width:5em;
-}
-
-#header #login input {
-	border-left:1px solid #838383;
-	border-top:1px solid #838383;
-	color:#404048;
-	display:block;
-	font-size:1.8em;
-	margin-bottom:0.8em;
-	padding:0.2em;
-	width:19em;	
 }
 
 #header #login form input[type=hidden] {
 	display:none;
-}
-
-#header #login .form-row.remember-forgot div {
-	float:left;
-}
-
-#header #login .form-row.remember-forgot div#remember {
-	border:1px solid red;
-	width:11em;
-}
-
-#header #login .form-row.remember-forgot div a {
-	margin-left:1.5em;
-}
-
-#header #login .form-row.remember-forgot label,
-#header #login .form-row.remember-forgot a {
-	font-size:0.9em ;
 }
 
 /* =Welcome Section */
@@ -400,34 +407,39 @@ li.last {
 /******************* =Registration & =Login *******************/
 
 #register,
-#login {
+#login,
+#forgot-password {
 	float:right;
 	font-family:"Lucida Grande",Helvetica,Arial,sans-serif;
 	width:33em;
 }
 
 #register-top,
-#login-top {
+#login-top,
+#forgot-password-top {
 	background: url('/images/corners/corner-register-top.png') no-repeat;
 	height:2.2em;
 	width:100%;
 }
 
 #register-body,
-#login-body {
+#login-body,
+#forgot-password-body  {
 	background: url('/images/backgrounds/back-registration-box.png') repeat-y;
 	padding:0.1em 3.4em 4em;
 }
 
 #register-bottom,
-#login-bottom {
+#login-bottom,
+#forgot-password-bottom {
 	background: url('/images/corners/corner-register-bottom.png') no-repeat;
 	height:2.2em;
 	width:100%;
 }
 
 #register h2,
-#login h2 {
+#login h2,
+#forgot-password h2 {
 	color:#404048;
 	display:block;
 	font-size:1.8em;
@@ -435,7 +447,8 @@ li.last {
 }
 
 #register label,
-#login label {
+#login label,
+#forgot-password label {
 	color:#404048;
 	display:block;
 	font-size:1.4em;
@@ -443,12 +456,14 @@ li.last {
 }
 
 #register span.instruction,
-#login span.instruction {
+#login span.instruction,
+#forgot-password span.instruction {
 	font-size:0.7em;
 }
 
 #register input,
-#login input {
+#login input,
+#forgot-password input {
 	border-left:1px solid #838383;
 	border-top:1px solid #838383;
 	color:#404048;
@@ -459,14 +474,16 @@ li.last {
 }
 
 #register input#submit,
-#login input#submit  {
+#login input#submit,
+#forgot-password input#submti  {
 	border:1px solid #838383;
 	clear:both;
 	float:left;
 }
 
 #register #agree span,
-#login #agree span {
+#login #agree span,
+#forgot-password #agree span {
 	display:block;
 	float:right;
 	left:-0.5em;
@@ -474,7 +491,8 @@ li.last {
 }
 
 #register #signin,
-#login #signin {
+#login #signin,
+#forgot-password #signin {
 	float:left;
 	margin:1em 0 0 1em;
 }
@@ -482,13 +500,15 @@ li.last {
 /* =Registration & Login Error Messaging */
 
 #register input.error,
-#login input.error {
+#login input.error,
+#forgot-password input.error {
 	background: url('/images/backgrounds/back-validation-error.gif') repeat-x;
 	border:2px solid red;
 }
 
 #register label.error,
-#login label.error {
+#login label.error
+#forgot-password label.error {
 	color:red;
 	position:relative;
 	top:-0.5em;
@@ -510,7 +530,8 @@ li.last {
 
 /* Rails is inserting a hidden div with a security token which takes up space, so let's hide it*/
 #register form input[type=hidden],
-#login form input[type=hidden] {
+#login form input[type=hidden],
+#forgot-password form input[type=hidden] {
 	display:none;
 }
 
@@ -545,8 +566,66 @@ li.last {
 	margin-left:1em;
 }
 
+/******** =jQuery Impromptu Dialog Box ********/
 
-
+.jqifade{
+      position: absolute; 
+      background-color: #aaaaaa; 
+}
+div.jqi{ 
+      width: 1025px;
+		top:2% !important;
+      font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; 
+      position: absolute; 
+      background-color: #ffffff;
+      font-size: 11px; 
+      text-align: left; 
+      border: solid 1px #eeeeee;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      padding: 7px;
+}
+div.jqi .jqicontainer{ 
+      font-weight: bold; 
+}
+div.jqi .jqiclose{ 
+      position: absolute;
+      top: 4px; right: -2px; 
+      width: 18px; 
+      cursor: default; 
+      color: #bbbbbb; 
+      font-weight: bold; 
+}
+div.jqi .jqimessage{ 
+      padding: 10px; 
+      line-height: 20px; 
+      color: #444444; 
+}
+div.jqi .jqibuttons{ 
+	display:none;
+/*      text-align: right; 
+      padding: 5px 0 5px 0; 
+      border: solid 1px #eeeeee; 
+      background-color: #f4f4f4;*/
+}
+div.jqi button{ 
+      padding: 3px 10px;
+      margin: 0 10px; 
+      background-color: #2F6073; 
+      border: solid 1px #f4f4f4; 
+      color: #ffffff; 
+      font-weight: bold; 
+      font-size: 12px; 
+}
+div.jqi button:hover{ 
+      background-color: #728A8C;
+}
+div.jqi button.jqidefaultbutton{ 
+      background-color: #BF5E26;
+}
+.jqiwarning .jqi .jqibuttons{ 
+      background-color: #BF5E26;
+}
 
 
 

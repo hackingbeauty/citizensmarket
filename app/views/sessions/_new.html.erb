@@ -4,9 +4,9 @@
             <h2>Log In</h2>
             <% form_tag session_path do  %>
                 <%= error_messages_for :session %>
-                <% if flash[:notice] %>
-                    <div id="notice">
-                        <%= flash[:notice] %>
+                <% if flash[:message] %>
+                    <div id="message">
+                        <%= flash[:message] %>
                     </div>
                 <% end %>
                 <div class="form-row">
@@ -17,17 +17,17 @@
                     <label for="password">Password:</label>
                     <%= password_field_tag 'password'%>
                 </div>
-                <div class="form-row remember-forgot">
+                <div class="form-row">
                     <div id="remember">
                         <label for="remember_me">Remember Me?</label>
                         <%= check_box_tag 'remember_me', '1', @remember_me %>
                     </div>
-                    <div>
-                        <%= link_to 'Forgot your password?', forgot_password_path %>
+                    <div id="forgot-password-link">
+                        <%= link_to 'Forgot your password?', forgot_path %>
                     </div>
                 </div>
                 <div class="form-row">
-                    <%= submit_tag "log In", :id => "login-submit" %>
+                    <%= submit_tag "Log In", :id => "login-submit" %>
                 </div>
             <% end %>
         </div><!-- end login-body -->

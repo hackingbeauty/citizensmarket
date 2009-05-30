@@ -9,6 +9,6 @@ ActionMailer::Base.smtp_settings = {
   :domain => "www.citizensmarket.org",
   :authentication => :login,
   :enable_starttls_auto => true,
-  :user_name => "citizensmarket@citizensmarket.org",
+  :user_name => "support@citizensmarket.org",
   :password => "Gcm248248"
 }
