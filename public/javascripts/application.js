@@ -72,6 +72,18 @@
 	var registrationFormValidation = function(){
 		$('#register-form').validate({
 			rules: {
+				'user[firstname]': {
+	                required: true,
+					minlength: 1,
+	            },
+				'user[lastname]': {
+	                required: true,
+					minlength: 1,
+	            },
+				'user[email]': {
+	                required: true,
+	                email: true
+	            },
 	            'user[password]': {
 	                required: true,
 	                minlength: 6,
@@ -80,13 +92,19 @@
 	                required: true,
 	                equalTo: "#user_password"
 	            },
-	            'user[email]': {
-	                required: true,
-	                email: true
-	            },
 	            'user[agree_to_terms]': "required"
 	        },
 	        messages: {
+		        'user[firstname]': {
+					required: "Please enter your first name"
+				},
+				'user[lastname]': {
+					required: "Please enter your last name"
+				},
+		        'user[email]': {
+					required: "Please enter your email address",
+					email: "Please enter a valid email address"
+				},
 	            'user[password]': {
 	                required: "Please provide a password",
 	                minLength: "Your password must be at least 5 characters long"
@@ -95,10 +113,6 @@
 	                required: "Confirm your password",
 	                equalTo: "Please enter the same password as above"
 	            },
-	            'user[email]': {
-					required: "Please enter your email address",
-					email: "Please enter a valid email address"
-				},
 	            'user[agree_to_terms]': "Please accept our policy"
 	        }
 		});
@@ -141,10 +155,8 @@ $(document).ready (function() {
 		CM.deleteCompanyConfirm();
 	}
 	
-	if (CM.exists('login')) {
-		CM.forgotPassword();
-	}
-	
-	
-	
+	// if (CM.exists('login')) {
+	// 	CM.forgotPassword();
+	// }
+		
 });

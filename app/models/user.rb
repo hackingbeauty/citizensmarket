@@ -18,24 +18,30 @@ class User < ActiveRecord::Base
   serialize :profile, Hash
 
   before_validation :copy_email_to_login
-
+  
+  attr_accessor :reset_code
+  
   # validates_presence_of     :login
   # validates_length_of       :login,    :within => 3..40
   # validates_uniqueness_of   :login
   # validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
   # 
-  # validates_format_of       :firstname,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
-  # validates_length_of       :firstname,     :maximum => 100, :allow_nil => true
-  # validates_format_of       :lastname,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
-  # validates_length_of       :lastname,     :maximum => 100, :allow_nil => true
+  validates_format_of       :firstname,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
+  validates_length_of       :firstname,     :maximum => 100, :allow_nil => true
+  validates_format_of       :lastname,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
+  validates_length_of       :lastname,     :maximum => 100, :allow_nil => true
 
   # Max & min lengths for all fields
+  FIRSTNAME_MAX_LENGTH = 100
+  LASTNAME_MAX_LENGTH = 100
   EMAIL_MAX_LENGTH = 100
   PASSWORD_MIN_LENGTH = 6
 	PASSWORD_MAX_LENGTH = 40
 	PASSWORD_RANGE = PASSWORD_MIN_LENGTH..PASSWORD_MAX_LENGTH
 	
 	# Text box sizes for display in the views
+	FIRSTNAME_SIZE = 20
+	LASTNAME_SIZE = 20
 	EMAIL_SIZE = 20
 	PASSWORD_SIZE = 20
 
@@ -60,7 +66,7 @@ class User < ActiveRecord::Base
     for issue in Issue.find(:all)
       UserIssue.create!(:user_id => user.id, :issue_id => issue.id, :weight => 1.0)
     end
-    user.activate
+    # user.activate
     user.save
   }
 
@@ -179,20 +185,36 @@ class User < ActiveRecord::Base
     return nil if profile.nil?
     profile[:website]
   end
+  
   def website=(value)
     return nil if profile.nil?
     profile[:website] = value
   end
 
-  protected
+  def create_reset_code
+    @reset = true
+    self.reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    save(false)
+  end
+  
+  def recently_reset?
+    @reset
+  end
+ 
+  def delete_reset_code
+    self.reset_code = nil
+    save(false)
+  end
 
+  protected
+  
   def make_activation_code
       self.deleted_at = nil
       self.activation_code = self.class.make_token
   end
 
   def copy_email_to_login
-    if self.email != self.login and ! self.deleted?
+    if self.email  and ! self.deleted?
       #only do this on change
       unless self.login.nil?
         @requires_reactivation=true
@@ -207,8 +229,4 @@ class User < ActiveRecord::Base
     UserIssue.delete_all(:user_id => self.id)
   end
   
-  # def validate
-  #   errors.add(:email, "must be valid yadablahblah") unless email.include? ("@")
-  # end
-
 end

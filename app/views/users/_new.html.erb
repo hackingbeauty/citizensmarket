@@ -9,8 +9,20 @@
             		        <%= flash[:notice] %>
             		    </div>
             	    <% end %>
+            	    <div class="form-row">
+                        <label for="user_firstname">*First Name:</label>
+                        <%= form.text_field :firstname,
+                                            :size => User::FIRSTNAME_SIZE,
+                                            :maxlength => User::FIRSTNAME_MAX_LENGTH %>
+                    </div>
                     <div class="form-row">
-                        <label for="user_email">*Email:</label>
+                        <label for="user_lastname">*Last Name:</label>
+                        <%= form.text_field :lastname,
+                                            :size => User::LASTNAME_SIZE,
+                                            :maxlength => User::LASTNAME_MAX_LENGTH %>
+                    </div>
+                    <div class="form-row">
+                        <label for="user_lastname">*Email:</label>
                         <%= form.text_field :email,
                                             :size => User::EMAIL_SIZE,
                                             :maxlength => User::EMAIL_MAX_LENGTH %>

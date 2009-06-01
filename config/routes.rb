@@ -14,9 +14,8 @@ ActionController::Routing::Routes.draw do |map|
   map.home '/home', :controller => 'home', :action => 'show'
   map.change_password '/change_password', :controller => 'users', :action => 'change_password'
   map.update_password '/update_password', :controller => 'users', :action => 'update_password'
-  map.forgot'/forgot', :controller => 'users', :action => 'forgot_password'
-  map.reset_password '/reset_password', :controller => 'users', :action => 'reset_password'
-
+  map.forgot '/forgot', :controller => 'users', :action => 'forgot'
+  map.reset 'reset/:reset_code', :controller => 'users', :action => 'reset'
 
   map.resources :users, 
     :member => {
