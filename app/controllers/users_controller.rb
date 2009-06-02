@@ -80,13 +80,13 @@ class UsersController < ApplicationController
     case
     when (!params[:id].blank?) && user && !user.active?
       user.activate!
-      flash[:notice] = "Signup complete! Please sign in to continue."
+      flash[:message] = "<p class=\"big\">Signup complete!</p><p>Please sign in to continue.</p>"
       redirect_to '/login'
     when params[:id].blank?
-      flash[:error] = "The activation code was missing.  Please follow the URL from your email."
+      flash[:error] = "<p>The activation code was missing.  Please follow the URL from your email.</p>"
       redirect_back_or_default('/')
     else
-      flash[:error]  = "We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in."
+      flash[:error]  = "<p>We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in.</p>"
       redirect_back_or_default('/')
     end
   end

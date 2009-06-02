@@ -51,9 +51,8 @@ class User < ActiveRecord::Base
 	validates_format_of       :email,
 				  :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,
 				  :with => Authentication.email_regex, :message => Authentication.bad_email_message
-  validates_presence_of     :password
-  validates_length_of       :password,    :maximum => PASSWORD_MAX_LENGTH				  
-  # validates_confirmation_of :password
+  # validates_presence_of     :password
+  validates_length_of       :password,    :maximum => PASSWORD_MAX_LENGTH         
 	validates_acceptance_of   :agree_to_terms
                             # :allow_nil => false
 

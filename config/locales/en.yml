@@ -5,8 +5,8 @@ en:
       # The value :count is available when applicable. Can be used for pluralization.
       template:
         header:
-          one:    "1 error prohibited this {{model}} from being saved"
-          other:  "{{count}} errors prohibited this {{model}} from being saved blah blah blah"
+          one:    "Sorry, but I couldn't create your account!"
+          other:  "Sorry! I couldn't create your account because of {{count}} problems (below)"
       messages:
         inclusion: "is not included in the list"
         exclusion: "is reserved"
@@ -14,7 +14,7 @@ en:
         confirmation: "doesn't match confirmation"
         accepted: "must be accepted"
         empty: "can't be empty"
-        blank: "can't be blanksdfsd"
+        blank: "can't be blank"
         too_long: "is too long (maximum is {{count}} characters)"
         too_short: "is too short (minimum is {{count}} characters)"
         wrong_length: "is the wrong length (should be {{count}} characters)"

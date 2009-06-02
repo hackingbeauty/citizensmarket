@@ -55,16 +55,19 @@ li.last {
 	border-right:none !important;
 }
 
-#flash_notice {
+#register #flash_notice,
+#login #message {
 	margin-bottom:1.7em;
 }
 
-#flash_notice p {
+#register #flash_notice p,
+#login #message p {
 	color:green;
 	font-weight:bold;
 }
 
-#flash_notice p.big {
+#register #flash_notice p.big,
+#login #message p.big {
 	font-size:2em;
 	margin-bottom:0.2em;
 }
@@ -270,7 +273,7 @@ li.last {
 }
 
 #header #nav #login #login-body #message {
-	color:red;
+	color:#f4b7bb;
 	font-weight:bold;
 	left:10em;
 	position:absolute;
@@ -519,12 +522,13 @@ li.last {
 }
 
 #register .errorExplanation p {
-	color:#000000;
+	font-weight:bold;
 	margin-bottom:0.5em;
 }
 
 #register .errorExplanation ul {
 	color:red;
+	font-weight:bold;
 	margin-bottom:1.8em;
 }
 
