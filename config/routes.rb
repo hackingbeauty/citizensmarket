@@ -11,10 +11,16 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.activate '/activate/:id', :controller => 'users', :action => 'activate'
+  map.change_password '/change_password', :controller => 'users', :action => 'change_password'
+  map.update_password '/update_password', :controller => 'users', :action => 'update_password'
   map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
   map.reset_password '/reset_password', :controller => 'users', :action => 'reset_password'
 
-  map.resources :users, :member => {:issue_weights => :put}
+
+  map.resources :users, 
+    :member => {
+      :issue_weights => :put
+    }
 
   map.resource :session
 
@@ -32,6 +38,9 @@ ActionController::Routing::Routes.draw do |map|
                      :collection => { :vote_up => :post, :vote_down => :post }
   end
   
+  # map.connect '/edit', :controller => 'companies', :action => 'edit'
+  
+  map.connect '/admin', :controller => 'companies', :action => 'administer'
   map.connect '/score', :controller => 'companies', :action => 'find_score'
   map.connect '/about', :controller => 'about', :action => 'team'
   map.connect '/terms', :controller => 'home', :action => 'terms'
@@ -40,6 +49,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/dmca', :controller => 'home', :action => 'dmca'
   map.connect '/contact', :controller => 'home', :action => 'contact'
   map.connect '/take_action', :controller => 'home', :action => 'take_action'
+  # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   map.resource :home

@@ -36,4 +36,16 @@ describe CompaniesController do
       response.should be_success
     end
   end
+  
+  describe "DELETE" do
+    #TODO:  See reviews_contoller_spec for an example of how to delete.  Below probably doesn't work.
+    # it "should delete a company" do
+    #   post :show, :id => "1", :method => 'DELETE'
+    #   response.should be_success
+    #   
+    #   Company.should_receive(:find).with("1").and_return(nil)
+    #   get 'edit', :id => "1"
+    #   response.should be_success
+    # end 
+  end
 end

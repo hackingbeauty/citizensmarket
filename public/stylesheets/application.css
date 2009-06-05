@@ -1,5 +1,18 @@
 /******************** =General Styles ********************/
 
+div#flash_notice{
+	text-align: center;
+	color: green;
+	border: solid thin green;
+	font-family: courier;
+	font-weight: bold;
+	padding: 5px;
+	background-color: #cceecc;
+	margin-left:0px;
+	margin-top:40px;
+	width: 400px;
+}
+
 body {
 	font-family: "trebuchet ms",verdana,arial,helvetica,sans-serif;
 	color: #191919;
@@ -50,6 +63,7 @@ a {
 	color: #0f0087;
 	text-decoration: none;
 }
+
 a:hover{
 	text-decoration: underline;
 }
@@ -59,16 +73,22 @@ h1 {
 	font-weight: bold;
 	color: #333;
 }
+
 h2 {
-	font-size: 16px;
-	font-weight: bold;
-	color: #333;
+	color:#ABA189;
+	font-family:"HelveticaNeue-Light","Helvetica Neue",Helvetica,Arial,Geneva,sans-serif;
+	font-size:3em;
+	letter-spacing:-1px;
+	line-height:1.1em;
+	margin-bottom:0.5em;
 }
+
 h3 {
 	font-size: 14px;
 	font-weight: bold;
 	color: #333;
 }
+
 h4 {
 	font-weight: bold;
 	color: #333;
@@ -86,9 +106,11 @@ textarea {
 br {
 	clear: both;
 }
+
 br.left {
 	clear: left;
 }
+
 br.right {
 	clear: right;
 }
@@ -96,6 +118,18 @@ br.right {
 .avatar {
 	border: 1px solid #b3b3b3;
 	padding: 2px;
+}
+
+.green {
+	color:#74ac31;
+}
+
+.red {
+	color:#dc4b53;
+}
+
+.blue {
+	color:blue;
 }
 
 /******************** =Header ********************/
@@ -131,6 +165,93 @@ br.right {
 	padding:0 5px 0 5px;
 }
 
+/******************** =Error Messaging ********************/
+
+#notice {
+	color:red;
+	font-size:1.1em;
+}
+
+#errorExplanation h2 {
+	font-size:2em;
+}
+
+#errorExplanation ul li {
+	margin:5px 0;
+	color:red;
+}
+
+/* Client Side Validation Error Messaging */
+
+label.error {
+	color:Red !important;
+	float:right;
+	margin:0 !important;
+
+	width:240px;
+}
+
+/******************** =Dialog Confirmations ********************/
+
+.jqifade{
+      position: absolute;
+      background-color: #aaaaaa;
+}
+div.jqi{
+      width: 400px;
+      font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+      position: absolute;
+      background-color: #ffffff;
+      font-size: 11px;
+      text-align: left;
+      border: solid 1px #eeeeee;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      padding: 7px;
+}
+div.jqi .jqicontainer{
+      font-weight: bold;
+}
+div.jqi .jqiclose{
+      position: absolute;
+      top: 4px; right: -2px;
+      width: 18px;
+      cursor: default;
+      color: #bbbbbb;
+      font-weight: bold;
+}
+div.jqi .jqimessage{
+      padding: 10px;
+      line-height: 20px;
+      color: #444444;
+	font-size:1.3em;
+	text-align:center;
+}
+div.jqi .jqibuttons{
+      text-align: center;
+      padding: 5px 0 5px 0;
+      border: solid 1px #eeeeee;
+      background-color: #f4f4f4;
+}
+div.jqi button{
+      padding: 3px 10px;
+      margin: 0 10px;
+      background-color: #2F6073;
+      border: solid 1px #f4f4f4;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 12px;
+}
+div.jqi button:hover{
+      background-color: #728A8C;
+}
+div.jqi button.jqidefaultbutton{
+      background-color: #7BB933;
+}
+.jqiwarning .jqi .jqibuttons{
+      background-color: #BF5E26;
+}
+
 /******************** =Search ********************/
 
 #search {
@@ -160,7 +281,7 @@ br.right {
 }
 
 /* policy docs - last updated by Luke Jan 2009 */ 
-div terms{}
+
 div.terms .section{
 	margin: 25px;
 }
@@ -203,14 +324,40 @@ div.terms ol li{
 	padding-bottom: 10px;
 }
 
-#newcontainer span {
+/*#newcontainer span {
 	padding:15px 0 0 40px;
 	font-size:28px;
 	text-align:center;
+}*/
+
+#newcontainer p#line1,
+#newcontainer p#line2,
+#newcontainer p#line3 {
+	padding:15px 0 0 40px;
+	font-size:28px;
+	padding:15px 0 0 40px;
+	font-size:28px;
+	position:relative;
+	top:30px;
 }
 
-#home div#main {
-	
+#newcontainer p#line2 {
+	position:relative;
+	left:220px;
+}
+
+#newcontainer p#line3 {
+	position:relative;
+	left:260px;
+}
+
+#newcontainer a img {
+	position:relative;
+	top:45px;
+	left:400px;
+}
+
+#home div#main {	
 	padding: 10px;
 	border: 1px solid #b8b8b8;
 }
@@ -316,8 +463,13 @@ blockquote.pullquote p {
 
 form label { 
 	display: block;  /* block float the labels to left column, set a width */
+<<<<<<< HEAD:public/stylesheets/application.css
+/*	float: left; */
+	width: 150px; 
+=======
 	float: left; 
 	width: 170px; 
+>>>>>>> diego/master:public/stylesheets/application.css
 	padding-bottom: 10px;
 	padding-right: 5px;
 	margin: 5px 0 0; /* set top margin same as form input - textarea etc. elements */
@@ -702,7 +854,7 @@ div#company-issue-score table {
 h1 {
 	color:#555555;
 	text-transform:uppercase;
-	margin:34px 0;
+	margin-top:34px;
 }
 
 div#company-issue-score th {
@@ -774,6 +926,7 @@ div#company-issue-score tr td.total {
 	text-align:center;
 }
 
+<<<<<<< HEAD:public/stylesheets/application.css
 /** about section **/
 #bd{margin-top: 2em;}
 .left-box{
@@ -792,34 +945,269 @@ div#company-issue-score tr td.total {
 }
 
 /********** Scores **********/
+=======
+/******************** =Add Company Page *******************/
 
-/*
-div#company-issue-score td.score-of-1 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px 7px no-repeat;
+#add-company {
+
 }
 
-div#company-issue-score td.score-of-2 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -22px no-repeat;
+/******************** =Edit Company Page *******************/
+
+#edit-company,
+#add-company {
+	width: 530px;
+	margin-top:10px;
+	-moz-border-radius-bottomleft:9px;
+	-moz-border-radius-bottomright:9px;
+	-moz-border-radius-topleft:9px;
+	-moz-border-radius-topright:9px;
+	border:1px solid #ABA189;
+	margin-top:40px;
+	padding:2em;
 }
 
-div#company-issue-score td.score-of-3 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -49px no-repeat;
+#edit-company form label,
+#add-company form label {
+	text-align:left;
+	font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
+	color:#413C4D;
+	font-size:1.1em;
+	line-height:1.6em;
+	display:block;
+	margin-top:1em;
+	font-weight:bold;
 }
 
-div#company-issue-score td.score-of-4 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -77px no-repeat;
+#edit-company form input,
+#add-company form input,
+#edit-company form textarea,
+#add-company form textarea {
+	-moz-border-radius-bottomleft:3px;
+	-moz-border-radius-bottomright:3px;
+	-moz-border-radius-topleft:3px;
+	-moz-border-radius-topright:3px;
+	border:1px solid #ABA189;
+	font-size:1.1em;
+	padding:0.25em;
+	font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
+	color:#413C4D;
+	font-size:1.1em;
+	line-height:1.6em;
 }
 
-div#company-issue-score td.score-of-5 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -104px no-repeat;
+#edit-company #submit,
+#add-company #submit {
+	margin-top:20px;
+	color:white;
+	text-transform:uppercase;
+	font-weight:bold;
+	font-size:1.3em;
+	border:none;
+	width:124px;
+	height:40px;
+	background: url('../images/buttons/button-login.png') 1px 1px no-repeat;
+	cursor:pointer;
 }
 
-div#company-issue-score td.score-of-6 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -133px no-repeat;
+#edit-company form textarea,
+#add-company form textarea {
+	height:200px;
+	width:500px;
 }
 
-div#company-issue-score td.score-of-7 {
-	background: url('/images/icons/icon-stars-sprite.png') 49px -160px no-repeat;	
+#edit-company #back,
+#add-company #back {
+	text-decoration:underline;
+	margin-left:20px;
+}
+
+/******************** =Administer Companies Page *******************/
+
+#add-company-link {
+	float:right;
+	margin-top:-55px;
+	margin-left:10px;
+	position:relative;
+	left:5px;
+}
+
+#administer-companies {
+	width: 530px;
+	margin-top:10px;
+	-moz-border-radius-bottomleft:9px;
+	-moz-border-radius-bottomright:9px;
+	-moz-border-radius-topleft:9px;
+	-moz-border-radius-topright:9px;
+	border:1px solid #ABA189;
+	margin-top:40px;
+	padding:2em;
+}
+
+#administer-companies ul {
+	clear:both;
+}
+
+#administer-companies ul li {
+	padding:5px 5px;
+	border-bottom:1px solid #7BB933;
+}
+
+#administer-companies ul li.shade {
+	background-color:#F5FBF2;
+}
+
+#administer-companies span.company-name {
+	display:inline-block;
+	width:300px;
+	font-size:1.4em;
+}
+
+#administer-companies span.edit-company {
+	display:inline-block;
+	width:100px;
+}
+
+#administer-companies span.delete-company {
+	display:inline-block;
+	width:100px;
+}
+
+#administer-companies a.submit {
+	-moz-border-radius-bottomleft:10px;
+	-moz-border-radius-bottomright:10px;
+	-moz-border-radius-topleft:10px;
+	-moz-border-radius-topright:10px;
+	background:#7BB933 none repeat scroll 0 0;
+	color:#333333;
+	display:block;
+	font-size:1em;
+	font-weight:bold;
+	padding:5px 20px;
+	text-decoration:none;
+	text-align:center;
+}
+
+#administer-companies a.submit:hover {
+	background:#888888 none repeat scroll 0 0;
+	color:#FFFFFF;
+}
+
+/******************** =Add Company Form ********************/
+
+#add-company-form {
+	width:500px;
+}
+
+#add-company-form input {
+	width:300px;
+}
+
+#add-company-form label {
+	text-align:left;
+}
+
+
+
+/******************** =Login & Signup Forms ********************/
+
+.form-row {
+	float:left;
+	clear:both;
+	height:80px;
+}
+
+.form-row.accept-terms {
+	height:40px;
+}
+>>>>>>> mark/master:public/stylesheets/application.css
+
+.form-row.accept-terms span {
+	float:right;
+	margin-top:20px;
+}
+
+#login,
+#signup {
+	border:1px solid #ABA189;
+	margin-top:40px;
+	width:250px;
+	padding:2em 2em;
+	-moz-border-radius-bottomleft:9px;
+	-moz-border-radius-bottomright:9px;
+	-moz-border-radius-topleft:9px;
+	-moz-border-radius-topright:9px;
+	float:left;
+}
+
+#signup {
+	width:520px;
+	float:left;
+}
+
+#login form label,
+#signup form label {
+	text-align:left;
+	font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
+	color:#413C4D;
+	font-size:1.1em;
+	line-height:1.6em;
+	display:block;
+	margin-top:1em;
+	font-weight:bold;
+}
+
+#login form input,
+#signup form input {
+	-moz-border-radius-bottomleft:3px;
+	-moz-border-radius-bottomright:3px;
+	-moz-border-radius-topleft:3px;
+	-moz-border-radius-topright:3px;
+	border:1px solid #ABA189;
+	font-size:1.1em;
+	padding:0.25em;
+	font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
+	color:#413C4D;
+	font-size:1.1em;
+	line-height:1.6em;
+	float:left;
+	margin-right:10px;
+}
+
+#login #submit,
+#signup #submit {
+	margin-top:20px;
+	color:white;
+	text-transform:uppercase;
+	font-weight:bold;
+	font-size:1.3em;
+	border:none;
+	width:124px;
+	height:40px;
+	background: url('../images/buttons/button-login.png') 1px 1px no-repeat;
+	cursor:pointer;
+}
+
+#agree_to_terms {
+	margin-top:20px;
+}
+
+
+/** about section **/
+#bd{margin-top: 2em;}
+.left-box{
+}
+#left-nav{
+  margin: 1em auto;
+  width: 80%;
+}
+#left-nav li{
+  margin-bottom: 1em;
+}
+
+#left-nav li a{
+  font-weight: bold;
+  font-size: 108%;
 }
 */
 

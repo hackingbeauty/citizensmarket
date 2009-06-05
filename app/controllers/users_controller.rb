@@ -4,13 +4,34 @@ class UsersController < ApplicationController
   # Protect these actions behind an admin login
   # before_filter :admin_required, :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
+
+  def change_password
+    
+  end
+  
+  def update_password
+    
+    if User.authenticate(current_user.login, params[:old_password])
+      @user = current_user
+      if @user.update_attributes(:password => params[:password], :password_confirmation => params[:password_confirmation])
+        flash[:notice] = 'Your password has been updated'
+        redirect_to user_path(@user)
+      else
+        flash.now[:alert] = 'Was unable to update password: most likely your passwords did not match.'
+        render :action => 'change_password'
+      end
+    else
+      flash.now[:alert] = 'Authentication failed: incorrect old password (this message should be changed)'
+      render :action => 'change_password'
+    end
+  end
   before_filter :login_required, :only => [:edit, :update]
 
   # render new.rhtml
   def new
     @user = User.new
   end
-
+  
   def edit
     @user = current_user
   end
@@ -87,6 +108,7 @@ class UsersController < ApplicationController
     end
   end
   
+  # shouldn't this be called "update issue weights"?
   def issue_weights
     @user = find_user
     # Only update if the user being updated is the one that is logged in

@@ -53,60 +53,8 @@ class User < ActiveRecord::Base
   ##########################################################
   ######## SCORING SYSTEM
   
-  
-  def contributor_score
-    # return cached if it exists
-    s = User.contributor_score_s
-    x = User.contributor_score_x
-    output = s * ((x * lifetime_review_score) + lifetime_reviews)
-  end
-  
-  def self.contributor_score_s
-    10
-  end
-  def self.contributor_score_x
-    1
-  end
-  
-  def lifetime_review_score
-    # return cached if it exists
-    output = 0
-    reviews.each do |r|
-      output += r.review_score
-    end
-    output
-  end
-  
-  def lifetime_reviews
-    # return cached if it exists
-    reviews.size
-  end
-  
-  def contributor_level
-    promotions_at = [0, 50, 100, 200, 300, 500, 700, 1000, 1300, 1700, 2100, 2600, 3100, 3700, 4300, 5000]
-    promotions_at.each do |n|
-      return promotions_at.index(n) if n > contributor_score
-    end
-    return promotions_at.size
-  end
-  
-  def my_company_score(company)
-    # get cached if it exists
-    company = Company.find(company) if company.class == Fixnum
-    output = 0
-    numerator = 0
-    denominator = 0
-    user_issues.each do |ui|
-      issue_score = company.issue_score(ui.issue)
-      next if issue_score.nil?
-      numerator += ui.weight * issue_score
-      denominator += ui.weight
-    end
-    return numerator if denominator.nil?  # if user has all weights set to 0, equivalent to all weights set to 1, because all weights are set equally
-    
-    return numerator.to_f / denominator.to_f
-    
-  end
+  # moved to lib/cm_scores.rb  - Luke, 
+  # can remove this message/section from this file eventually
   
   ######## end SCORING SYSTEM
   ########d##################################################

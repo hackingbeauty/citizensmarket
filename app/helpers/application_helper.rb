@@ -9,7 +9,15 @@ module ApplicationHelper
     end
     output
   end
-
+  
+  # Return true if some user is logged in, false otherwise.
+  def logged_in?
+    not session[:user_id].nil?
+  end
+  def admin_logged_in?
+    not session[:admin_id].nil?
+  end
+  
   def render_tabs(tabs)
     tabs.inject("") do |tab_html, tab|
       tab[:on] ? tab_state = 'on' : tab_state = 'off'
