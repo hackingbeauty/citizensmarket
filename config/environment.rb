@@ -70,9 +70,11 @@ Rails::Initializer.run do |config|
   # like if you have constraints or database-specific column types
   # config.active_record.schema_format = :sql
 
+  config.action_mailer.delivery_method = :smtp
+  
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
-  config.active_record.observers = :user_observer #this allows authentication emails to go out for restful_authentication
+  config.active_record.observers = :user_observer
 
   # Load Presenters
   config.load_paths += %W( #{RAILS_ROOT}/app/presenters )
