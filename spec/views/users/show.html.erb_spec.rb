@@ -30,7 +30,7 @@ describe "/users/show.html.erb" do
   it "should have link to edit your profile when logged in and looking at your profile" do
     template.stub!(:current_user).and_return(@user)
     render "/users/show.html.erb"
-    response.should_not have_tag("a[href=?]", edit_user_path(@user))
+    response.should have_tag("a[href=?]", edit_user_path(@user))
   end
 
 
