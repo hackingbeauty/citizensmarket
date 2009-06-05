@@ -14,6 +14,9 @@ module ApplicationHelper
   def logged_in?
     not session[:user_id].nil?
   end
+  def admin_logged_in?
+    not session[:admin_id].nil?
+  end
   
   def render_tabs(tabs)
     tabs.inject("") do |tab_html, tab|

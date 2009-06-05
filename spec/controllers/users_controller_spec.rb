@@ -92,60 +92,16 @@ describe UsersController do
   
   def create_user(options = {})
     post :create, :user => { :login => 'quire', :email => 'quire@example.com',
-      :password => 'quire69', :password_confirmation => 'quire69' }.merge(options)
+      :password => 'quire69', :password_confirmation => 'quire69', :terms_of_use => "1" }.merge(options)
   end
 end
 
-describe UsersController, "changing password" do
-  
-  describe "when I click 'change my password' - GET 'change_password'" do
-    before do
-      get :change_password
-    end
-    
-    it "should render a template" do
-      response.should render_template('change_password')
-    end
-    
-  end
-  
-  describe "when I click submit, and my data's good" do
-    before do
-      @user = User.find(3)
-      controller.stub!(:current_user).and_return(@user)
-      post :update_password, {:old_password => 'foobar', :password => 'foobaz', :password_confirmation => 'foobaz'}
-    end
-    
-    it "should update my password (as crypted_password) in the database" do 
-      @user = User.find(3)
-      @user.crypted_password.should == 
-      "db1b4383c440e5df9c1f35f748159911b7609e37"
-    end
-        
-    it "shouldn't give my user any error messages"
-  end
-  
-  #describe "when I click submit, but I typed my confirmation wrong" do
-  #  it "should not update current_user"
-  #  it "should not update my user in the table"
-  #  it "should redirect me back to the change password page"
-  #  it "should tell me something's wrong"
-  #end
-  
-  #describe "when I click submit, and I've typed the wrong old password" do
-  #  it "should not update current_user"
-  #  it "should not update my user in the table"
-  #  it "should redirect me back to the 'change password' page"
-  #  it "should tell me something's wrong"
-  #end
-  
-end
-  
-
-describe UsersController, "when editing a user," do
-  
+describe UsersController, "when editing your profile" do
   describe "on GET 'edit' with valid id," do
     before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
+      # template.stub!(:current_user).and_return(User.find(1))
       get :edit, :id => 1
     end
     
@@ -161,13 +117,15 @@ describe UsersController, "when editing a user," do
       assigns(:user).firstname.should == 'Quentin'
     end
     
-    it "should render edit.html.erb" do
+    it "should not render edit.html.erb " do
       response.should render_template('edit')
     end
   end
   
   describe "on PUT 'update' with valid data," do
     before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
       put :update, :id => 1, :user => {:firstname => 'NewFirstname', :lastname => 'NewLastname', :profile => {:location => 'newLocation', :website => 'www.NewWebsite.com'}}
     end
     
@@ -196,6 +154,8 @@ describe UsersController, "when editing a user," do
   
   describe "on PUT 'update' with invalid data (firstname is invalid with 101 characters)," do
     before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
       put :update, :id => 2, :user => {:firstname => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", :lastname => 'NewLast', :profile => {:location => 'newLoc', :website => 'www.newWeb.com'}}
     end
     
@@ -220,8 +180,84 @@ describe UsersController, "when editing a user," do
       assigns(:user).errors.should_not == nil
     end
     
-    it "should set a flash[:error] message" do 
-      flash[:error].should_not be_nil
+  
+  end
+  
+  # not sure how to express this - what is normal failure response? - Luke
+  it "on GET 'edit' with invalid id, it should fail - see comments" 
+  
+  # not sure how to express this either - Luke
+  it "on GET 'edit' with no id, it should fail - see comments" 
+  
+end
+
+describe UsersController, "when editing a user and you're not logged in" do
+  describe "on GET 'edit' with valid id," do
+    before do
+      get :edit, :id => 1
+    end
+    
+    it "should return success" do
+      response.should be_redirect
+    end
+    
+    it "should assign to @user" do
+      assigns(:user).should == nil
+    end
+    
+    it "should get the proper user" do
+      assigns(:user).should be_nil
+    end
+    
+    it "should not render edit.html.erb " do
+      response.should_not render_template('edit')
+    end
+  end
+  
+  describe "on PUT 'update' with valid data," do
+    before do
+      put :update, :id => 1, :user => {:firstname => 'NewFirstname', :lastname => 'NewLastname', :profile => {:location => 'newLocation', :website => 'www.NewWebsite.com'}}
+    end
+    
+    it "should return a redirect" do
+      response.should be_redirect
+    end
+    
+    it "should update the user" do
+      user = User.find(1)
+      user.firstname.should == 'Quentin'
+    end
+    
+    it "should redirect to show" do
+      response.should redirect_to("/session/new")
+    end
+    
+    it "should assign to user" do 
+      assigns(:user).class.should == NilClass
+    end
+    
+    it "should not set a flash[:notice] message" do
+      flash[:notice].should be_nil
+    end
+    
+  end
+  
+  describe "on PUT 'update' with invalid data (firstname is invalid with 101 characters)," do
+    before do
+      put :update, :id => 2, :user => {:firstname => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", :lastname => 'NewLast', :profile => {:location => 'newLoc', :website => 'www.newWeb.com'}}
+    end
+    
+    it "should return success" do
+      response.should be_redirect
+    end
+    
+    it "should assign to @user" do
+      assigns(:user).class.should == NilClass
+    end
+    
+    it "should not update the user" do
+      user = User.find(2)
+      user.lastname.should == 'Vader'
     end
     
   end
@@ -314,20 +350,20 @@ describe UsersController do
     
     it "should route users_path() to /users" do
       users_path().should == "/users"
-      formatted_users_path(:format => 'xml').should == "/users.xml"
-      formatted_users_path(:format => 'json').should == "/users.json"
+      users_path(:format => 'xml').should == "/users.xml"
+      users_path(:format => 'json').should == "/users.json"
     end
     
     it "should route new_user_path() to /users/new" do
       new_user_path().should == "/users/new"
-      formatted_new_user_path(:format => 'xml').should == "/users/new.xml"
-      formatted_new_user_path(:format => 'json').should == "/users/new.json"
+      new_user_path(:format => 'xml').should == "/users/new.xml"
+      new_user_path(:format => 'json').should == "/users/new.json"
     end
     
     it "should route user_(:id => '1') to /users/1" do
       user_path(:id => '1').should == "/users/1"
-      formatted_user_path(:id => '1', :format => 'xml').should == "/users/1.xml"
-      formatted_user_path(:id => '1', :format => 'json').should == "/users/1.json"
+      user_path(:id => '1', :format => 'xml').should == "/users/1.xml"
+      user_path(:id => '1', :format => 'json').should == "/users/1.json"
     end
     
     it "should route edit_user_path(:id => '1') to /users/1/edit" do

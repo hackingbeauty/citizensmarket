@@ -9,7 +9,7 @@
         <% count = 0 %>
         <% Issue.all(:order => :category).each do |issue| %>
           <% category = issue.category %>
-          <% s = @company.issue_score(issue) %>
+          <% s = CmScores.company_issue_score(@company, issue) %>
           <% next if s.nil? %>
           <% if seen_before[category].nil? %>
             <% seen_before[category] = true %>

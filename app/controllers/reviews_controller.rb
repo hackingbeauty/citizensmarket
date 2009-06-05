@@ -1,6 +1,6 @@
 class ReviewsController < ResourceController::Base
   
-  # before_filter :login_required, :only => ['new', 'create', 'edit', 'update']
+  before_filter :login_required, :only => ['new', 'create', 'edit', 'update']
   belongs_to :company
   
   
