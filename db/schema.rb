@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090411053513) do
+ActiveRecord::Schema.define(:version => 20090606183714) do
 
   create_table "admins", :force => true do |t|
     t.string   "email"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(:version => 20090411053513) do
   create_table "user_issues", :force => true do |t|
     t.integer  "user_id"
     t.integer  "issue_id"
-    t.float    "weight"
+    t.integer  "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20090411053513) do
     t.datetime "updated_at"
     t.string   "firstname",                 :limit => 100, :default => ""
     t.string   "lastname",                  :limit => 100, :default => ""
+    t.integer  "reset_code"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
