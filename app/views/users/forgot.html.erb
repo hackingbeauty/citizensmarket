@@ -4,9 +4,9 @@
             <h2>Password Reminder</h2>
             <% form_for :user, :url => forgot_path do |form|  %>
                 <%= error_messages_for :session %>
-                <% if flash[:notice] %>
+                <% if flash[:forgot_password_notice] %>
                     <div id="message">
-                        <%= flash[:notice] %>
+                        <%= flash[:forgot_password_notice] %>
                     </div>
                 <% end %>
                 <div class="form-row">
