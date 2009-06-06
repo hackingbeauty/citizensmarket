@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(:version => 20090606183714) do
     t.datetime "updated_at"
     t.string   "firstname",                 :limit => 100, :default => ""
     t.string   "lastname",                  :limit => 100, :default => ""
-    t.integer  "reset_code"
+    t.string   "reset_code"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
