@@ -4,14 +4,16 @@
             <h2>Password Reminder</h2>
             <% form_for :user, :url => forgot_path do |form|  %>
                 <%= error_messages_for :session %>
-                <% if flash[:forgot_password_notice] %>
+                <% if flash[:notice] %>
                     <div id="message">
-                        <%= flash[:forgot_password_notice] %>
+                        <%= flash[:notice] %>
                     </div>
                 <% end %>
                 <div class="form-row">
                     <label for="email">Email:</label>
-                    <%= form.text_field :email %>
+                    <%= form.text_field :email,
+                                        :size => User::EMAIL_SIZE,
+                                        :maxlength => User::EMAIL_MAX_LENGTH %>
                 </div>
                 <div class="form-row">
                     <%= submit_tag "Send Password" %>
