@@ -19,8 +19,6 @@ class User < ActiveRecord::Base
 
   before_validation :copy_email_to_login
   
-  attr_accessor :reset_code
-  
   # validates_presence_of     :login
   # validates_length_of       :login,    :within => 3..40
   # validates_uniqueness_of   :login
@@ -141,6 +139,7 @@ class User < ActiveRecord::Base
   def create_reset_code
     @reset = true
     self.reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    logger.info('inside create_reset code = ' + self.reset_code)
     save(false)
   end
   

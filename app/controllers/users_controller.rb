@@ -79,6 +79,7 @@ class UsersController < ApplicationController
   
   def reset
     @user = User.find_by_reset_code(params[:reset_code]) unless params[:reset_code].nil?
+    logger.info('reset code is ' + params[:reset_code])
     if request.post?
       if @user.update_attributes(:password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
         self.current_user = @user
