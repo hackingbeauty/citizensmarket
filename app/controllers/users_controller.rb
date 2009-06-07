@@ -77,8 +77,6 @@ class UsersController < ApplicationController
     end
   end
   
-  dsf
-  
   def reset
     @user = User.find_by_reset_code(params[:reset_code]) unless params[:reset_code].nil?
     logger.info('reset code is ' + params[:reset_code])
