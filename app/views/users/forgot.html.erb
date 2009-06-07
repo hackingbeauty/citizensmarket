@@ -1,9 +1,9 @@
 <div id="forgot-password">
     <div id="forgot-password-top"></div>
         <div id="forgot-password-body">
-            <h2>Password Reminder</h2>
+            <h2>Reset Your Password</h2>
             <% form_for :user, :url => forgot_path do |form|  %>
-                <%= error_messages_for :session %>
+                <%= error_messages_for :user %>
                 <% if flash[:forgot_password_notice] %>
                     <div id="message">
                         <%= flash[:forgot_password_notice] %>
@@ -16,7 +16,7 @@
                                         :maxlength => User::EMAIL_MAX_LENGTH %>
                 </div>
                 <div class="form-row">
-                    <%= submit_tag "Send Password" %>
+                    <%= submit_tag "Reset" %>
                 </div>
             <% end %>
         </div><!-- end login-body -->

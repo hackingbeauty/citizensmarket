@@ -55,15 +55,26 @@ li.last {
 	border-right:none !important;
 }
 
+.red {
+	color:red !important;
+}
+
+.green {
+	color:green !important;
+}
+
 #register #flash_notice,
 #login #message {
 	margin-bottom:1.7em;
 }
 
 #register #flash_notice p,
-#login #message p {
+#login #message p,
+#forgot-password #message p,
+#forgot-password #reset-password-notice p {
 	color:green;
 	font-weight:bold;
+	margin-bottom:2em;
 }
 
 #register #flash_notice p.big,

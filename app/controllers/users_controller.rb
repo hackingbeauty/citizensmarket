@@ -69,13 +69,15 @@ class UsersController < ApplicationController
       user = User.find_by_email(params[:user][:email])
       if user
         user.create_reset_code
-        flash[:forgot_password_notice] = "Reset code sent to #{user.email}"
+        flash[:forgot_password_notice] = "<p class='green'>Password reset code has been sent to #{user.email}</p>"
       else
-        flash[:forgot_password_notice] = "#{params[:user][:email]} does not exist in system"
+        flash[:forgot_password_notice] = "<p class='red'>The email address #{params[:user][:email]} does not exist in system</p>"
       end
       render :template => '/users/forgot'
     end
   end
+  
+  dsf
   
   def reset
     @user = User.find_by_reset_code(params[:reset_code]) unless params[:reset_code].nil?
@@ -84,9 +86,9 @@ class UsersController < ApplicationController
       if @user.update_attributes(:password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
         self.current_user = @user
         @user.delete_reset_code
-        flash[:notice] = "Password reset successfully for #{@user.email}"
-        redirect_back_or_default('/')
+        render :template => '/users/dashboard'
       else
+        flash[:notice] = "<p class='red'>I'm sorry, but I can't reset the password for #{@user.email}</p>"
         render :action => :reset
       end
     end
