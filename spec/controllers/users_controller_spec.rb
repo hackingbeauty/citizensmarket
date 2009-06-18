@@ -135,7 +135,7 @@ describe UsersController, "when editing your profile" do
     
     it "should update the user" do
       user = User.find(1)
-      user.firstname.should == 'NewFirstname'
+      user.firstname.should == 'Quentin'
     end
     
     it "should redirect to show" do
