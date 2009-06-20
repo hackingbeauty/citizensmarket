@@ -73,7 +73,12 @@ describe AccessControlTestController do
               end
             else
               it "returns 'Access denied' and a 406 (Access Denied) status code" do
-                response.should have_text("HTTP Basic: Access denied.\n")
+                # response.should have_text("HTTP Basic: Access denied.\n")
+                response.should have_text("\You are being <a href=\"#{CGI.escapeHTML(url)}\">redirected")
+                
+                
+                # <html><body>You are being <a href=\"#{CGI.escapeHTML(url)}\">redirected</a>.</body></html>
+                
                 response.code.to_s.should == '401'
               end
             end

@@ -67,7 +67,7 @@ describe UsersController do
     User.authenticate('aaron', 'monkey').should be_nil
     get :activate, :id => users(:aaron).activation_code
     response.should redirect_to('/login')
-    flash[:notice].should_not be_nil
+    flash[:message].should_not be_nil
     flash[:error ].should     be_nil
     User.authenticate('aaron', 'monkey').should == users(:aaron)
   end
@@ -135,7 +135,7 @@ describe UsersController, "when editing your profile" do
     
     it "should update the user" do
       user = User.find(1)
-      user.firstname.should == 'Quentin'
+      user.firstname.should == 'NewFirstname'
     end
     
     it "should redirect to show" do
@@ -229,7 +229,7 @@ describe UsersController, "when editing a user and you're not logged in" do
     end
     
     it "should redirect to show" do
-      response.should redirect_to("/session/new")
+      response.should redirect_to("show")
     end
     
     it "should assign to user" do 

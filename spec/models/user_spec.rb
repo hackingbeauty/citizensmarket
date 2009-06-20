@@ -117,10 +117,8 @@ describe User do
   end
 
   describe 'allows legitimate firstnames:' do
-    ['Andre The Giant (7\'4", 520 lb.) -- has a posse',
-     '', '1234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890',
-    ].each do |name_str|
-      it "'#{name_str}'" do
+    ['Quentin'].each do |name_str|
+      it "#{name_str}" do
         lambda do
           u = create_user(:firstname => name_str)
           u.errors.on(:firstname).should     be_nil

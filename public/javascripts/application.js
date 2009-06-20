@@ -92,7 +92,7 @@
 	                required: true,
 	                equalTo: "#user_password"
 	            },
-	            'user[agree_to_terms]': "required"
+	            'user[terms_of_use]': "required"
 	        },
 	        messages: {
 		        'user[firstname]': {
@@ -113,7 +113,7 @@
 	                required: "Confirm your password",
 	                equalTo: "Please enter the same password as above"
 	            },
-	            'user[agree_to_terms]': "Please accept our policy"
+	            'user[terms_of_use]': "Please accept our policy"
 	        }
 		});
 	}
