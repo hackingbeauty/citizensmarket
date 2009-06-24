@@ -46,12 +46,11 @@ describe User do
   
 
   describe 'allows legitimate logins:' do
-    ['123', '1234567890_234567890_234567890_234567890',
-     'hello.-_there@funnychar.com'].each do |login_str|
-      it "'#{login_str}'" do
+    ['blah@blah.com'].each do |login_str|
+      it "#{login_str}" do
         lambda do
-          u = create_user(:login => login_str)
-          u.errors.on(:login).should     be_nil
+          u = create_user(:email => login_str)
+          u.errors.on(:email).should     be_nil
         end.should change(User, :count).by(1)
       end
     end

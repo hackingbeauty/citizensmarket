@@ -26,10 +26,8 @@ class User < ActiveRecord::Base
   # 
   validates_format_of       :firstname,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
   validates_length_of       :firstname,     :maximum => 100, :allow_nil => true
-  validates_presence_of     :firstname
   validates_format_of       :lastname,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
   validates_length_of       :lastname,     :maximum => 100, :allow_nil => true
-  validates_presence_of     :lastname
 
   # Max & min lengths for all fields
   FIRSTNAME_MAX_LENGTH = 100
@@ -51,8 +49,8 @@ class User < ActiveRecord::Base
 	validates_format_of       :email,
 				  :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,
 				  :with => Authentication.email_regex, :message => Authentication.bad_email_message
-	validates_acceptance_of   :terms_of_use
-                            # :allow_nil => false
+	validates_acceptance_of   :terms_of_use,
+                            :allow_nil => false
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
