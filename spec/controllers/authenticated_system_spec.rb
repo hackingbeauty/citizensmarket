@@ -69,15 +69,18 @@ describe SessionsController do
   # Cookie Login
   #
   describe "Logging in by cookie" do
+    
     def set_remember_token token, time
       @user[:remember_token]            = token; 
       @user[:remember_token_expires_at] = time
       @user.save!
-    end    
+    end
+    
     before do 
       @user = User.find(:first); 
       set_remember_token 'hello!', 5.minutes.from_now
-    end    
+    end
+    
     it 'logs in with cookie' do
       stub!(:cookies).and_return({ :auth_token => 'hello!' })
       logged_in?.should be_true
@@ -99,6 +102,7 @@ describe SessionsController do
       stub!(:cookies).and_return({ :auth_token => 'hello!' })
       logged_in?.should_not be_true
     end
+    
   end
   
 end

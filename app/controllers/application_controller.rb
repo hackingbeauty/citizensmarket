@@ -17,13 +17,13 @@ class ApplicationController < ActionController::Base
   protected 
   
 	# Protect a page from unauthorized access.
-  	def login_required
-    	unless logged_in?
-        session[:protected_page] = request.request_uri
-        redirect_to :controller => "sessions", :action => "login"
-        return false
-    	end
-  	end
+    # def login_required
+    #       unless logged_in?
+    #         session[:protected_page] = request.request_uri
+    #         redirect_to :controller => "sessions", :action => "login"
+    #         return false
+    #       end
+    # end
   	
   	def admin_login_required
   	  unless admin_logged_in?

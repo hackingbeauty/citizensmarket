@@ -2,9 +2,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
   
 # Be sure to include AuthenticatedTestHelper in spec/spec_helper.rb instead
 # Then, you can remove it from this and the units test.
-include AuthenticatedTestHelper
 
 describe UsersController do
+  include AuthenticatedTestHelper
   fixtures :users
 
   it 'properly loads fixtures with Hash for attribute "profile"' do
