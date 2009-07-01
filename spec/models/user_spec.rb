@@ -116,7 +116,7 @@ describe User do
   end
 
   describe 'allows legitimate firstnames:' do
-    ['Quentin'].each do |name_str|
+    ['mark'].each do |name_str|
       it "#{name_str}" do
         lambda do
           u = create_user(:firstname => name_str)
@@ -272,7 +272,7 @@ describe User do
 
 protected
   def create_user(options = {})
-    record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69', :terms_of_use => "1" }.merge(options))
+    record = User.new({ :firstname=> 'mark', :lastname=>'muskardin', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69', :terms_of_use => "1" }.merge(options))
     record.register! if record.valid?
     #raise "record.id is nil and errors = #{record.errors.full_messages.join(', ')}" if record.id.nil?
     record
