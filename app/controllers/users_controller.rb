@@ -23,6 +23,7 @@ class UsersController < ApplicationController
       render :action => 'change_password'
     end
   end
+  
   before_filter :login_required, :only => [:edit, :update]
 
   # render new.rhtml
@@ -33,30 +34,19 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
   end
-
-  def validate
+  
+  def create
     logout_keeping_session!
     @user = User.new(params[:user])      
-    if @user && @user.valid?
-      render :template => '/captcha/captcha'
-      verify_captcha(@user)
+    @user.register! if @user && @user.valid?
+    success = @user && @user.valid?
+    if verify_recaptcha(@user) && success && @user.errors.empty?
+      flash[:notice] = "<p class=\"big\">Thanks for signing up!</p><p>We're sending you an email to #{@user.email} with your activation code.</p>"
+      redirect_back_or_default('/')
     else
       render :template => '/home/show'
     end
   end
-
-  # def create
-  #   logout_keeping_session!
-  #   @user = User.new(params[:user])      
-  #   @user.register! if @user && @user.valid?
-  #   success = @user && @user.valid?
-  #   if success && @user.errors.empty?
-  #     flash[:notice] = "<p class=\"big\">Thanks for signing up!</p><p>We're sending you an email to #{@user.email} with your activation code.</p>"
-  #     redirect_back_or_default('/')
-  #   else
-  #     render :template => '/home/show'
-  #   end
-  # end
   
   def activate
     logout_keeping_session!
@@ -157,14 +147,5 @@ class UsersController < ApplicationController
 protected
   def find_user
     @user ||= User.find(params[:id])
-  end
-  def verify_captcha(model)
-    if verify_recaptcha
-        model.save!
-        redirect_to success_path
-      else
-        flash[:error] = "There was an error with the recaptcha code below. Please re-enter the code and click submit." 
-        # render :action => 'new'
-      end
   end
 end

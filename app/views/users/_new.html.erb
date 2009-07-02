@@ -43,6 +43,9 @@
                         <span>I agree to the <%= link_to 'Citizens Market Terms of Service', '/terms' %></span>
                         <%= form.check_box :terms_of_use %> 
                     </div>
+                    <div class="form-row captcha">
+                        <%= render :partial => 'captcha/recaptcha' %>
+                    </div>
                     <div class="form-row">
                         <%= submit_tag "Sign Up", :id => "submit" %>
                         <span id="signin">or 

@@ -63,26 +63,6 @@ li.last {
 	color:green !important;
 }
 
-#register #flash_notice,
-#login #message {
-	margin-bottom:1.7em;
-}
-
-#register #flash_notice p,
-#login #message p,
-#forgot-password #message p,
-#forgot-password #reset-password-notice p {
-	color:green;
-	font-weight:bold;
-	margin-bottom:2em;
-}
-
-#register #flash_notice p.big,
-#login #message p.big {
-	font-size:2em;
-	margin-bottom:0.2em;
-}
-
 /******************* =Header (All Pages) *******************/
 
 #header {
@@ -511,7 +491,11 @@ li.last {
 	margin:1em 0 0 1em;
 }
 
-/* =Registration & Login Error Messaging */
+#register .form-row.captcha {
+	margin-bottom:2em;
+}
+
+/* =Registration & Login Error Messaging + Notifications */
 
 #register input.error,
 #login input.error,
@@ -541,6 +525,26 @@ li.last {
 	color:red;
 	font-weight:bold;
 	margin-bottom:1.8em;
+}
+
+#register #flash_notice,
+#login #message {
+	margin-bottom:1.7em;
+}
+
+#register #flash_notice p,
+#login #message p,
+#forgot-password #message p,
+#forgot-password #reset-password-notice p {
+	color:green;
+	font-weight:bold;
+	margin-bottom:2em;
+}
+
+#register #flash_notice p.big,
+#login #message p.big {
+	font-size:2em;
+	margin-bottom:0.2em;
 }
 
 /* Rails is inserting a hidden div with a security token which takes up space, so let's hide it*/
@@ -618,10 +622,6 @@ div.jqi .jqimessage{
 }
 div.jqi .jqibuttons{ 
 	display:none;
-/*      text-align: right; 
-      padding: 5px 0 5px 0; 
-      border: solid 1px #eeeeee; 
-      background-color: #f4f4f4;*/
 }
 div.jqi button{ 
       padding: 3px 10px;
