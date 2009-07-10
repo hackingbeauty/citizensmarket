@@ -24,3 +24,4 @@ config.action_controller.perform_caching             = true
 # config.action_mailer.raise_delivery_errors = false
 
 SITE_URL = "citizensmarket.org"
+SHOW_GA = true
