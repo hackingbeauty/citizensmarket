@@ -332,31 +332,28 @@ li.last {
 
 /* =Welcome Section */
 
-#homepage .welcome {
+#homepage #welcome {
 	float:left;
 	height:275px;
+	margin-left:1em;
+	margin-top:-0.7em;
 	width:36em;
 }
 
-#homepage .welcome h1 {
+#homepage #welcome h1 {
 	font-size:4em;
 }
 
-#homepage .welcome p {
+#homepage #welcome p {
 	font-size:1.1em;
 	line-height:2em;
 }
 
-#homepage .welcome em {
+#homepage #welcome em {
 	color:#404048;
 	font-weight:bold;
 	font-size:1.8em;
 	margin-bottom:1em;
-}
-
-#homepage .welcome.rotation2,
-#homepage .welcome.rotation3 {
-	display:none;
 }
 
 /* =Latest Reviews  & Latest News */
@@ -642,8 +639,13 @@ div.jqi button.jqidefaultbutton{
       background-color: #BF5E26;
 }
 
+/******************* =Video *******************/
 
-
+#homepage #video {
+	float:right;
+	margin-right:1.2em;
+	width:400px;
+}
 
 
 
