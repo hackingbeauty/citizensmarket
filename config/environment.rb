@@ -80,7 +80,7 @@ Rails::Initializer.run do |config|
   config.load_paths += %W( #{RAILS_ROOT}/app/presenters )
   
   #reCaptcha Keys
-  ENV['RECAPTCHA_PUBLIC_KEY'] = '6LdoDAcAAAAAAJPWZ8_b8Nm2tvKqyet7hs3iXVjD'
-  ENV['RECAPTCHA_PRIVATE_KEY'] = '6LdoDAcAAAAAAG8fzeLUZIxxxS72N-iOKp9G89is'
+  # ENV['RECAPTCHA_PUBLIC_KEY'] = '6LdoDAcAAAAAAJPWZ8_b8Nm2tvKqyet7hs3iXVjD'
+  # ENV['RECAPTCHA_PRIVATE_KEY'] = '6LdoDAcAAAAAAG8fzeLUZIxxxS72N-iOKp9G89is'
   
 end
