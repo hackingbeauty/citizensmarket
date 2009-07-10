@@ -31,6 +31,14 @@ test:
   pool: 5
   timeout: 5000
 
+staging:
+  adapter: mysql
+  encoding: utf8
+  database: citizensmarket_development
+  pool: 5
+  timeout: 5000
+  socket: /tmp/mysql.sock
+
 production:
   adapter: mysql
   encoding: utf8
