@@ -14,14 +14,12 @@ describe User do
     end
 
     it 'initializes #activation_code' do
-      @user.activation_code.should be_nil
-      @user.reload
       @user.activation_code.should_not be_nil
     end
 
     it 'starts in pending state' do
       @user.reload
-      @user.should be_active
+      @user.should be_pending
     end
     
     it 'requires for the user to agree on the terms of use' do
@@ -148,11 +146,11 @@ describe User do
   #
 
   it 'authenticates user' do
-    User.authenticate('quentin', 'monkey').should == users(:quentin)
+    User.authenticate('quentin@example.com', 'monkey').should == users(:quentin)
   end
 
   it "doesn't authenticate user with bad password" do
-    User.authenticate('quentin', 'invalid_password').should be_nil
+    User.authenticate('quentin@example.com', 'invalid_password').should be_nil
   end
 
  if REST_AUTH_SITE_KEY.blank?

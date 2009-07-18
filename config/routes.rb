@@ -20,6 +20,8 @@ ActionController::Routing::Routes.draw do |map|
     :member => {
       :issue_weights => :put
     }
+    
+  map.dashboard "/dashboard", :controller => "users", :action => "dashboard"
 
   map.resource :session
 

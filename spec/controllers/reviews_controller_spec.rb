@@ -1,10 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-include AuthenticatedTestHelper
 
 describe ReviewsController do
+  include AuthenticatedTestHelper
+  
   fixtures :reviews
-  before do
+  before(:each) do
     login_as(mock_user)
   end
   

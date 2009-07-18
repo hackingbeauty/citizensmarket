@@ -11,9 +11,10 @@ module ApplicationHelper
   end
   
   # Return true if some user is logged in, false otherwise.
-  def logged_in?
-    not session[:user_id].nil?
-  end
+  # def logged_in?
+  #   not session[:user_id].nil?
+  # end
+
   def admin_logged_in?
     not session[:admin_id].nil?
   end
