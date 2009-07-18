@@ -4,7 +4,6 @@ quentin:
   firstname:                 Quentin
   lastname:                  Jones
   profile:                   { :location: New York City, :website: qjones.net }
-  login:                     quentin
   email:                     quentin@example.com
   salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
   crypted_password:          58ff8d53464c95bfa49ce7bf8cd6577e238f6f55 # 'monkey'
@@ -19,7 +18,6 @@ aaron:
   id:                        2
   firstname:                 Darth
   lastname:                  Vader
-  login:                     aaron
   email:                     aaron@example.com
   salt:                      da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
   crypted_password:          8b32e227773ad8bcddd7914148b34c38531e4290 # 'monkey'
@@ -34,7 +32,6 @@ aaron:
 
 old_password_holder:
   id:                        3
-  login:                     old_password_holder
   email:                     salty_dog@example.com
   salt:                      50698feabc68e3511603ae8d8fd46d172a916d7a
   crypted_password:          4c7ddf6c7321de252bf0a853374afe2d9961c441 # 'foobar'

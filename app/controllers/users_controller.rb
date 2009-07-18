@@ -1,16 +1,20 @@
 class UsersController < ApplicationController
-  # Be sure to include AuthenticationSystem in Application Controller instead
 
   # Protect these actions behind an admin login
   # before_filter :admin_required, :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
+  before_filter :login_required, :only => [:edit, :update, :dashboard]
+  
+  def dashboard
+    return unless cookies[:auth_token]
+    user = User.find_by_remember_token(cookies[:auth_token]) 
+  end
 
   def change_password
     
   end
   
   def update_password
-    
     if User.authenticate(current_user.login, params[:old_password])
       @user = current_user
       if @user.update_attributes(:password => params[:password], :password_confirmation => params[:password_confirmation])
@@ -25,7 +29,8 @@ class UsersController < ApplicationController
       render :action => 'change_password'
     end
   end
-  before_filter :login_required, :only => [:edit, :update]
+  
+  
 
   # render new.rhtml
   def new
@@ -35,35 +40,64 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
   end
-
+  
   def create
     logout_keeping_session!
     @user = User.new(params[:user])      
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
-    if success && @user.errors.empty?
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
-      redirect_back_or_default('/')      
+    if verify_recaptcha(@user) && success && @user.errors.empty?
+      flash[:notice] = "<p class=\"big\">Thanks for signing up!</p><p>We're sending you an email to #{@user.email} with your activation code.</p>"
+      redirect_back_or_default('/')
     else
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
       render :action => 'new'
+      # render :template => '/home/show'
     end
   end
-
+  
   def activate
     logout_keeping_session!
     user = User.find_by_activation_code(params[:id]) unless params[:id].blank?
     case
     when (!params[:id].blank?) && user && !user.active?
       user.activate!
-      flash[:notice] = "Signup complete! Please sign in to continue."
+      flash[:message] = "<p class=\"big\">Signup complete!</p><p>Please sign in to continue.</p>"
       redirect_to '/login'
     when params[:id].blank?
-      flash[:error] = "The activation code was missing.  Please follow the URL from your email."
+      flash[:error] = "<p>The activation code was missing.  Please follow the URL from your email.</p>"
       redirect_back_or_default('/')
     else
-      flash[:error]  = "We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in."
+      flash[:error]  = "<p>We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in.</p>"
       redirect_back_or_default('/')
+    end
+  end
+
+  def forgot
+    if request.post?
+      user = User.find_by_email(params[:user][:email])
+      if user
+        user.create_reset_code
+        flash[:forgot_password_notice] = "<p class='green'>Password reset code has been sent to #{user.email}</p>"
+      else
+        flash[:forgot_password_notice] = "<p class='red'>The email address #{params[:user][:email]} does not exist in system</p>"
+      end
+      render :template => '/users/forgot'
+    end
+  end
+  
+  def reset
+    @user = User.find_by_reset_code(params[:reset_code]) unless params[:reset_code].nil?
+    logger.info('reset code is ' + params[:reset_code])
+    if request.post?
+      if @user.update_attributes(:password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
+        self.current_user = @user
+        @user.delete_reset_code
+        render :template => '/users/dashboard'
+      else
+        flash[:notice] = "<p class='red'>I'm sorry, but I can't reset the password for #{@user.email}</p>"
+        render :action => :reset
+      end
     end
   end
 
@@ -92,9 +126,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    
     @user = current_user
-    
     if @user.update_attributes(params[:user])
       flash[:notice] = "Your user profile has been updated!"
       respond_to do |format|

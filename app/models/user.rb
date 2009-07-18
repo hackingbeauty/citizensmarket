@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
   is_gravtastic
-  
+    
   after_create :initialize_default_issue_weights
   after_destroy :destroy_user_issue_weights
 
@@ -18,35 +18,50 @@ class User < ActiveRecord::Base
   serialize :profile, Hash
 
   before_validation :copy_email_to_login
-
-  validates_presence_of     :login
-  validates_length_of       :login,    :within => 3..40
-  validates_uniqueness_of   :login
-  validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
-
-  validates_format_of       :firstname,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
-  validates_length_of       :firstname,     :maximum => 100, :allow_nil => true
-  validates_format_of       :lastname,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
-  validates_length_of       :lastname,     :maximum => 100, :allow_nil => true
   
+  # validates_presence_of     :login
+  # validates_length_of       :login,    :within => 3..40
+  # validates_uniqueness_of   :login
+  # validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
+  # 
+  validates_format_of       :firstname,    :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => false
+  validates_length_of       :firstname,    :maximum => 100, :allow_nil => false
+  validates_format_of       :lastname,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => false
+  validates_length_of       :lastname,     :maximum => 100, :allow_nil => false
+
+  # Max & min lengths for all fields
+  FIRSTNAME_MAX_LENGTH = 100
+  LASTNAME_MAX_LENGTH = 100
+  EMAIL_MAX_LENGTH = 100
+  PASSWORD_MIN_LENGTH = 6
+	PASSWORD_MAX_LENGTH = 40
+	PASSWORD_RANGE = PASSWORD_MIN_LENGTH..PASSWORD_MAX_LENGTH
+	
+	# Text box sizes for display in the views
+	FIRSTNAME_SIZE = 20
+	LASTNAME_SIZE = 20
+	EMAIL_SIZE = 20
+	PASSWORD_SIZE = 20
 
   validates_presence_of     :email
-  validates_length_of       :email,    :within => 6..100 #r@a.wk
+  validates_length_of       :email,    :maximum => EMAIL_MAX_LENGTH
   validates_uniqueness_of   :email
-  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
-
-  validates_acceptance_of :terms_of_use, :allow_nil => false, :on => :create
+	validates_format_of       :email,
+				  :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,
+				  :with => Authentication.email_regex, :message => Authentication.bad_email_message
+	validates_acceptance_of   :terms_of_use,
+                            :allow_nil => false, :on => :create
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :firstname, :lastname, :password, :password_confirmation, :profile, :issue_weights, :terms_of_use
+  attr_accessible :email, :firstname, :lastname, :password, :password_confirmation, :profile, :issue_weights, :terms_of_use
 
   after_create{ |user|
     for issue in Issue.find(:all)
       UserIssue.create!(:user_id => user.id, :issue_id => issue.id, :weight => 1.0)
     end
-    user.activate
+    # user.activate
     user.save
   }
 
@@ -70,9 +85,9 @@ class User < ActiveRecord::Base
   # We really need a Dispatch Chain here or something.
   # This will also let us return a human error message.
   #
-  def self.authenticate(login, password)
-    return nil if login.blank? || password.blank?
-    u = find_in_state :first, :active, :conditions => {:login => login} # need to get the salt
+  def self.authenticate(email, password)
+    return nil if email.blank? || password.blank?
+    u = find_in_state :first, :active, :conditions => {:email => email} # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
 
@@ -113,13 +128,30 @@ class User < ActiveRecord::Base
     return nil if profile.nil?
     profile[:website]
   end
+  
   def website=(value)
     return nil if profile.nil?
     profile[:website] = value
   end
 
-  protected
+  def create_reset_code
+    @reset = true
+    self.reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    logger.info('inside create_reset code = ' + self.reset_code)
+    save(false)
+  end
+  
+  def recently_reset?
+    @reset
+  end
+ 
+  def delete_reset_code
+    self.reset_code = nil
+    save(false)
+  end
 
+  protected
+  
   def make_activation_code
       self.deleted_at = nil
       self.activation_code = self.class.make_token
@@ -140,5 +172,5 @@ class User < ActiveRecord::Base
   def destroy_user_issue_weights
     UserIssue.delete_all(:user_id => self.id)
   end
-
+  
 end

@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   helper :all # include all helpers, all the time
+  # helper_method :current_user, :logged_in?
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -16,15 +17,7 @@ class ApplicationController < ActionController::Base
   
   protected 
   
-	# Protect a page from unauthorized access.
-    # def login_required
-    #       unless logged_in?
-    #         session[:protected_page] = request.request_uri
-    #         redirect_to :controller => "sessions", :action => "login"
-    #         return false
-    #       end
-    # end
-  	
+	# Protect a page from unauthorized access.  	
   	def admin_login_required
   	  unless admin_logged_in?
   	    session[:protected_page] = request.request_uri

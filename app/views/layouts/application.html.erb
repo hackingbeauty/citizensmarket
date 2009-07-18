@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <meta name='language' content='en' />
   <title><%= yield(:title) || "Citizens Market - Your Values. Your Money. Your Choices." %></title>
   <link rel="shortcut icon" href="/favicon.ico" />
+<<<<<<< HEAD:app/views/layouts/application.html.erb
 
   <%= stylesheet_link_tag("reset-fonts-grids") %>
   <%= stylesheet_link_tag("application") %>
@@ -28,23 +28,24 @@
   <%= javascript_include_tag 'jquery.simplemodal.js' %>
   <%= yield(:stylesheets) %>
 
+=======
+  <%= stylesheet_link_tag "reset-fonts-grids" %>
+  <%= stylesheet_link_tag "application" %>
+  <%= yield :head %>
+>>>>>>> m_m:app/views/layouts/application.html.erb
 </head>
 <body>
-
-  <div id="doc4" class="yui-t2">
-    <div id="hd">
-      <%=render :partial => "layouts/masthead"%>
-    </div> 
-    <div id="bd">
-	<% unless flash[:notice].nil? %>
-		<div id="flash_notice"><%= flash[:notice] %></div>
-	<% end %>
-      <%= yield %>
-    </div> 
-    <div id="ft">
-      <%=render :partial => "layouts/footer"%>
-    </div> 
-  </div>
-
+    <div id="doc4" class="yui-t6">
+        <div id="header">
+            <%= render :partial => "layouts/header" %>
+        </div>
+        <div id="main-content">
+            <%= yield %>
+        </div><!-- end main-content -->
+        <div id="footer">
+            <%= render :partial => "layouts/footer" %>
+        </div> 
+    </div><!-- end doc4 -->
+    <%= render :partial => "analytics/google_analytics" %>
 </body>
 </html>

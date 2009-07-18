@@ -1,0 +1,9 @@
+.DS_Store
+log/*.log
+tmp/**/*
+config/database.yml
+db/*.sqlite3
+<<<<<<< HEAD:.gitignore
+=======
+db/schema.rb
+>>>>>>> 92a332e5b38384b27bb799f093d3b95e57e004e6:.gitignore

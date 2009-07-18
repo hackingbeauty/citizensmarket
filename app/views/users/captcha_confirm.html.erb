@@ -1,0 +1,13 @@
+<%= render :partial => 'captcha/recaptcha' %>
+<% form_for :user, :url => confirm_captcha_path do |form|  %>
+    <%= error_messages_for :user %>
+    <% unless flash[:error].nil? %>
+	    <div id="flash_notice">
+	        basdf
+	        <%= flash[:error] %>
+	    </div>
+    <% end %>
+    <div class="form-row">
+        <%= submit_tag "I am Human", :id => "submit" %>
+    </div>
+<% end %>

@@ -1,33 +1,38 @@
-<div id="header">
-    <div id="nav">
-        <%=link_to "About Us", '/about' %> |
-        <%=link_to "Contact", '/contact' %> |
-        <%=link_to "Blog", 'http://blog.citizensmarket.org/' %> |
-        <% if current_user.nil? %>
-    		<%= link_to "Register", '/signup' %> | 
-    		<%= link_to "Sign In", '/login' %>
-    	<% else %>
-    		<%= link_to "Logout", '/logout' %>
-    	<% end %>
-    </div><!-- end nav -->
-    <%=link_to image_tag('mast_logo.png'), root_url %>
-    <span id="tag_line">Your Values. Your Money. Your Choices.</span>
-</div><!-- end header -->
-<div id="globalnav">
-  	<div id="search">
-		<% form_for :search, :url => nil do |f| %>
-		    <div>
-			<%= f.text_field :q, :value => 'search our site: find a company, review, brand, etc', :size => 60 %>
-			<%= f.submit 'Search' %>
-		    </div>
-		<% end %>
-	</div><!-- end search -->
-	<ul>
+
+    <ul id="nav">
     	<li><%=link_to "Take Action", '/take_action' %></li>
-		<% if !current_user.nil? %>
+    	<% if current_user.nil? %>
+			<li><%=link_to "My Profile", '/login' %></li>
+		<% else %>
 			<li><%= link_to "My Profile", edit_user_url(current_user) %></li>
 		<% end %>
-    	<li><%=link_to "Companies", '/companies' %></li>
-    	<li><%=link_to "Reviews", '/reviews' %></li>    	
-  	</ul>
-</div><!-- end globalnav -->
+        <li><%=link_to "Blog", 'http://blog.citizensmarket.org/' %></li>
+        <li><%=link_to "About Us", '/about' %></li>
+        <!-- <% if current_user.nil? %>
+            <li><%= link_to "Register", '/signup' %></li>
+            <li><%= link_to "Sign In", '/login' %></li>
+        <% else %>
+            <li><%= link_to "Logout", '/logout' %></li>
+        <% end %> -->
+    </ul><!-- end nav -->
+    <%=link_to image_tag('mast_logo.png'), root_url %>
+    <span id="tag_line">Your Values. Your Money. Your Choices.</span>
+    <div id="search">
+        <% form_for :search, :url => nil do |f| %>
+        <div>
+        	<%= f.text_field :q, :value => 'search our site: find a company, review, brand, etc', :size => 60 %>
+        	<%= f.submit 'Search' %>
+        </div>
+        <% end %>
+    </div><!-- end search -->
+    <!-- <ul>
+        <li><%=link_to "Take Action", '/take_action' %></li>
+        <% if current_user.nil? %>
+            <li><%=link_to "My Profile", '/login' %></li>
+        <% else %>
+            <li><%= link_to "My Profile", edit_user_url(current_user) %></li>
+        <% end %>
+        <li><%=link_to "About Us", '/about' %></li>
+    </ul>-->
+
+

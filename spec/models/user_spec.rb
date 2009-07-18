@@ -14,14 +14,12 @@ describe User do
     end
 
     it 'initializes #activation_code' do
-      @user.activation_code.should be_nil
-      @user.reload
       @user.activation_code.should_not be_nil
     end
 
     it 'starts in pending state' do
       @user.reload
-      @user.should be_active
+      @user.should be_pending
     end
     
     it 'requires for the user to agree on the terms of use' do
@@ -46,12 +44,11 @@ describe User do
   
 
   describe 'allows legitimate logins:' do
-    ['123', '1234567890_234567890_234567890_234567890',
-     'hello.-_there@funnychar.com'].each do |login_str|
-      it "'#{login_str}'" do
+    ['blah@blah.com'].each do |login_str|
+      it "#{login_str}" do
         lambda do
-          u = create_user(:login => login_str)
-          u.errors.on(:login).should     be_nil
+          u = create_user(:email => login_str)
+          u.errors.on(:email).should     be_nil
         end.should change(User, :count).by(1)
       end
     end
@@ -117,10 +114,8 @@ describe User do
   end
 
   describe 'allows legitimate firstnames:' do
-    ['Andre The Giant (7\'4", 520 lb.) -- has a posse',
-     '', '1234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890',
-    ].each do |name_str|
-      it "'#{name_str}'" do
+    ['mark'].each do |name_str|
+      it "#{name_str}" do
         lambda do
           u = create_user(:firstname => name_str)
           u.errors.on(:firstname).should     be_nil
@@ -151,11 +146,11 @@ describe User do
   #
 
   it 'authenticates user' do
-    User.authenticate('quentin', 'monkey').should == users(:quentin)
+    User.authenticate('quentin@example.com', 'monkey').should == users(:quentin)
   end
 
   it "doesn't authenticate user with bad password" do
-    User.authenticate('quentin', 'invalid_password').should be_nil
+    User.authenticate('quentin@example.com', 'invalid_password').should be_nil
   end
 
  if REST_AUTH_SITE_KEY.blank?
@@ -275,7 +270,7 @@ describe User do
 
 protected
   def create_user(options = {})
-    record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69', :terms_of_use => "1" }.merge(options))
+    record = User.new({ :firstname=> 'mark', :lastname=>'muskardin', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69', :terms_of_use => "1" }.merge(options))
     record.register! if record.valid?
     #raise "record.id is nil and errors = #{record.errors.full_messages.join(', ')}" if record.id.nil?
     record

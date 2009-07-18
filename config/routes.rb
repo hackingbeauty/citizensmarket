@@ -3,24 +3,25 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/issues/issue_picker', :controller => 'issues', :action => 'issue_picker'
   map.resources :issues
 
-
   map.connect '/users/update_issue_weights', :controller => 'issue_weights', :action => 'update'
-  
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
+  map.session '/session', :controller => 'sessions', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.activate '/activate/:id', :controller => 'users', :action => 'activate'
+  map.home '/home', :controller => 'home', :action => 'show'
   map.change_password '/change_password', :controller => 'users', :action => 'change_password'
   map.update_password '/update_password', :controller => 'users', :action => 'update_password'
-  map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
-  map.reset_password '/reset_password', :controller => 'users', :action => 'reset_password'
-
+  map.forgot '/forgot', :controller => 'users', :action => 'forgot'
+  map.reset 'reset/:reset_code', :controller => 'users', :action => 'reset'
 
   map.resources :users, 
     :member => {
       :issue_weights => :put
     }
+    
+  map.dashboard "/dashboard", :controller => "users", :action => "dashboard"
 
   map.resource :session
 

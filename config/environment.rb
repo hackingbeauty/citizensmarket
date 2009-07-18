@@ -29,7 +29,7 @@ Rails::Initializer.run do |config|
   config.gem 'json', :version => '1.1.3'
   config.gem 'populator'
   config.gem 'faker', :version => '0.3.1'
-  config.gem 'RedCloth', :version => '4.0.3'
+  config.gem 'RedCloth', :version => '4.1.9'
   config.gem 'gravtastic', :version => '2.0.0'
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
   config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
@@ -78,5 +78,9 @@ Rails::Initializer.run do |config|
 
   # Load Presenters
   config.load_paths += %W( #{RAILS_ROOT}/app/presenters )
-
+  
+  #reCaptcha Keys
+  ENV['RECAPTCHA_PUBLIC_KEY'] = '6LdoDAcAAAAAAJPWZ8_b8Nm2tvKqyet7hs3iXVjD'
+  ENV['RECAPTCHA_PRIVATE_KEY'] = '6LdoDAcAAAAAAG8fzeLUZIxxxS72N-iOKp9G89is'
+  
 end

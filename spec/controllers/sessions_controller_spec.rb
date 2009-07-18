@@ -8,8 +8,8 @@ describe SessionsController do
   fixtures        :users
   before do 
     @user  = mock_user
-    @login_params = { :login => 'quentin', :password => 'test' }
-    User.stub!(:authenticate).with(@login_params[:login], @login_params[:password]).and_return(@user)
+    @login_params = { :email=> 'quentin@blah.com', :password => 'test' } #=> chnaged field from :login to :email
+    User.stub!(:authenticate).with(@login_params[:email], @login_params[:password]).and_return(@user)
   end
   def do_create
     post :create, @login_params
@@ -44,10 +44,10 @@ describe SessionsController do
             it "kills existing login"        do controller.should_receive(:logout_keeping_session!); do_create; end    
             it "authorizes me"               do do_create; controller.send(:authorized?).should be_true;   end    
             it "logs me in"                  do do_create; controller.send(:logged_in?).should  be_true  end    
-            it "greets me nicely"            do do_create; response.flash[:notice].should =~ /success/i   end
+            it "greets me nicely"            do do_create; response.flash[:message].should =~ /success/i   end
             it "sets/resets/expires cookie"  do controller.should_receive(:handle_remember_cookie!).with(want_remember_me); do_create end
             it "sends a cookie"              do controller.should_receive(:send_remember_cookie!);  do_create end
-            it 'redirects to the home page'  do do_create; response.should redirect_to('/')   end
+            it 'redirects to the home page'  do do_create; response.should redirect_to(dashboard_path)   end
             it "does not reset my session"   do controller.should_not_receive(:reset_session).and_return nil; do_create end # change if you uncomment the reset_session path
             if (has_request_token == :valid)
               it 'does not make new token'   do @user.should_not_receive(:remember_me);   do_create end
@@ -76,8 +76,8 @@ describe SessionsController do
       login_as :quentin
     end
     it 'logs out keeping session'   do controller.should_receive(:logout_keeping_session!); do_create end
-    it 'flashes an error'           do do_create; flash[:error].should =~ /Couldn't log you in as 'quentin'/ end
-    it 'renders the log in page'    do do_create; response.should render_template('new')  end
+    it 'flashes an error'           do do_create; flash[:error].should =~ /Couldn't log you in as 'quentin@blah.com'/ end
+    it 'renders the log in page'    do do_create; response.should render_template('sessions/new.html.erb')  end
     it "doesn't log me in"          do do_create; controller.send(:logged_in?).should == false end
     it "doesn't send password back" do 
       @login_params[:password] = 'FROBNOZZ'

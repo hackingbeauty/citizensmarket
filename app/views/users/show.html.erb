@@ -1,9 +1,7 @@
-
-
-
 <div id="user_profile" class="yui-g">
 	<div class="yui-u first">
-		
+		<%= error_messages_for :user %>
+        
 		<div class="heading">
   		<%=image_tag @user.gravatar_url(:size => 50), :class => 'avatar'%>
       <h1><%=h @user.login %></h1>
