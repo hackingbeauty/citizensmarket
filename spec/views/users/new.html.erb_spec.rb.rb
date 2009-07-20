@@ -23,7 +23,7 @@ describe "/users/new.html.erb" do
   it "should render user registration form" do
     render "/users/new.html.erb"
     
-    response.should have_tag("form[action=/users][method=post]") do
+    response.should have_tag("form[action=/register][method=post]") do
       with_tag("input[name='user[password]']")
       with_tag("input[name='user[password_confirmation]']")
       with_tag("input[name='user[email]']")

@@ -7,6 +7,7 @@ class Review < ActiveRecord::Base
   has_many    :peer_ratings
 
   validates_presence_of :user_id, :rating
+  validate_on_create :protect_agains_angry_abuse
   
   # Define State Machine states and transitions
   include AASM
@@ -44,6 +45,15 @@ class Review < ActiveRecord::Base
   aasm_event :publish do
     transitions :to => :published, :from => :preview
   end
+  
+  private
+  def protect_agains_angry_abuse
+    [self.class.find(:first, :conditions => ["user_id = ? and company_id = ? and created_at > ?", user, company, Time.now - 180.days])].compact.each do
+      errors.add_to_base("You already submitted a review this company on this issue. You must way at least 180 days between reviews.")
+    end
+  end
+  
+
   
   
 end

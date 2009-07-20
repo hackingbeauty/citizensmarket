@@ -1,10 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-include AuthenticatedTestHelper
 
 describe ReviewsController do
+  include AuthenticatedTestHelper
+  
   fixtures :reviews
-  before do
+  before(:each) do
     login_as(mock_user)
   end
   
@@ -61,6 +62,7 @@ describe ReviewsController do
           :body => "body of review",
           :rating => 5
         }, :company_id => 1, :issues => {1 => 1} 
+        assigns[:review].should be_valid
         response.should redirect_to(company_url(1))
       end
 

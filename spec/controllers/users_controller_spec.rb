@@ -2,9 +2,10 @@ require File.dirname(__FILE__) + '/../spec_helper'
   
 # Be sure to include AuthenticatedTestHelper in spec/spec_helper.rb instead
 # Then, you can remove it from this and the units test.
-include AuthenticatedTestHelper
+
 
 describe UsersController do
+  include AuthenticatedTestHelper
   fixtures :users
 
   it 'properly loads fixtures with Hash for attribute "profile"' do
@@ -23,7 +24,7 @@ describe UsersController do
   it 'signs up user in pending state' do
     create_user
     assigns(:user).reload
-    assigns(:user).should be_active
+    assigns(:user).should be_pending
   end
 
   it 'signs up user with activation code' do
@@ -67,9 +68,10 @@ describe UsersController do
     User.authenticate('aaron', 'monkey').should be_nil
     get :activate, :id => users(:aaron).activation_code
     response.should redirect_to('/login')
-    flash[:message].should_not be_nil
+    flash[:message].should match(/Please sign in to continue/)
     flash[:error ].should     be_nil
-    User.authenticate('aaron', 'monkey').should == users(:aaron)
+    User.find_by_email('aaron@example.com').state.should == "active"
+    User.authenticate('aaron@example.com', 'monkey').should == users(:aaron)
   end
   
   it 'does not activate user without key' do
@@ -147,6 +149,7 @@ describe UsersController, "when editing your profile" do
     end
     
     it "should set a flash[:notice] message" do
+      flash[:error].should be_nil
       flash[:notice].should_not be_nil
     end
     
@@ -216,6 +219,8 @@ describe UsersController, "when editing a user and you're not logged in" do
   
   describe "on PUT 'update' with valid data," do
     before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
       put :update, :id => 1, :user => {:firstname => 'NewFirstname', :lastname => 'NewLastname', :profile => {:location => 'newLocation', :website => 'www.NewWebsite.com'}}
     end
     
@@ -225,34 +230,36 @@ describe UsersController, "when editing a user and you're not logged in" do
     
     it "should update the user" do
       user = User.find(1)
-      user.firstname.should == 'Quentin'
+      user.firstname.should == 'NewFirstname'
     end
     
     it "should redirect to show" do
-      response.should redirect_to("show")
+      response.should redirect_to(user_path(1))
     end
     
     it "should assign to user" do 
-      assigns(:user).class.should == NilClass
+      assigns(:user).class.should == User
     end
     
     it "should not set a flash[:notice] message" do
-      flash[:notice].should be_nil
+      flash[:notice].should == "Your user profile has been updated!"
     end
     
   end
   
   describe "on PUT 'update' with invalid data (firstname is invalid with 101 characters)," do
     before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))      
       put :update, :id => 2, :user => {:firstname => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", :lastname => 'NewLast', :profile => {:location => 'newLoc', :website => 'www.newWeb.com'}}
     end
     
     it "should return success" do
-      response.should be_redirect
+      response.should be_success
     end
     
     it "should assign to @user" do
-      assigns(:user).class.should == NilClass
+      assigns(:user).class.should == User
     end
     
     it "should not update the user" do

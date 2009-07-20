@@ -1,7 +1,7 @@
 require 'tls_smtp'
 
 ActionMailer::Base.raise_delivery_errors = true
-ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.delivery_method = (RAILS_ENV == "test") ? :test : :smtp
 ActionMailer::Base.smtp_settings = {
   :address  => "smtp.gmail.com",
   :port  => 587,
