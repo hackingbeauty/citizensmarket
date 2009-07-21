@@ -1,7 +1,7 @@
 /******************* =General Styles (All Pages) *******************/
 
 body {
-
+	background: #c0e4ef url('../images/backgrounds/back-body.png') repeat-x;
 }
 
 h1 {
@@ -66,69 +66,49 @@ li.last {
 /******************* =Header (All Pages) *******************/
 
 #header {
-	margin-bottom:1em;
+	height:14.2em;
 	position:relative;
 }
 
-#header p#tagline {
+/*#header p#tagline {
 	margin-top:2.7em;
 	margin-left:11em;
 	position:relative;
 	top:2.7em;
-}
+}*/
 
 /* =Main Nav */
 
-#header #nav {
-	background: url('/images/backgrounds/back-header-nav.png') no-repeat;
-	clear:both;
-	height:30px;
+#header ul#main-nav {
+	bottom:1.2em;
+	position:absolute;
 }
 
-#header a#logo img {
+#header ul#main-nav li {
 	float:left;
-	margin-bottom:2em;
+	margin-right:2em;
 }
 
-#header #nav ul {
-	margin-left:1em;
-	padding-top:0.3em;
-}
-
-#header #nav ul li {
-	border-right:1px solid white;
-	float:left;
-}
-
-#header ul li a {
-	display:block;
-	font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
-	font-size:1.1em;
-	text-decoration:none;
-	text-transform:capitalize;
-	padding:0.2em 1em 0 1em;
-}
-
-#header #nav ul li a {
+#header ul#main-nav li a {
 	color:white;
+	display:block;
+	font-family:"Trebuchet MS",Arial,sans-serif;
+	font-size:16px;
+/*	padding:0.5em 0;	
+*/}
+
+/*#header ul#main-nav li {
+	background: url('../images/nav/nav-main-hover-right.png') center right no-repeat;
 }
+
+#header ul#main-nav li a  {
+	background: url('../images/nav/nav-main-hover-left.png') center left no-repeat;
+	color:#1678ad;
+}*/
 
 /* =Top Nav */
 
-#header ul#top-nav {
-	position:absolute;
-	right:0em;
-}
 
-#header ul#top-nav li {
-	border-right:2px solid #117FBC;
-	float:left;
-
-}
-
-#header ul#top-nav li a {
-	padding-top:0.2em;
-}
 
 /* =Search */
 
@@ -164,7 +144,9 @@ li.last {
 /******************* =Footer (All Pages) *******************/
 
 #footer {
+	background: url('../images/backgrounds/grad-footer.png') repeat-x;
 	clear:both;
+	height:7.4em;
 	margin-top:5em;
 }
 
@@ -220,11 +202,12 @@ li.last {
 
 #homepage #homepage-center-container {
 	margin-left:-3.4em;
+	margin-top:2em;
 	width:82em;	
 }
 
 #homepage #homepage-center-container-body {
-	background-color:#daf0ff;
+	background-color:white;
 	float:left;
 	width:76em;
 	padding:2em 3em;
@@ -232,38 +215,36 @@ li.last {
 
 /* =Login Section */
 
-#header #nav #login {
-	background: url('/images/corners/corner-login-top.png') center top no-repeat;
-	margin-top:-8em;
-	position:relative;
+#header #main-nav #login {
+	float:right;
 }
 
-#header #nav #login-top {
+#header #main-nav #login-top {
 	background:none;
 }
 
-#header #nav #login-bottom {
+#header #main-nav #login-bottom {
 	background:none;
 }
 
-#header #nav #login-body {
+#header #main-nav #login-body {
 	background:none;
 	padding:0;
 }
 
-#header #nav #login a {
+#header #main-nav #login a {
 	color:white;
 }
 
-#header #nav #login h2 {
+#header #main-nav #login h2 {
 	display:none;
 }
 
-#header #nav #login #login-body {
+#header #main-nav #login #login-body {
 	background-color:#0B6BAE;	
 }
 
-#header #nav #login #login-body #message {
+#header #main-nav #login #login-body #message {
 	color:#f4b7bb;
 	font-weight:bold;
 	left:10em;
@@ -271,52 +252,52 @@ li.last {
 	top:0.4em;
 }
 
-#header #nav #login form {
+#header #main-nav #login form {
 	height:6.6em;
 	padding-left:1.6em;
 }
 
-#header #nav #login .form-row {
+#header #main-nav #login .form-row {
 	clear:both;
 	width:29em;
 }
 
-#header #nav #login .form-row label {
+#header #main-nav #login .form-row label {
 	font-size:1em;
 	text-align:right;
 	width:7.5em;
 }
 
-#header #nav #login .form-row label,
-#header #nav #login .form-row input {
+#header #main-nav #login .form-row label,
+#header #main-nav #login .form-row input {
 	color:white;
 	float:left;
 	font-size:1em;
 }
 
-#header #nav #login .form-row input {
+#header #main-nav #login .form-row input {
 	color:black;
 	float:right;
 	width:20em;
 }
 
-#header #nav #login .form-row #remember {
+#header #main-nav #login .form-row #remember {
 	float:left;
 	height:1.5em;
 	width:9.3em;
 }
 
-#header #nav #login .form-row #remember input {
+#header #main-nav #login .form-row #remember input {
 	width:1em;
 }
 
-#header #nav #login .form-row #forgot-password-link {
+#header #main-nav #login .form-row #forgot-password-link {
 	float:left;
 	height:2em;
 	margin-left:2em;
 }
 
-#header #nav #login .form-row input#login-submit {
+#header #main-nav #login .form-row input#login-submit {
 	cursor:pointer;
 	font-size:0.8em;
 	border:1px solid #838383;
@@ -335,7 +316,6 @@ li.last {
 #homepage #welcome {
 	float:left;
 	height:275px;
-	margin-left:1em;
 	margin-top:-0.7em;
 	width:36em;
 }

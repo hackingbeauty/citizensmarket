@@ -1,7 +1,4 @@
-<%=link_to image_tag('mast_logo.png'), root_url, :id => 'logo' %>
-<p id="tagline">
-    <strong>Your Values.  Your Money.  Your Choices.</strong>
-</p>
+<%=link_to image_tag('logos/new-logo.png'), root_url, :id => 'logo' %>
 <ul id="top-nav">
     <% if !current_user.nil? %>
         <li><%= link_to "My Profile", '/my_profile' %></li>
@@ -13,18 +10,16 @@
 
     <% end %>
 </ul>
-<div id="nav">
-    <ul>
-    	<li><%=link_to "Home", '/take_action' %></li>
-    	<% if current_user.nil? %>
-    	    <li><%=link_to "Browse Companies", '/browse' %></li>
-    	    <li><%=link_to "Compare Brands", '/compare' %></li>
-    	    <li class="last"><%=link_to "Read Reviews", '/read' %></li>
-		<% else %>
-		    <li><%=link_to "Rate a Company", '/rate' %></li>
-		    <li class="last"><%=link_to "Add a Company", '/add' %></li>
-		<% end %>
-    </ul>
+<ul id="main-nav">
+	<li><%=link_to "Home", '/take_action' %></li>
+	<% if current_user.nil? %>
+	    <li><%=link_to "Browse Companies", '/browse' %></li>
+	    <li><%=link_to "Compare Brands", '/compare' %></li>
+	    <li class="last"><%=link_to "Read Reviews", '/read' %></li>
+	<% else %>
+	    <li><%=link_to "Rate a Company", '/rate' %></li>
+	    <li class="last"><%=link_to "Add a Company", '/add' %></li>
+	<% end %>
     <% if current_user.nil? %>
         <%= render :partial => "sessions/new" %>
     <% else %>
@@ -37,5 +32,5 @@
             <% end %>
         </div><!-- end search -->
     <% end %>
-</div><!-- end nav -->
+</ul><!-- end nav -->
 
