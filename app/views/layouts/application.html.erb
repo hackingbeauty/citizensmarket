@@ -17,10 +17,11 @@
         <div id="main-content">
             <%= yield %>
         </div><!-- end main-content -->
+        <div id="footer">
+            <%= render :partial => "layouts/footer" %>
+        </div>
     </div><!-- end doc4 -->
-    <div id="footer">
-        <%= render :partial => "layouts/footer" %>
-    </div>
     <%= render :partial => "analytics/google_analytics" %>
+    <div id="bottom-gutter"></div>
 </body>
 </html>

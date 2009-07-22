@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-	color:#74a035;
+	color:#117fbc;
 	font-weight:bold;
 	text-decoration:none;
 }
@@ -48,7 +48,8 @@ strong {
 }
 
 p {
-	color:#808080;
+/*	color:#808080; */
+	color:black;
 }
 
 li.last {
@@ -63,19 +64,17 @@ li.last {
 	color:green !important;
 }
 
+#yui-main {
+/*	background-color:white;
+	padding:1em 0em 0em 2em;*/
+}
+
 /******************* =Header (All Pages) *******************/
 
 #header {
-	height:14.2em;
+	height:14.3em;
 	position:relative;
 }
-
-/*#header p#tagline {
-	margin-top:2.7em;
-	margin-left:11em;
-	position:relative;
-	top:2.7em;
-}*/
 
 /* =Main Nav */
 
@@ -86,7 +85,7 @@ li.last {
 
 #header ul#main-nav li {
 	float:left;
-	margin-right:2em;
+	margin-right:6em;
 }
 
 #header ul#main-nav li a {
@@ -94,21 +93,26 @@ li.last {
 	display:block;
 	font-family:"Trebuchet MS",Arial,sans-serif;
 	font-size:16px;
-/*	padding:0.5em 0;	
-*/}
-
-/*#header ul#main-nav li {
-	background: url('../images/nav/nav-main-hover-right.png') center right no-repeat;
 }
-
-#header ul#main-nav li a  {
-	background: url('../images/nav/nav-main-hover-left.png') center left no-repeat;
-	color:#1678ad;
-}*/
 
 /* =Top Nav */
 
+#header ul#top-nav {
+	right:0em;
+	position:absolute;
+	top:0.8em;
+}
 
+#header ul#top-nav li {
+	border-right:1px solid #117fbc;
+	float:left;
+	padding-right:0.7em;
+	margin-right:0.7em;
+}
+
+#header ul#top-nav li.last {
+	border-right:none;
+}
 
 /* =Search */
 
@@ -138,7 +142,7 @@ li.last {
 
 #main-content {
 	float:left;
-	margin-bottom:5em;	
+	margin-bottom:2em;
 }
 
 /******************* =Footer (All Pages) *******************/
@@ -146,43 +150,51 @@ li.last {
 #footer {
 	background: url('../images/backgrounds/grad-footer.png') repeat-x;
 	clear:both;
-	height:7.4em;
-	margin-top:5em;
+}
+
+#footer p {
+	color:white;
+	float:left;
+	font-weight:bold;
+	margin-top:0.7em;
 }
 
 #footer ul#links {
-	float:left;
-	margin-left:17em;
-	margin-bottom:1em;
+	float:right;
 }
 
 #footer ul#links li {
 	float:left;
-	border-right:1px solid #117FBC;
-	padding:0 20px;
+	border-right:1px solid white;
+	margin-top:0.7em;
+	padding:0 0.7em;
 }
 
 #footer ul#links li.last {
 	border:none;
+	padding-right:0em !important;
 }
 
-#footer #copyright {
-	clear:both;
+#footer ul#links li a {
+	color:white;
 }
 
-#footer #copyright p {
-	font-size:0.9em;
-	left:104px;
-	position:relative;
-	top:-25px;
-	width:73em;
+/******************* =Bottom Gutter *******************/
+
+#bottom-gutter {
+	background: url('../images/backgrounds/grad-footer.png') repeat-x;
+	height:7.4em;
 }
 
 /******************* =Homepage *******************/
 
+#homepage {
+/*	margin-top:-2em;
+*/}
+
 #homepage #yui-main {
-	padding:40px;
 	width:55%;
+	padding-top:1em;
 }
 
 #homepage #yui-main .yui-b {
@@ -215,36 +227,34 @@ li.last {
 
 /* =Login Section */
 
-#header #main-nav #login {
-	float:right;
+#header #login {
+	float:none;
+	left:13em;
+	position:absolute;
+	top:-1.3em;
 }
 
-#header #main-nav #login-top {
+#header #login-top {
 	background:none;
 }
 
-#header #main-nav #login-bottom {
+#header #login-bottom {
 	background:none;
 }
 
-#header #main-nav #login-body {
+#header #login-body {
 	background:none;
 	padding:0;
 }
 
-#header #main-nav #login a {
-	color:white;
-}
-
-#header #main-nav #login h2 {
+#header #login h2 {
 	display:none;
 }
 
-#header #main-nav #login #login-body {
-	background-color:#0B6BAE;	
+#header #login #login-body {
 }
 
-#header #main-nav #login #login-body #message {
+#header #login #login-body #message {
 	color:#f4b7bb;
 	font-weight:bold;
 	left:10em;
@@ -252,59 +262,62 @@ li.last {
 	top:0.4em;
 }
 
-#header #main-nav #login form {
+#header #login form {
 	height:6.6em;
 	padding-left:1.6em;
 }
 
-#header #main-nav #login .form-row {
+#header #login .form-row {
 	clear:both;
 	width:29em;
 }
 
-#header #main-nav #login .form-row label {
+#header #login .form-row label {
 	font-size:1em;
 	text-align:right;
 	width:7.5em;
 }
 
-#header #main-nav #login .form-row label,
-#header #main-nav #login .form-row input {
+#header #login .form-row label,
+#header #login .form-row input {
 	color:white;
 	float:left;
 	font-size:1em;
 }
 
-#header #main-nav #login .form-row input {
+#header #login .form-row label {
+	display:none;
+}
+
+#header #login .form-row input {
 	color:black;
 	float:right;
 	width:20em;
 }
 
-#header #main-nav #login .form-row #remember {
+#header #login .form-row #remember {
 	float:left;
 	height:1.5em;
 	width:9.3em;
 }
 
-#header #main-nav #login .form-row #remember input {
+#header #login .form-row #remember input {
 	width:1em;
 }
 
-#header #main-nav #login .form-row #forgot-password-link {
+#header #login .form-row #forgot-password-link {
 	float:left;
 	height:2em;
 	margin-left:2em;
 }
 
-#header #main-nav #login .form-row input#login-submit {
+#header #login .form-row input#login-submit {
+	background: url('../images/buttons/button-sign-in.png') no-repeat;
+	border:none;
+	color:#117fbc;
 	cursor:pointer;
-	font-size:0.8em;
-	border:1px solid #838383;
 	height:2em;
-	position:relative;
-	top:-2.6em;
-	width:5em;
+	width:5.4em;
 }
 
 #header #login form input[type=hidden] {
@@ -345,7 +358,7 @@ li.last {
 #homepage #latest-news {
 	background-color:#d9f7c1;
 	margin-right:3.4em;
-	padding:40px 58px;
+	padding:1em 5em 0em 5em;
 }
 
 #homepage #latest-news h3,
@@ -373,6 +386,12 @@ li.last {
 	display:block;
 	margin-bottom:15px;
 	text-transform:uppercase;
+}
+
+#homepage #reviews .review a.read-more,
+#homepage #latest-news .news-item a.read-more {
+	display:block;
+	margin-top:0.5em;
 }
 
 /******************* =Registration & =Login *******************/
