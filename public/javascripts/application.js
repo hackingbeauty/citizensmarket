@@ -122,9 +122,14 @@
 	//Clear search-box default text when user clicks inside
 	var searchBoxClearText = function(){
 		$('#search_q').val("Search Citizens Market");
+		$('#search_q').css('color','#b4b2b2');
 		$('#search_q').click(function(){
 			this.value = "";
 			$(this).css('color','black');
+		});
+		$('#search_q').blur(function(){
+			$(this).val("Search Citizens Market");
+			$(this).css('color','#b4b2b2');
 		});
 	}
 	window['CM']['searchBoxClearText'] = searchBoxClearText;
