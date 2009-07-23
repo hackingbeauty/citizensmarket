@@ -68,7 +68,7 @@
 	}//end function
 	window['CM']['forgotPassword'] = forgotPassword;
 	
-	//In-line validation for Registration form
+	//Inline validation for Registration form
 	var registrationFormValidation = function(){
 		$('#register-form').validate({
 			rules: {
@@ -121,8 +121,10 @@
 	
 	//Clear search-box default text when user clicks inside
 	var searchBoxClearText = function(){
+		$('#search_q').val("Search Citizens Market");
 		$('#search_q').click(function(){
 			this.value = "";
+			$(this).css('color','black');
 		});
 	}
 	window['CM']['searchBoxClearText'] = searchBoxClearText;
@@ -140,9 +142,10 @@
 		
 
 //All functions that need to be executed after page load go here
-
 $(document).ready (function() {
-		
+	
+	CM.searchBoxClearText();
+	
 	if(CM.exists('search_q')){
 		CM.searchBoxClearText();
 	}
@@ -155,8 +158,5 @@ $(document).ready (function() {
 		CM.deleteCompanyConfirm();
 	}
 	
-	// if (CM.exists('login')) {
-	// 	CM.forgotPassword();
-	// }
 		
 });

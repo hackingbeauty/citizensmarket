@@ -125,6 +125,7 @@ li.last {
 /* =Search */
 
 #header #search {
+	height:2.2em;
 	bottom:5em;
 	position:absolute;
 	left:19em;
@@ -132,17 +133,21 @@ li.last {
 
 #header #search input#search_q {
 	border:0.1em solid #BEBBBB;
-	color:black;
+	color:#b4b2b2;
+	float:left;
 	height:1.4em;
 	padding:0.4em 0em 0em 0.4em;
-	width:33.9em;
+	width:34em;
 }
 
 #header #search input#search_submit {
-	background: url('../images/buttons/button-search.png') no-repeat;
+	background: url('../images/buttons/button-search.png') 0 0 no-repeat;
 	border:none;
+	cursor:pointer;
+	float:right;
+	height:2em;
 	height:2.3em;
-	margin-left:1.3em;
+	margin-left:1.5em;
 	width:2.3em;
 }
 
