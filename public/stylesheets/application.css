@@ -64,6 +64,14 @@ li.last {
 	color:green !important;
 }
 
+.left {
+	float:left;
+}
+
+.right {
+	float:right;
+}
+
 #yui-main {
 /*	background-color:white;
 	padding:1em 0em 0em 2em;*/
@@ -100,7 +108,7 @@ li.last {
 #header ul#top-nav {
 	right:0em;
 	position:absolute;
-	top:0.8em;
+	top:1.5em;
 }
 
 #header ul#top-nav li {
@@ -117,24 +125,25 @@ li.last {
 /* =Search */
 
 #header #search {
-	background: url('/images/backgrounds/back-header-nav.png') no-repeat;
-	background-color:blue;
-	float:right;
-	margin-right:3.4em;
+	bottom:5em;
+	position:absolute;
+	left:19em;
 }
 
 #header #search input#search_q {
-	color:#bcb7b7;
-	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
-	font-size:1em;
-	width:22em;
+	border:0.1em solid #BEBBBB;
+	color:black;
+	height:1.4em;
+	padding:0.4em 0em 0em 0.4em;
+	width:33.9em;
 }
 
 #header #search input#search_submit {
-	border:1px solid #838383;
-	font-family:"Myriad Set","Lucida Grande",Helvetica,Arial,sans-serif;
-	font-size:1.1em;
-	padding:0 0.2em;
+	background: url('../images/buttons/button-search.png') no-repeat;
+	border:none;
+	height:2.3em;
+	margin-left:1.3em;
+	width:2.3em;
 }
 
 
@@ -189,8 +198,7 @@ li.last {
 /******************* =Homepage *******************/
 
 #homepage {
-/*	margin-top:-2em;
-*/}
+}
 
 #homepage #yui-main {
 	width:55%;
@@ -229,9 +237,9 @@ li.last {
 
 #header #login {
 	float:none;
-	left:13em;
+	left:16em;
 	position:absolute;
-	top:-1.3em;
+	top:-0.6em;
 }
 
 #header #login-top {
@@ -252,6 +260,8 @@ li.last {
 }
 
 #header #login #login-body {
+	position:relative;
+	width:46em;
 }
 
 #header #login #login-body #message {
@@ -263,13 +273,12 @@ li.last {
 }
 
 #header #login form {
-	height:6.6em;
 	padding-left:1.6em;
 }
 
 #header #login .form-row {
-	clear:both;
-	width:29em;
+	float:left;
+	width:18em;
 }
 
 #header #login .form-row label {
@@ -290,15 +299,25 @@ li.last {
 }
 
 #header #login .form-row input {
+	border:0.1em solid #bebbbb;
 	color:black;
 	float:right;
-	width:20em;
+	height:1.4em;
+	padding-top:0.4em;
+	width:16em;
 }
 
 #header #login .form-row #remember {
-	float:left;
-	height:1.5em;
-	width:9.3em;
+	left:7.6em;
+	position:absolute
+}
+
+#header #login .form-row #remember label {
+	color:#117FBC;
+	display:block;
+	font-weight:bold;
+	margin-right:1em;
+	width:10em
 }
 
 #header #login .form-row #remember input {
@@ -306,17 +325,20 @@ li.last {
 }
 
 #header #login .form-row #forgot-password-link {
-	float:left;
-	height:2em;
-	margin-left:2em;
+	position:absolute;
+	right:8.4em;
 }
 
 #header #login .form-row input#login-submit {
-	background: url('../images/buttons/button-sign-in.png') no-repeat;
+	background: url('../images/buttons/button-sign-in.png') 0 0 no-repeat;
 	border:none;
 	color:#117fbc;
 	cursor:pointer;
-	height:2em;
+	height:2.2em;
+	right:1.6em;
+	padding-top:0em;
+	position:absolute;
+	top:0em;
 	width:5.4em;
 }
 
@@ -335,6 +357,7 @@ li.last {
 
 #homepage #welcome h1 {
 	font-size:4em;
+	margin-bottom:0.2em;
 }
 
 #homepage #welcome p {
@@ -347,6 +370,15 @@ li.last {
 	font-weight:bold;
 	font-size:1.8em;
 	margin-bottom:1em;
+}
+
+#homepage #welcome a#sign-up {
+	background: url('../images/buttons/button-sign-up.png') no-repeat;
+	display:block;
+	height:3.7em;
+	position:relative;
+	top:1.8em;
+	width:8.4em;
 }
 
 /* =Latest Reviews  & Latest News */
