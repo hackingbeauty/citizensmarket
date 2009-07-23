@@ -10,11 +10,10 @@ h1 {
 
 h2 {
 	font-size:2em;
-	margin:0.5em 0;
 }
 
 h3 {
-	margin:0.5em 0;
+
 }
 
 h4 {
@@ -76,9 +75,8 @@ li.last {
 	float:right;
 }
 
-#yui-main {
-/*	background-color:white;
-	padding:1em 0em 0em 2em;*/
+.hide-text {
+	color:transparent;
 }
 
 /******************* =Header (All Pages) *******************/
@@ -91,7 +89,7 @@ li.last {
 /* =Main Nav */
 
 #header ul#main-nav {
-	bottom:0.5em;
+	bottom:0.6em;
 	position:absolute;
 	width:100%;
 }
@@ -114,7 +112,7 @@ li.last {
 	font-family:"Trebuchet MS",Arial,sans-serif;
 	font-size:1.2em;
 	height:2.1em;
-	padding-top:0.32em;
+	padding-top:0.4em;
 }
 
 #header ul#main-nav li.active {
@@ -130,6 +128,7 @@ li.last {
 	color:#117FBC;
 	cursor:default;
 	text-decoration:none;
+	width:100%;
 }
 
 #header ul#main-nav li.active a:hover {
@@ -183,7 +182,6 @@ li.last {
 	width:2.3em;
 }
 
-
 /******************* =Main Content (All Pages) *******************/
 
 #main-content {
@@ -196,6 +194,8 @@ li.last {
 #footer {
 	background: url('../images/backgrounds/grad-footer.png') repeat-x;
 	clear:both;
+	position:relative;
+	z-index:100;
 }
 
 #footer p {
@@ -229,7 +229,9 @@ li.last {
 
 #bottom-gutter {
 	background: url('../images/backgrounds/grad-footer.png') repeat-x;
+
 	height:7.4em;
+	position:relative
 }
 
 /******************* =Homepage *******************/
@@ -239,7 +241,7 @@ li.last {
 
 #homepage #yui-main {
 	width:55%;
-	padding-top:1em;
+	padding-top:2em;
 }
 
 #homepage #yui-main .yui-b {
@@ -429,7 +431,7 @@ li.last {
 #homepage #latest-news {
 	background-color:#d9f7c1;
 	margin-right:3.4em;
-	padding:1em 5em 0em 5em;
+	padding:2em 5em 0em 5em;
 }
 
 #homepage #latest-news h3,
@@ -657,7 +659,7 @@ li.last {
 #homepage #video {
 	float:right;
 	margin-right:1.7em;
-	width:400px;
+	width:31.8em;
 }
 
 /******** =jQuery Impromptu Dialog Box ********/

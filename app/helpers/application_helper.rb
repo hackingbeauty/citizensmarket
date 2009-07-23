@@ -4,14 +4,10 @@ module ApplicationHelper
   # Return a link for use in layout navigation.
   def nav_link(text, controller, action="index")
     if params[:action] == action
-      html = "<li class='active'><span>" + link_to(text,:controller=> controller, :action=>action)
+      html = "<li class='active'><span>" + link_to(text,:controller=> controller, :action=>action) + "</span></li>"
     else
-      html = "<li><span>" + link_to(text,:controller=> controller, :action=>action)
+      html = "<li><span>" + link_to(text,:controller=> controller, :action=>action) + "</span></li>"
     end
-    
-    # html.merge! link_to_unless_current text,
-    #                 :controller => controller,
-    #                 :action => action
   end
   
   def categorized_issues_hash

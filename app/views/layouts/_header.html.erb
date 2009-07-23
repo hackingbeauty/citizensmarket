@@ -20,7 +20,7 @@
     <% form_for :search, :url => nil do |f| %>
         <div>
         	<%= f.text_field :q, :value => 'Search Citizens Market', :size => 60 %>
-        	<%= f.submit '' %>
+        	<%= f.submit 'Search', :class => 'hide-text' %>
         </div>
     <% end %>
 </div><!-- end search -->
