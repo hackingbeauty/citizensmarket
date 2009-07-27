@@ -188,6 +188,7 @@ li.last {
 #main-content {
 	float:left;
 	margin-bottom:2em;
+	padding-top:2em;
 }
 
 /******************* =Footer (All Pages) *******************/
@@ -262,7 +263,6 @@ li.last {
 
 #homepage #homepage-center-container {
 	margin-left:-3.4em;
-	margin-top:2em;
 	width:82em;	
 }
 
