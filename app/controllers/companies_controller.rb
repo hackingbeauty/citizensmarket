@@ -50,7 +50,7 @@ class CompaniesController < ResourceController::Base
     end
   end
   
-  def show_companies
+  def show
     @companies = Company.find(:all)
   end
   

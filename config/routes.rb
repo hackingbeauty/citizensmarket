@@ -41,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # map.connect '/edit', :controller => 'companies', :action => 'edit'
   
+  map.connect '/browse', :controller => 'companies', :action => 'index'
   map.connect '/admin', :controller => 'companies', :action => 'administer'
   map.connect '/score', :controller => 'companies', :action => 'find_score'
   map.connect '/about', :controller => 'about', :action => 'team'
