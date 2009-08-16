@@ -1,11 +1,6 @@
-
-<div id="company_index" class="yui-gc">
-	<div class="yui-u first">
-    <%=render :partial => "company", :collection => @companies %>
-    <%=link_to 'New Company', new_object_url %>
-	</div>
-	<div class="yui-u">
-		Filtering controls
-	</div>
-</div>
+<div id="companies">
+	<div>
+        <%=render :partial => "company", :collection => @companies %>
+    </div>
+</div><!-- end companies -->
 

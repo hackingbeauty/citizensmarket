@@ -663,6 +663,64 @@ li.last {
 	width:31.8em;
 }
 
+/******************* =Browse Companies *******************/
+
+#companies table {
+	border:1px solid green;
+	width:1035px;
+}
+
+#companies caption {
+	font-size:2.1em;
+}
+
+#companies #company-headings {
+	background-color:#eff3f2;
+	border-bottom:1px solid #a5d8e8;
+	border-top:1px solid #a5d8e8;
+	display:block;
+	padding:7px 0;
+}
+
+#companies tbody tr {
+	background: url('../images/sprite.png') repeat-y;
+	display:block;
+	padding-left:30px;
+}
+
+/*#companies #company-head {
+	width:275px;
+	border:1px solid blue;
+}
+
+#companies #brands-head {
+	width:465px;
+}
+
+#companies #score-head {
+	width:187px;
+}
+
+#companies #reviews-head {
+	width:75px;
+}*/
+
+#companies .company-name {
+	width:275px;
+}
+
+#companies .company-brands {
+	width:465px;
+}
+
+#companies .company-score {
+	width:187px;
+}
+
+#companies .company-reviews {
+	width:75px;
+}
+
 /******** =jQuery Impromptu Dialog Box ********/
 
 .jqifade{
