@@ -1,0 +1,11 @@
+--- 
+javascripts: 
+- base: 
+  - jquery-1.3.2.min
+  - jmodal
+  - jquery.validate.min
+  - application
+stylesheets: 
+- base: 
+  - application
+  - jmodal

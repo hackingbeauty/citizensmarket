@@ -5,7 +5,7 @@
   <meta name='language' content='en' />
   <title><%= yield(:title) || "Citizens Market - Your Values. Your Money. Your Choices." %></title>
   <link rel="shortcut icon" href="/favicon.ico" />
-  <%= stylesheet_link_tag "application" %>
+  <%= stylesheet_link_tag "base_packaged" %>
 </head>
 <body>
     <div id="doc4" class="yui-t6">
@@ -21,8 +21,6 @@
     </div><!-- end doc4 -->
     <%= render :partial => "analytics/google_analytics" %>
     <div id="bottom-gutter"></div>
-    <%= javascript_include_tag 'jquery-1.3.2.min.js'%>
-    <%= javascript_include_tag 'application.js'%>
-    <%= yield :head %>
+    <%= javascript_include_tag "base_packaged" %>
 </body>
 </html>

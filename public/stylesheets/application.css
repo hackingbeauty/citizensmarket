@@ -1,7 +1,7 @@
 /******************* =General Styles (All Pages) *******************/
 
 body {
-	background: #c0e4ef url('../images/backgrounds/back-body.png') repeat-x;
+	background: #c0e4ef url('../images/backgrounds/back-body2.png') repeat-x;
 }
 
 h1 {
@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
 a {
 	color:#117fbc;
 	font-weight:bold;
-	text-decoration:underline;
+	text-decoration:none;
 }
 
 a:hover {
@@ -83,7 +83,7 @@ li.last {
 /******************* =Header (All Pages) *******************/
 
 #header {
-	height:14.3em;
+	height:17.8em;
 	position:relative;
 }
 
@@ -136,12 +136,18 @@ li.last {
 	color:#117FBC !important;
 }
 
+/* Logo */
+
+a#logo img {
+	margin-top:3.9em;
+}
+
 /* =Top Nav */
 
 #header ul#top-nav {
 	right:0em;
 	position:absolute;
-	top:1.5em;
+	top:-0.2em;
 }
 
 #header ul#top-nav li {
@@ -149,6 +155,13 @@ li.last {
 	float:left;
 	padding-right:0.7em;
 	margin-right:0.7em;
+	position:relative;
+	top:0.9em;
+}
+
+#header ul#top-nav li a {
+	position:relative;
+	top:0.3em;
 }
 
 #header ul#top-nav li.last {
@@ -158,18 +171,54 @@ li.last {
 /* =Search */
 
 #header #search {
-	height:2.2em;
-	bottom:5em;
+	height:2em;
+	bottom:9.6em;
 	position:absolute;
-	left:19em;
+	left:25em;
+	width:53em;
+}
+
+#header #search p#search-text {
+	color:#117FBC;
+	margin-bottom:0.4em;
+	margin-left:0.3em;
+	font-family:"Lucida Grande",Helvetica,Arial,Sans-serif;
+	font-size:1em;
+	-x-system-font:none;
+	font-size:1.1em;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
 }
 
 #header #search input#search_q {
+	color:black !important;
 	border:0.1em solid #BEBBBB;
 	float:left;
 	height:1.4em;
-	padding:0.4em 0em 0em 0.4em;
-	width:34em;
+	padding:0.6em 0em 0.2em 1em;
+	border:1px solid black;
+	color:#B4B2B2;
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-moz-border-radius-topright:5px;
+	-x-system-font:none;
+	background:#FFFFFF none repeat scroll 0 0;
+	border:1px solid #d6dbda;
+	font-family:Helvetica,Arial,Sans-serif;
+	font-size:18px;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:normal;
+
+	outline-width:0;
+	width:25em;
 }
 
 #header #search input#search_submit {
@@ -177,9 +226,9 @@ li.last {
 	border:none;
 	cursor:pointer;
 	float:right;
-	height:2em;
-	height:2.3em;
-	margin-left:1.6em;
+
+	margin-top:0.05em;
+	height:3em;
 	width:2.3em;
 }
 
@@ -273,7 +322,134 @@ li.last {
 	padding:2em 3em;
 }
 
-/* =Login Section */
+/* =Welcome Section */
+
+#homepage #welcome {
+	float:left;
+	height:275px;
+	margin-top:-0.7em;
+	width:36em;
+}
+
+#homepage #welcome h1 {
+	font-size:4em;
+	margin-bottom:0.2em;
+}
+
+#homepage #welcome p {
+	font-size:1.1em;
+	line-height:2em;
+}
+
+#homepage #welcome em {
+	color:#404048;
+	font-weight:bold;
+	font-size:1.8em;
+	margin-bottom:1em;
+}
+
+#homepage #welcome a#sign-up {
+	background: url('../images/buttons/button-sign-up.png') no-repeat;
+	display:block;
+	height:3.7em;
+	position:relative;
+	top:1.8em;
+	width:8.4em;
+}
+
+/* =Latest Reviews  & Latest News */
+
+#homepage #reviews {
+	width:30em;
+}
+
+#homepage #latest-news {
+	background-color:#d9f7c1;
+	margin-right:3.4em;
+	padding:2em 5em 0em 5em;
+}
+
+#homepage #latest-news h3,
+#homepage #reviews h3 {
+	color:#0b6bae;
+	font-size:1.8em;
+	margin-bottom:1em;
+	text-transform:uppercase;
+}
+
+#homepage #latest-news h2,
+#homepage #reviews h2 {
+	color:;
+	font-size:1.6em;
+}
+
+#homepage #reviews .review,
+#homepage #latest-news .news-item {
+	margin-bottom:40px;
+}
+
+#homepage #reviews .review .date,
+#homepage #latest-news .news-item .date {
+	color:#8e8080;
+	display:block;
+	margin-bottom:15px;
+	text-transform:uppercase;
+}
+
+#homepage #reviews .review a.read-more,
+#homepage #latest-news .news-item a.read-more {
+	display:block;
+	margin-top:0.5em;
+}
+
+/******************* =Registration & =Login *******************/
+
+/* =Login Link in Header */
+
+#header #login-bttn {
+	font-weight:bold;
+	font-size:1.5em;
+	top:0em !important;
+}
+
+#header #login-form {
+	display:none;
+}
+
+#header #login-form .jqmClose {
+	right:2em;
+	position:absolute;
+	top:1.5em;
+}
+
+/* Just Login */
+
+#login {
+	width:33em;
+}	
+
+#login #forgot-password-link {
+/*	float:right;*/
+	clear:both;
+	font-size:1.3em;
+	margin-bottom:1em;
+}
+
+#login #remember {
+	width:12em;
+}
+
+#login #remember label {
+	float:left;
+}
+
+#login #remember #remember_me {
+	float:right;
+}
+
+/*#header #top-nav #login {
+	display:none;
+}
 
 #header #login {
 	float:none;
@@ -386,89 +562,7 @@ li.last {
 
 #header #login form input[type=hidden] {
 	display:none;
-}
-
-/* =Welcome Section */
-
-#homepage #welcome {
-	float:left;
-	height:275px;
-	margin-top:-0.7em;
-	width:36em;
-}
-
-#homepage #welcome h1 {
-	font-size:4em;
-	margin-bottom:0.2em;
-}
-
-#homepage #welcome p {
-	font-size:1.1em;
-	line-height:2em;
-}
-
-#homepage #welcome em {
-	color:#404048;
-	font-weight:bold;
-	font-size:1.8em;
-	margin-bottom:1em;
-}
-
-#homepage #welcome a#sign-up {
-	background: url('../images/buttons/button-sign-up.png') no-repeat;
-	display:block;
-	height:3.7em;
-	position:relative;
-	top:1.8em;
-	width:8.4em;
-}
-
-/* =Latest Reviews  & Latest News */
-
-#homepage #reviews {
-	width:30em;
-}
-
-#homepage #latest-news {
-	background-color:#d9f7c1;
-	margin-right:3.4em;
-	padding:2em 5em 0em 5em;
-}
-
-#homepage #latest-news h3,
-#homepage #reviews h3 {
-	color:#0b6bae;
-	font-size:1.8em;
-	margin-bottom:1em;
-	text-transform:uppercase;
-}
-
-#homepage #latest-news h2,
-#homepage #reviews h2 {
-	color:;
-	font-size:1.6em;
-}
-
-#homepage #reviews .review,
-#homepage #latest-news .news-item {
-	margin-bottom:40px;
-}
-
-#homepage #reviews .review .date,
-#homepage #latest-news .news-item .date {
-	color:#8e8080;
-	display:block;
-	margin-bottom:15px;
-	text-transform:uppercase;
-}
-
-#homepage #reviews .review a.read-more,
-#homepage #latest-news .news-item a.read-more {
-	display:block;
-	margin-top:0.5em;
-}
-
-/******************* =Registration & =Login *******************/
+}*/
 
 #register,
 #login,
@@ -507,7 +601,8 @@ li.last {
 	color:#404048;
 	display:block;
 	font-size:1.8em;
-	margin-bottom:1em;
+	margin-bottom:1.5em;
+	margin-top:0.5em;
 }
 
 #register label,
@@ -599,6 +694,8 @@ li.last {
 
 #register #flash_notice,
 #login #message {
+	color:red;
+	font-weight:bold;
 	margin-bottom:1.7em;
 }
 
