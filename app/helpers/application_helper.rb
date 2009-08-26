@@ -2,7 +2,18 @@
 module ApplicationHelper
   
   # Return a link for use in layout navigation.
-  def nav_link(text, controller, action="index")
+  def nav_link(text, url)
+    # url can be hash, like {:controller => 'foo', :action => 'foo'} or route name like "/my_profile"
+    target_action = url.kind_of?(Hash) ? url[:action] : ActionController::Routing::Routes.recognize_path(url)[:action]
+    target_controller = url.kind_of?(Hash) ? url[:controller] : ActionController::Routing::Routes.recognize_path(url)[:controller]
+    if params[:action] == target_action and params[:controller] == target_controller
+      html = "<li class='active'><span>" + link_to(text, url) + "</span></li>"
+    else
+      html = "<li><span>" + link_to(text, url) + "</span></li>"
+    end
+  end
+  
+  def nav_link_old(text, controller, action="index")
     if params[:action] == action
       html = "<li class='active'><span>" + link_to(text,:controller=> controller, :action=>action) + "</span></li>"
     else

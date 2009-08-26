@@ -1,3 +1,6 @@
+
+
+
 <%=link_to image_tag('logos/new-logo.png'), root_url, :id => 'logo' %>
 <ul id="top-nav">
     <% if !current_user.nil? %>
@@ -8,13 +11,9 @@
         <li class="last"><%= link_to "Logout", '/logout' %></li>
     <% else %>
         <li><%= link_to "Sign In!", login_url, {:id=>'login-bttn'} %></li>
-        <% if current_user.nil? %>
-            <li class="last"><%= link_to "About Us", '/about' %></li>
-        <% else %>
-            <li class="last"><%= link_to "About Us", '/about' %></li>
+        <li class="last"><%= link_to "About Us", '/about' %></li>
     <% end %>
 </ul>
-<% end %>
 <div id="search">
     <p id="search-text">Find company reviews, product reviews, and more...</p>
     <% form_for :search, :url => nil do |f| %>
@@ -25,13 +24,13 @@
     <% end %>
 </div><!-- end search -->
 <ul id="main-nav">
-    <%= nav_link "Home", "home", "show" %>
-    <%= nav_link "Browse Companies", "companies", "index" %>
-    <%= nav_link "Browse Reviews", "", "reviews" %>
-    <%= nav_link "Compare Brands", "", "compare" %>
+    <%= nav_link "Home", {:controller => "home", :action => "show"} %>
+    <%= nav_link "Browse Companies", {:controller => "companies", :action => "index"} %>
+    <%= nav_link "Browse Reviews", "/reviews" %>
+    <%= nav_link "Compare Brands", "/compare" %>
     <% if !current_user.nil? %>
-        <%= nav_link "Rate a Company", "", "rate" %>
-        <%= nav_link "Add a Company", "", "add" %>
+        <%= nav_link "Rate a Company", "/rate" %>
+        <%= nav_link "Add a Company", "/add" %>
     <% end %>
 </ul><!-- end nav -->
 <div id="login-form" class="jqmWindow" >
