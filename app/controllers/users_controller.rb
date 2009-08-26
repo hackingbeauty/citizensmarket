@@ -42,13 +42,14 @@ class UsersController < ApplicationController
   end
   
   def create
+    #raise "check those params"
     logout_keeping_session!
     @user = User.new(params[:user])      
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if verify_recaptcha(@user) && success && @user.errors.empty?
       flash[:notice] = "<p class=\"big\">Thanks for signing up!</p><p>We're sending you an email to #{@user.email} with your activation code.</p>"
-      # redirect_back_or_default('/')
+      redirect_back_or_default('/')
     else
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
       render :action => 'new'

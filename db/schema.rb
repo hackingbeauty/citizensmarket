@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(:version => 20090606183714) do
 
   create_table "reviews", :force => true do |t|
     t.text     "body"
-    t.integer  "rating",                     :null => false
-    t.string   "status",     :default => "", :null => false
+    t.integer  "rating",     :null => false
+    t.string   "status",     :null => false
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(:version => 20090606183714) do
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :default => "", :null => false
+    t.string   "session_id", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
