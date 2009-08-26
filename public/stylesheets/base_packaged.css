@@ -99,7 +99,14 @@ li.last {border-right:none !important}
 #terms-of-use .section ul ul li {margin:0.5em 0}
 #terms-of-use .section ul ul {margin-left:1em}
  #homepage #video {float:right; margin-right:1.7em; width:31.8em}
- #companies table {border:1px solid green; width:1035px}
+
+#company {width: 1035px;}
+#company #header{height: 50px;}
+#company #header_left{float: left;}
+#company #header_right{float: right;}
+#company #scores{float: left; width: ;}
+#company #info_box{float: right;}
+#companies table {border:1px solid green; width:1035px}
 #companies caption {font-size:2.1em}
 #companies #company-headings {background-color:#eff3f2; border-bottom:1px solid #a5d8e8; border-top:1px solid #a5d8e8; display:block; padding:7px 0}
 #companies tbody tr {background: url('../images/sprite.png') repeat-y; display:block; padding-left:30px}

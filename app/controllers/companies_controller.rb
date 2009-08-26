@@ -51,7 +51,7 @@ class CompaniesController < ResourceController::Base
   end
   
   def show
-    @companies = Company.find(:all)
+    @company = Company.find(params[:id])
   end
   
   def create
