@@ -1,6 +1,27 @@
+<div id="companies-top"></div>
 <div id="companies">
-	<div>
-        <%=render :partial => "company", :collection => @companies %>
-    </div>
-</div><!-- end companies -->
-
+    <table summary="Companies, their brands, their review scores, and total number of reviews">
+        <caption>Company List</caption>
+        <thead>
+            <tr id="company-headings">
+                <th id="company-head">Company</th>
+                <th id="brands-head">Brands</th>
+                <th id="score-head">My Score</th>
+                <th id="reviews-head">Reviews</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @companies.each do |company| %>
+                <tr>
+                    <td class="company-name"><%= link_to company.name, object_url(company) %></td>
+                    <td class="company-brands">Soap, Sugar, Blah <%=brand_name_list(company, :truncate => true) %> <%=link_to "More", object_url(company), :class => 'arrow' %></td>
+                    <td class="company-score">3 stars</td>
+                    <td class="company-reviews">200</td>
+                </tr>
+            <% end %>
+        </tbody>
+        <tfoot>
+        </tfoot>
+    </table>
+</div>
+<div id="companies-bottom"></div>
