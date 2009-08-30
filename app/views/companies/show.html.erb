@@ -1,24 +1,27 @@
-<h1><%=@company.name %></h1>
-<div class="content_box">
-  <div class="header">
-    <%= render_tabs [
-      {:label => 'Scores and Overview', :on => true},
-      {:label => 'Reviews'},
-      {:label => 'Related Companies'},
-      {:label => 'Write a Review', :tab => 'follow_link', :link => new_company_review_url(@company)}
-      ] %>
-  </div><!-- end header -->
-  <div id="content">
-    <div id="scores_and_overview" class="tab_content show">
- 	    <%=render :partial => "info_box" %>
-	    <%=render :partial => "overview_scores" %>
-    </div><!-- end scores_and_overview -->
-    <div id="reviews" class="tab_content">
-      <h3>Reviews</h3>
-      <%=render :partial => "/reviews/review", :collection => @company.reviews, :locals => {:show_company => false} %>
-    </div><!-- end reviews -->
-    <div id="related_companies" class="tab_content">
-      <%=render :partial => "company", :collection => Company.all[1..5] %>
-    </div><!-- end related_companies -->
-  </div><!-- end content -->
-</div><!-- end content_box -->
+<div id="company">
+	<div id="headers" style="border: dotted black; height: 50px;">
+		<div id="header_left" style="border: solid blue;">
+			<h1><%=@company.name %></h1>
+			<% if current_user.nil? %>
+				currently cannot display "my company score" without user logged in
+			<% else %>
+				overall score: <%= fixed_star_rating(CmScores.my_company_score(@company, current_user)) %>
+			<% end %>
+			Total Reviews: <%= @company.reviews.size %>
+		</div>
+		<div id="header_right" style="border: solid green;">
+			<%= link_to "Browse Companies", companies_path %>
+			<%= link_to "Rate Reviews", company_reviews_path(@company) %>
+		</div>
+	</div>
+	<div id="scores" style="border: solid black;">
+		<%=render :partial => "overview_scores" %>
+	</div>
+	<div id="info_box" style="border: solid red;">
+		<%=render :partial => "info_box" %>
+	</div>
+</div> 	    
+	    
+    
+    
+  

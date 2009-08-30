@@ -1,6 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
+  id: 1
   name: Apple Inc.
   stock_symbol: NASDAQ:AAPL
   description: This is a mini monopoly. Makers of the iPod
@@ -9,6 +10,7 @@ one:
   google_cid: 22144
 
 two:
+  id: 2
   name: MyString
   stock_symbol: MyString
   description: 

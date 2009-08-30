@@ -92,8 +92,8 @@ class CmScores
     # return cached if it exists
     user = User.find(user) if user.class == Fixnum
     output = 0
-    reviews.each do |r|
-      output += r.review_score
+    user.reviews.each do |r|
+      output += self.review_score(r)
     end
     output
   end

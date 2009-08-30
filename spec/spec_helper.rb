@@ -28,6 +28,7 @@ Spec::Runner.configure do |config|
   # names with your fixtures.
   #
   # config.global_fixtures = :table_a, :table_b
+  config.global_fixtures = :companies
   #
   # If you declare global fixtures, be aware that they will be declared
   # for all of your examples, even those that don't use them.
