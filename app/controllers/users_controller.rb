@@ -3,12 +3,6 @@ class UsersController < ApplicationController
   # Protect these actions behind an admin login
   # before_filter :admin_required, :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
-  before_filter :login_required, :only => [:edit, :update, :dashboard]
-  
-  def dashboard
-    return unless cookies[:auth_token]
-    user = User.find_by_remember_token(cookies[:auth_token]) 
-  end
 
   def change_password
     
@@ -30,7 +24,7 @@ class UsersController < ApplicationController
     end
   end
   
-  
+  before_filter :login_required, :only => [:edit, :update]
 
   # render new.rhtml
   def new
@@ -42,7 +36,6 @@ class UsersController < ApplicationController
   end
   
   def create
-    #raise "check those params"
     logout_keeping_session!
     @user = User.new(params[:user])      
     @user.register! if @user && @user.valid?
@@ -51,8 +44,7 @@ class UsersController < ApplicationController
       flash[:notice] = "<p class=\"big\">Thanks for signing up!</p><p>We're sending you an email to #{@user.email} with your activation code.</p>"
       redirect_back_or_default('/')
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
-      render :action => 'new'
+      render :template => '/home/show'
     end
   end
   
