@@ -1,6 +1,18 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-
+    
+    # Return a link for use in layout navigation.
+    def nav_link(text, url)
+      # url can be hash, like {:controller => 'foo', :action => 'foo'} or route name like "/my_profile"
+      target_action = url.kind_of?(Hash) ? url[:action] : ActionController::Routing::Routes.recognize_path(url)[:action]
+      target_controller = url.kind_of?(Hash) ? url[:controller] : ActionController::Routing::Routes.recognize_path(url)[:controller]
+      if params[:action] == target_action and params[:controller] == target_controller
+        html = "<li class='active'><span>" + link_to(text, url) + "</span></li>"
+      else
+        html = "<li><span>" + link_to(text, url) + "</span></li>"
+      end
+    end
+    
   def categorized_issues_hash
     output = {}
     for issue_category in Issue.find(:all).map{|x| x.category}.uniq
