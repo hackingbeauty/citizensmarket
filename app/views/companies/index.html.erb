@@ -1,4 +1,6 @@
-<div id="companies-top"></div>
+<div id="companies-top">
+    <h2>Company List</h2>
+</div>
 <div id="companies">
     <table summary="Companies, their brands, their review scores, and total number of reviews">
         <caption>Company List</caption>
@@ -12,15 +14,17 @@
         </thead>
         <tbody>
             <% @companies.each do |company| %>
-                <tr>
-                    <td class="company-name"><%= link_to company.name, object_url(company) %></td>
-                    <td class="company-brands">Soap, Sugar, Blah <%=brand_name_list(company, :truncate => true) %> <%=link_to "More", object_url(company), :class => 'arrow' %></td>
-                    <td class="company-score">3 stars</td>
-                    <td class="company-reviews">200</td>
+                <tr class="<%= cycle('oddrow', 'evenrow') %>">
+                        <td class="company-name"><%= link_to company.name, object_url(company) %></td>
+                        <td class="company-brands">Soap, Sugar, Blah <%=brand_name_list(company, :truncate => true) %> <%=link_to "More", object_url(company), :class => 'arrow' %></td>
+                        <td class="company-score">3 stars</td>
+                        <td class="company-reviews">200</td>
+        
                 </tr>
             <% end %>
         </tbody>
         <tfoot>
+            <%= will_paginate @companies %>
         </tfoot>
     </table>
 </div>

@@ -773,18 +773,27 @@ a#logo img {
 }
 
 #companies {
-/*	background: url('../images/backgrounds/back-browse-companies.png') top center no-repeat;
-*/	width:80em;
+	width:80em;
 }
 
 #companies table {
-	margin-top:0.6em;
+	background: url('../images/sprite.png') repeat-y;
+	margin-left:3px;
+	margin-top:-2.4em;
+	width:80em;
 }
 
 #companies caption {
-	font-size:2.1em;
+	display:none;
+}
+
+#companies-top h2 {
+	font-family:'Trebuchet MS', Arial,Helvetica,sans-serif;
+	color:#555555;
+	font-size:2em;
 	margin-left:1em;
-	margin-top:-2.6em;
+	position:relative;
+	top:0.7em;
 }
 
 #companies #company-headings {
@@ -792,24 +801,34 @@ a#logo img {
 	border-bottom:1px solid #a5d8e8;
 	border-top:1px solid #a5d8e8;
 	display:block;
-	margin-left:0.6em;
-	margin-top:-0.4em;
-	padding:0.5em 1.7em;
-	width:75.5em
+	margin-left:4px;
+	padding:0.1em 1.7em;
+	width:75.53em
 }
 
 #companies tbody tr {
-	background: url('../images/sprite.png') repeat-y;
 	display:block;
-	margin-left:0.3em;
+	margin-left:4px;
 	padding-left:2.4em;
-	padding:0.5em 0 0.5em 2.1em;
-	width:77.3em;
+	padding:0.8em 0 0.8em 1.8em;
+	width:77.13em;
 }
 
-/*#companies #company-head {
+#companies th {
+	color:#666666;
+	font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;
+	font-size:1.1em;
+	font-weight:bold;
+}
+
+#companies tbody tr {
+	color:#848484;
+	font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;
+	font-weight:Bold;
+}
+
+#companies #company-head {
 	width:275px;
-	border:1px solid blue;
 }
 
 #companies #brands-head {
@@ -820,11 +839,9 @@ a#logo img {
 	width:187px;
 }
 
-#companies #reviews-head {
-	width:75px;
-}*/
 
 #companies .company-name {
+	font-size:1.2em;	
 	width:275px;
 }
 
@@ -839,6 +856,15 @@ a#logo img {
 #companies .company-reviews {
 	width:75px;
 }
+
+#companies tr.oddrow {
+	background-color:white;
+}
+
+#companies tr.evenrow {
+	background-color:#e0f8cc;
+}
+
 
 /******** =jQuery Impromptu Dialog Box ********/
 

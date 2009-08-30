@@ -43,6 +43,8 @@ class CompaniesController < ResourceController::Base
   end
 
   def index
+    @companies = Company.paginate_by_board_id @board.id, :page => params[:page], :order => 'updated_at DESC'
+      
     @companies = Company.find(:all)
     respond_to do |format|
       format.html # index.html.erb
