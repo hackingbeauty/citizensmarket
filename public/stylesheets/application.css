@@ -769,7 +769,7 @@ a#logo img {
 
 #companies-bottom {
 	background: url('../images/backgrounds/back-browse-companies.png') bottom center no-repeat;
-	height:5em;
+	height:3em;
 }
 
 #companies {
@@ -865,6 +865,23 @@ a#logo img {
 	background-color:#e0f8cc;
 }
 
+/* Pagination */
+
+#companies .pagination {
+	background-color:white;
+	font-weight:bold;
+	margin-left:1em;
+	margin-top:0.5em;
+	position:absolute;
+	text-align:center;
+	width:77em;
+}
+
+#companies .pagination .current {
+	border:1px solid #117FBC;
+	padding:0.1em 0.3em;
+	text-align:center;
+}
 
 /******** =jQuery Impromptu Dialog Box ********/
 
