@@ -4,7 +4,7 @@
  	
 	<label for="company_picker_container">Company: </label>
 	<div id="company_picker_container">
-		<% if review.company.nil? %>
+		<% if f.object.company.nil? %>
 			<%= render :partial => 'companies/company_picker', :locals => {:object_name => f.object_name.to_s, :object_company_id => f.object.company_id} %>
 		<% else %>
 			<h2><%= review.company.name %></h2>

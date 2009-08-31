@@ -2,8 +2,9 @@
 
 <%= error_messages_for :review %>
 
-<% form_for(@review, :html => { :method => :put }) do |f| %>
-  <%= render :partial => "form", :locals => { :f => f, :review => @review } %>
+<% form_for(:review, @review, :html => { :method => :put }) do |f| %>
+  <% raise "f.object is nil" if f.object.nil? %>
+	<%= render :partial => "form", :locals => { :f => f, :review => @review } %>
   <p>
     <%=submit_tag "Update"%>
   </p>
