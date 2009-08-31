@@ -7,13 +7,15 @@ describe "/reviews/index.html.erb" do
     review_1 =  stub_model(Review,
       :body => "value for body",
       :status => "value for status",
-      :company_id => 1
+      :company_id => 1, 
+      :user_id => 1
     )
 
     review_2 =  stub_model(Review,
       :body => "value for body",
       :status => "value for status",
-      :company_id => 1
+      :company_id => 1,
+      :user_id => 1
     )
     
     assigns[:reviews] = [

@@ -18,6 +18,11 @@ describe "/reviews/edit.html.erb" do
     
   end
 
+  it "should be able to render edit.html.erb" do
+    render "/reviews/edit.html.erb"
+    response.should have_tag("h1")
+  end
+
   it "should render edit form" do
     render "/reviews/edit.html.erb"  
     response.should have_tag("form[action=#{review_path(@review)}][method=post]") do
