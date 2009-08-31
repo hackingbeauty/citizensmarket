@@ -3,8 +3,8 @@
 	<div class="reviewer yui-u first">
 		  <%=image_tag "dummy_user.jpg", :class => 'avatar'%>
 		<div class="info">
-		  <p><%=link_to_user(review.user)%><p>
-		  <p><% unless review.user.profile.nil? %><%=review.user.profile[:location] %><% end %><p>
+		  <p><%=link_to_user(review.user)%></p>
+		  <p><% unless review.user.profile.nil? %><%=review.user.profile[:location] %><% end %></p>
 		  <p class="comment_count"> <%=link_to_user(review.user, :content_text => "#{review.user.reviews.size} Reviews")%></p>
 		
 			<br><br>
