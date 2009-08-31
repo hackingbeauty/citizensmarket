@@ -1,22 +1,8 @@
-<h1>Listing reviews</h1>
-
-<table>
-  <tr>
-    <th>Body</th>
-    <th>Status</th>
-  </tr>
 
 <% for review in @reviews %>
-  <tr>
-    <td><%=h review.body %></td>
-    <td><%=h review.status %></td>
-    <td><%= link_to 'Show', object_url(review) %></td>
-    <td><%= link_to 'Edit', edit_object_url(review) %></td>
-    <td><%= link_to 'Destroy', object_url(review), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
+	<%= render :partial => 'reviews/review', :locals => {:review => review, :show_company => false} %>
+
+<% end %>
 
 <%= link_to 'New review', new_object_url %>

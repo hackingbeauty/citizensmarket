@@ -3,18 +3,18 @@
 	<div class="reviewer yui-u first">
 		  <%=image_tag "dummy_user.jpg", :class => 'avatar'%>
 		<div class="info">
-		  <p><%=link_to_user(review.user)%><p>
-		  <p><% unless review.user.profile.nil? %><%=review.user.profile[:location] %><% end %><p>
+		  <p><%=link_to_user(review.user)%></p>
+		  <p><% unless review.user.profile.nil? %><%=review.user.profile[:location] %><% end %></p>
 		  <p class="comment_count"> <%=link_to_user(review.user, :content_text => "#{review.user.reviews.size} Reviews")%></p>
 		
 			<br><br>
 			<div>
 			<!--<div style="border: solid thin red; background-color: #ffeeee; margin: 20px 5px 0;">-->
 				<span style="color: red; font-size: 8pt;">temporary to observe algorithms.  <b>THIS USER:</b></span><br>
-				lifetime reviews (LR): <font color="blue"><%= review.user.lifetime_reviews %></font><br>
-				lifetime review score (LRS): <font color="blue"><%= review.user.lifetime_review_score %></font><br>
-				contributor score (CS): <font color="blue"><%= review.user.contributor_score %></font><br>
-				contributor level: <font color="blue"><%= review.user.contributor_level %></font><br>
+				lifetime reviews (LR): <font color="blue"><%= CmScores.user_lifetime_reviews(review.user) %></font><br>
+				lifetime review score (LRS): <font color="blue"><%= CmScores.user_lifetime_review_score(review.user) %></font><br>
+				contributor score (CS): <font color="blue"><%= CmScores.user_contributor_score(review.user) %></font><br>
+				contributor level: <font color="blue"><%= CmScores.user_contributor_level(review.user) %></font><br>
 				
 			</div>
 		

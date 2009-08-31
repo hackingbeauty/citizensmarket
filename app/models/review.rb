@@ -7,7 +7,7 @@ class Review < ActiveRecord::Base
   has_many    :peer_ratings
 
   validates_presence_of :user_id, :rating
-  validate_on_create :protect_agains_angry_abuse
+  validate_on_create :protect_against_angry_abuse
   
   # Define State Machine states and transitions
   include AASM
@@ -47,9 +47,9 @@ class Review < ActiveRecord::Base
   end
   
   private
-  def protect_agains_angry_abuse
+  def protect_against_angry_abuse
     [self.class.find(:first, :conditions => ["user_id = ? and company_id = ? and created_at > ?", user, company, Time.now - 180.days])].compact.each do
-      errors.add_to_base("You already submitted a review this company on this issue. You must way at least 180 days between reviews.")
+      errors.add_to_base("You already submitted a review this company on this issue. You must wait at least 180 days between reviews.")
     end
   end
   

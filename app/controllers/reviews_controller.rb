@@ -23,4 +23,14 @@ class ReviewsController < ResourceController::Base
     end
   end
   
+  def update
+    #raise "entered update"
+    @review = Review.find(params[:id])
+    if @review.update_attributes(params[:review])
+      redirect_to review_url(@review)
+    else
+      render :action => 'edit'
+    end
+  end
+  
 end

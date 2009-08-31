@@ -5,9 +5,13 @@ one:
   body: MyText
   status: MyString
   rating: 4
+  company_id: 1
+  user_id: 1
 
 two:
   id: 2
   body: MyText
   status: MyString
   rating: 3
+  company_id: 1
+  user_id: 1

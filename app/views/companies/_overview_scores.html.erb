@@ -1,14 +1,27 @@
 <div id="company-issue-score">
     <table summary="This table charts a company's core for each issue.">
         <tr>
-            <th id="issue">Issue</th>
+            <th width="150px">Category</th>
+			<th id="issue" width="200px">Issue</th>
             <th id="issue-score">Issue Score</th>
             <th id="total-reviews">Total Reviews</th>
         </tr>
         <% seen_before = {} %>
         <% count = 0 %>
         <% Issue.all(:order => :category).each do |issue| %>
-          <% category = issue.category %>
+          <tr>
+				<td><%= issue.category %></td>
+				<td><%= issue.name %></td>
+				<td><%= CmScores.company_issue_score(@company, issue) %></td>
+				<td><%= @company.reviews_for_issue(issue).size %></td>
+		  </tr>
+		<% end %>
+	</table>
+	<hr>
+	<table>
+		<% Issue.all(:order => :category).each do |issue| %>
+		
+			<% category = issue.category %>
           <% s = CmScores.company_issue_score(@company, issue) %>
           <% next if s.nil? %>
           <% if seen_before[category].nil? %>
@@ -19,14 +32,16 @@
           <% end %>
           <% if count%2 == 0 %>
           <tr class="shade">
+			  <td><%= category %></td>
               <td class="sub-issue"><%= issue.name %></td>
-              <td class="issue-score score-of-<%= sprintf('%.0f', s) %>"><%= issue_score_star_rating(sprintf('%.2f', s)) %></td>
+              <td class="issue-score score-of-<%= sprintf('%.0f', s) %>"><font color="green" size="4px"><%= s.to_f %></font></td>
               <td class="total"><%= @company.reviews_for_issue(issue).size %></td>
           </tr>
           <% else %>
           <tr>
+			  <td><%= category %></td>	
               <td class="sub-issue"><%= issue.name %></td>
-              <td class="issue-score score-of-<%= sprintf('%.0f', s) %>"><%= issue_score_star_rating(sprintf('%.2f', s)) %></td>
+              <td class="issue-score score-of-<%= sprintf('%.0f', s) %>"><font color="green" size="4px"><%= s.to_f %></font></td>
               <td class="total"><%= @company.reviews_for_issue(issue).size %></td>
           </tr>
           <% end %>

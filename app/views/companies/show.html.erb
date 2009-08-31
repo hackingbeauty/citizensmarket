@@ -5,7 +5,7 @@
 			<% if current_user.nil? %>
 				currently cannot display "my company score" without user logged in
 			<% else %>
-				overall score: <%= fixed_star_rating(CmScores.my_company_score(@company, current_user)) %>
+				overall score: <font color="green" size="4px"><%= fixed_star_rating(CmScores.my_company_score(@company, current_user)) %></font>
 			<% end %>
 			Total Reviews: <%= @company.reviews.size %>
 		</div>
