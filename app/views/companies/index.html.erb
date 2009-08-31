@@ -1,9 +1,9 @@
 <div id="companies-top">
-    <h2>Company List</h2>
+    <h2>Companies</h2>
 </div>
 <div id="companies">
     <table summary="Companies, their brands, their review scores, and total number of reviews">
-        <caption>Company List</caption>
+        <caption>Companies</caption>
         <thead>
             <tr id="company-headings">
                 <th id="company-head">Company</th>
@@ -26,8 +26,8 @@
         <tfoot>
            
         </tfoot>
-    </table>    
-    <%= will_paginate @companies %>
+    </table>  
+    <%= will_paginate @companies, :semantic => true %>
 </div>
 <div id="companies-bottom">
 

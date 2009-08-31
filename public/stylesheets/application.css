@@ -764,12 +764,12 @@ a#logo img {
 
 #companies-top {
 	background: url('../images/backgrounds/back-browse-companies.png') top center no-repeat;
-	height:7.1em;
+	height:4.7em;
 }
 
 #companies-bottom {
 	background: url('../images/backgrounds/back-browse-companies.png') bottom center no-repeat;
-	height:3em;
+	height:3.5em;
 }
 
 #companies {
@@ -777,9 +777,8 @@ a#logo img {
 }
 
 #companies table {
-	background: url('../images/sprite.png') repeat-y;
+	background: url('../images/backgrounds/back-browse-companies2.png') repeat-y;
 	margin-left:3px;
-	margin-top:-2.4em;
 	width:80em;
 }
 
@@ -865,22 +864,57 @@ a#logo img {
 	background-color:#e0f8cc;
 }
 
-/* Pagination */
-
-#companies .pagination {
+#companies ul.pagination {
 	background-color:white;
 	font-weight:bold;
-	margin-left:1em;
-	margin-top:0.5em;
+	height:1em;
+	margin-left:2.4em;
+	margin-top:0.7em;
 	position:absolute;
-	text-align:center;
 	width:77em;
 }
 
-#companies .pagination .current {
+#companies ul.pagination li {
+	float:left;
+	margin-right:10px;
+	margin-top:0.2em;
+} 
+
+#companies ul.pagination .current {
 	border:1px solid #117FBC;
+	margin-top:0em;
 	padding:0.1em 0.3em;
 	text-align:center;
+}
+
+#companies ul.pagination .prev_page {
+	color:transparent;
+	width:0.9em;
+}
+
+#companies ul.pagination .prev_page a {
+	background: url('../images/sprites/sprite-main.png') 0 2px no-repeat;
+	color:transparent;
+	display:block;
+}
+
+#companies ul.pagination .prev_page a:hover {
+	color:transparent !important;
+}
+
+#companies ul.pagination .next_page {
+	color:transparent;
+	width:0.9em;
+}
+
+#companies ul.pagination .next_page a {
+	background: url('../images/sprites/sprite-main.png') -11px 2px no-repeat;
+	color:transparent;
+	display:block;
+}
+
+#companies ul.pagination .next_page a:hover {
+	color:transparent !important;
 }
 
 /******** =jQuery Impromptu Dialog Box ********/
