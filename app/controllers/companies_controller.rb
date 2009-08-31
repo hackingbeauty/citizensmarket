@@ -21,7 +21,7 @@ class CompaniesController < ResourceController::Base
   end
   
   def company_picker
-    render :partial => 'company_picker'
+    render :partial => 'company_picker', :locals => {:object_name => params[:object_name], :object_company_id => params[:object_company_id]}
   end
   
   def suggestions

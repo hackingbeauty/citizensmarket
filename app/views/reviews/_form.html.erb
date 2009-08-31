@@ -5,10 +5,10 @@
 	<label for="company_picker_container">Company: </label>
 	<div id="company_picker_container">
 		<% if review.company.nil? %>
-			<%= render :partial => 'companies/company_picker' %>
+			<%= render :partial => 'companies/company_picker', :locals => {:object_name => f.object_name.to_s, :object_company_id => f.object.company_id} %>
 		<% else %>
 			<h2><%= review.company.name %></h2>
-			<%= link_to_remote 'change', :url => {:controller => 'companies', :action => 'company_picker'}, :update => {:success => 'company_picker_container', :failure => 'errors'} %>
+			<%= link_to_remote 'change', :url => {:controller => 'companies', :action => 'company_picker', :object_name => f.object_name.to_s, :object_company_id => f.object.company_id}, :update => {:success => 'company_picker_container', :failure => 'errors'} %>
 		<% end %>
 		
 	</div>
