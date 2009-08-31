@@ -23,10 +23,14 @@ describe "/reviews/edit.html.erb" do
     response.should have_tag("h1")
   end
 
+  it "should render a form" do
+    render "/reviews/edit.html.erb"
+    response.should have_tag("form")
+  end
+
   it "should render edit form" do
     render "/reviews/edit.html.erb"  
-    response.should have_tag("form[action=#{review_path(@review)}][method=post]") do
-      #with_tag('select#company_picker_id[name=?]', "company_id")
+    response.should have_tag("form[method=post][action$=/reviews/#{@review.id}]") do
       with_tag('textarea#review_body[name=?]', "review[body]")
     end
   end
