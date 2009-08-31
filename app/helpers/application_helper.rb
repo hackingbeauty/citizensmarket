@@ -50,8 +50,12 @@ module ApplicationHelper
     # TODO: cache
     "http://www.google.com/s2/favicons?domain=#{domain}"
   end
-
+  
   def fixed_star_rating(rating, opts = {})
+    # only temporarily, until I get the star rating plugin working:
+    return rating.to_f
+    #return Array.new(rating.to_i, '*').join('')
+    
     dom_id = opts[:dom_id] || ""
 
     (1..10).inject("") do |html, i|
