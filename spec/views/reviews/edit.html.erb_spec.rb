@@ -10,6 +10,8 @@ describe "/reviews/edit.html.erb" do
       :company_id => 1,
       :user_id => 1
     )
+    
+    assigns[:company] = @company = stub_model(Company, :id => 1)
   
     @controller.instance_variable_set(:@url, (ActionController::UrlRewriter.new @request, {}))
     
@@ -30,7 +32,7 @@ describe "/reviews/edit.html.erb" do
 
   it "should render edit form" do
     render "/reviews/edit.html.erb"  
-    response.should have_tag("form[method=post][action$=/reviews/#{@review.id}]") do
+    response.should have_tag("form[method=post][action=/companies/1/reviews/#{@review.id}]") do
       with_tag('textarea#review_body[name=?]', "review[body]")
     end
   end
