@@ -76,8 +76,8 @@ describe SessionsController do
       login_as :quentin
     end
     it 'logs out keeping session'   do controller.should_receive(:logout_keeping_session!); do_create end
-    it 'flashes an error'           do do_create; flash[:error].should =~ /Couldn't log you in as 'quentin@blah.com'/ end
-    it 'renders the log in page'    do do_create; response.should render_template('sessions/new.html.erb')  end
+    it 'flashes an invalid login message'           do do_create; flash[:message].should =~ /Incorrect Email\/Password Combination/ end
+    it 'renders the log in page'    do do_create; response.should render_template('/home/show')  end
     it "doesn't log me in"          do do_create; controller.send(:logged_in?).should == false end
     it "doesn't send password back" do 
       @login_params[:password] = 'FROBNOZZ'

@@ -16,7 +16,9 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      render :template => '/users/dashboard'
+      flash[:message] = "Your have successfully logged in"
+      redirect_to dashboard_url
+      #render :template => '/users/dashboard'
       # redirect_back_or_default('/')
     else
       flash[:message] = "Incorrect Email/Password Combination"
@@ -36,7 +38,8 @@ class SessionsController < ApplicationController
 protected
   # Track failed login attempts
   def note_failed_signin
-    flash[:message] = "Couldn't log you in as '#{params[:firstname]}'"
-    logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
+    # what is this function?  Why would there be a params[:firstname] passed in during a login attempt?
+    #flash[:message] = "Couldn't log you in as '#{params[:firstname]}'"
+    logger.warn "Failed login for '#{params[:email]}' from #{request.remote_ip} at #{Time.now.utc}"
   end
 end
