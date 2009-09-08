@@ -24,7 +24,7 @@ class ReviewsController < ResourceController::Base
   end
   
   def update
-    #raise "entered update"
+    #raise "entered update and params = #{params.inspect}"
     @review = Review.find(params[:id])
     if @review.update_attributes(params[:review])
       redirect_to review_url(@review)

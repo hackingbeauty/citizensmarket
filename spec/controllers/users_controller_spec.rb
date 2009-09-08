@@ -195,6 +195,9 @@ describe UsersController, "when editing your profile" do
 end
 
 describe UsersController, "when editing a user and you're not logged in" do
+  
+  fixtures :users
+  
   describe "on GET 'edit' with valid id," do
     before do
       get :edit, :id => 1

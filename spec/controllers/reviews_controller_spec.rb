@@ -118,9 +118,9 @@ describe ReviewsController do
     describe "with invalid params" do
 
       it "should update the requested review" do
-        Review.should_receive(:find).with("37").and_return(mock_review(:update_attributes => true))
+        Review.should_receive(:find).with("2").and_return(mock_review(:update_attributes => true))
         mock_review.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :review => {:these => 'params'}
+        put :update, :id => "2", :review => {:these => 'params'}
       end
 
       it "should expose the review as @review" do
