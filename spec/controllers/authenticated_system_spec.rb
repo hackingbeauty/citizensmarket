@@ -73,6 +73,7 @@ describe SessionsController do
     def set_remember_token token, time
       @user[:remember_token]            = token; 
       @user[:remember_token_expires_at] = time
+      @user[:terms_of_use] = 1
       @user.save!
     end
     

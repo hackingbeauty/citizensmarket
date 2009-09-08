@@ -33,8 +33,10 @@ end
 
 ACCESS_CONTROL_FORMATS = [
   ['html',     "success"],
-  ['xml',  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<hash>\n  <success>xml</success>\n</hash>\n"],
-  ['json', "{\"success\":\"json\"}"],]
+  # these should be re-activated as we build the xml and json interfaces
+  #['xml',  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<hash>\n  <success>xml</success>\n</hash>\n"],
+  #['json', "{\"success\":\"json\"}"],]
+]
 ACCESS_CONTROL_AM_I_LOGGED_IN = [
   [:i_am_logged_in,     :quentin],
   [:i_am_not_logged_in, nil],]
