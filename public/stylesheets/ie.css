@@ -1,0 +1,10 @@
+#companies table {
+	margin-left:0.4em;
+
+	width:78.9em;
+}
+
+#companies th,
+#companies tr td {
+		padding-left:1em;
+}
