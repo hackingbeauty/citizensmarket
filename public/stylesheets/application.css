@@ -80,6 +80,19 @@ li.last {
 	padding-left:16em;
 }
 
+.review{
+	border: solid red;
+	width: 700px;
+}
+.review .reviewer{
+	/*float: left;*/
+	background-color: yellow;
+}
+
+.construction_cruft{
+	border: solid thin red; background-color: #ffeeee; margin: 20px 5px 0;
+}
+
 /******************* =Header (All Pages) *******************/
 
 #header {

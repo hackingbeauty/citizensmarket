@@ -9,6 +9,8 @@ class Review < ActiveRecord::Base
   validates_presence_of :user_id, :rating
   validate_on_create :protect_against_angry_abuse
   
+  validates_inclusion_of :rating, :in => (0.5 .. 5.0)
+  
   # Define State Machine states and transitions
   include AASM
   

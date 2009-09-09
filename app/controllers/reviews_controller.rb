@@ -5,11 +5,11 @@ class ReviewsController < ResourceController::Base
   
   
   def create
-    
-    company_id = params[:company_picker_id] || params[:company_id]
+    #raise "check params"
+    #company_id = params[:company_picker_id] || params[:company_id]
 
     @review = Review.new(
-      :company_id => company_id, 
+      :company_id => params[:review_presenter][:company_id], 
       :body => params[:review_presenter][:body],  
       :rating => params[:review_presenter][:rating])
       

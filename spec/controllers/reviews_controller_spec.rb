@@ -60,8 +60,9 @@ describe ReviewsController do
       it "should expose a newly created review as @review" do        
         post :create, :review_presenter => {
           :body => "body of review",
-          :rating => 5
-        }, :company_id => 2, :issues => {1 => 1} 
+          :rating => 5,
+          :company_id => 2
+        },  :issues => {1 => 1} 
         assigns[:review].should be_valid
         response.should redirect_to(company_url(2))
       end
@@ -69,8 +70,9 @@ describe ReviewsController do
       it "should redirect to the created review" do
         post :create, :review_presenter => {
           :body => "body of review",
-          :rating => 5
-        }, :company_picker_id => 2, :issues => {1 => "other"} 
+          :rating => 5, 
+          :company_id => 2
+        }, :issues => {1 => "other"} 
         response.should redirect_to(company_url(2))
       end
       
