@@ -36,13 +36,13 @@ li.last {border-right:none !important}
 #header #search input#search_q {color:black !important; border:0.1em solid #BEBBBB; float:left; height:1.4em; padding:0.6em 0em 0.2em 1em; border:1px solid black; color:#B4B2B2; -moz-border-radius-bottomleft:5px; -moz-border-radius-topleft:5px; -moz-border-radius-bottomright:5px; -moz-border-radius-topright:5px; -x-system-font:none; background:#FFFFFF none repeat scroll 0 0; border:1px solid #d6dbda; font-family:Helvetica,Arial,Sans-serif; font-size:18px; font-size-adjust:none; font-stretch:normal; font-style:normal; font-variant:normal; font-weight:normal; line-height:normal; outline-width:0; width:25em}
 #header #search input#search_submit {background: url('../images/buttons/button-search.png') 0 0 no-repeat; border:none; cursor:pointer; float:right; margin-top:0.05em; height:3em; width:2.3em}
  #main-content {float:left; margin-bottom:2em; padding-top:2em}
- #footer {background: url('../images/backgrounds/grad-footer.png') repeat-x; clear:both; position:relative; z-index:100}
+ #footer {background: url('../images/backgrounds/grad-footer.png') repeat-x; clear:both; top:2em; position:relative; z-index:100}
 #footer p {color:white; float:left; font-weight:bold; margin-top:0.7em}
 #footer ul#links {float:right}
 #footer ul#links li {float:left; border-right:1px solid white; margin-top:0.7em; padding:0 0.7em}
 #footer ul#links li.last {border:none; padding-right:0em !important}
 #footer ul#links li a {color:white}
- #bottom-gutter {background: #1678ae url('../images/backgrounds/grad-footer.png') repeat-x; height:7.4em; position:relative }
+ #bottom-gutter {background: #1678ae url('../images/backgrounds/grad-footer.png') repeat-x; height:7.4em; position:relative}
  #homepage {}
 #homepage #yui-main {width:55%; padding-top:2em}
 #homepage #yui-main .yui-b {margin-right:0}
@@ -106,7 +106,7 @@ li.last {border-right:none !important}
  #companies tbody th { }
 #companies caption {display:none}
 #companies-top h2 {font-family:'Trebuchet MS', Arial,Helvetica,sans-serif; color:#555555; font-size:2em; margin-left:1em; position:relative; top:0.7em}
-#companies #company-headings {background-color:#eff3f2; border-bottom:1px solid #a5d8e8; border-top:1px solid #a5d8e8; display:block; margin-left:5px !important; padding:0.1em 1.7em; width:75.4em }
+#companies #company-headings {background-color:#eff3f2; border-bottom:1px solid #a5d8e8; border-top:1px solid #a5d8e8; display:block; margin-left:5px !important; padding:0.1em 1.7em; width:75.4em}
 #companies tbody tr {display:block; margin-left:5px; height:3em; padding-left:2.4em; padding-top:1.6em; width:76.4em}
 #companies th {color:#666666; font-family:'Trebuchet MS', Arial, Helvetica, sans-serif; font-size:1.1em; font-weight:bold}
 #companies tbody tr {color:#848484; font-family:'Trebuchet MS', Arial, Helvetica, sans-serif; font-weight:Bold}

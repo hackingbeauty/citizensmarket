@@ -260,6 +260,7 @@ a#logo img {
 #footer {
 	background: url('../images/backgrounds/grad-footer.png') repeat-x;
 	clear:both;
+	top:2em;
 	position:relative;
 	z-index:100;
 }
@@ -296,7 +297,7 @@ a#logo img {
 #bottom-gutter {
 	background: #1678ae url('../images/backgrounds/grad-footer.png') repeat-x;
 	height:7.4em;
-	position:relative
+	position:relative;
 }
 
 /******************* =Homepage *******************/
@@ -830,7 +831,7 @@ a#logo img {
 	display:block;
 	margin-left:5px !important;
 	padding:0.1em 1.7em;
-	width:75.4em
+	width:75.4em;
 }
 
 #companies tbody tr {
