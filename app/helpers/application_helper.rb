@@ -7,9 +7,9 @@ module ApplicationHelper
       target_action = url.kind_of?(Hash) ? url[:action] : ActionController::Routing::Routes.recognize_path(url)[:action]
       target_controller = url.kind_of?(Hash) ? url[:controller] : ActionController::Routing::Routes.recognize_path(url)[:controller]
       if params[:action] == target_action and params[:controller] == target_controller
-        html = "<li class='active'><span>" + link_to(text, url) + "</span></li>"
+        html = "<li class='active'>" + link_to(text, url) + "</li>"
       else
-        html = "<li><span>" + link_to(text, url) + "</span></li>"
+        html = "<li>" + link_to(text, url) + "</li>"
       end
     end
     

@@ -16,7 +16,9 @@
             <% @companies.each do |company| %>
                 <tr class="<%= cycle('oddrow', 'evenrow') %>">
                         <td class="company-name"><%= link_to company.name, object_url(company) %></td>
-                        <td class="company-brands">Soap, Sugar, Blah <%=brand_name_list(company, :truncate => true) %> <%=link_to "More", object_url(company), :class => 'arrow' %></td>
+                        <td class="company-brands">Soap, Sugar, Blah <%=brand_name_list(company, :truncate => true) %> <%=link_to "More", object_url(company), :class => 'arrow tooltip' %>
+                            <span class="hide"><%=brand_name_list(company, :truncate => false) %></span>
+                        </td>
                         <td class="company-score">3 stars</td>
                         <td class="company-reviews">200</td>
         
