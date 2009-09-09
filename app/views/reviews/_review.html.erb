@@ -26,7 +26,8 @@
 			<% end %>
 			
 			<span class="star_rating">
-				<%=fixed_star_rating(review.rating, :dom_id => dom_id(review))%>&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>
+				<%= fixed_star_rating(review.rating, "review_#{review.id}")%>
+				&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>
 			</span>
 			<br/>	
 	

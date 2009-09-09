@@ -1,11 +1,11 @@
 <div id="company">
-	<div id="headers" style="border: dotted black; height: 50px;">
+	<div id="headers">
 		<div id="header_left" style="border: solid blue;">
 			<h1><%=@company.name %></h1>
 			<% if current_user.nil? %>
 				currently cannot display "my company score" without user logged in
 			<% else %>
-				overall score: <font color="green" size="4px"><%= fixed_star_rating(CmScores.my_company_score(@company, current_user)) %></font>
+				overall score: <font color="green" size="4px"><%= fixed_star_rating(3.5, 'my_company_score') %></font>
 			<% end %>
 			Total Reviews: <%= @company.reviews.size %>
 		</div>
