@@ -43,7 +43,7 @@ class CompaniesController < ResourceController::Base
   end
 
   def index
-    @companies = Company.paginate   :per_page => 2, :page => params[:page], 
+    @companies = Company.paginate   :per_page => 30, :page => params[:page], 
                                     :order => 'name'
     respond_to do |format|
       format.html # index.html.erb

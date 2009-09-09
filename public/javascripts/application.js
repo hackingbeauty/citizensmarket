@@ -13,6 +13,14 @@
 	}
 	window['CM']['exists'] = exists;
 	
+	var videoClick = function(){
+		$('#video').click(function(){
+			$(this).css('background','none');
+			$(":nth-child(1)").css('visibility','visible');
+		});
+	}
+	window['CM']['videoClick'] = videoClick;
+	
 	//Sign In Button Drop Down Menu
 	var signInDropDown = function() {
 		$('#login-form').jqm({modal: true, trigger: '#login-bttn'});
@@ -23,6 +31,23 @@
 		// });
 	}//end function
 	window['CM']['signInDropDown'] = signInDropDown;
+	
+	var toolTip = function(){
+		$('.tooltip').tooltip({
+			delay: 0,
+			showURL: false,
+			bodyHandler: function() {
+				// return $("<img/>").attr("src", this.src);'
+				var toolTipBlurb = $(this).next().html();
+				// alert(html);
+				if(toolTipBlurb != ''){
+					return $("<span class='rounded'>"+toolTipBlurb+"</span>");
+				}
+			}
+		});
+	}
+	window['CM']['toolTip'] = toolTip;
+	
 		
 	//Inline validation for Registration form
 	var registrationFormValidation = function(){
@@ -121,6 +146,14 @@ $(document).ready (function() {
 	// CM.searchBoxClearText();
 	
 	CM.searchClick();
+	
+	if(CM.exists('homepage')){
+		CM.videoClick();
+	}
+	
+	if(CM.exists('companies')){
+		CM.toolTip();
+	}
 	
 	if(CM.exists('login-bttn')) {
 		CM.signInDropDown();
