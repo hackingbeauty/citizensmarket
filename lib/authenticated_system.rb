@@ -3,13 +3,16 @@ module AuthenticatedSystem
     # Returns true or false if the user is logged in.
     # Preloads @current_user with the user model if they're logged in.
     def logged_in?
+      #raise "current_user = #{current_user.inspect}"
       !!current_user
     end
 
     # Accesses the current user from the session.
     # Future calls avoid the database because nil is not equal to false.
     def current_user
+      #raise "login_from_cookie = #{login_from_cookie.inspect}"
       @current_user ||= (login_from_session || login_from_basic_auth || login_from_cookie) unless @current_user == false
+      #raise "@current_user = #{!!@current_user.inspect}"
     end
 
     # Store the given user id in the session.
@@ -122,10 +125,15 @@ module AuthenticatedSystem
     # Called from #current_user.  Finaly, attempt to login by an expiring token in the cookie.
     # for the paranoid: we _should_ be storing user_token = hash(cookie_token, request IP)
     def login_from_cookie
+      #raise "User.find_by_remember_token = #{User.find_by_remember_token(cookies[:auth_token]).inspect}"
+      #raise "cookies[:auth_token] = #{cookies[:auth_token].inspect}"
+      
       user = cookies[:auth_token] && User.find_by_remember_token(cookies[:auth_token])
       if user && user.remember_token?
+        #raise "entered if"
         self.current_user = user
         handle_remember_cookie! false # freshen cookie token (keeping date)
+        #raise "self.cuurent_user = #{self.current_user.inspect}"
         self.current_user
       end
     end

@@ -2,6 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "/reviews/index.html.erb" do
   
+  fixtures :users
+  
   before(:each) do
     
     review_1 =  stub_model(Review,

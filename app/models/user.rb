@@ -49,8 +49,7 @@ class User < ActiveRecord::Base
 	validates_format_of       :email,
 				  :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,
 				  :with => Authentication.email_regex, :message => Authentication.bad_email_message
-	validates_acceptance_of   :terms_of_use,
-                            :allow_nil => false
+	validates_acceptance_of   :terms_of_use, :allow_nil => false, :on => :create
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -85,9 +84,9 @@ class User < ActiveRecord::Base
   # We really need a Dispatch Chain here or something.
   # This will also let us return a human error message.
   #
-  def self.authenticate(login, password)
-    return nil if login.blank? || password.blank?
-    u = find_in_state :first, :active, :conditions => {:login => login} # need to get the salt
+  def self.authenticate(email, password)
+    return nil if email.blank? || password.blank?
+    u = find_in_state :first, :active, :conditions => {:email => email} # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
 

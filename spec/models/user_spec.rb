@@ -8,6 +8,11 @@ include AuthenticatedTestHelper
 describe User do
   fixtures :users
 
+  it 'loads the fixtures' do
+    u = User.find(:first, :conditions => ["email = ?", 'quentin@example.com'])
+    u.class.should == User
+  end
+
   describe 'being created' do
     before(:each) do
       @user = create_user
@@ -136,8 +141,12 @@ describe User do
     end
   end
 
+  it 'can be looked up by email and password using User.authenticate' do
+    User.authenticate('quentin@example.com', 'monkey').should == users(:quentin)
+  end
+
   it 'resets password' do
-    users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
+    result = users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password', :terms_of_use => 1)
     User.authenticate('quentin@example.com', 'new password').should == users(:quentin)
   end
 
