@@ -7,10 +7,13 @@ include AuthenticatedTestHelper
 
 describe User do
   fixtures :users
+  fixtures :issues
 
   it 'loads the fixtures' do
     u = User.find(:first, :conditions => ["email = ?", 'quentin@example.com'])
     u.class.should == User
+    i = Issue.find(:first, :conditions => ["name = ?", 'war'])
+    i.class.should == Issue
   end
 
   describe 'being created' do
@@ -31,8 +34,29 @@ describe User do
       create_user(:terms_of_use => false).errors.on(:terms_of_use).should_not be_nil
     end
     
+    it 'initializes all of the issue weights and sets them all to 50' do
+      @user.issue_weights.class.should == Hash
+      @user.issue_weights.values.uniq.should == [50] if @user.issue_weights.class == Hash
+    end
+    
   end
 
+  
+  describe 'interface for issue_weights' do 
+    
+    before(:each) do
+      @user = create_user
+    end
+    
+    it 'updates associated user_issues as issue_weights' do
+      @user.issue_weights = {1 => 5, 2 => 3, 3 => 0}
+      iws = UserIssue.find(:all, :conditions => ["user_id = ?", @user.id])
+      Hash[*iws.map{|x| [x.issue_id, x.weight]}.flatten].should == {1 => 5, 2 => 3, 3 => 0}
+    end
+    
+  end
+  
+  
   #
   # Validations
   #
