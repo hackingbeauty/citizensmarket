@@ -46,19 +46,15 @@ module ApplicationHelper
     "http://www.google.com/s2/favicons?domain=#{domain}"
   end
   
-  def fixed_star_rating(rating, unique_id)
+  def fixed_star_rating(rating)
     rating = ((rating.to_f * 2 + 0.5).floor.to_f)/2
     output = ''
-    output += 'a rating of '+rating.to_s
-    output += '<div id="fixed_star_rating_'+unique_id.to_s+'" class="fixed_star_rating">'
     output += '<select>'
     (1..10).to_a.each do |n|
       x = n.to_f/2
       output += '<option value="'+sprintf('%.1f', x)+'" disabled="disabled" '+(rating == x ? 'selected="selected"' : '')+'>'+sprintf('%.1f', x)+'</option>'+"\n"
     end
     output += '</select>'
-    output += '</div>'
-    output += '<script type="text/javascript">$("#fixed_star_rating_'+unique_id.to_s+'").stars({inputType: "select", disabled: true, split: 2});</script>'
     output
   end
   

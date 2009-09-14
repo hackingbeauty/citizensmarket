@@ -10,7 +10,8 @@
 			<br><br>
 			<div class="construction_cruft">
 			<!--<div style="border: solid thin red; background-color: #ffeeee; margin: 20px 5px 0;">-->
-				<span style="color: red; font-size: 8pt;">temporary to observe algorithms.  <b>THIS USER:</b></span><br>
+				<h1>this div temporary to observe algorithms.</h1>
+				<b>THIS USER:</b><br>
 				lifetime reviews (LR): <font color="blue"><%= CmScores.user_lifetime_reviews(review.user) %></font><br>
 				lifetime review score (LRS): <font color="blue"><%= CmScores.user_lifetime_review_score(review.user) %></font><br>
 				contributor score (CS): <font color="blue"><%= CmScores.user_contributor_score(review.user) %></font><br>
@@ -25,8 +26,8 @@
 			
 			<% end %>
 			
-			<span class="star_rating">
-				<%= fixed_star_rating(review.rating, "review_#{review.id}")%>
+			<span class="fixed_star_rating">
+				<%= fixed_star_rating(review.rating)%>
 				&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>
 			</span>
 			<br/>	

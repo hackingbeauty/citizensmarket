@@ -80,28 +80,34 @@ li.last {
 	padding-left:16em;
 }
 
-<<<<<<< HEAD:public/stylesheets/application.css
+
 .review{
 	border: solid red;
 	width: 700px;
+	margin: 15px 0;
 }
 .review .reviewer{
-	/*float: left;*/
+	border: solid blue;
 	background-color: yellow;
+}
+.review .body{
+	font: 24px georgia;
+	color: green;
 }
 
 .construction_cruft{
 	border: solid thin red; background-color: #ffeeee; margin: 20px 5px 0;
+	width: 600px;
 }
 
-=======
+
 .rounded {
 
 }
 
 .hide {display:none;}
 
->>>>>>> mark/master:public/stylesheets/application.css
+
 /******************* =Header (All Pages) *******************/
 
 #header {

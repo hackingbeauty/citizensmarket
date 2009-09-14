@@ -21,6 +21,12 @@
 	}
 	window['CM']['videoClick'] = videoClick;
 	
+	var paintStars = function(){
+		$('.fixed_star_rating').stars({inputType: "select", disabled: true, split: 2});
+		$('.editable_star_rating').stars({inputType: "select", split: 2});
+	}
+	window['CM']['paintStars'] = paintStars;
+	
 	//Sign In Button Drop Down Menu
 	var signInDropDown = function() {
 		$('#login-form').jqm({modal: true, trigger: '#login-bttn'});
@@ -146,6 +152,9 @@ $(document).ready (function() {
 	// CM.searchBoxClearText();
 	
 	CM.searchClick();
+	
+	// Too many places where stars might appear to use if(exists...)
+	CM.paintStars();
 	
 	if(CM.exists('homepage')){
 		CM.videoClick();
