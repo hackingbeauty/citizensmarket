@@ -116,11 +116,18 @@ class User < ActiveRecord::Base
   def issue_weights=(hash)
     # hash like {issue_id => weight}
     raise "issue_weights=() expects a hash; you passed it a #{hash.class}" unless hash.kind_of?(Hash)
-    hash.each_key do |issue_id|
-      user_issue = user_issues.find_by_issue_id(issue_id)
-      result = user_issue.update_attributes(:weight => hash[issue_id])
-      raise "user_issue.errors = #{user_issue.errors.full_messages.join(', ')}" if result == false
+    
+    User.transaction do 
+      hash.each_key do |issue_id|
+        user_issue = user_issues.find_by_issue_id(issue_id)
+        result = user_issue.update_attributes(:weight => hash[issue_id])
+        errors.add("user_issue did not save; its errors were"+ user_issue.errors.full_messages.join(', '), '') if result == false
+      end
+      @cm_user_issue_did_not_save = true if errors.full_messages.select{|x| x =~ /User issue did not save/}.size > 0
+      raise ActiveRecord::Rollback if errors.full_messages.select{|x| x =~ /User issue did not save/}.size > 0
     end
+      
+    
   end
   
   
@@ -186,4 +193,9 @@ class User < ActiveRecord::Base
     UserIssue.delete_all(:user_id => self.id)
   end
   
+  private
+  
+  def validate
+    errors.add("One or more user_issues did not save", '') if @cm_user_issue_did_not_save
+  end
 end

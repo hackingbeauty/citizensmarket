@@ -48,10 +48,16 @@ describe User do
       @user = create_user
     end
     
-    it 'updates associated user_issues as issue_weights' do
-      @user.issue_weights = {1 => 5, 2 => 3, 3 => 0}
+    #it 'updates associated user_issues as issue_weights' do
+    #  @user.issue_weights = {1 => 5, 2 => 3, 3 => 0}
+    #  iws = UserIssue.find(:all, :conditions => ["user_id = ?", @user.id])
+    #  Hash[*iws.map{|x| [x.issue_id, x.weight]}.flatten].should == {1 => 5, 2 => 3, 3 => 0}
+    #end
+    
+    it 'does not update any user_issues if issue_weights receives invalid data' do
+      @user.issue_weights = {1 => 5, 2 => 3, 3 => -10}
       iws = UserIssue.find(:all, :conditions => ["user_id = ?", @user.id])
-      Hash[*iws.map{|x| [x.issue_id, x.weight]}.flatten].should == {1 => 5, 2 => 3, 3 => 0}
+      Hash[*iws.map{|x| [x.issue_id, x.weight]}.flatten].should == {1 => 50, 2 => 50, 3 => 50}
     end
     
   end

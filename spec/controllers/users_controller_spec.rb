@@ -98,6 +98,97 @@ describe UsersController do
   end
 end
 
+describe UsersController, 'when editing your priorities (user_issues)' do
+  fixtures :users
+  fixtures :issues
+  fixtures :user_issues
+  
+  describe "on GET 'edit_issue_weights' with valid id, " do
+    before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
+      get :edit_issue_weights, :id => 1
+    end
+    
+    it 'should return success' do
+      response.should be_success
+    end
+    
+    it 'should assign to @user' do
+      assigns(:user).should_not == nil
+    end
+    
+    it 'should get the proper user' do
+      assigns(:user).should == User.find(1)
+    end
+    
+    it 'should render edit_issue_weights.html.erb' do
+      response.should render_template('edit_issue_weights')
+    end
+  end
+  
+  describe 'on PUT to update_issue_weights with valid data' do
+    before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
+      put :update_issue_weights, :id => 1, :user => {:issue_weights => {1 => 11, 2 => 22, 3 => 33}}
+    end
+    
+    it "should return a redirect" do
+      response.should be_redirect
+    end
+    
+    it 'should assign to @user' do
+      assigns(:user).should_not be_nil
+    end
+    
+    it 'should update the user_issues table' do
+      user = User.find(1)
+      user.issue_weights.should == {1 => 11, 2 => 22, 3 => 33}
+    end
+    
+    it 'should NOT set an error message' do
+      flash[:error].should be_nil
+    end
+    
+  end
+  
+  describe 'on PUT to update_issue_weights with invalid data (negative weights)' do
+    before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
+      put :update_issue_weights, :id => 1, :user => {:issue_weights => {1 => 11, 2 => 22, 3 => -33}}
+    end
+    
+    it "should return success" do
+      response.should be_success
+    end
+    
+    it "should not return a redirect" do
+      response.should_not be_redirect
+    end
+    
+    it "should render edit_issue_weights.html.erb" do
+      response.should render_template('edit_issue_weights')
+    end
+    
+    it 'should assign the appropriate user to @user' do 
+      assigns(:user).should == User.find(1)
+    end
+      
+    it 'should NOT update the user_issues table' do
+      user = User.find(1)
+      user.issue_weights.should == {1 => 50, 2 => 50, 3 => 50}
+    end
+    
+    it 'should set an error message' do
+      flash[:error].should_not be_nil
+    end
+    
+  end
+  
+end
+
 describe UsersController, "when editing your profile" do
   describe "on GET 'edit' with valid id," do
     before do
@@ -119,7 +210,7 @@ describe UsersController, "when editing your profile" do
       assigns(:user).firstname.should == 'Quentin'
     end
     
-    it "should not render edit.html.erb " do
+    it "should render edit.html.erb " do
       response.should render_template('edit')
     end
   end
@@ -194,7 +285,9 @@ describe UsersController, "when editing your profile" do
   
 end
 
-describe UsersController, "when editing a user and you're not logged in" do
+
+
+describe UsersController, ": when editing a user and you're not logged in," do
   
   fixtures :users
   

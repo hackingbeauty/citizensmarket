@@ -81,13 +81,6 @@ class CmScores
     output = s * ((x * CmScores.user_lifetime_review_score(user)) + CmScores.user_lifetime_reviews(user))
   end
   
-  def self.contributor_score_s
-    10
-  end
-  def self.contributor_score_x
-    1
-  end
-  
   def self.user_lifetime_review_score(user)
     # return cached if it exists
     user = User.find(user) if user.class == Fixnum

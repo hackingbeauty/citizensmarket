@@ -132,14 +132,22 @@ class UsersController < ApplicationController
     end
   end
   
-  # shouldn't this be called "update issue weights"?
-  def issue_weights
-    @user = find_user
-    # Only update if the user being updated is the one that is logged in
-    @user.update_issue_weights(params) if current_user == @user
-    redirect_to user_url(@user)
+  def update_issue_weights
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "We've updated your priorities"
+      redirect_to user_url(@user)
+    else
+      flash[:error] = "We could not update your priorities - did you supply invalid data?"
+      render :action => 'edit_issue_weights'
+    end
+    
   end
 
+  def edit_issue_weights
+    @user = User.find(params[:id])
+  end
+  
   # There's no page here to update or destroy a user.  If you add those, be
   # smart -- make sure you check that the visitor is authorized to do so, that they
   # supply their old password along with a new one to update it, etc.
