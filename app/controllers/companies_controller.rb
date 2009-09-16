@@ -21,7 +21,7 @@ class CompaniesController < ResourceController::Base
   end
   
   def company_picker
-    render :partial => 'company_picker'
+    render :partial => 'company_picker', :locals => {:object_name => params[:object_name], :object_company_id => params[:object_company_id]}
   end
   
   def suggestions
@@ -43,15 +43,16 @@ class CompaniesController < ResourceController::Base
   end
 
   def index
-    @companies = Company.find(:all)
+    @companies = Company.paginate   :per_page => 30, :page => params[:page], 
+                                    :order => 'name'
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @companies }
     end
   end
   
-  def show_companies
-    @companies = Company.find(:all)
+  def show
+    @company = Company.find(params[:id])
   end
   
   def create

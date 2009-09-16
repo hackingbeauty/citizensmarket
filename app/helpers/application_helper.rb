@@ -1,6 +1,18 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-
+    
+    # Return a link for use in layout navigation.
+    def nav_link(text, url)
+      # url can be hash, like {:controller => 'foo', :action => 'foo'} or route name like "/my_profile"
+      target_action = url.kind_of?(Hash) ? url[:action] : ActionController::Routing::Routes.recognize_path(url)[:action]
+      target_controller = url.kind_of?(Hash) ? url[:controller] : ActionController::Routing::Routes.recognize_path(url)[:controller]
+      if params[:action] == target_action and params[:controller] == target_controller
+        html = "<li class='active'>" + link_to(text, url) + "</li>"
+      else
+        html = "<li>" + link_to(text, url) + "</li>"
+      end
+    end
+    
   def categorized_issues_hash
     output = {}
     for issue_category in Issue.find(:all).map{|x| x.category}.uniq
@@ -33,8 +45,24 @@ module ApplicationHelper
     # TODO: cache
     "http://www.google.com/s2/favicons?domain=#{domain}"
   end
-
-  def fixed_star_rating(rating, opts = {})
+  
+  def fixed_star_rating(rating)
+    rating = ((rating.to_f * 2 + 0.5).floor.to_f)/2
+    output = ''
+    output += '<select>'
+    (1..10).to_a.each do |n|
+      x = n.to_f/2
+      output += '<option value="'+sprintf('%.1f', x)+'" disabled="disabled" '+(rating == x ? 'selected="selected"' : '')+'>'+sprintf('%.1f', x)+'</option>'+"\n"
+    end
+    output += '</select>'
+    output
+  end
+  
+  def fixed_star_rating_old(rating, opts = {})
+    # only temporarily, until I get the star rating plugin working:
+    return rating.to_f
+    #return Array.new(rating.to_i, '*').join('')
+    
     dom_id = opts[:dom_id] || ""
 
     (1..10).inject("") do |html, i|

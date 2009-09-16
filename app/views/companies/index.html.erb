@@ -1,11 +1,36 @@
-
-<div id="company_index" class="yui-gc">
-	<div class="yui-u first">
-    <%=render :partial => "company", :collection => @companies %>
-    <%=link_to 'New Company', new_object_url %>
-	</div>
-	<div class="yui-u">
-		Filtering controls
-	</div>
+<div id="companies-top">
+    <h2>Companies</h2>
 </div>
+<div id="companies">
+    <table summary="Companies, their brands, their review scores, and total number of reviews">
+        <caption>Companies</caption>
+        <thead>
+            <tr id="company-headings">
+                <th id="company-head">Company</th>
+                <th id="brands-head">Brands</th>
+                <th id="score-head">My Score</th>
+                <th id="reviews-head">Reviews</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @companies.each do |company| %>
+                <tr class="<%= cycle('oddrow', 'evenrow') %>">
+                        <td class="company-name"><%= link_to company.name, object_url(company) %></td>
+                        <td class="company-brands">Soap, Sugar, Blah <%=brand_name_list(company, :truncate => true) %> <%=link_to "More", object_url(company), :class => 'arrow tooltip' %>
+                            <span class="hide"><%=brand_name_list(company, :truncate => false) %></span>
+                        </td>
+                        <td class="company-score">3 stars</td>
+                        <td class="company-reviews">200</td>
+        
+                </tr>
+            <% end %>
+        </tbody>
+        <tfoot>
+           
+        </tfoot>
+    </table>  
+    <%= will_paginate @companies, :semantic => true %>
+</div>
+<div id="companies-bottom">
 
+</div>

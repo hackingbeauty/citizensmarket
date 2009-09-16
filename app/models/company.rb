@@ -43,10 +43,6 @@ class Company < ActiveRecord::Base
     rand(100) / 10.0
   end
   
-  
-  
-
-  
 end
 
 

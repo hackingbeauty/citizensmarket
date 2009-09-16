@@ -1,12 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper'
   # Be sure to include AuthenticatedTestHelper in spec/spec_helper.rb instead
 # Then, you can remove it from this and the units test.
-# include AuthenticatedTestHelper
+
 
 #
 # A test controller with and without access controls
 #
 class AccessControlTestController < ApplicationController
+  include AuthenticatedSystem
   before_filter :login_required, :only => :login_is_required
   def login_is_required
     respond_to do |format|
@@ -32,8 +33,10 @@ end
 
 ACCESS_CONTROL_FORMATS = [
   ['html',     "success"],
-  ['xml',  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<hash>\n  <success>xml</success>\n</hash>\n"],
-  ['json', "{\"success\":\"json\"}"],]
+  # these should be re-activated as we build the xml and json interfaces
+  #['xml',  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<hash>\n  <success>xml</success>\n</hash>\n"],
+  #['json', "{\"success\":\"json\"}"],]
+]
 ACCESS_CONTROL_AM_I_LOGGED_IN = [
   [:i_am_logged_in,     :quentin],
   [:i_am_not_logged_in, nil],]
@@ -42,6 +45,8 @@ ACCESS_CONTROL_IS_LOGIN_REQD = [
   :login_is_required,]
 
 describe AccessControlTestController do
+  include AuthenticatedTestHelper
+  include AuthenticatedSystem    
   fixtures        :users
   before do
     # is there a better way to do this?
@@ -73,12 +78,7 @@ describe AccessControlTestController do
               end
             else
               it "returns 'Access denied' and a 406 (Access Denied) status code" do
-                # response.should have_text("HTTP Basic: Access denied.\n")
-                response.should have_text("\You are being <a href=\"#{CGI.escapeHTML(url)}\">redirected")
-                
-                
-                # <html><body>You are being <a href=\"#{CGI.escapeHTML(url)}\">redirected</a>.</body></html>
-                
+                response.should have_text("HTTP Basic: Access denied.\n")
                 response.code.to_s.should == '401'
               end
             end

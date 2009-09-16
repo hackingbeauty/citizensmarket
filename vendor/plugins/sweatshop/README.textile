@@ -1,0 +1,87 @@
+h1. Sweatshop
+
+A Rails plugin that generates "factory_girl":http://github.com/thoughtbot/factory_girl/tree/master Factories AND "machinist":http://github.com/notahat/machinist/tree/master Blueprints for all of your ActiveRecord models.  This fork (mileszs) will place all factories in one file (test/factories.rb or spec/factories.rb for factory_girl) or (test/blueprints.rb or spec/blueprints.rb for machinist).  It will also generate an association line (like 'o.user { |a| a.association(:user) }' for factory_girl) or ( 'user' for machinist) for fields like 'something_id'.
+
+h2. Requirements
+
+You should probably have either the "factory_girl":http://github.com/thoughtbot/factory_girl/tree/master or "machinist":http://github.com/notahat/machinist/tree/master gem installed.
+
+h2. How to Install & Use
+
+h3. Factory Girl Instructions
+
+Install the factory_girl gem
+<pre><code>
+gem install thoughtbot-factory_girl --source http://gems.github.com
+</code></pre>
+
+Install the plugin
+<pre><code>
+./script/plugin install git://github.com/mileszs/sweatshop.git
+</code></pre>
+
+Run the following rake task to generate your Factories
+<pre><code>
+rake sweatshop:generate or rake sweatshop:generate:factories
+</code></pre>
+
+You can also specify specific models if you do not want to generate all of them.
+<pre><code>
+rake sweatshop:generate MODELS="User Post Comment"
+</code></pre>
+
+Make sure you put the two following lines into test/test_helper or spec/spec_helper.rb, as the task advises:
+<pre><code>
+  require 'factory_girl'
+  require File.expand_path(File.dirname(__FILE__)) + '/factories'
+</code></pre>
+
+h3. Machinist Instructions
+
+This plugin is slightly less useful for the machinist plugin given that machinist already dynamically sets defaults for your models.  You would generally override these defaults only for specific attributes that you are testing.  However, for large tables it can be handy to see all of the columns and quickly cut out anything that is not necessary.
+
+Install the machinist gem
+<pre><code>
+gem install notahat-machinist --source http://gems.github.com
+</code></pre>
+
+Install the plugin
+<pre><code>
+./script/plugin install git://github.com/mileszs/sweatshop.git
+</code></pre>
+
+Run the following rake task to generate your Factories
+<pre><code>
+rake sweatshop:generate:blueprints
+</code></pre>
+
+You can also specify specific models if you do not want to generate all of them.
+<pre><code>
+rake sweatshop:generate:blueprints MODELS="User Post Comment"
+</code></pre>
+
+
+Make sure you put the following line in test/test_helper or spec/spec_helper.rb, as the task advises:
+<pre><code>
+  require File.expand_path(File.dirname(__FILE__)) + '/blueprints'
+</code></pre>
+Also, set Sham to reset before each test. In the class Test::Unit::TestCase block in your test_helper.rb, add:
+<pre><code>
+  setup { Sham.reset }
+</code></pre>
+or, if you're on RSpec, in the Spec::Runner.configure block in your spec_helper.rb, add:
+<pre><code>
+  config.before(:each) { Sham.reset }
+</code></pre>
+
+
+h2. Notes
+
+In this fork of sweatshop (mileszs), all factories are placed in test/factories.rb (or spec/factories.rb).  Having separate files per model is too much like fixtures for my tastes -- I want to see all of my factories in one file.  If you would prefer separate files, as of now (1-16-09) the original sweatshop retains the multiple-files method: "mdarby-sweatshop":http://github.com/mdarby/sweatshop .
+
+
+h2. About the Author
+
+My name is Matt Darby. I’m a 29 year old professional Web Developer and IT Manager. I am the IT Manager and Lead Web Developer at Dynamix Engineering and recently earned a Master’s Degree in Computer Science from Franklin University in Columbus, OH.
+
+Feel free to check out my "blog":http://blgo.matt-darby.com or to "recommend me":http://workingwithrails.com

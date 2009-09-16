@@ -1,9 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
-
+  
+  
   map.connect '/issues/issue_picker', :controller => 'issues', :action => 'issue_picker'
   map.resources :issues
 
+
+
   map.connect '/users/update_issue_weights', :controller => 'issue_weights', :action => 'update'
+  map.compare '/compare', :controller => 'companies', :action => 'compare'
+  map.add '/add', :controller => 'companies', :action => 'new'
+  map.rate '/rate', :controller => 'reviews', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
@@ -20,6 +26,8 @@ ActionController::Routing::Routes.draw do |map|
     :member => {
       :issue_weights => :put
     }
+    
+  map.dashboard "/dashboard", :controller => "users", :action => "dashboard"
 
   map.resource :session
 
@@ -39,6 +47,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # map.connect '/edit', :controller => 'companies', :action => 'edit'
   
+  map.connect '/browse', :controller => 'companies', :action => 'index'
   map.connect '/admin', :controller => 'companies', :action => 'administer'
   map.connect '/score', :controller => 'companies', :action => 'find_score'
   map.connect '/about', :controller => 'about', :action => 'team'

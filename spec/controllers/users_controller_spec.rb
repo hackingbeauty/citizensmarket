@@ -2,9 +2,10 @@ require File.dirname(__FILE__) + '/../spec_helper'
   
 # Be sure to include AuthenticatedTestHelper in spec/spec_helper.rb instead
 # Then, you can remove it from this and the units test.
-include AuthenticatedTestHelper
+
 
 describe UsersController do
+  include AuthenticatedTestHelper
   fixtures :users
 
   it 'properly loads fixtures with Hash for attribute "profile"' do
@@ -23,7 +24,7 @@ describe UsersController do
   it 'signs up user in pending state' do
     create_user
     assigns(:user).reload
-    assigns(:user).should be_active
+    assigns(:user).should be_pending
   end
 
   it 'signs up user with activation code' do
@@ -67,9 +68,10 @@ describe UsersController do
     User.authenticate('aaron', 'monkey').should be_nil
     get :activate, :id => users(:aaron).activation_code
     response.should redirect_to('/login')
-    flash[:message].should_not be_nil
+    flash[:message].should match(/Please sign in to continue/)
     flash[:error ].should     be_nil
-    User.authenticate('aaron', 'monkey').should == users(:aaron)
+    User.find_by_email('aaron@example.com').state.should == "active"
+    User.authenticate('aaron@example.com', 'monkey').should == users(:aaron)
   end
   
   it 'does not activate user without key' do
@@ -91,9 +93,100 @@ describe UsersController do
   end
   
   def create_user(options = {})
-    post :create, :user => { :login => 'quire', :email => 'quire@example.com',
+    post :create, :user => { :firstname => 'quire', :lastname => 'quire', :email => 'quire@example.com',
       :password => 'quire69', :password_confirmation => 'quire69', :terms_of_use => "1" }.merge(options)
   end
+end
+
+describe UsersController, 'when editing your priorities (user_issues)' do
+  fixtures :users
+  fixtures :issues
+  fixtures :user_issues
+  
+  describe "on GET 'edit_issue_weights' with valid id, " do
+    before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
+      get :edit_issue_weights, :id => 1
+    end
+    
+    it 'should return success' do
+      response.should be_success
+    end
+    
+    it 'should assign to @user' do
+      assigns(:user).should_not == nil
+    end
+    
+    it 'should get the proper user' do
+      assigns(:user).should == User.find(1)
+    end
+    
+    it 'should render edit_issue_weights.html.erb' do
+      response.should render_template('edit_issue_weights')
+    end
+  end
+  
+  describe 'on PUT to update_issue_weights with valid data' do
+    before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
+      put :update_issue_weights, :id => 1, :user => {:issue_weights => {1 => 11, 2 => 22, 3 => 33}}
+    end
+    
+    it "should return a redirect" do
+      response.should be_redirect
+    end
+    
+    it 'should assign to @user' do
+      assigns(:user).should_not be_nil
+    end
+    
+    it 'should update the user_issues table' do
+      user = User.find(1)
+      user.issue_weights.should == {1 => 11, 2 => 22, 3 => 33}
+    end
+    
+    it 'should NOT set an error message' do
+      flash[:error].should be_nil
+    end
+    
+  end
+  
+  describe 'on PUT to update_issue_weights with invalid data (negative weights)' do
+    before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
+      put :update_issue_weights, :id => 1, :user => {:issue_weights => {1 => 11, 2 => 22, 3 => -33}}
+    end
+    
+    it "should return success" do
+      response.should be_success
+    end
+    
+    it "should not return a redirect" do
+      response.should_not be_redirect
+    end
+    
+    it "should render edit_issue_weights.html.erb" do
+      response.should render_template('edit_issue_weights')
+    end
+    
+    it 'should assign the appropriate user to @user' do 
+      assigns(:user).should == User.find(1)
+    end
+      
+    it 'should NOT update the user_issues table' do
+      user = User.find(1)
+      user.issue_weights.should == {1 => 50, 2 => 50, 3 => 50}
+    end
+    
+    it 'should set an error message' do
+      flash[:error].should_not be_nil
+    end
+    
+  end
+  
 end
 
 describe UsersController, "when editing your profile" do
@@ -117,7 +210,7 @@ describe UsersController, "when editing your profile" do
       assigns(:user).firstname.should == 'Quentin'
     end
     
-    it "should not render edit.html.erb " do
+    it "should render edit.html.erb " do
       response.should render_template('edit')
     end
   end
@@ -147,6 +240,7 @@ describe UsersController, "when editing your profile" do
     end
     
     it "should set a flash[:notice] message" do
+      flash[:error].should be_nil
       flash[:notice].should_not be_nil
     end
     
@@ -191,7 +285,12 @@ describe UsersController, "when editing your profile" do
   
 end
 
-describe UsersController, "when editing a user and you're not logged in" do
+
+
+describe UsersController, ": when editing a user and you're not logged in," do
+  
+  fixtures :users
+  
   describe "on GET 'edit' with valid id," do
     before do
       get :edit, :id => 1
@@ -216,6 +315,8 @@ describe UsersController, "when editing a user and you're not logged in" do
   
   describe "on PUT 'update' with valid data," do
     before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
       put :update, :id => 1, :user => {:firstname => 'NewFirstname', :lastname => 'NewLastname', :profile => {:location => 'newLocation', :website => 'www.NewWebsite.com'}}
     end
     
@@ -225,34 +326,36 @@ describe UsersController, "when editing a user and you're not logged in" do
     
     it "should update the user" do
       user = User.find(1)
-      user.firstname.should == 'Quentin'
+      user.firstname.should == 'NewFirstname'
     end
     
     it "should redirect to show" do
-      response.should redirect_to("show")
+      response.should redirect_to(user_path(1))
     end
     
     it "should assign to user" do 
-      assigns(:user).class.should == NilClass
+      assigns(:user).class.should == User
     end
     
     it "should not set a flash[:notice] message" do
-      flash[:notice].should be_nil
+      flash[:notice].should == "Your user profile has been updated!"
     end
     
   end
   
   describe "on PUT 'update' with invalid data (firstname is invalid with 101 characters)," do
     before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))      
       put :update, :id => 2, :user => {:firstname => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", :lastname => 'NewLast', :profile => {:location => 'newLoc', :website => 'www.newWeb.com'}}
     end
     
     it "should return success" do
-      response.should be_redirect
+      response.should be_success
     end
     
     it "should assign to @user" do
-      assigns(:user).class.should == NilClass
+      assigns(:user).class.should == User
     end
     
     it "should not update the user" do

@@ -1,7 +1,4 @@
-<%=link_to image_tag('mast_logo.png'), root_url, :id => 'logo' %>
-<p id="tagline">
-    <strong>Your Values.  Your Money.  Your Choices.</strong>
-</p>
+<%=link_to image_tag('logos/new-logo.png'), root_url, :id => 'logo' %>
 <ul id="top-nav">
     <% if !current_user.nil? %>
         <li><%= link_to "My Profile", '/my_profile' %></li>
@@ -10,32 +7,33 @@
         <li><%= link_to "Donate", '/donate' %></li>
         <li class="last"><%= link_to "Logout", '/logout' %></li>
     <% else %>
-
+        <li><%= link_to "Sign In!", login_url, {:id=>'login-bttn'} %></li>
+        <li class="last"><%= link_to "About Us", '/about' %></li>
     <% end %>
 </ul>
-<div id="nav">
-    <ul>
-    	<li><%=link_to "Home", '/take_action' %></li>
-    	<% if current_user.nil? %>
-    	    <li><%=link_to "Browse Companies", '/browse' %></li>
-    	    <li><%=link_to "Compare Brands", '/compare' %></li>
-    	    <li class="last"><%=link_to "Read Reviews", '/read' %></li>
-		<% else %>
-		    <li><%=link_to "Rate a Company", '/rate' %></li>
-		    <li class="last"><%=link_to "Add a Company", '/add' %></li>
-		<% end %>
-    </ul>
-    <% if current_user.nil? %>
-        <%= render :partial => "sessions/new" %>
-    <% else %>
-        <div id="search">
-            <% form_for :search, :url => nil do |f| %>
-                <div>
-                	<%= f.text_field :q, :value => 'Search Citizens Market', :size => 60 %>
-                	<%= f.submit 'Search' %>
-                </div>
-            <% end %>
-        </div><!-- end search -->
+<div id="search">
+    <p id="search-text">Find company reviews, product reviews, and more...</p>
+    <% form_for :search, :url => nil do |f| %>
+        <div>
+        	<%= f.text_field :q, :value => '', :size => 60 %>
+        	<%= f.submit 'Search', :class => 'hide-text' %>
+        </div>
     <% end %>
-</div><!-- end nav -->
+</div><!-- end search -->
+<ul id="main-nav">
+    <%= nav_link "Home", {:controller => "home", :action => "show"} %>
+    <%= nav_link "Browse Companies", {:controller => "companies", :action => "index"} %>
+    <%= nav_link "Browse Reviews", "/reviews" %>
+    <%= nav_link "Compare Brands", "/compare" %>
+    <% if !current_user.nil? %>
+        <%= nav_link "Rate a Company", "/rate" %>
+        <%= nav_link "Add a Company", "/add" %>
+    <% end %>
+</ul><!-- end nav -->
+<div id="login-form" class="jqmWindow" >
+    <a href="#nogo" class="jqmClose">Close</a>
+    <%= render :partial => "sessions/new" %>
+</div>
+
+
 

@@ -10,6 +10,8 @@ describe "/reviews/edit.html.erb" do
       :company_id => 1,
       :user_id => 1
     )
+    
+    assigns[:company] = @company = stub_model(Company, :id => 1)
   
     @controller.instance_variable_set(:@url, (ActionController::UrlRewriter.new @request, {}))
     
@@ -18,10 +20,19 @@ describe "/reviews/edit.html.erb" do
     
   end
 
+  it "should be able to render edit.html.erb" do
+    render "/reviews/edit.html.erb"
+    response.should have_tag("h1")
+  end
+
+  it "should render a form" do
+    render "/reviews/edit.html.erb"
+    response.should have_tag("form")
+  end
+
   it "should render edit form" do
     render "/reviews/edit.html.erb"  
-    response.should have_tag("form[action=#{review_path(@review)}][method=post]") do
-      with_tag('select#company_picker_id[name=?]', "company_picker_id")
+    response.should have_tag("form[method=post][action=/companies/1/reviews/#{@review.id}]") do
       with_tag('textarea#review_body[name=?]', "review[body]")
     end
   end

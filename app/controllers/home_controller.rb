@@ -1,5 +1,5 @@
 class HomeController < ResourceController::Singleton
-  actions :show
+  actions :show, :dashboard
   
   def show
     return unless cookies[:auth_token]

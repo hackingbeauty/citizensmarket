@@ -1,25 +1,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name='language' content='en' />
   <title><%= yield(:title) || "Citizens Market - Your Values. Your Money. Your Choices." %></title>
   <link rel="shortcut icon" href="/favicon.ico" />
-  <%= stylesheet_link_tag "reset-fonts-grids" %>
-  <%= stylesheet_link_tag "application" %>
-  <%= yield :head %>
+  <!--[if IE]>
+     <link rel="stylesheet" type="text/css" href="../stylesheets/ie.css" media="all" />
+  <![endif]-->
+  <!--[if IE 6]>
+     <link rel="stylesheet" type="text/css" href="stylesheets/ie6.css" media="all" />
+  <![endif]-->
+	
+  <%= stylesheet_link_tag "base_packaged" %>
 </head>
 <body>
     <div id="doc4" class="yui-t6">
         <div id="header">
-            <%=render :partial => "layouts/header"%>
+            <%= render :partial => "layouts/header" %>
         </div>
         <div id="main-content">
             <%= yield %>
         </div><!-- end main-content -->
         <div id="footer">
-            <%=render :partial => "layouts/footer"%>
-        </div> 
+            <%= render :partial => "layouts/footer" %>
+        </div>
     </div><!-- end doc4 -->
+    <%= render :partial => "analytics/google_analytics" %>
+    <div id="bottom-gutter"></div>
+    <%= javascript_include_tag "base_packaged" %>
 </body>
 </html>

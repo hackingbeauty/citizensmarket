@@ -7,6 +7,14 @@ include AuthenticatedTestHelper
 
 describe User do
   fixtures :users
+  fixtures :issues
+
+  it 'loads the fixtures' do
+    u = User.find(:first, :conditions => ["email = ?", 'quentin@example.com'])
+    u.class.should == User
+    i = Issue.find(:first, :conditions => ["name = ?", 'war'])
+    i.class.should == Issue
+  end
 
   describe 'being created' do
     before(:each) do
@@ -14,22 +22,47 @@ describe User do
     end
 
     it 'initializes #activation_code' do
-      @user.activation_code.should be_nil
-      @user.reload
       @user.activation_code.should_not be_nil
     end
 
     it 'starts in pending state' do
       @user.reload
-      @user.should be_active
+      @user.should be_pending
     end
     
     it 'requires for the user to agree on the terms of use' do
       create_user(:terms_of_use => false).errors.on(:terms_of_use).should_not be_nil
     end
     
+    it 'initializes all of the issue weights and sets them all to 50' do
+      @user.issue_weights.class.should == Hash
+      @user.issue_weights.values.uniq.should == [50] if @user.issue_weights.class == Hash
+    end
+    
   end
 
+  
+  describe 'interface for issue_weights' do 
+    
+    before(:each) do
+      @user = create_user
+    end
+    
+    #it 'updates associated user_issues as issue_weights' do
+    #  @user.issue_weights = {1 => 5, 2 => 3, 3 => 0}
+    #  iws = UserIssue.find(:all, :conditions => ["user_id = ?", @user.id])
+    #  Hash[*iws.map{|x| [x.issue_id, x.weight]}.flatten].should == {1 => 5, 2 => 3, 3 => 0}
+    #end
+    
+    it 'does not update any user_issues if issue_weights receives invalid data' do
+      @user.issue_weights = {1 => 5, 2 => 3, 3 => -10}
+      iws = UserIssue.find(:all, :conditions => ["user_id = ?", @user.id])
+      Hash[*iws.map{|x| [x.issue_id, x.weight]}.flatten].should == {1 => 50, 2 => 50, 3 => 50}
+    end
+    
+  end
+  
+  
   #
   # Validations
   #
@@ -138,8 +171,12 @@ describe User do
     end
   end
 
+  it 'can be looked up by email and password using User.authenticate' do
+    User.authenticate('quentin@example.com', 'monkey').should == users(:quentin)
+  end
+
   it 'resets password' do
-    users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
+    result = users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password', :terms_of_use => 1)
     User.authenticate('quentin@example.com', 'new password').should == users(:quentin)
   end
 
@@ -148,11 +185,11 @@ describe User do
   #
 
   it 'authenticates user' do
-    User.authenticate('quentin', 'monkey').should == users(:quentin)
+    User.authenticate('quentin@example.com', 'monkey').should == users(:quentin)
   end
 
   it "doesn't authenticate user with bad password" do
-    User.authenticate('quentin', 'invalid_password').should be_nil
+    User.authenticate('quentin@example.com', 'invalid_password').should be_nil
   end
 
  if REST_AUTH_SITE_KEY.blank?

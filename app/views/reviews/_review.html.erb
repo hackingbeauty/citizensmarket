@@ -1,69 +1,66 @@
 <!-- (1/4, 3/4) -->
-<div class="review yui-gf">
+<div class="review">
 	<div class="reviewer yui-u first">
 		  <%=image_tag "dummy_user.jpg", :class => 'avatar'%>
 		<div class="info">
-		  <p><%=link_to_user(review.user)%><p>
-		  <p><% unless review.user.profile.nil? %><%=review.user.profile[:location] %><% end %><p>
+		  <p><%=link_to_user(review.user)%></p>
+		  <p><% unless review.user.profile.nil? %><%=review.user.profile[:location] %><% end %></p>
 		  <p class="comment_count"> <%=link_to_user(review.user, :content_text => "#{review.user.reviews.size} Reviews")%></p>
 		
 			<br><br>
-			<div>
+			<div class="construction_cruft">
 			<!--<div style="border: solid thin red; background-color: #ffeeee; margin: 20px 5px 0;">-->
-				<span style="color: red; font-size: 8pt;">temporary to observe algorithms.  <b>THIS USER:</b></span><br>
-				lifetime reviews (LR): <font color="blue"><%= review.user.lifetime_reviews %></font><br>
-				lifetime review score (LRS): <font color="blue"><%= review.user.lifetime_review_score %></font><br>
-				contributor score (CS): <font color="blue"><%= review.user.contributor_score %></font><br>
-				contributor level: <font color="blue"><%= review.user.contributor_level %></font><br>
-				
+				<h1>this div temporary to observe algorithms.</h1>
+				<b>THIS USER:</b><br>
+				lifetime reviews (LR): <font color="blue"><%= CmScores.user_lifetime_reviews(review.user) %></font><br>
+				lifetime review score (LRS): <font color="blue"><%= CmScores.user_lifetime_review_score(review.user) %></font><br>
+				contributor score (CS): <font color="blue"><%= CmScores.user_contributor_score(review.user) %></font><br>
+				contributor level: <font color="blue"><%= CmScores.user_contributor_level(review.user) %></font><br>
 			</div>
-		
 		</div>
 	</div>
 	<div class="content yui-u">
 		<div class="heading">
 	  
-		<% if show_company %>
+			<% if show_company %>
 			
-		<% end %>
+			<% end %>
 			
-	  <span class="star_rating">
-		<%=fixed_star_rating(review.rating, :dom_id => dom_id(review))%>&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>
-      </span>
-		<br>	
+			<span class="fixed_star_rating">
+				<%= fixed_star_rating(review.rating)%>
+				&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>
+			</span>
+			<br/>	
 	
 		
-  <span class="time_ago">written <%= time_ago_in_words(review.created_at) %> ago</span>
-    </div>
-    <div class="body">
-      <%=textilize(snippet(review.body, 100)) %>
-    </div><br>
-    <div class="footer">
-      	<%=link_to 'Comment', '', :class => 'comment' %> |
-	    <%=link_to 'Permalink', '' %>
-	</div>
-	<div class="footer" id="thumbs_for_review_<%= review.id %>">
-			Was this review helpful to you?
-		<% if current_user.nil? %>
-			<span class="thumbs">
-				<%=link_to image_tag('thumbs_down.png'), login_url, :confirm => 'You must login to leave feedback.  Click OK to log in.' %>
-    			<%=link_to image_tag('thumbs_up.png'), login_url, :confirm => 'You must login to leave feedback.  Click OK to log in.' %>
-			</span>
-		<% else %>
-			<% if current_user.has_rated(review) %>
-				<%= render :partial => "reviews/feedback_given" %>
-			<% else %>
-			
+	  		<span class="time_ago">written <%= time_ago_in_words(review.created_at) %> ago</span>
+    	</div><!-- class="heading" -->
+    	<div class="body">
+      		<%=textilize(snippet(review.body, 100)) %>
+    	</div><!-- class="body" --><br/>
+    	<div class="footer">
+	      	<%=link_to 'Comment', '', :class => 'comment' %> |
+		    <%=link_to 'Permalink', '' %>
+		</div>
+		<div class="footer" id="thumbs_for_review_<%= review.id %>">
+				Was this review helpful to you?
+			<% if current_user.nil? %>
 				<span class="thumbs">
-					<%=link_to_remote image_tag('thumbs_down.png'), :url => vote_down_review_peer_ratings_url(review), :method => :post, :update => "thumbs_for_review_#{review.id}"  %>
-       				<%=link_to_remote image_tag('thumbs_up.png'), :url => vote_up_review_peer_ratings_url(review), :method => :post, :update => "thumbs_for_review_#{review.id}" %>
+					<%=link_to image_tag('thumbs_down.png'), login_url, :confirm => 'You must login to leave feedback.  Click OK to log in.' %>
+	    			<%=link_to image_tag('thumbs_up.png'), login_url, :confirm => 'You must login to leave feedback.  Click OK to log in.' %>
 				</span>
+			<% else %>
+				<% if current_user.has_rated(review) %>
+					<%= render :partial => "reviews/feedback_given" %>
+				<% else %>
+			
+					<span class="thumbs">
+						<%=link_to_remote image_tag('thumbs_down.png'), :url => vote_down_review_peer_ratings_url(review), :method => :post, :update => "thumbs_for_review_#{review.id}"  %>
+	       				<%=link_to_remote image_tag('thumbs_up.png'), :url => vote_up_review_peer_ratings_url(review), :method => :post, :update => "thumbs_for_review_#{review.id}" %>
+					</span>
+				<% end %>
 			<% end %>
-		<% end %>
-    </div>
-
-	
-	
+	    </div>
 	</div>
 </div>
 

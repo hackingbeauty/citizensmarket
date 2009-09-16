@@ -13,62 +13,49 @@
 	}
 	window['CM']['exists'] = exists;
 	
-	//Confirmation when deleting a company
-	var deleteCompanyConfirm = function() {		
-		$('.delete-company').click(function(){
-			var deleteBttn = this;
-			var companyId = document.getElementById("companyId").innerHTML;
-			$.prompt('Do you really want to delete this company?',{ 
-				buttons: { Delete: true, Cancel: false }, 
-				submit: function(v,m){
-					if(v){
-						$.ajax({
-			                // url: deleteBttn.href.replace('/companies/destroy/'+companyId,'/'),
-							url: '/companies/destroy/'+companyId,
-			                // type: 'POST',
-			                // 	dataType: 'script',
-			                // data: { '_method': 'destroy' },
-			                success: function() {
-								window.location.reload();
-			                    // the item has been deleted
-			                    // might want to remove it from the interface
-			                    // or redirect or reload by setting window.location
-								// url: '/admin'
-			                }
-			            });//end ajax
-					}//end if
-				}//end submit
-			});//end prompt
-		});//end click		
-	}//end function
-	window['CM']['deleteCompanyConfirm'] = deleteCompanyConfirm;
+	var videoClick = function(){
+		$('#video').click(function(){
+			$(this).css('background','none');
+			$(":nth-child(1)").css('visibility','visible');
+		});
+	}
+	window['CM']['videoClick'] = videoClick;
 	
-	//Forgot Password modal 
-	var forgotPassword = function(){
-		$('#forgot-password-link').click(function(e){
-				e.preventDefault();
-				var imageLarge = "<p>blah blah</p>"
-				$.prompt(imageLarge,{ 
-					// buttons: { Delete: true, Close: false }, 
-				});
-				// ajax call
-				// $.get("/forgot", function(data){
-				// 	// create a modal dialog with the data
-				// 	$(data).modal({
-				// 		close: false,
-				// 		position: ["15%",],
-				// 		overlayId: 'contact-overlay',
-				// 		containerId: 'contact-container',
-				// 		onOpen: contact.open,
-				// 		onShow: contact.show,
-				// 		onClose: contact.close
-				// 	});
-				// });// end get
-		});// end click
-	}//end function
-	window['CM']['forgotPassword'] = forgotPassword;
+	var paintStars = function(){
+		$('.fixed_star_rating').stars({inputType: "select", disabled: true, split: 2});
+		$('.editable_star_rating').stars({inputType: "select", split: 2});
+	}
+	window['CM']['paintStars'] = paintStars;
 	
-	//In-line validation for Registration form
+	//Sign In Button Drop Down Menu
+	var signInDropDown = function() {
+		$('#login-form').jqm({modal: true, trigger: '#login-bttn'});
+		return false;		
+		// $('#sign-in-bttn').click(function(){
+		// 	$('#sign-in-form').jqm();
+		// 	return false;
+		// });
+	}//end function
+	window['CM']['signInDropDown'] = signInDropDown;
+	
+	var toolTip = function(){
+		$('.tooltip').tooltip({
+			delay: 0,
+			showURL: false,
+			bodyHandler: function() {
+				// return $("<img/>").attr("src", this.src);'
+				var toolTipBlurb = $(this).next().html();
+				// alert(html);
+				if(toolTipBlurb != ''){
+					return $("<span class='rounded'>"+toolTipBlurb+"</span>");
+				}
+			}
+		});
+	}
+	window['CM']['toolTip'] = toolTip;
+	
+		
+	//Inline validation for Registration form
 	var registrationFormValidation = function(){
 		$('#register-form').validate({
 			rules: {
@@ -92,28 +79,32 @@
 	                required: true,
 	                equalTo: "#user_password"
 	            },
-	            'user[terms_of_use]': "required"
+	            'user[terms_of_use]': {
+					required: true
+				}
 	        },
 	        messages: {
-		        'user[firstname]': {
+						        'user[firstname]': {
 					required: "Please enter your first name"
 				},
 				'user[lastname]': {
 					required: "Please enter your last name"
 				},
-		        'user[email]': {
+						        'user[email]': {
 					required: "Please enter your email address",
 					email: "Please enter a valid email address"
 				},
-	            'user[password]': {
-	                required: "Please provide a password",
-	                minLength: "Your password must be at least 5 characters long"
-	            },
-	            'user[password_confirmation]': {
-	                required: "Confirm your password",
-	                equalTo: "Please enter the same password as above"
-	            },
-	            'user[terms_of_use]': "Please accept our policy"
+					            'user[password]': {
+					                required: "Please provide a password",
+					                minLength: "Your password must be at least 5 characters long"
+					            },
+					            'user[password_confirmation]': {
+					                required: "Confirm your password",
+					                equalTo: "Please enter the same password as above"
+					            },
+	            'user[terms_of_use]': {
+					required: "Please accept our policy" 
+				}
 	        }
 		});
 	}
@@ -121,11 +112,27 @@
 	
 	//Clear search-box default text when user clicks inside
 	var searchBoxClearText = function(){
+		$('#search_q').val("Search Citizens Market");
+		$('#search_q').css('color','#b4b2b2');
 		$('#search_q').click(function(){
 			this.value = "";
+			$(this).css('color','black');
+		});
+		$('#search_q').blur(function(){
+			$(this).val("Search Citizens Market");
+			$(this).css('color','#b4b2b2');
 		});
 	}
 	window['CM']['searchBoxClearText'] = searchBoxClearText;
+	
+	//Search Click
+	var searchClick = function(){
+		$('#search_submit').click(function(){
+
+			return false;
+		});
+	}
+	window['CM']['searchClick'] = searchClick;
 	
 	//Function to embed Flash media
 	var embedFlash = function(media,div,width,height){
@@ -140,13 +147,27 @@
 		
 
 //All functions that need to be executed after page load go here
-
 $(document).ready (function() {
-		
-	if(CM.exists('search_q')){
-		CM.searchBoxClearText();
+	
+	// CM.searchBoxClearText();
+	
+	CM.searchClick();
+	
+	// Too many places where stars might appear to use if(exists...)
+	CM.paintStars();
+	
+	if(CM.exists('homepage')){
+		CM.videoClick();
 	}
 	
+	if(CM.exists('companies')){
+		CM.toolTip();
+	}
+	
+	if(CM.exists('login-bttn')) {
+		CM.signInDropDown();
+	}
+		
 	if(CM.exists('register')){
 		CM.registrationFormValidation();
 	}
@@ -154,9 +175,5 @@ $(document).ready (function() {
 	if (CM.exists('administer-companies')) {
 		CM.deleteCompanyConfirm();
 	}
-	
-	// if (CM.exists('login')) {
-	// 	CM.forgotPassword();
-	// }
 		
 });

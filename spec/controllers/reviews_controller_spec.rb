@@ -1,10 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-include AuthenticatedTestHelper
 
 describe ReviewsController do
+  include AuthenticatedTestHelper
+  
   fixtures :reviews
-  before do
+  before(:each) do
     login_as(mock_user)
   end
   
@@ -59,17 +60,20 @@ describe ReviewsController do
       it "should expose a newly created review as @review" do        
         post :create, :review_presenter => {
           :body => "body of review",
-          :rating => 5
-        }, :company_id => 1, :issues => {1 => 1} 
-        response.should redirect_to(company_url(1))
+          :rating => 5,
+          :company_id => 2
+        },  :issues => {1 => 1} 
+        assigns[:review].should be_valid
+        response.should redirect_to(company_url(2))
       end
 
       it "should redirect to the created review" do
         post :create, :review_presenter => {
           :body => "body of review",
-          :rating => 5
-        }, :company_picker_id => 1, :issues => {1 => "other"} 
-        response.should redirect_to(company_url(1))
+          :rating => 5, 
+          :company_id => 2
+        }, :issues => {1 => "other"} 
+        response.should redirect_to(company_url(2))
       end
       
     end
@@ -116,9 +120,9 @@ describe ReviewsController do
     describe "with invalid params" do
 
       it "should update the requested review" do
-        Review.should_receive(:find).with("37").and_return(mock_review(:update_attributes => true))
+        Review.should_receive(:find).with("2").and_return(mock_review(:update_attributes => true))
         mock_review.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :review => {:these => 'params'}
+        put :update, :id => "2", :review => {:these => 'params'}
       end
 
       it "should expose the review as @review" do
