@@ -5,6 +5,7 @@ javascripts:
   - jmodal
   - jquery.validate.min
   - jquery.tooltip.min
+  - jquery.form
   - swfobject
   - application
 stylesheets: 
