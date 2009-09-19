@@ -677,6 +677,10 @@ a#logo img {
 
 /* =Registration & Login Error Messaging + Notifications */
 
+#flash-errors {
+	display:none;
+}
+
 #register input.error,
 #login input.error,
 #forgot-password input.error {

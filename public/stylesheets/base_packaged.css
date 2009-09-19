@@ -82,7 +82,8 @@ li.last {border-right:none !important}
 #register #agree span, #login #agree span, #forgot-password #agree span {display:block; float:right; left:-0.5em; position:relative}
 #register #signin, #login #signin, #forgot-password #signin {float:left; margin:1em 0 0 1em}
 #register .form-row.captcha {margin-bottom:2em}
- #register input.error, #login input.error, #forgot-password input.error {background: url('/images/backgrounds/back-validation-error.gif') repeat-x; border:2px solid red}
+ #flash-errors {display:none}
+#register input.error, #login input.error, #forgot-password input.error {background: url('/images/backgrounds/back-validation-error.gif') repeat-x; border:2px solid red}
 #register label.error, #login label.error #forgot-password label.error {color:red; position:relative; top:-0.5em}
 #register .errorExplanation h2 {color:red}
 #register .errorExplanation p {font-weight:bold; margin-bottom:0.5em}
