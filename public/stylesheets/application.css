@@ -677,8 +677,24 @@ a#logo img {
 
 /* =Registration & Login Error Messaging + Notifications */
 
+.login-error {
+	background: url('/images/icons/icon-yellow-exclamation2.png') no-repeat;
+	color:red;
+	font-size:1.4em;
+	font-weight:bold;
+	height:2em;
+	padding-left:2.2em;
+	padding-top:0.2em;
+}
+
 #flash-errors {
 	display:none;
+	margin-bottom:2em;
+}
+
+#flash-errors p {
+	color:red;
+	font-size:1.2em;
 }
 
 #register input.error,

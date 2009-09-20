@@ -20,13 +20,15 @@ class SessionsController < ApplicationController
          format.html {flash[:message] = "You have successfully logged in"}
          format.js       
       end
-      # flash[:message] = "You have successfully logged in"
       redirect_to dashboard_url
       #render :template => '/users/dashboard'
       # redirect_back_or_default('/')
     else
       respond_to do |format|
-         format.html { flash[:message] = "Incorrect Email/Password Combination"}
+         format.html { 
+           flash[:message] = "<p class=\"login-error\">That won&#39;t work!</p><p>You entered a wrong username and/or password.</p>"
+           redirect_to login_url
+         }
          format.js       
       end
       # flash[:message] = "Incorrect Email/Password Combination"

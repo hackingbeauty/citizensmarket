@@ -23,19 +23,12 @@
 	
 	//Sign In Modal
 	var signIn = function() {
-		// var openSignIn=function(hash) { 
-		// 	hash.w.show();
-		// 	hash.o.show();
-		// 	// hash.w.fadeOut('1000000',function(){ hash.o.remove()});
-		// };
-		var closeSignIn=function(hash) { 
-			hash.w.fadeOut('100',function(){ hash.o.remove()});
-			setTimeout(function(){$('#flash-errors').html("")},'105');
-		}; 
+		$('#login-bttn').click(function(){
+			$('#flash-errors').html("");
+		});
 		$('#login-form').jqm({
 			modal: true, 
-			trigger: '#login-bttn',
-			onHide: closeSignIn
+			trigger: '#login-bttn'
 		});
 		return false;		
 	}//end function
@@ -44,16 +37,15 @@
 	var signInSubmit = function(){
 		var options = { 
 			target:        		'#login-body',   // target element(s) to be updated with server response 
-			// beforeSubmit:  showRequest,  // pre-submit callback 
-			success:       		signInSuccess,  // post-submit callback 
-			error: 				signInError, 
-			// other available options: 
-			//url:       url         // override for form's 'action' attribute 
 			type:      'post',        // 'get' or 'post', override for form's 'method' attribute 
-			dataType:  'script'       // 'xml', 'script', or 'json' (expected server response type) 
+			dataType:  'script'       // 'xml', 'script', or 'json' (expected server response type)
+			// success:       		signInSuccess,  // post-submit callback 
+			// error: 				signInError, 
+			// beforeSubmit:  showRequest,  // pre-submit callback 
+			// other available options: 
+			//url:       url         // override for form's 'action' attribute
 			//clearForm: true        // clear all form fields after successful submit 
 			//resetForm: true        // reset the form after successful submit 
-
 			// $.ajax options can be used here too, for example: 
 			//timeout:   3000 
 		};
@@ -64,18 +56,15 @@
 	}
 	window['CM']['signInSubmit'] = signInSubmit;
 	
-	var signInSuccess = function(responseText, statusText){
-		// alert(responseText);
-		var msg = '<div class="success">YES, this is '+responseText+'(click to close)</div>';
-		// $('#login-body').append(msg);
-		// $('.error').click(function(){$(this).hide()})
-	}
-	
-	var signInError = function(responseText, statusText){
-		var msg = '<div class="error">'+responseText+'(click to close)</div>';
-		// $('#login-body').append(msg);
-		// $('.error').click(function(){$(this).hide()})
-	}
+	// var signInSuccess = function(responseText, statusText){
+	// 	var msg = '<div class="success">YES, this is '+responseText+'(click to close)</div>';
+	// }
+	// 
+	// var signInError = function(responseText, statusText){
+	// 	var msg = '<div class="error">'+responseText+'(click to close)</div>';
+	// 	// $('#login-body').append(msg);
+	// 	// $('.error').click(function(){$(this).hide()})
+	// }
 	
 	var toolTip = function(){
 		$('.tooltip').tooltip({

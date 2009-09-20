@@ -82,7 +82,9 @@ li.last {border-right:none !important}
 #register #agree span, #login #agree span, #forgot-password #agree span {display:block; float:right; left:-0.5em; position:relative}
 #register #signin, #login #signin, #forgot-password #signin {float:left; margin:1em 0 0 1em}
 #register .form-row.captcha {margin-bottom:2em}
- #flash-errors {display:none}
+ .login-error {background: url('/images/icons/icon-yellow-exclamation2.png') no-repeat; color:red; font-size:1.4em; font-weight:bold; height:2em; padding-left:2.2em; padding-top:0.2em}
+#flash-errors {display:none; margin-bottom:2em}
+#flash-errors p {color:red; font-size:1.2em}
 #register input.error, #login input.error, #forgot-password input.error {background: url('/images/backgrounds/back-validation-error.gif') repeat-x; border:2px solid red}
 #register label.error, #login label.error #forgot-password label.error {color:red; position:relative; top:-0.5em}
 #register .errorExplanation h2 {color:red}

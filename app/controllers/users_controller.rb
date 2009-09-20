@@ -42,10 +42,10 @@ class UsersController < ApplicationController
     success = @user && @user.valid?
     if verify_recaptcha(@user) && success && @user.errors.empty?
       flash[:notice] = "<p class=\"big\">Thanks for signing up!</p><p>We're sending you an email to #{@user.email} with your activation code.</p>"
-      redirect_back_or_default('/')
     else
-      render :template => '/home/show'
+      flash[:notice] = "<p class=\"big\">There is a problem.</p>"
     end
+    redirect_to signup_url
   end
   
   def activate
