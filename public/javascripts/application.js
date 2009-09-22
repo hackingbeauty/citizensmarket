@@ -55,17 +55,7 @@
 		})
 	}
 	window['CM']['signInSubmit'] = signInSubmit;
-	
-	// var signInSuccess = function(responseText, statusText){
-	// 	var msg = '<div class="success">YES, this is '+responseText+'(click to close)</div>';
-	// }
-	// 
-	// var signInError = function(responseText, statusText){
-	// 	var msg = '<div class="error">'+responseText+'(click to close)</div>';
-	// 	// $('#login-body').append(msg);
-	// 	// $('.error').click(function(){$(this).hide()})
-	// }
-	
+		
 	var toolTip = function(){
 		$('.tooltip').tooltip({
 			delay: 0,
@@ -82,7 +72,6 @@
 	}
 	window['CM']['toolTip'] = toolTip;
 	
-		
 	//Inline validation for Registration form
 	var registrationFormValidation = function(){
 		$('#register-form').validate({
@@ -92,27 +81,27 @@
 					minlength: 1,
 	            },
 				'user[lastname]': {
-	                required: true,
+	      	required: true,
 					minlength: 1,
-	            },
+	      },
 				'user[email]': {
-	                required: true,
-	                email: true
-	            },
-	            'user[password]': {
-	                required: true,
-	                minlength: 6,
-	            },
-	            'user[password_confirmation]': {
-	                required: true,
-	                equalTo: "#user_password"
-	            },
-	            'user[terms_of_use]': {
+	      	required: true,
+          email: true
+         },
+         'user[password]': {
+          required: true,
+          minlength: 6,
+         },
+         'user[password_confirmation]': {
+          required: true,
+          equalTo: "#user_password"
+         },
+         'user[terms_of_use]': {
 					required: true
 				}
 	        },
 	        messages: {
-						        'user[firstname]': {
+				'user[firstname]': {
 					required: "Please enter your first name"
 				},
 				'user[lastname]': {
@@ -122,22 +111,37 @@
 					required: "Please enter your email address",
 					email: "Please enter a valid email address"
 				},
-					            'user[password]': {
-					                required: "Please provide a password",
-					                minLength: "Your password must be at least 5 characters long"
-					            },
-					            'user[password_confirmation]': {
-					                required: "Confirm your password",
-					                equalTo: "Please enter the same password as above"
-					            },
-	            'user[terms_of_use]': {
+       'user[password]': {
+           required: "Please provide a password",
+           minLength: "Your password must be at least 5 characters long"
+       },
+       'user[password_confirmation]': {
+           required: "Confirm your password",
+           equalTo: "Please enter the same password as above"
+       },
+   		'user[terms_of_use]': {
 					required: "Please accept our policy" 
 				}
-	        }
+	    }
 		});
 	}
 	window['CM']['registrationFormValidation'] = registrationFormValidation;
 	
+	var registerSubmit = function(){
+		var options = { 
+			target:    '#register-body',   // target element(s) to be updated with server response 
+			type:      'post',        // 'get' or 'post', override for form's 'method' attribute 
+			dataType:  'script',       // 'xml', 'script', or 'json' (expected server response type)
+			// success:   registerSuccess  // post-submit callback 
+			// error: 				registerError
+		};
+		$('#register-form').submit(function() {
+		  $(this).ajaxSubmit(options)
+		  return false;
+		})
+	}
+	window['CM']['registerSubmit'] = registerSubmit;
+		
 	//Clear search-box default text when user clicks inside
 	var searchBoxClearText = function(){
 		$('#search_q').val("Search Citizens Market");
@@ -176,9 +180,7 @@
 
 //All functions that need to be executed after page load go here
 $(document).ready (function() {
-	
-	// CM.searchBoxClearText();
-	
+
 	CM.searchClick();
 	
 	if(CM.exists('homepage')){
@@ -196,6 +198,7 @@ $(document).ready (function() {
 		
 	if(CM.exists('register')){
 		CM.registrationFormValidation();
+		CM.registerSubmit();
 	}
 
 	if (CM.exists('administer-companies')) {

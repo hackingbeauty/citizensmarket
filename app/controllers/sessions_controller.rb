@@ -16,13 +16,7 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      respond_to do |format|
-         format.html {flash[:message] = "You have successfully logged in"}
-         format.js       
-      end
       redirect_to dashboard_url
-      #render :template => '/users/dashboard'
-      # redirect_back_or_default('/')
     else
       respond_to do |format|
          format.html { 

@@ -34,18 +34,26 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
   end
-  
+    
   def create
     logout_keeping_session!
     @user = User.new(params[:user])      
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if verify_recaptcha(@user) && success && @user.errors.empty?
-      flash[:notice] = "<p class=\"big\">Thanks for signing up!</p><p>We're sending you an email to #{@user.email} with your activation code.</p>"
+      respond_to do |format|
+         format.html {flash[:notice] = "<p class=\"big\">Thanks for signing up!</p><p>We're sending you an email to #{@user.email} with your activation code.</p>"}
+         format.js       
+      end
     else
-      flash[:notice] = "<p class=\"big\">There is a problem.</p>"
+      respond_to do |format|
+         format.html {
+           flash[:notice] = "<p class=\"big\">Ooops!</p><p>The address #{@user.email} is already in use!  Please try another.</p>"
+           redirect_to signup_url
+         }          
+         format.js       
+      end
     end
-    redirect_to signup_url
   end
   
   def activate

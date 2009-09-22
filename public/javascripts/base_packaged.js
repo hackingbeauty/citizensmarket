@@ -82,11 +82,13 @@ window['CM']['signIn']=signIn;var signInSubmit=function(){var options={target:'#
 return false;})}
 window['CM']['signInSubmit']=signInSubmit;var toolTip=function(){$('.tooltip').tooltip({delay:0,showURL:false,bodyHandler:function(){var toolTipBlurb=$(this).next().html();if(toolTipBlurb!=''){return $("<span class='rounded'>"+toolTipBlurb+"</span>");}}});}
 window['CM']['toolTip']=toolTip;var registrationFormValidation=function(){$('#register-form').validate({rules:{'user[firstname]':{required:true,minlength:1,},'user[lastname]':{required:true,minlength:1,},'user[email]':{required:true,email:true},'user[password]':{required:true,minlength:6,},'user[password_confirmation]':{required:true,equalTo:"#user_password"},'user[terms_of_use]':{required:true}},messages:{'user[firstname]':{required:"Please enter your first name"},'user[lastname]':{required:"Please enter your last name"},'user[email]':{required:"Please enter your email address",email:"Please enter a valid email address"},'user[password]':{required:"Please provide a password",minLength:"Your password must be at least 5 characters long"},'user[password_confirmation]':{required:"Confirm your password",equalTo:"Please enter the same password as above"},'user[terms_of_use]':{required:"Please accept our policy"}}});}
-window['CM']['registrationFormValidation']=registrationFormValidation;var searchBoxClearText=function(){$('#search_q').val("Search Citizens Market");$('#search_q').css('color','#b4b2b2');$('#search_q').click(function(){this.value="";$(this).css('color','black');});$('#search_q').blur(function(){$(this).val("Search Citizens Market");$(this).css('color','#b4b2b2');});}
+window['CM']['registrationFormValidation']=registrationFormValidation;var registerSubmit=function(){var options={target:'#register-body',type:'post',dataType:'script',};$('#register-form').submit(function(){$(this).ajaxSubmit(options)
+return false;})}
+window['CM']['registerSubmit']=registerSubmit;var searchBoxClearText=function(){$('#search_q').val("Search Citizens Market");$('#search_q').css('color','#b4b2b2');$('#search_q').click(function(){this.value="";$(this).css('color','black');});$('#search_q').blur(function(){$(this).val("Search Citizens Market");$(this).css('color','#b4b2b2');});}
 window['CM']['searchBoxClearText']=searchBoxClearText;var searchClick=function(){$('#search_submit').click(function(){return false;});}
 window['CM']['searchClick']=searchClick;var embedFlash=function(media,div,width,height){var flashvars={};var params={wmode:"transparent"};var attributes={};swfobject.embedSWF("/swf/path-to-swf",div,height,width,"9.0.0","flash/expessInstall.swf",flashvars,params,attributes);}
 window['CM']['embedFlash']=embedFlash;})();$(document).ready(function(){CM.searchClick();if(CM.exists('homepage')){CM.videoClick();}
 if(CM.exists('companies')){CM.toolTip();}
 if(CM.exists('login-bttn')){CM.signIn();CM.signInSubmit();}
-if(CM.exists('register')){CM.registrationFormValidation();}
+if(CM.exists('register')){CM.registrationFormValidation();CM.registerSubmit();}
 if(CM.exists('administer-companies')){CM.deleteCompanyConfirm();}});
