@@ -104,7 +104,7 @@ li.last {
 #header ul#main-nav li {
 	float:left;
 	height:2.5em;
-	margin-right:6em;
+	margin-right:2.7em;
 
 }
 
@@ -710,6 +710,10 @@ a#logo img {
 	color:red;
 	position:relative;
 	top:-0.5em;
+}
+
+#register #register-notice {
+	display:none;
 }
 
 #register .errorExplanation h2 {

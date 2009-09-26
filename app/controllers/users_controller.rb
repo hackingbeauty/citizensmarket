@@ -41,19 +41,11 @@ class UsersController < ApplicationController
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if verify_recaptcha(@user) && success && @user.errors.empty?
-      respond_to do |format|
-         format.html {flash[:notice] = "<p class=\"big\">Thanks for signing up!</p><p>We're sending you an email to #{@user.email} with your activation code.</p>"}
-         format.js       
-      end
+      flash[:notice] = "<p class=\"big\">Thanks for signing up!</p><p>We're sending you an email to #{@user.email} with your activation code.</p>"
     else
-      respond_to do |format|
-         format.html {
-           flash[:notice] = "<p class=\"big\">Ooops!</p><p>The address #{@user.email} is already in use!  Please try another.</p>"
-           redirect_to signup_url
-         }          
-         format.js       
-      end
+      flash[:notice] = "<p class=\"big\">Ooops!</p><p>The address #{@user.email} is already in use!  Please try another.</p>"
     end
+    redirect_to signup_url
   end
   
   def activate

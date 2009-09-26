@@ -22,7 +22,7 @@
 	window['CM']['videoClick'] = videoClick;
 	
 	//Sign In Modal
-	var signIn = function() {
+	var logIn = function() {
 		$('#login-bttn').click(function(){
 			$('#flash-errors').html("");
 		});
@@ -32,14 +32,14 @@
 		});
 		return false;		
 	}//end function
-	window['CM']['signIn'] = signIn;
+	window['CM']['logIn'] = logIn;
 	
-	var signInSubmit = function(){
+	var logInSubmit = function(){
 		var options = { 
-			target:        		'#login-body',   // target element(s) to be updated with server response 
+			target:    '#login-body',   // target element(s) to be updated with server response 
 			type:      'post',        // 'get' or 'post', override for form's 'method' attribute 
 			dataType:  'script'       // 'xml', 'script', or 'json' (expected server response type)
-			// success:       		signInSuccess,  // post-submit callback 
+			// success:   logInSuccess  // post-submit callback 
 			// error: 				signInError, 
 			// beforeSubmit:  showRequest,  // pre-submit callback 
 			// other available options: 
@@ -48,13 +48,18 @@
 			//resetForm: true        // reset the form after successful submit 
 			// $.ajax options can be used here too, for example: 
 			//timeout:   3000 
-		};
+		}
 		$('#sign-in-form').submit(function() {
-		  $(this).ajaxSubmit(options)
+		  $(this).ajaxSubmit(options);
 		  return false;
 		})
 	}
-	window['CM']['signInSubmit'] = signInSubmit;
+	window['CM']['logInSubmit'] = logInSubmit;
+	
+	// var logInSuccess = function(){
+	// 	alert('success yessss');
+	// }
+	//No need to make this method public
 		
 	var toolTip = function(){
 		$('.tooltip').tooltip({
@@ -127,20 +132,20 @@
 	}
 	window['CM']['registrationFormValidation'] = registrationFormValidation;
 	
-	var registerSubmit = function(){
-		var options = { 
-			target:    '#register-body',   // target element(s) to be updated with server response 
-			type:      'post',        // 'get' or 'post', override for form's 'method' attribute 
-			dataType:  'script',       // 'xml', 'script', or 'json' (expected server response type)
-			// success:   registerSuccess  // post-submit callback 
-			// error: 				registerError
-		};
-		$('#register-form').submit(function() {
-		  $(this).ajaxSubmit(options)
-		  return false;
-		})
-	}
-	window['CM']['registerSubmit'] = registerSubmit;
+	// var registerSubmit = function(){
+	// 	var options = { 
+	// 		target:    '#register-body',   // target element(s) to be updated with server response 
+	// 		type:      'post',        // 'get' or 'post', override for form's 'method' attribute 
+	// 		dataType:  'script',       // 'xml', 'script', or 'json' (expected server response type)
+	// 		// success:   registerSuccess  // post-submit callback 
+	// 		// error: 				registerError
+	// 	};
+	// 	$('#register-form').submit(function() {
+	// 	  $(this).ajaxSubmit(options)
+	// 	  return false;
+	// 	})
+	// }
+	// window['CM']['registerSubmit'] = registerSubmit;
 		
 	//Clear search-box default text when user clicks inside
 	var searchBoxClearText = function(){
@@ -192,13 +197,12 @@ $(document).ready (function() {
 	}
 	
 	if(CM.exists('login-bttn')) {
-		CM.signIn();
-		CM.signInSubmit();
+		CM.logIn();
+		CM.logInSubmit();
 	}
 		
 	if(CM.exists('register')){
 		CM.registrationFormValidation();
-		CM.registerSubmit();
 	}
 
 	if (CM.exists('administer-companies')) {

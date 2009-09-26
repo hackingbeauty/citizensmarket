@@ -16,12 +16,20 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      redirect_to dashboard_url
+      respond_to do |format|
+         format.html { 
+           flash[:message] = "<p class=\"login-error\">That won&#39;t work!</p><p>You entered a wrong username and/or password.</p>"
+           redirect_to dashboard_url
+           return
+         }
+         format.js       
+      end
     else
       respond_to do |format|
          format.html { 
            flash[:message] = "<p class=\"login-error\">That won&#39;t work!</p><p>You entered a wrong username and/or password.</p>"
            redirect_to login_url
+           return
          }
          format.js       
       end
