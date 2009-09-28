@@ -1,3 +1,9 @@
+# this helps me think:
+# Users can write reviews, then publish them.
+# Users can leave peer ratings on others' reviews
+
+# Admins can add / edit companies
+
 authorization do
   
   role :guest do
