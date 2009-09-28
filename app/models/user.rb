@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   has_many :peer_ratings
   
   serialize :profile, Hash
+  
+  serialize :roles, Array
 
   before_validation :copy_email_to_login
   

@@ -83,6 +83,11 @@ h2. current security methods we have coded
 	
 </code>
 
+h2. process of installing declarative_authorization
+	
+Note I followed the instructions at http://github.com/stffn/declarative_authorization/blob/master/README.rdoc
+	- Luke
+
 
 
 
