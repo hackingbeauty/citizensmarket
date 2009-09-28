@@ -8,6 +8,8 @@ Software design is an art that puts one directly in intimate contact with the na
 	
 Later this document will serve as a reference for others taking over the maintenance of this system.
 
+***************************************************************************
+
 h2. requirements
 
 * protect user-"owned" data from editing by other users
@@ -22,11 +24,15 @@ In other words again:
 * Only certain roles can access certain actions (i.e. based on role descriptions)
 * Only certain users can access certain instances (e.g. based on @review.user_id == current_user.id)
 
+blah blah blah
+
+
+***************************************************************************
 
 h2. plugins/libraries/what-have-you
 
 
-*Authentication*
+* *Authentication*
 ** We are using the restful_authentication (I'm calling it RA for short) plugin, by technoweenie.
 ** could switch to Authlogic, which has rave reviews when compared directly to RA
 
@@ -38,55 +44,53 @@ h2. plugins/libraries/what-have-you
 
 At this point I'm leaning toward authlogic / declarative_authorization
 
+***************************************************************************
 
 h2. current security methods we have coded
 
-<code>
-	# AuthenicatedSystem is included in ApplicationController
-	application_controller.admin_login_required()  
-		# similar to RA's login_required; It redirects to :controller => 'admin', :action => 'login' if not logged in
+* AuthenicatedSystem is included in ApplicationController
+* application_controller.admin_login_required()  # similar to RA's login_required; It redirects to :controller => 'admin', :action => 'login' if not logged in
+* application_helper.logged_in? # checks session[:user_id] ; why use this instead of the one in AuthenticatedSystem?
+* application_helper.admin_logged_in? # checks session[:admin_id]
+* admin_controller.login # PROBLEM:  this does not present a login challenge (render a form), instead it processes a login request (checks password, sets session[:admin_id]). Hence this is INCORRECTLY CONNECTED to admin_login_required
+* UsersHelper
+the following functions appear to be from github/fudgestudios/BORT:
+** if_authorized?(action, resource, &block) # executes the block if call to authorized?(action, resource) returns true
+** link_to_login_with_IP # creates a login link with the last request's ip address in the title of the A tag
+** link_to_current_user # link to users/foo where foo = current_user.id, or "not signed in tag"
+** signin_or_logout_link # just what it sounds like, using if logged_in?
+** profile_or_register_link # just what it sounds like, using if logged_in?
+* end BORT
 	
-	application_helper.logged_in?
-		# checks session[:user_id] ; why use this instead of the one in AuthenticatedSystem?
-		
-	application_helper.admin_logged_in?
-		# checks session[:admin_id]
-		
-	admin_controller.login
-		# PROBLEM:  this does not present a login challenge (render a form), instead it processes a login request (checks password, sets session[:admin_id]). Hence this is INCORRECTLY CONNECTED to admin_login_required
-		
-	UsersHelper:
-		# the following functions appear to be from github/fudgestudios/BORT:
-			if_authorized?(action, resource, &block) # executes the block if call to authorized?(action, resource) returns true
-			
-			link_to_login_with_IP # creates a login link with the last request's ip address in the title of the A tag
-			
-			link_to_current_user # link to users/foo where foo = current_user.id, or "not signed in tag"
-			
-			signin_or_logout_link # just what it sounds like, using if logged_in?
-			
-			profile_or_register_link # just what it sounds like, using if logged_in?
-			
-		# end BORT
-	end
-	
-	# CONTROLLERS:
-	# before_filter login_required is currently set for:
-	CompaniesController:  	administer
-	ReviewsController:		new, create, edit, update  
-		# sets @review.user = current_user on create
-	SessionsController:
-		# User.authenticate is now called with params[:email] instead of params[:login]
-		
-	UsersController:  IS VERY BLOATED - will need some work to clean up
-		analyzing ...
-	
-</code>
+CONTROLLERS: before_filter login_required is currently set for:
+* CompaniesController:  	administer
+* ReviewsController:		new, create, edit, update  # sets @review.user = current_user on create
+* SessionsController: 		# User.authenticate is now called with params[:email] instead of params[:login]
+* UsersController:  IS VERY BLOATED - will need some work to clean up		analyzing ...
 
-h2. process of installing declarative_authorization
-	
-Note I followed the instructions at http://github.com/stffn/declarative_authorization/blob/master/README.rdoc
-	- Luke
+***************************************************************************
+
+h2.  declarative_authorization
+
+Throughout application, can do 
+<pre>
+@user.roles = [:contributor, :editor, :admin]
+@user.save
+</pre>
+
+*authorization_rules.rb*
+
+<pre><code>
+authorization do
+	role :moderator do
+    	has_permission_on :controllername, :to => [:action1, :action2, :action3]
+    	has_permission_on :companies, :to => [:show, :new, :create]
+  	end
+end
+</code></pre>
+
+		
+		
 
 
 

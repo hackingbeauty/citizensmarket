@@ -1,6 +1,7 @@
 class CompaniesController < ResourceController::Base
   
-  before_filter :login_required, :only => [:administer]
+  #before_filter :login_required, :only => [:administer]
+  filter_access_to :all
 
   def administer
     @companies = Company.find(:all)

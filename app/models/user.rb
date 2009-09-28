@@ -60,9 +60,11 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :email, :firstname, :lastname, :password, :password_confirmation, :profile, :issue_weights, :terms_of_use
+  attr_accessible :email, :firstname, :lastname, :password, :password_confirmation, :profile, :issue_weights, :terms_of_use, :roles
 
-  
+  def role_symbols
+    (roles || []).map{|x| x.to_sym}
+  end
 
   ##########################################################
   ######## SCORING SYSTEM
@@ -133,12 +135,12 @@ class User < ActiveRecord::Base
   end
   
   
-  def update_issue_weights(params)
-    params.each do |key, value|
-      next unless key[0..5] == "issue_"
-      UserIssue.update_all("weight = #{value.to_i}", "user_id = #{self.id} AND issue_id = #{key[6..8].to_i}")
-    end
-  end
+#  def update_issue_weights(params)
+#    params.each do |key, value|
+#      next unless key[0..5] == "issue_"
+#      UserIssue.update_all("weight = #{value.to_i}", "user_id = #{self.id} AND issue_id = #{key[6..8].to_i}")
+#    end
+#  end
   
   # Methods to return seralized profile attributes
   def location
