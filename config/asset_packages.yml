@@ -7,8 +7,12 @@ javascripts:
   - jquery.tooltip.min
   - jquery.form
   - swfobject
+  - stars/jquery-ui-1.7.2.custom
+  - stars/ui.core
+  - stars/ui.stars
   - application
 stylesheets: 
 - base: 
+  - ui.stars
   - application
   - jmodal

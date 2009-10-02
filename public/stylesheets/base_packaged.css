@@ -1,3 +1,10 @@
+ .ui-stars-star, .ui-stars-cancel {float: left; display: block; overflow: hidden; text-indent: -999em; cursor: pointer}
+.ui-stars-star a, .ui-stars-cancel a {width: 16px; height: 15px; display: block; background: url(/images/ui.stars.gif) no-repeat 0 0}
+.ui-stars-star a {background-position: 0 -32px}
+.ui-stars-star-on a {background-position: 0 -48px}
+.ui-stars-star-hover a {background-position: 0 -64px}
+.ui-stars-cancel-hover a {background-position: 0 -16px}
+.ui-stars-star-disabled, .ui-stars-star-disabled a, .ui-stars-cancel-disabled a {cursor: default !important}
  body {background: #c0e4ef url('../images/backgrounds/back-body2.png') repeat-x}
 h1 {font-size:3em}
 h2 {font-size:2em}
@@ -17,6 +24,10 @@ li.last {border-right:none !important}
 .left {float:left}
 .right {float:right}
 .hide-text {color:transparent; padding-left:16em}
+.review{ border: solid red; width: 700px; margin: 15px 0}
+.review .reviewer{ border: solid blue; background-color: yellow}
+.review .body{ font: 24px georgia; color: green}
+.construction_cruft{ border: solid thin red; background-color: #ffeeee; margin: 20px 5px 0; width: 600px}
 .rounded {}
 .hide {display:none;}
  #header {height:17.8em; position:relative}

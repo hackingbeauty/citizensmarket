@@ -28,7 +28,7 @@
   <div class="star_rating">
     <label for="review_rating">Rating:</label>
     
-	<%= f.select :rating, (1..10).map{|x| [(x.to_f/2).to_s, x]} %>
+	<%= f.select :rating, (1..10).map{|x| [(x.to_f/2).to_s, (x.to_f/2).to_s]} %>
 	
     <br class="left">
   </div>

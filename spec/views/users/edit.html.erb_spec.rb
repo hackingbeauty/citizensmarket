@@ -11,8 +11,7 @@ describe "/users/edit.html.erb" do
       :location => "value for location",
       :website => "value for website"
     )
-  
-  
+    
     @controller.instance_variable_set(:@url, (ActionController::UrlRewriter.new @request, {}))
     
     template.stub!(:object_url).and_return(user_path(@user))

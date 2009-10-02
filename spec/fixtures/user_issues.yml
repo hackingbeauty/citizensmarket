@@ -1,0 +1,18 @@
+
+hunger:
+    id: 1
+    user_id: 1
+    issue_id: 1
+    weight: 50
+    
+shelter:
+    id: 2
+    user_id: 1
+    issue_id: 2
+    weight: 50
+    
+war:
+    id: 3
+    user_id: 1
+    issue_id: 3
+    weight: 50

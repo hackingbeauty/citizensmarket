@@ -5,9 +5,15 @@ class ReviewsController < ResourceController::Base
   
   
   def create
+<<<<<<< HEAD:app/controllers/reviews_controller.rb
     company_id = params[:company_picker_id] || params[:company_id]
+=======
+    #raise "check params"
+    #company_id = params[:company_picker_id] || params[:company_id]
+
+>>>>>>> master_luke:app/controllers/reviews_controller.rb
     @review = Review.new(
-      :company_id => company_id, 
+      :company_id => params[:review_presenter][:company_id], 
       :body => params[:review_presenter][:body],  
       :rating => params[:review_presenter][:rating])
     @review.user = current_user

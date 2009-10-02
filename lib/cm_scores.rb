@@ -81,13 +81,6 @@ class CmScores
     output = s * ((x * CmScores.user_lifetime_review_score(user)) + CmScores.user_lifetime_reviews(user))
   end
   
-  def self.contributor_score_s
-    10
-  end
-  def self.contributor_score_x
-    1
-  end
-  
   def self.user_lifetime_review_score(user)
     # return cached if it exists
     user = User.find(user) if user.class == Fixnum
@@ -135,7 +128,26 @@ class CmScores
     
   end
   
-  
+  def self.generic_company_score(company)
+    company = Company.find(company) if company.class == Fixnum
+    
+    # get cached if it exists
+    
+    output = 0
+    numerator = 0
+    denominator = 0
+    Issue.all.each do |issue|
+      issue_score = CmScores.company_issue_score(company, issue)
+      next if issue_score.nil?
+      numerator += issue_score
+      denominator += 1
+    end
+    
+    return numerator if denominator.to_i == 0
+    
+    return numerator.to_f / denominator.to_f
+    
+  end
   
   
   

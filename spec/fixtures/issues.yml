@@ -1,11 +1,19 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
-  description: MyText
-  category: MyString
+hunger:
+    id: 1
+    name: hunger
+    description: are people getting fed?
+    category: basic needs
 
-two:
-  name: MyString
-  description: MyText
-  category: MyString
+shelter:
+    id: 2
+    name: shelter
+    description: are people at a comfortable temperature?
+    category: basic needs
+
+war:
+    id: 3
+    name: war
+    description: are people getting killed?
+    category: socialization

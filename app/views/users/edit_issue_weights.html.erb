@@ -1,0 +1,23 @@
+<% form_for(:user_issue, :url => {:action => 'update_user_issues'}) do |f| %>
+	<table>
+		<tr>
+			<th>Issue</th>
+			<th>Weight</th>
+		</tr>
+		
+		<% @user_issues.each do |user_issue| %>
+			<% fields_for "user_issue[]", user_issue do |user_issue_fields| %>
+				<%= user_issue_field.hidden_field :user_id %>
+				<%= user_issue_fields.hidden_field :issue_id %>
+				<tr>
+					<td><%= user_issue.issue.name %></td>
+					<td><%= user_issue_fields.text_field :weight %></td>
+				</tr>
+			<% end %>
+					
+		<% end %>
+		
+	</table>
+	<%= submit_tag 'update' %>
+	
+<% end %>

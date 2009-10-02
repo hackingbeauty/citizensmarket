@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   is_gravtastic
     
   after_create :initialize_default_issue_weights
+  after_create{ |user|
+    # user.activate
+    user.save
+  }
   after_destroy :destroy_user_issue_weights
 
   has_many :reviews
@@ -56,13 +60,7 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :email, :firstname, :lastname, :password, :password_confirmation, :profile, :issue_weights, :terms_of_use
 
-  after_create{ |user|
-    for issue in Issue.find(:all)
-      UserIssue.create!(:user_id => user.id, :issue_id => issue.id, :weight => 1.0)
-    end
-    # user.activate
-    user.save
-  }
+  
 
   ##########################################################
   ######## SCORING SYSTEM
@@ -109,6 +107,29 @@ class User < ActiveRecord::Base
   def issue_weight(issue)
     user_issues.find_by_issue_id(issue).weight
   end
+  
+  def issue_weights
+    # hash like {issue_id => weight}
+    return nil if user_issues.to_a.size == 0
+    Hash[*user_issues.map{|x| [x.issue_id, x.weight]}.flatten]
+  end
+  def issue_weights=(hash)
+    # hash like {issue_id => weight}
+    raise "issue_weights=() expects a hash; you passed it a #{hash.class}" unless hash.kind_of?(Hash)
+    
+    User.transaction do 
+      hash.each_key do |issue_id|
+        user_issue = user_issues.find_by_issue_id(issue_id)
+        result = user_issue.update_attributes(:weight => hash[issue_id])
+        errors.add("user_issue did not save; its errors were"+ user_issue.errors.full_messages.join(', '), '') if result == false
+      end
+      @cm_user_issue_did_not_save = true if errors.full_messages.select{|x| x =~ /User issue did not save/}.size > 0
+      raise ActiveRecord::Rollback if errors.full_messages.select{|x| x =~ /User issue did not save/}.size > 0
+    end
+      
+    
+  end
+  
   
   def update_issue_weights(params)
     params.each do |key, value|
@@ -172,4 +193,9 @@ class User < ActiveRecord::Base
     UserIssue.delete_all(:user_id => self.id)
   end
   
+  private
+  
+  def validate
+    errors.add("One or more user_issues did not save", '') if @cm_user_issue_did_not_save
+  end
 end
