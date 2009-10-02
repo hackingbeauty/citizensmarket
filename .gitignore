@@ -1,3 +1,4 @@
+#citizensmarket gitignore
 .DS_Store
 log/*.log
 tmp/**/*

@@ -2,16 +2,16 @@
 module ApplicationHelper
     
     # Return a link for use in layout navigation.
-    def nav_link(text, url)
-      # url can be hash, like {:controller => 'foo', :action => 'foo'} or route name like "/my_profile"
-      target_action = url.kind_of?(Hash) ? url[:action] : ActionController::Routing::Routes.recognize_path(url)[:action]
-      target_controller = url.kind_of?(Hash) ? url[:controller] : ActionController::Routing::Routes.recognize_path(url)[:controller]
-      if params[:action] == target_action and params[:controller] == target_controller
-        html = "<li class='active'>" + link_to(text, url) + "</li>"
-      else
-        html = "<li>" + link_to(text, url) + "</li>"
-      end
+  def nav_link(text, url)
+    # url can be hash, like {:controller => 'foo', :action => 'foo'} or route name like "/my_profile"
+    target_action = url.kind_of?(Hash) ? url[:action] : ActionController::Routing::Routes.recognize_path(url)[:action]
+    target_controller = url.kind_of?(Hash) ? url[:controller] : ActionController::Routing::Routes.recognize_path(url)[:controller]
+    if params[:action] == target_action and params[:controller] == target_controller
+      html = "<li class='active'>" + link_to(text, url) + "</li>"
+    else
+      html = "<li>" + link_to(text, url) + "</li>"
     end
+  end
     
   def categorized_issues_hash
     output = {}
