@@ -19,9 +19,8 @@
                         <td class="company-brands">Soap, Sugar, Blah <%=brand_name_list(company, :truncate => true) %> <%=link_to "More", object_url(company), :class => 'arrow tooltip' %>
                             <span class="hide"><%=brand_name_list(company, :truncate => false) %></span>
                         </td>
-                        <td class="company-score">3 stars</td>
+                        <td class="company-score"><%= fixed_star_rating(company.score) %></td>
                         <td class="company-reviews">200</td>
-        
                 </tr>
             <% end %>
         </tbody>

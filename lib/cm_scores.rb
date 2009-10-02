@@ -134,9 +134,5 @@ class CmScores
     return numerator.to_f / denominator.to_f
     
   end
-  
-  
-  
-  
-  
+   
 end

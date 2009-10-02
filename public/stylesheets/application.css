@@ -86,6 +86,10 @@ li.last {
 
 .hide {display:none;}
 
+.helper {
+/*	display:none;*/
+}
+
 /******************* =Header (All Pages) *******************/
 
 #header {

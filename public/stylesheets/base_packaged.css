@@ -19,6 +19,7 @@ li.last {border-right:none !important}
 .hide-text {color:transparent; padding-left:16em}
 .rounded {}
 .hide {display:none;}
+.helper { }
  #header {height:17.8em; position:relative}
  #header ul#main-nav {bottom:0.6em; position:absolute; width:100%}
 #header ul#main-nav li {float:left; height:2.5em; margin-right:2.7em}

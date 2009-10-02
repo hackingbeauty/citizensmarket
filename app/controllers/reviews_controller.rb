@@ -3,6 +3,9 @@ class ReviewsController < ResourceController::Base
   before_filter :login_required, :only => ['new', 'create', 'edit', 'update']
   belongs_to :company
   
+  def index
+    @reviews = Review.find(:all)
+  end
   
   def create
     company_id = params[:company_picker_id] || params[:company_id]

@@ -1,19 +1,14 @@
-<h1>Reviews for Apple</p>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-<!-- <% for review in @reviews %>
-
-    <%= render :partial => 'reviews/review', :locals => {:review => review, :show_company => false} %>
-
+<% @reviews.each do |review| %>
+  <div class="review"><%= review.company.name %></div>
 <% end %>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-<%= link_to 'New review', new_object_url %> -->
