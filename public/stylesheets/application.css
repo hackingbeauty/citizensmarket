@@ -107,6 +107,12 @@ li.last {
 
 .hide {display:none;}
 
+<<<<<<< HEAD:public/stylesheets/application.css
+=======
+.helper {
+/*	display:none;*/
+}
+>>>>>>> browse_reviews:public/stylesheets/application.css
 
 /******************* =Header (All Pages) *******************/
 

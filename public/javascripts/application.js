@@ -50,9 +50,9 @@
 		var options = { 
 			target:    '#login-body',   // target element(s) to be updated with server response 
 			type:      'post',        // 'get' or 'post', override for form's 'method' attribute 
-			dataType:  'script'       // 'xml', 'script', or 'json' (expected server response type)
-			// success:   logInSuccess  // post-submit callback 
-			// error: 				signInError, 
+			dataType:  'json',       // 'xml', 'script', or 'json' (expected server response type)
+			success:   logInSuccess,  // post-submit callback 
+			error: 				logInError
 			// beforeSubmit:  showRequest,  // pre-submit callback 
 			// other available options: 
 			//url:       url         // override for form's 'action' attribute
@@ -68,9 +68,14 @@
 	}
 	window['CM']['logInSubmit'] = logInSubmit;
 	
-	// var logInSuccess = function(){
-	// 	alert('success yessss');
-	// }
+	var logInSuccess = function(responseText, statusText){
+		alert('success yessss ' +  responseText + ' ' + statusText);
+	}
+	//No need to make this method public
+	
+	var logInError = function(responseText, statusText){
+		alert('error ' + responseText + ' ' + statusText);
+	}
 	//No need to make this method public
 		
 	var toolTip = function(){
