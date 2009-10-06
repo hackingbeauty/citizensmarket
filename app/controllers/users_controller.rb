@@ -36,6 +36,7 @@ class UsersController < ApplicationController
   end
   
   def create
+    #raise "check params"
     logout_keeping_session!
     @user = User.new(params[:user])      
     @user.register! if @user && @user.valid?

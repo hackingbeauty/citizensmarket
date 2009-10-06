@@ -16,12 +16,12 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      flash[:message] = "Your have successfully logged in"
+      flash[:message] = "You have successfully logged in#{user.role_symbols.include?(:admin) ? ' as an administrator' : ''}"
       redirect_to dashboard_url
       #render :template => '/users/dashboard'
       # redirect_back_or_default('/')
     else
-      flash[:message] = "Incorrect Email/Password Combination"
+      flash.now[:message] = "Incorrect Email/Password Combination"
       note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]

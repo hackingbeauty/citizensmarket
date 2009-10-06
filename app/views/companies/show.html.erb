@@ -3,7 +3,7 @@
 		<div id="header_left" style="border: solid blue;">
 			<h1><%=@company.name %></h1>
 			<% if logged_in? %>
-				overall score: <font color="green" size="4px"><%= fixed_star_rating(3.5, 'my_company_score') %></font>
+				overall score: <font color="green" size="4px"><%= fixed_star_rating(3.5) %></font>
 				
 			<% else %>
 				currently cannot display "my company score" without user logged in

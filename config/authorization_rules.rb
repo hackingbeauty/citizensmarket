@@ -11,7 +11,7 @@ authorization do
     has_permission_on :reviews, :to => :read do
       if_attribute :status => "published"
     end
-    has_permission_on :companies, :to => :read
+    has_permission_on :companies, :to => [:index, :show]
     has_permission_on :peer_ratings, :to => :read
     
     has_permission_on :users, :to => :create
@@ -39,18 +39,15 @@ authorization do
     includes :guest
     includes :user
     
-    has_permission_on [:reviews, :companies, :issues, :users], :to => :manage
+    has_permission_on [:reviews, :companies, :issues, :users], :to => [:new, :create, :edit, :update]
     
   end
   
   
-  privileges do
-    privilege :manage, :includes => [:create, :read, :update, :delete]
-    privilege :read, :includes => [:index, :show]
-    privilege :create, :includes => :new
-    privilege :update, :includes => :edit
-    privilege :delete, :includes => :destroy
-  end
+  #privileges do
+  #  privilege :read, :includes => [:index, :show]
+  #  
+  #end
   
   
 end

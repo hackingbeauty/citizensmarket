@@ -59,7 +59,8 @@ class CompaniesController < ResourceController::Base
   def create
     company = Company.new(params[:company])
     if company.save
-      redirect_to :action => "administer"
+      flash[:message] = "Company successfully added."
+      redirect_to :action => "index"
     end
   end
 

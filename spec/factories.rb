@@ -90,7 +90,7 @@ Factory.define :user do |u|
   u.remember_token 'foo'
   u.login 'foo@some.com'
   u.created_at 'Wed Jul 01 00:23:27 -0400 2009'
-  u.state 'foo'
+  #u.state 'foo'
   u.email 'foo@some.com'
 end
 

@@ -19,8 +19,13 @@
         <div id="header">
             <%= render :partial => "layouts/header" %>
         </div>
+		<div id="flashes">
+			<% unless flash[:message].nil? %>
+				<%= flash[:message] %>
+			<% end %>
+		</div>
         <div id="main-content">
-            <%= yield %>
+			<%= yield %>
         </div><!-- end main-content -->
         <div id="footer">
             <%= render :partial => "layouts/footer" %>

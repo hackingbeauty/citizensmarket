@@ -119,6 +119,11 @@ Then /^I should see "([^\"]*)"$/ do |text|
   response.should contain(text)
 end
 
+Then /save_and_open_page/ do
+  raise "response.html = #{response.body}"
+  #save_and_open_page
+end
+
 Then /^I should see "([^\"]*)" within "([^\"]*)"$/ do |text, selector|
   within(selector) do |content|
     content.should contain(text)

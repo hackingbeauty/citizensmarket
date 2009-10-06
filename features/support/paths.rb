@@ -8,8 +8,20 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
     
+    when "Add a Company"
+      new_company_path
     when /the homepage/
       '/'
+    when /the (.*?(?= page)) page/
+      eval("#{$1}_path")
+    
+    when /the new ([^\s]*) page/
+      eval("new_#{$1}_path")  
+      # ugly, I know.  
+      #But I want to use RoutingSystem.route_named("new_company_path")
+      # - why can't I figure out how to do this?
+    
+    
     
     # Add more mappings here.
     # Here is a more fancy example:

@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     
   after_create :initialize_default_issue_weights
   after_create{ |user|
-    # user.activate
+    #user.activate
     user.save
   }
   after_destroy :destroy_user_issue_weights
