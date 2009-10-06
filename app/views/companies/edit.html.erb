@@ -6,7 +6,7 @@
   <% form_for(:company, :url => object_url, :html => { :method => :put }) do |f| %>
     <%= render :partial => "form", :locals => { :f => f } %>
     <p>
-      <%= submit_tag "Update", :id => "submit" %>
+      <%= submit_tag "Save", :id => "submit" %>
       <a id="back" href="/admin" title="Back to Administer Companies">Back</a>
     </p>
   <% end %>

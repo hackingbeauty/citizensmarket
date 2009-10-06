@@ -1,11 +1,22 @@
-class ReviewsController < ResourceController::Base
+class ReviewsController < ApplicationController#ResourceController::Base
   
   #before_filter :login_required, :only => ['new', 'create', 'edit', 'update']
-  filter_access_to :all
+  #filter_access_to :all
+  #belongs_to :company
   
-  belongs_to :company
   
   
+  def index
+    @reviews = Review.all
+  end
+  
+  def show
+    @review = Review.find(params[:id])
+  end
+  
+  def new
+    @review = Review.new
+  end
   def create
     #raise "check params"
     #company_id = params[:company_picker_id] || params[:company_id]
@@ -25,6 +36,9 @@ class ReviewsController < ResourceController::Base
     end
   end
   
+  def edit
+    @review = Review.find(params[:id])
+  end
   def update
     #raise "entered update and params = #{params.inspect}"
     @review = Review.find(params[:id])
@@ -33,6 +47,12 @@ class ReviewsController < ResourceController::Base
     else
       render :action => 'edit'
     end
+  end
+  
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to reviews_url
   end
   
 end

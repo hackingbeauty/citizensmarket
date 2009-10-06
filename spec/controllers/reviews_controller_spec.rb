@@ -16,18 +16,25 @@ describe ReviewsController do
   describe "responding to GET index" do
 
     it "should expose all reviews as @reviews" do
-      Review.should_receive(:find).with(:all).and_return([mock_review])
+      Review.should_receive(:find).with(:all).and_return([@mock_review])
       get :index
-      assigns[:reviews].should == [mock_review]
+      assigns[:reviews].should == [@mock_review]
     end
 
   end
 
   describe "responding to GET show" do
 
-    it "should expose the requested review as @review" do
-      Review.should_receive(:find).with("37").and_return(mock_review)
+    before(:each) do
+      Review.should_receive(:find).with("37").and_return(mock_review(:status => "published"))
       get :show, :id => "37"
+    end
+
+    it "should return success" do
+      response.should be_success
+    end
+
+    it "should expose the requested review as @review" do
       assigns[:review].should equal(mock_review)
     end
         
@@ -37,7 +44,8 @@ describe ReviewsController do
   
     it "should expose a new review as @review" do
       Review.should_receive(:new).and_return(mock_review)
-      get :new      
+      get :new
+      assigns[:review].should_not be_nil      
       assigns[:review].should equal(mock_review)
     end
 
@@ -143,22 +151,24 @@ describe ReviewsController do
 
   describe "responding to DELETE destroy" do
     before(:each) do
+      controller.stub!(:current_user).and_return(mock_model(User, :role_symobols => [:garmin, :admin]))
       @review = mock_model(Review, :destroy => true)
       Review.stub!(:find).and_return(@review)
     end
     
-    def do_delete
-      delete :destroy, :id => "1"
+    it "should allow the action" do
+      delete :destroy, :id => "1"''
+      response.should_not have_text("You are not allowed to access this action."), "got the not-authorized message: '#{response.body}'"
     end
     
     it "should destroy the requested review" do
       Review.should_receive(:find).with("1").and_return(@review)
-      do_delete
+      delete :destroy, :id => "1"
     end
   
     it "should redirect to the reviews list" do
       Review.stub!(:find).and_return(@review)
-      do_delete
+      delete :destroy, :id => "1"
       response.should redirect_to(reviews_url)
     end
 

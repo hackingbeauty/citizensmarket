@@ -14,10 +14,20 @@ class CompaniesController < ResourceController::Base
     end
   end
   
+  def update
+    @company = Company.find(params[:id])
+    if @company.update_attributes(params[:company])
+      flash[:message] = "Company saved."
+      redirect_to company_url(@company)
+    else
+    end
+  end
+  
   def destroy
       @company = Company.find(params[:id])
       if @company.destroy
-        redirect_to :action => "administer"
+        flash[:message] = "Company destroyed."
+        redirect_to :action => "index"
       end
   end
   

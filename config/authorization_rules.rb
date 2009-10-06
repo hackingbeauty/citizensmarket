@@ -36,10 +36,11 @@ authorization do
   end
   
   role :admin do
+    
     includes :guest
     includes :user
     
-    has_permission_on [:reviews, :companies, :issues, :users], :to => [:new, :create, :edit, :update]
+    has_permission_on [:reviews, :companies, :issues, :users], :to => [:new, :create, :edit, :update, :destroy]
     
   end
   

@@ -7,7 +7,7 @@ describe CompaniesController do
     end
   
     it "should map #new" do
-      route_for(:controller => "companies", :action => "new").should == "/companies/new"
+      route_for(:controller => "companies", :action => "new").should == "/add"
     end
   
     it "should map #show" do

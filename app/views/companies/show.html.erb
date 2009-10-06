@@ -21,6 +21,11 @@
 	<div id="info_box" style="border: solid red;">
 		<%=render :partial => "info_box" %>
 	</div>
+	
+	<% permitted_to?(:destroy, @company) do %>
+		<%= link_to "Destroy", company_path, :method => :delete %>
+	<% end %>
+	
 </div> 	    
 	    
     

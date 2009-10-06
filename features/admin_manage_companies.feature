@@ -29,12 +29,26 @@ Feature:  Admin Manage Companies
 		Given a company with name "CompanyName"
 		When I go to the companies page
 		Then I should see "CompanyName"
-		When I click "CompanyName"
-		Then I should see "Delete"
-		When I click "Delete"
-		Then I should see "Company deleted."
+		When I follow "CompanyName"
+		Then I should see "Destroy"
+		When I follow "Destroy"
+		Then I should see "Company destroyed."
 		When I go to the companies page
 		Then I should not see "CompanyName"
+	
+	@focus	
+	Scenario: Admin edits a company and saves it
+		Given I am logged in as an admin user
+		Given a company with name "British Petroleum" and description "An oil company"
+		When I go to the edit company page for "British Petroleum"
+		When I fill in the following:
+			| Name				| British Petroleum	|
+			| Description		| An energy company |
+		When I press "Save"
+		Then I should see "Company saved"
+		And I should see "British Petroleum"
+		And I should see "An energy company"
+			
 		
 		
 		
