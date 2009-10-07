@@ -7,7 +7,10 @@ module NavigationHelpers
   #
   def path_to(page_name)
     case page_name
-      
+    
+    when /the company page/
+      company_path(@company) 
+     
     when /the edit company page for "(.*)"/
       edit_company_path(Company.find(:first, :conditions => ["name = ?", $1]))
     

@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      flash[:message] = "You have successfully logged in#{user.role_symbols.include?(:admin) ? ' as an administrator' : ''}"
+      flash[:message] = "You have successfully logged in to your #{user.role_symbols.join('/')} account"
       redirect_to dashboard_url
       #render :template => '/users/dashboard'
       # redirect_back_or_default('/')

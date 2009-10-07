@@ -36,7 +36,7 @@ Feature:  Admin Manage Companies
 		When I go to the companies page
 		Then I should not see "CompanyName"
 	
-	@focus	
+		
 	Scenario: Admin edits a company and saves it
 		Given I am logged in as an admin user
 		Given a company with name "British Petroleum" and description "An oil company"
@@ -49,6 +49,15 @@ Feature:  Admin Manage Companies
 		And I should see "British Petroleum"
 		And I should see "An energy company"
 			
-		
+	
+	#As an owner
+	#I don't want contributors to be able to delete companies
+	
+	@focus
+	Scenario: Non contributor visits page (no destroy link)
+		Given a company
+		Given I am logged in as a contributor user
+		When I go to the company page
+		Then I should not see "Destroy"
 		
 		

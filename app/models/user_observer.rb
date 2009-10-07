@@ -1,6 +1,8 @@
 class UserObserver < ActiveRecord::Observer
   def after_create(user)
-    UserMailer.deliver_signup_notification(user) unless user.role_symbols.include?(:admin)
+    unless ["cucumber", "test"].include?(RAILS_ENV)
+      UserMailer.deliver_signup_notification(user) unless user.role_symbols.include?(:admin)
+    end
   end
 
   def after_save(user)
