@@ -38,26 +38,46 @@ Feature:  Admin Manage Companies
 	
 		
 	Scenario: Admin edits a company and saves it
+		
 		Given I am logged in as an admin user
-		Given a company with name "British Petroleum" and description "An oil company"
-		When I go to the edit company page for "British Petroleum"
+		Given a company# with name "British Petroleum" and description "An oil company"
+		When I go to the company page
+		Then I should see "Edit"
+		
+		When I follow "Edit"
+		Then I should see a form
+		#When I go to the edit company page# for "British Petroleum"
+		
 		When I fill in the following:
 			| Name				| British Petroleum	|
 			| Description		| An energy company |
-		When I press "Save"
+		And I press "Save"
+		
 		Then I should see "Company saved"
 		And I should see "British Petroleum"
 		And I should see "An energy company"
 			
-	
-	#As an owner
-	#I don't want contributors to be able to delete companies
-	
 	@focus
 	Scenario: Non contributor visits page (no destroy link)
+		#As an owner
+		#I don't want contributors to be able to edit or destroy companies
 		Given a company
 		Given I am logged in as a contributor user
 		When I go to the company page
 		Then I should not see "Destroy"
+		And I should not see "Edit"
+		
+		When I try to get '/companies/1/edit'
+		Then I should see "xxx"
+		
+	Scenario: HaxX04-M&ees does delete :destroy, :id => 1
+		Given a company
+		Given that I am logged in as a contributor user
+		When application receives "delete '/companies/1'
+		Then I should see "You are not authorized"
+		
+	
+		
+	
 		
 		

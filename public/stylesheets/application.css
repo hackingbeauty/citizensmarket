@@ -46,6 +46,11 @@ em {
 	font-style:italic;
 }
 
+.code{
+	background-color: black;
+	font: courier;
+}
+
 strong {
 	font-weight:bold;
 }

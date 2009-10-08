@@ -23,6 +23,21 @@
 			<% unless flash[:message].nil? %>
 				<%= flash[:message] %>
 			<% end %>
+			<% if RAILS_ENV == "development" %>
+				<div class="code">
+					# this appears in development mode only:<br/>
+					
+					Roles for current user:  
+					
+					<% if current_user.nil? %>
+						(not logged in)
+					<% else %>
+						<%= current_user.role_symbols.inspect %>
+					<% end %>
+				</div>
+			<% end %>
+			
+			
 		</div>
         <div id="main-content">
 			<%= yield %>
