@@ -17,9 +17,10 @@ class SessionsController < ApplicationController
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
       flash[:message] = "You have successfully logged in to your #{user.role_symbols.join('/')} account"
-      redirect_to dashboard_url
+      #redirect_to dashboard_url
       #render :template => '/users/dashboard'
-      # redirect_back_or_default('/')
+      #redirect_back_or_default(dashboard_url)
+      cm_redirect_back_or(dashboard_url)
     else
       
       flash[:message] = "Incorrect Email/Password Combination"

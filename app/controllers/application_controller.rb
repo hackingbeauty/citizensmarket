@@ -17,13 +17,34 @@ class ApplicationController < ActionController::Base
   
   protected 
   
+  def permission_denied
+    session[:attempted_request] = {}
+    session[:attempted_request][:uri] = request.request_uri
+    session[:attempted_request][:params] = params
+    #session[:protected_page] = request.request_uri
+    #session[:protected_params] = params
+    flash[:message] = "You're not authorized for that.  Try logging in first."
+    redirect_to login_url
+  end
+  
+  def cm_redirect_back_or(path)
+    if session[:attempted_request].nil?
+      redirect_to path
+    else
+      u = session[:attempted_request][:uri]
+      p = session[:attempted_request][:params]
+      session[:attempted_request] = nil
+      redirect_to u, p
+    end
+  end
+  
 	# Protect a page from unauthorized access.  	
-  	def admin_login_required
-  	  unless admin_logged_in?
-  	    session[:protected_page] = request.request_uri
-  	    redirect_to :controller => "admin", :action => "login"
-  	    return false
-	    end    
-	  end
+  #	def admin_login_required
+  #	  unless admin_logged_in?
+  #	    session[:protected_page] = request.request_uri
+  #	    redirect_to :controller => "admin", :action => "login"
+  #	    return false
+	#    end    
+	#  end
   	
 end
