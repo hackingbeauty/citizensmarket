@@ -36,11 +36,11 @@ Feature:  Admin Manage Companies
 		When I go to the companies page
 		Then I should not see "CompanyName"
 	
-		
 	Scenario: Admin edits a company and saves it
 		
 		Given I am logged in as an admin user
-		Given a company# with name "British Petroleum" and description "An oil company"
+		Given a company
+		# with name "British Petroleum" and description "An oil company"
 		When I go to the company page
 		Then I should see "Edit"
 		
@@ -68,13 +68,14 @@ Feature:  Admin Manage Companies
 		And I should not see "Edit"
 		
 		When I try to get '/companies/1/edit'
-		Then I should see "xxx"
+		Then it should tell me I am not authorized
 		
-	Scenario: HaxX04-M&ees does delete :destroy, :id => 1
+	@focus 
+  Scenario: HaxX0r does delete :destroy, :id => 1
 		Given a company
-		Given that I am logged in as a contributor user
-		When application receives "delete '/companies/1'
-		Then I should see "You are not authorized"
+		Given I am logged in as a contributor user
+		When I send a packet with "delete '/companies/1'"
+		Then it should tell me I am not authorized
 		
 	
 		

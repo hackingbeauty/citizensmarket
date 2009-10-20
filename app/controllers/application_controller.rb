@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     session[:attempted_request][:params] = params
     #session[:protected_page] = request.request_uri
     #session[:protected_params] = params
-    flash[:message] = "You're not authorized for that.  Try logging in first."
+    flash[:message] = CmSnippets.not_authorized_message
     redirect_to login_url
   end
   

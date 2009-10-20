@@ -4,7 +4,6 @@ Feature:  Browse Reviews
   As a visitor to the site (not logged in)
   I want to browse and read reviews
   
-  @focus
   Scenario:  Visitor browses reviews
     Given I am not logged in
     Given a review with these attributes:
