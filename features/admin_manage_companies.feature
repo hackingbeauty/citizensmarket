@@ -53,7 +53,7 @@ Feature:  Admin Manage Companies
 	#As an owner
 	#I don't want contributors to be able to delete companies
 	
-	@focus
+	
 	Scenario: Non contributor visits page (no destroy link)
 		Given a company
 		Given I am logged in as a contributor user

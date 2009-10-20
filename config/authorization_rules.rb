@@ -11,7 +11,7 @@ authorization do
     has_permission_on :reviews, :to => :read do
       if_attribute :status => "published"
     end
-    has_permission_on :companies, :to => [:index, :show]
+    has_permission_on :companies, :to => [:index, :show, :company_picker]
     has_permission_on :peer_ratings, :to => :read
     
     has_permission_on :users, :to => :create

@@ -1,8 +1,8 @@
 
 <% for review in @reviews %>
 
-	<%= render :partial => 'reviews/review', :locals => {:review => review, :show_company => false} %>
+	<%= render :partial => 'reviews/review', :locals => {:review => review, :show_company => true} %>
 
 <% end %>
 
-<%= link_to 'New review', new_object_url %>
+<%= link_to 'New review', new_review_path %>
