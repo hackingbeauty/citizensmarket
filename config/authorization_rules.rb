@@ -3,6 +3,7 @@
 # Users can leave peer ratings on others' reviews
 
 # Admins can add / edit companies
+# Admins can add / edit issues
 
 authorization do
   
@@ -16,9 +17,11 @@ authorization do
     
     has_permission_on :users, :to => :create
     
+    has_permission_on :issues, :to => [:index, :show]
+    
   end
   
-  role :user do
+  role :contributor do
     includes :guest
     
     has_permission_on :reviews, :to => :create
@@ -31,14 +34,17 @@ authorization do
       if_attribute :id => is {user.id}
     end
     
-    has_permission_on :peer_ratings, :to => :create
+    has_permission_on :peer_ratings, :to => :create #do
+    #  if_attribute :review => {:user => {:id => is_not {user.id}}}
+      # or should this be handled by validation? (i.e. to allow custom error messages)
+    #end
     
   end
   
   role :admin do
     
     includes :guest
-    includes :user
+    includes :contributor
     
     has_permission_on [:reviews, :companies, :issues, :users], :to => [:new, :create, :edit, :update, :destroy]
     

@@ -1,6 +1,6 @@
 <%=link_to image_tag('logos/new-logo.png'), root_url, :id => 'logo' %>
 <ul id="top-nav">
-    <% if !current_user.nil? %>
+	<% if !current_user.nil? %>
         <li><%= link_to "My Profile", '/my_profile' %></li>
         <li><%=link_to 'About Us', '/about' %></li>
         <li><%= link_to "Blog", 'http://blog.citizensmarket.org/' %></li>

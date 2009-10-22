@@ -29,6 +29,11 @@ module ApplicationHelper
   def admin_logged_in?
     not session[:admin_id].nil?
   end
+  def logged_in_as?(role)
+    raise "expecting a Symbol, you passed a #{role.class}" unless role.kind_of?(Symbol)
+    return false unless logged_in?
+    current_user.role_symbols.include?(role)
+  end
   
   def render_tabs(tabs)
     tabs.inject("") do |tab_html, tab|

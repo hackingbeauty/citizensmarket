@@ -57,8 +57,8 @@ Feature:  Admin Manage Companies
 		And I should see "British Petroleum"
 		And I should see "An energy company"
 			
-
-	Scenario: Non contributor visits page (no destroy link)
+  
+	Scenario: Contributor visits page (no edit or destroy links)
 		#As an owner
 		#I don't want contributors to be able to edit or destroy companies
 		Given a company
@@ -70,7 +70,11 @@ Feature:  Admin Manage Companies
 		When I try to get '/companies/1/edit'
 		Then it should tell me I am not authorized
 		
-	@focus 
+		When I send a packet with "delete '/companies/1'"
+		Then it should tell me I am not authorized
+		
+		
+	
   Scenario: HaxX0r does delete :destroy, :id => 1
 		Given a company
 		Given I am logged in as a contributor user

@@ -13,7 +13,10 @@
   <%=h @issue.category %>
 </p>
 
+<% if permitted_to?(:edit, @issue) %> 
+	<%= link_to 'Edit', edit_issue_path(@issue) %><br/>
+<% end %>
+<% if permitted_to?(:destroy, @issue) %>	
+	<%= link_to 'Destroy', @issue, :confirm => 'Are you sure?', :method => :delete %>
+<% end %>
 
-<%= link_to 'Edit', edit_issue_path(@issue) %> |
-<%= link_to 'Back', issues_path %> | 
-<%= link_to 'New', new_issue_path %>

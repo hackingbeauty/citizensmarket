@@ -36,7 +36,10 @@
 					<% end %>
 				</div>
 			<% end %>
-			
+		
+		<% if logged_in_as?(:admin) %>
+			<%= render :partial => "layouts/admin_nav" %>
+		<% end %>
 			
 		</div>
         <div id="main-content">
