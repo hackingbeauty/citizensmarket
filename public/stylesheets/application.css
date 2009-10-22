@@ -107,12 +107,6 @@ li.last {
 
 .hide {display:none;}
 
-<<<<<<< HEAD:public/stylesheets/application.css
-=======
-.helper {
-/*	display:none;*/
-}
->>>>>>> browse_reviews:public/stylesheets/application.css
 
 /******************* =Header (All Pages) *******************/
 
@@ -132,7 +126,7 @@ li.last {
 #header ul#main-nav li {
 	float:left;
 	height:2.5em;
-	margin-right:2.7em;
+	margin-right:6em;
 
 }
 
@@ -288,7 +282,6 @@ a#logo img {
 #footer {
 	background: url('../images/backgrounds/grad-footer.png') repeat-x;
 	clear:both;
-	top:2em;
 	position:relative;
 	z-index:100;
 }
@@ -325,7 +318,7 @@ a#logo img {
 #bottom-gutter {
 	background: #1678ae url('../images/backgrounds/grad-footer.png') repeat-x;
 	height:7.4em;
-	position:relative;
+	position:relative
 }
 
 /******************* =Homepage *******************/
@@ -705,26 +698,6 @@ a#logo img {
 
 /* =Registration & Login Error Messaging + Notifications */
 
-.login-error {
-	background: url('/images/icons/icon-yellow-exclamation2.png') no-repeat;
-	color:red;
-	font-size:1.4em;
-	font-weight:bold;
-	height:2em;
-	padding-left:2.2em;
-	padding-top:0.2em;
-}
-
-#flash-errors {
-	display:none;
-	margin-bottom:2em;
-}
-
-#flash-errors p {
-	color:red;
-	font-size:1.2em;
-}
-
 #register input.error,
 #login input.error,
 #forgot-password input.error {
@@ -738,10 +711,6 @@ a#logo img {
 	color:red;
 	position:relative;
 	top:-0.5em;
-}
-
-#register #register-notice {
-	display:none;
 }
 
 #register .errorExplanation h2 {
@@ -883,7 +852,7 @@ a#logo img {
 	display:block;
 	margin-left:5px !important;
 	padding:0.1em 1.7em;
-	width:75.4em;
+	width:75.4em
 }
 
 #companies tbody tr {
