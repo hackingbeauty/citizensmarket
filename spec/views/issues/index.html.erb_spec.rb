@@ -17,8 +17,8 @@ describe "/issues/index.html.erb" do
 
   it "should render list of issues" do
     render "/issues/index.html.erb"
-    response.should have_tag("tr>td", "value for name", 2)
-    response.should have_tag("tr>td", "value for description", 2)
+    response.should have_tag("a", "value for name", 2)
+    response.should have_tag("p", "value for description", 2)
   end
 end
 
