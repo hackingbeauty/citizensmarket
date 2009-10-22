@@ -21,7 +21,6 @@
 	}
 	window['CM']['videoClick'] = videoClick;
 	
-<<<<<<< HEAD:public/javascripts/application.js
 	//Sign In Modal
 	var logIn = function() {
 		$('#login-bttn').click(function(){
@@ -31,7 +30,7 @@
 			modal: true, 
 			trigger: '#login-bttn'
 		});
-=======
+
 	var paintStars = function(){
 		$('.fixed_star_rating').stars({inputType: "select", disabled: true, split: 2});
 		$('.editable_star_rating').stars({inputType: "select", split: 2});
@@ -41,7 +40,7 @@
 	//Sign In Button Drop Down Menu
 	var signInDropDown = function() {
 		$('#login-form').jqm({modal: true, trigger: '#login-bttn'});
->>>>>>> master_luke:public/javascripts/application.js
+
 		return false;		
 	}//end function
 	window['CM']['logIn'] = logIn;
