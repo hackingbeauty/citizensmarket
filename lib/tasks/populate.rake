@@ -7,36 +7,42 @@ namespace :db do
     
     User.delete_all
     
-    User.populate 1 do |user|
-       user.login =  "jimp79"
-       user.name = "Jim Patterson"
-       user.email = "jpatterson@citizensmarket.org"
-       user.profile = { :location => 'Cambridge, MA', 
-                        :website => 'www.foo.com'}
-       activated_at = 1.second.ago
-       user.state = 'active'
-       user.crypted_password = 'dfe4762468fa6db3de50508c6c767ff1fed56246'
-       user.salt = '582c2f30572263ed428158aa64f4d264555aaf3d'
-     end
+    User.populate 1 do |user| # user with roles = [:contributor]
+      user.login = "contributor@citizensmarket.org"
+      user.email = "contributor@citizensmarket.org"
+      user.firstname = "Joe"
+      user.lastname = "Contributor"
+      user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
+      user.roles = [:contributor]
+      user.activated_at = 1.second.ago
+      user.state = "active"
+      user.crypted_password = "27705dff13cb5891f6867c04a95f8eb6a02e0a30" # password = 'password'
+      user.salt = "3d4b9c8d689a0c58eb25ac6629a51fd86dae0e38"
+    end
     
-    User.populate 10 do |user|
-      first_name = Faker::Name.first_name
-      last_name = Faker::Name.last_name
-      user.login =  first_name + last_name.first
-      user.name = first_name + " " + last_name
-      user.email = Faker::Internet.email
-      user.profile = {:location => Faker::Address.city + ", " + Faker::Address.us_state_abbr, 
-                      :website => "www." + Faker::Internet.domain_name}
-      activated_at = 1.second.ago
-      user.state = 'active'
+    User.populate 1 do |user| # user with roles = [:admin]
+      user.login = "admin@citizensmarket.org"
+      user.email = "admin@citizensmarket.org"
+      user.firstname = "Joe"
+      user.lastname = "Admin"
+      user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
+      user.roles = [:admin]
+      user.activated_at = 1.second.ago
+      user.state = "active"
+      user.crypted_password = "f14905ba1f944ee46d0928c0c925deb006830d55" # password = 'password'
+      user.salt = "d75d18195fd3811e368c278204d2d3ef34d79129"
     end
     
     User.all.each(&:initialize_default_issue_weights)
     
     [Company, Brand, Review, ReviewIssue].each(&:delete_all)
+    
+    possible_brands = 'BigRig, BigSnacks, DrillOil, LuxLube, SeaOil, Airhair, Lots \'O Locks, Tress Finesse, YouScrub, FairFace, FairHair, FairSkin, Fossil Fools, LoneStar, QwikLube, Mohawk Master, Nectar, ShockWave, SudsySoap, Goop, Goopaline, Goopex, GoopyGas, ExactExtract, Lucky Oil, Shale Sale Company, Conditional Love, Freshin, ManMane, Shaggy, Queen, Royal Refineries, FrizzWhiz, Musky Shampoo, Shower Power, SudsyGrip, Radiance, Thermo-Brush, Wash \'N Go, XX Appeal, Zesty'.split(', ')
+    
     Company.populate 10 do |company|
       company.name = Faker::Company.name
-      company.description = Populator.sentences(2..10)
+      #company.description = Populator.sentences(2..10)
+      company.description = "#{company.name} is a multinational corporation with joint headquarters in London and Amsterdam that began as a hair care company and now owns many of the world's consumer product brands in personal care products, cleaning agents, foods and beverages. Universal Hair Care Inc. employed 151,000 people and had a worldwide revenue of $33.8 billion in 2009."
       company.website_url = "http://www.#{Faker::Internet.domain_name}"
       company.info = { "Type" => "Public (Euronext: OR)", 
                        "Founded" => "1909",
@@ -51,14 +57,15 @@ namespace :db do
                         }
       Brand.populate 0..20 do |brand|
         brand.company_id = company.id
-        brand.name = Populator.words(1..3).titleize
+        brand.name = possible_brands.delete(possible_brands.rand) || Populator.words(1..3).titleize
         brand.description = Populator.sentences(2..10)
       end
-      Review.populate 0..10 do |review|
+      Review.populate 0..100 do |review|
         ReviewIssue.populate 0..5 do |review_issue|
           review_issue.review_id = review.id
           review_issue.issue_id = Issue.all.rand.id
         end
+        review.rating = 1..5
         review.user_id = User.all.rand.id
         review.company_id = company.id
         review.body = Populator.paragraphs(2..10)

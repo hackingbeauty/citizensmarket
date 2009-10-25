@@ -1,6 +1,15 @@
 module CompaniesHelper
   
   def brand_name_list(company, opts = {})
+    if opts[:truncate]
+      output = company.brands.find(:all, :limit => 9)
+    else
+      output = company.brands
+    end
+    output = output.map{|x| x.name}.join(', ')
+  end
+  
+  def brand_name_list_old(company, opts = {})
     total_brands = company.brand_names.size
     top_9_brands = company.brand_names[0..9].join(', ')
     if total_brands > 10 and opts[:truncate]
