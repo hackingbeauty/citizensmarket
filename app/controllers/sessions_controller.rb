@@ -16,20 +16,30 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      flash[:message] = "You have successfully logged in to your #{user.role_symbols.join('/')} account"
-      #redirect_to dashboard_url
-      #render :template => '/users/dashboard'
-      #redirect_back_or_default(dashboard_url)
-      cm_redirect_back_or(dashboard_url)
+
+      session[:login_status] = "success"
+      respond_to do |format|
+         format.html { 
+           redirect_to dashboard_url
+           return
+         }
+         format.json {render :json => 'success'}
+         # format.js       
+      end
     else
-      
-      flash[:message] = "Incorrect Email/Password Combination"
-      #note_failed_signin
+      flash[:message] = "<p class=\"login-error\">That won&#39;t work!</p><p>You entered a wrong username and/or password.</p>"
+      session[:login_status] = "failure"
+      respond_to do |format|
+         format.html { 
+           redirect_to login_url
+           return
+         }
+         format.json {render :json => 'failure'}
+         # format.js       
+      end
+      note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]
-      #render :action => "new"
-      render :template => '/sessions/new'
-      #render :text => 'what'
     end
   end
 

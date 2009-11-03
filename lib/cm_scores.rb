@@ -127,6 +127,7 @@ class CmScores
     return numerator.to_f / denominator.to_f
     
   end
+<<<<<<< HEAD:lib/cm_scores.rb
   
   def self.generic_company_score(company)
     company = Company.find(company) if company.class == Fixnum
@@ -151,4 +152,7 @@ class CmScores
   
   
   
+=======
+   
+>>>>>>> browse_reviews:lib/cm_scores.rb
 end

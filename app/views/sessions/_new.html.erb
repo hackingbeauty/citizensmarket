@@ -2,7 +2,8 @@
     <div id="login-top"></div>
         <div id="login-body">
             <h2>Log In</h2>
-            <% form_tag session_path do  %>
+            <div id="flash-errors"></div>
+            <% form_tag session_path, :id => 'sign-in-form' do  %>
                 <%= error_messages_for :session %>
                 <% if flash[:message] %>
                     <div id="message">
@@ -30,6 +31,7 @@
                     <%= submit_tag "Sign In", :id => "login-submit" %>
                 </div>
             <% end %>
+            <div class="helper"><%= @instruction %></div>
         </div><!-- end login-body -->
     <div id="login-bottom"></div>
 </div><!-- end login -->

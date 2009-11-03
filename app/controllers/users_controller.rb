@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
   end
-  
+    
   def create
     #raise "check params"
     logout_keeping_session!
@@ -43,10 +43,10 @@ class UsersController < ApplicationController
     success = @user && @user.valid?
     if verify_recaptcha(@user) && success && @user.errors.empty?
       flash[:notice] = "<p class=\"big\">Thanks for signing up!</p><p>We're sending you an email to #{@user.email} with your activation code.</p>"
-      redirect_back_or_default('/')
     else
-      render :template => '/home/show'
+      flash[:notice] = "<p class=\"big\">Ooops!</p><p>The address #{@user.email} is already in use!  Please try another.</p>"
     end
+    redirect_to signup_url
   end
   
   def activate
