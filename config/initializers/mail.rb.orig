@@ -1,4 +1,3 @@
-<<<<<<< HEAD:config/initializers/mail.rb
 require 'tls_smtp'
 
 ActionMailer::Base.raise_delivery_errors = true
@@ -13,13 +12,3 @@ ActionMailer::Base.smtp_settings = {
   :user_name => "support@citizensmarket.org",
   :password => "Gcm248248"
 }
-=======
-ActionMailer::Base.smtp_settings = {
-  :address  => "smtp.gmail.com",
-  :port  => 587,
-  :domain => "support@citizensmarket.org",
-  :authentication => :plain,
-  :user_name  => "support@citizensmarket.org",
-  :password  => "Gcm248248"
-}
->>>>>>> 2640f6b6ecf66c63028a16bf52bdc0cd70a72327:config/initializers/mail.rb
