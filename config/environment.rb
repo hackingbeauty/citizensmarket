@@ -69,3 +69,6 @@ Rails::Initializer.run do |config|
   ENV['RECAPTCHA_PRIVATE_KEY'] = '6LdoDAcAAAAAAG8fzeLUZIxxxS72N-iOKp9G89is'
   
 end
+
+require 'memcache'
+CACHE = MemCache.new('127.0.0.1')
