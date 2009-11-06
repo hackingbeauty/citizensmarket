@@ -7,9 +7,10 @@ class CmScores
   # Lifetime Review Score (user) :    LRS = RS + RS + RS + ... + RS  [sum of review scores]
   # Lifetime Reviews (user) :         LR = user.reviews.size  [number of reviews]
   # Contributor Level (user ) :       CL = based on how many points you get: 0 => level 1, etc
-  USER_CONTRIBUTOR_LEVEL_PROMOTIONS_AT = [0, 50, 100, 200, 300, 500, 700, 1000, 1300, 1700, 2100, 2600, 3100, 3700, 4300, 5000]
+  USER_CONTRIBUTOR_LEVEL_PROMOTIONS_AT = [0, 50, 100, 200, 300, 500, 700, 1000, 1300, 1700, 2100, 2600, 3100, 3700, 4300, 5000] # numbers are versus CS
   
   # My Company Score (company, user) :  MCS = sum(IS * IW) / sum(IW)   [weighted average of issue scores, by issue weights]
+  # Generic Company Score (company, user) : GCS = sum(IS)/count(IS)   [simple average of issue scores]
   # Issue Score (company, issue) :    IS =  sum(rating * QF) / sum(QF) [average of review ratings, weighted by Quality Factor]
   # Quality Factor (review) :         QF = CL + (y * RS)               [if QF < 0, then QF is set to 0]
   # Review Score (review) :           RS = sum(peer_rating.score)      [all the up votes, minus the down votes]
@@ -45,14 +46,16 @@ class CmScores
   end
   
   def self.review_score(review)
-    # return cached if cached
+    
     review = Review.find(review) if review.class == Fixnum
     
-    output = 0
-    review.peer_ratings.each do |pr|
-      output += pr.score
-    end
-    output
+    CACHE.fetch("CmScores.review_score(review_id=#{review.id})", 1.hour){
+      output = 0
+      review.peer_ratings.each do |pr|
+        output += pr.score
+      end
+      output
+    }
   end
   
   def self.review_non_negative_quality_factor(review, quality_factor = nil)
@@ -99,12 +102,23 @@ class CmScores
   
   def self.user_contributor_level(user)
     user = User.find(user) if user.class == Fixnum
-    promotions_at = CmScores::USER_CONTRIBUTOR_LEVEL_PROMOTIONS_AT
-    cs = CmScores.user_contributor_score(user)
-    promotions_at.each do |n|
-      return promotions_at.index(n) if n > cs
-    end
-    return promotions_at.size
+    CACHE.fetch("CmScores.user_contributor_level(user_id=#{user.id})"){
+      promotions_at = CmScores::USER_CONTRIBUTOR_LEVEL_PROMOTIONS_AT
+      cs = CmScores.user_contributor_score(user)
+      output = 0
+      found = false
+      promotions_at.each do |n|
+        if n > cs
+          output = promotions_at.index(n)
+          found = true
+          break
+        end
+      end
+      unless found 
+        output = promotions_at.size
+      end
+      output
+    }
   end
   
   def self.my_company_score(company, user)

@@ -17,15 +17,24 @@ describe CmScores do
     end
     
     it "should cache a generic_company_score" do
-      
-      @company = Company.find(1)
-      
+      company = Company.find(1)
       CACHE.get("CmScores.generic_company_score(company_id=1)").should be_nil
-      
-      result = CmScores.generic_company_score(@company)
-      
+      result = CmScores.generic_company_score(company)
       CACHE.get("CmScores.generic_company_score(company_id=1)").should == result
-      
+    end
+    
+    it "should cache a review_score" do
+      review = Review.find(1)
+      CACHE.get("CmScores.review_score(review_id=1)").should be_nil
+      result = CmScores.review_score(review)
+      CACHE.get("CmScores.review_score(review_id=1)").should == result
+    end
+    
+    it "should cache user_contributor_level" do
+      user = User.find(1)
+      CACHE.get("CmScores.user_contributor_level(user_id=1)").should be_nil
+      result = CmScores.user_contributor_level(user)
+      CACHE.get("CmScores.user_contributor_level(user_id=1)").should == result
     end
     
     
