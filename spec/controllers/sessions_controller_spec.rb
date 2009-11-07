@@ -110,17 +110,17 @@ describe SessionsController do
     end
     it 'renders the home/show page (which is being used as login)' do 
       do_create 
-      response.should render_template('/sessions/new')
+      response.should be_redirect
     end
     it "returns success" do
       post :create, {:email => "foo@example.com", :password => 'plaintext_wow'}
-      response.should be_success
+      response.should be_redirect
     end
     it 'displays an invalid login message' do 
       post :create, {:email => 'foo@example.com', :password => 'plaintext_wow'}#@login_params
       #raise "flash.now[:message] = #{flash.now[:message]}"
       #raise "response.body = #{response.body}"
-      flash[:message].should =~ /Incorrect Email\/Password Combination/
+      flash[:message].should =~ /wrong.*username.*or.*password/
     end
     
     it "doesn't log me in" do 

@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
       handle_remember_cookie! new_cookie_flag
 
       session[:login_status] = "success"
+      flash[:message] = "You have successfully logged in."
       respond_to do |format|
          format.html { 
            redirect_to dashboard_url
@@ -37,9 +38,9 @@ class SessionsController < ApplicationController
          format.json {render :json => 'failure'}
          # format.js       
       end
-      note_failed_signin
-      @login       = params[:login]
-      @remember_me = params[:remember_me]
+      #note_failed_signin
+      #@login       = params[:login]
+      #@remember_me = params[:remember_me]
     end
   end
 

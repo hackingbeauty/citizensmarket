@@ -43,7 +43,7 @@ describe UsersController do
     lambda do
       create_user(:password => nil)
       assigns[:user].errors.on(:password).should_not be_nil
-      response.should be_success
+      response.should be_redirect
     end.should_not change(User, :count)
   end
   
@@ -51,7 +51,7 @@ describe UsersController do
     lambda do
       create_user(:password_confirmation => nil)
       assigns[:user].errors.on(:password_confirmation).should_not be_nil
-      response.should be_success
+      response.should be_redirect
     end.should_not change(User, :count)
   end
 
@@ -59,7 +59,7 @@ describe UsersController do
     lambda do
       create_user(:email => nil)
       assigns[:user].errors.on(:email).should_not be_nil
-      response.should be_success
+      response.should be_redirect
     end.should_not change(User, :count)
   end
   
@@ -277,11 +277,6 @@ describe UsersController, "when editing your profile" do
   
   end
   
-  # not sure how to express this - what is normal failure response? - Luke
-  it "on GET 'edit' with invalid id, it should fail - see comments" 
-  
-  # not sure how to express this either - Luke
-  it "on GET 'edit' with no id, it should fail - see comments" 
   
 end
 
@@ -364,12 +359,6 @@ describe UsersController, ": when editing a user and you're not logged in," do
     end
     
   end
-  
-  # not sure how to express this - what is normal failure response? - Luke
-  it "on GET 'edit' with invalid id, it should fail - see comments" 
-  
-  # not sure how to express this either - Luke
-  it "on GET 'edit' with no id, it should fail - see comments" 
   
 end
 
