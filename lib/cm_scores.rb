@@ -125,20 +125,23 @@ class CmScores
     company = Company.find(company) if company.class == Fixnum
     user = User.find(user) if user.class == Fixnum
     
-    # get cached if it exists
-    
-    output = 0
-    numerator = 0
-    denominator = 0
-    user.user_issues.each do |ui|
-      issue_score = CmScores.company_issue_score(company, ui.issue)
-      next if issue_score.nil?
-      numerator += ui.weight * issue_score
-      denominator += ui.weight
-    end
-    return numerator if denominator.to_i == 0  # if user has all weights set to 0, equivalent to all weights set to 1, because all weights are set equally
-    
-    return numerator.to_f / denominator.to_f
+    CACHE.fetch("CmScores.my_company_score(company_id=#{company.id},user_id=#{user.id})"){
+      output = 0
+      numerator = 0
+      denominator = 0
+      user.user_issues.each do |ui|
+        issue_score = CmScores.company_issue_score(company, ui.issue)
+        next if issue_score.nil?
+        numerator += ui.weight * issue_score
+        denominator += ui.weight
+      end
+      if denominator.to_i == 0
+        output = numerator if denominator.to_i == 0  # if user has all weights set to 0, equivalent to all weights set to 1, because all weights are set equally
+      else
+        output = numerator.to_f / denominator.to_f
+      end
+      output
+    }
     
   end
   
