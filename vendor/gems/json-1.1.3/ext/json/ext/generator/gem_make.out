@@ -1,0 +1,8 @@
+/usr/bin/ruby1.8 extconf.rb
+creating Makefile
+
+make
+cc -shared -o generator.so unicode.o generator.o -L"." -L"/usr/lib" -L. -Wl,-Bsymbolic-functions -rdynamic -Wl,-export-dynamic    -lruby1.8  -lpthread -ldl -lcrypt -lm   -lc
+unicode.o: file not recognized: File format not recognized
+collect2: ld returned 1 exit status
+make: *** [generator.so] Error 1
