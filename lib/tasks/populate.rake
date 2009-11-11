@@ -13,7 +13,7 @@ namespace :db do
       user.firstname = "Joe"
       user.lastname = "Contributor"
       user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
-      user.roles = [:contributor]
+      user.roles = [[:contributor]]
       user.activated_at = 1.second.ago
       user.state = "active"
       user.crypted_password = "27705dff13cb5891f6867c04a95f8eb6a02e0a30" # password = 'password'
@@ -26,7 +26,7 @@ namespace :db do
       user.firstname = "Joe"
       user.lastname = "Admin"
       user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
-      user.roles = [:admin]
+      user.roles = [[:admin]]
       user.activated_at = 1.second.ago
       user.state = "active"
       user.crypted_password = "f14905ba1f944ee46d0928c0c925deb006830d55" # password = 'password'
