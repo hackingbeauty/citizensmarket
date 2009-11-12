@@ -39,7 +39,7 @@ namespace :db do
     
     possible_brands = 'BigRig, BigSnacks, DrillOil, LuxLube, SeaOil, Airhair, Lots \'O Locks, Tress Finesse, YouScrub, FairFace, FairHair, FairSkin, Fossil Fools, LoneStar, QwikLube, Mohawk Master, Nectar, ShockWave, SudsySoap, Goop, Goopaline, Goopex, GoopyGas, ExactExtract, Lucky Oil, Shale Sale Company, Conditional Love, Freshin, ManMane, Shaggy, Queen, Royal Refineries, FrizzWhiz, Musky Shampoo, Shower Power, SudsyGrip, Radiance, Thermo-Brush, Wash \'N Go, XX Appeal, Zesty'.split(', ')
     
-    Company.populate 10 do |company|
+    Company.populate 100 do |company|
       company.name = Faker::Company.name
       #company.description = Populator.sentences(2..10)
       company.description = "#{company.name} is a multinational corporation with joint headquarters in London and Amsterdam that began as a hair care company and now owns many of the world's consumer product brands in personal care products, cleaning agents, foods and beverages. Universal Hair Care Inc. employed 151,000 people and had a worldwide revenue of $33.8 billion in 2009."
