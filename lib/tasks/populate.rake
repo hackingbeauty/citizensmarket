@@ -13,7 +13,7 @@ namespace :db do
       user.firstname = "Joe"
       user.lastname = "Contributor"
       user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
-      user.roles = [:contributor]
+      user.roles = [[:contributor]]
       user.activated_at = 1.second.ago
       user.state = "active"
       user.crypted_password = "27705dff13cb5891f6867c04a95f8eb6a02e0a30" # password = 'password'
@@ -26,7 +26,7 @@ namespace :db do
       user.firstname = "Joe"
       user.lastname = "Admin"
       user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
-      user.roles = [:admin]
+      user.roles = [[:admin]]
       user.activated_at = 1.second.ago
       user.state = "active"
       user.crypted_password = "f14905ba1f944ee46d0928c0c925deb006830d55" # password = 'password'
@@ -39,7 +39,7 @@ namespace :db do
     
     possible_brands = 'BigRig, BigSnacks, DrillOil, LuxLube, SeaOil, Airhair, Lots \'O Locks, Tress Finesse, YouScrub, FairFace, FairHair, FairSkin, Fossil Fools, LoneStar, QwikLube, Mohawk Master, Nectar, ShockWave, SudsySoap, Goop, Goopaline, Goopex, GoopyGas, ExactExtract, Lucky Oil, Shale Sale Company, Conditional Love, Freshin, ManMane, Shaggy, Queen, Royal Refineries, FrizzWhiz, Musky Shampoo, Shower Power, SudsyGrip, Radiance, Thermo-Brush, Wash \'N Go, XX Appeal, Zesty'.split(', ')
     
-    Company.populate 10 do |company|
+    Company.populate 100 do |company|
       company.name = Faker::Company.name
       #company.description = Populator.sentences(2..10)
       company.description = "#{company.name} is a multinational corporation with joint headquarters in London and Amsterdam that began as a hair care company and now owns many of the world's consumer product brands in personal care products, cleaning agents, foods and beverages. Universal Hair Care Inc. employed 151,000 people and had a worldwide revenue of $33.8 billion in 2009."
