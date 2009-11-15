@@ -7,6 +7,11 @@ class Company < ActiveRecord::Base
   
   validates_presence_of   :name, :on => :create, :message => "can't be blank"
   
+  define_index do
+    indexes :name
+    indexes :description
+  end
+  
   ##########################################################
   ######## SCORING SYSTEM
   
