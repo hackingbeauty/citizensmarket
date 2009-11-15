@@ -8,3 +8,4 @@ db/schema.rb
 db/sphinx
 db/sphinx/**/*
 vendor/gems/**/*
+vendor/gems/*
