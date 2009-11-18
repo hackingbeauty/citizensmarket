@@ -10,8 +10,8 @@
     </thead>
     <tbody>
         <tr>
-            <td class="company-name"><%= link_to company.name, object_url(company) %></td>
-            <td class="company-brands">Soap, Sugar, Blah <%=brand_name_list(company, :truncate => true) %> <%=link_to "More", object_url(company), :class => 'arrow' %></td>
+            <td class="company-name"><%= link_to company.name, company_path(company) %></td>
+            <td class="company-brands"><%=brand_name_list(company, :truncate => true) %> <%=link_to "More", company_path(company), :class => 'arrow' %></td>
             <td class="company-score">3 stars</td>
             <td class="company-reviews">200</td>
         </tr>

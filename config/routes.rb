@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :issues
 
 
-
+  map.search '/search', :controller => 'home', :action => 'search'
   map.connect '/users/update_issue_weights', :controller => 'issue_weights', :action => 'update'
   map.compare '/compare', :controller => 'companies', :action => 'compare'
   map.add '/add', :controller => 'companies', :action => 'new'

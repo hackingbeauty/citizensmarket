@@ -13,6 +13,10 @@ class Review < ActiveRecord::Base
   
   before_validation :set_initial_state, :on => :create
   
+  define_index do
+    indexes :body
+  end
+  
   # Define State Machine states and transitions
   include AASM
   
