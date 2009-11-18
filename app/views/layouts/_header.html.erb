@@ -13,10 +13,11 @@
 </ul>
 <div id="search">
     <p id="search-text">Find company reviews, product reviews, and more...</p>
-    <% form_for :search, :url => nil do |f| %>
+    <% form_for :search, :url => search_path do |f| %>
         <div>
         	<%= f.text_field :q, :value => '', :size => 60 %>
-        	<%= f.submit 'Search', :class => 'hide-text' %>
+        	<%= submit_tag "temporary search submit" %>
+			<%= f.submit 'Search', :class => 'hide-text' %>
         </div>
     <% end %>
 </div><!-- end search -->

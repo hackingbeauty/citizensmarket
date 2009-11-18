@@ -10,6 +10,7 @@ class Company < ActiveRecord::Base
   define_index do
     indexes :name
     indexes :description
+    indexes brands.name, :as => :brand_name
   end
   
   ##########################################################
