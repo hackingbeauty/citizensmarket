@@ -6,18 +6,13 @@
   
 %>
 
-<div id="issue_picker_<%= unique %>">
-
+<div id="issue_picker_<%= unique %>" class="issue_picker">
 	
-<% if defined?(selected_id) %>
-	<%= select_tag "issues[#{unique}]", options_from_collection_for_select(@issues, 'id', 'name', selected_id) %>
-<% else %>
-	<%= select_tag "issues[#{unique}]", options_from_collection_for_select(@issues, 'id', 'name') %>
-<% end %>
-
-<% if removable %>
-	<%= link_to_function 'remove', '$("#issue_picker_'+unique.to_s+'").empty(); return false;' %>
-<% end %>
+	<%= f.select :id, @issues.map{|x| [x.name, x.id]}, :selected => defined?(selected_id) ? selected_id : nil %>
+	
+	<% if removable %>
+		<%= link_to_function 'remove', '$("#issue_picker_'+unique.to_s+'").empty(); return false;' %>
+	<% end %>
 
 </div>
 

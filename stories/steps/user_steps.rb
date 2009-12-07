@@ -11,7 +11,8 @@ steps_for(:user) do
   Given "an anonymous user" do 
     log_out!
   end
-
+  
+  
   Given "$an $user_type user with $attributes" do |_, user_type, attributes|
     create_user! user_type, attributes.to_hash_from_story
   end

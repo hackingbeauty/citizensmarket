@@ -17,13 +17,13 @@ describe "/reviews/new.html.erb" do
     render "/reviews/new.html.erb"
     response.should have_tag("form[action=?][method=post]", reviews_path) do
       #with_tag('select#company_picker_id[name=?]', "company_picker_id")
-      with_tag('textarea#review_presenter_body[name=?]', "review_presenter[body]")
+      with_tag('textarea#review_body[name=?]', "review[body]")
     end
   end
   
   it "should include the star rating system" do
     render "/reviews/new.html.erb"
-    response.should have_tag("select#review_presenter_rating")
+    response.should have_tag("select#review_rating")
   end
 end
 

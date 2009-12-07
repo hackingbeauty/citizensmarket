@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/issues/issue_picker', :controller => 'issues', :action => 'issue_picker'
   map.resources :issues
 
-
+  map.my_reviews '/my_reviews', :controller => 'reviews', :action => 'my_reviews'
   map.search '/search', :controller => 'home', :action => 'search'
   map.connect '/users/update_issue_weights', :controller => 'issue_weights', :action => 'update'
   map.compare '/compare', :controller => 'companies', :action => 'compare'
@@ -22,10 +22,9 @@ ActionController::Routing::Routes.draw do |map|
   map.forgot '/forgot', :controller => 'users', :action => 'forgot'
   map.reset 'reset/:reset_code', :controller => 'users', :action => 'reset'
 
-  map.resources :users, 
-    :member => {
-      :issue_weights => :put
-    }
+  map.resources :users, :member => {:issue_weights => :put} do |user|
+    user.resources :reviews
+  end
     
   map.dashboard "/dashboard", :controller => "users", :action => "dashboard"
 
@@ -40,6 +39,7 @@ ActionController::Routing::Routes.draw do |map|
     company.resources :reviews
   end
   
+  map.connect "reviews/issue_picker", :controller => "reviews", :action => 'issue_picker'
   map.resources :reviews do |review|
     review.resources :peer_ratings,
                      :collection => { :vote_up => :post, :vote_down => :post }

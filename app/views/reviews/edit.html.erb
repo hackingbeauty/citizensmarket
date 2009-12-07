@@ -3,12 +3,12 @@
 <%= error_messages_for :review %>
 
 
-<% form_for([@company, @review], :html => {:method => :put}) do |f| %>
-  <% raise "f.object is nil" if f.object.nil? %>
-	<%= render :partial => "form", :locals => { :f => f } %>
-  <p>
-    <%=submit_tag "Update"%>
-  </p>
+<% form_for(:review, setup_review(@review), :url => review_path(@review), :html => {:method => :put}) do |f| %>
+  <%= render :partial => "form", :locals => { :f => f, :review => @review } %>
+  <div class="submit">
+    <%= f.submit "Update" %>
+  </div>
+  <br/>
 <% end %>
 
 <br/>

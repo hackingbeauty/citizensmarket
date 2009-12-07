@@ -60,8 +60,7 @@ Feature:  Manage Issues
 	# In order to keep a regular, relevant set of issues
 	# As a contributor user
 	# I should not be able to manage issues
-			
-  @focus
+	
   Scenario: Contributor visits issue page (no edit or destroy links)
 		Given an issue named "Bat Politics"
 		Given I am logged in as a contributor user

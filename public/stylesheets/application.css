@@ -90,6 +90,9 @@ li.last {
 /*	border: solid red;
 	width: 700px;*/
 	margin: 15px 0;
+	background-color: white;
+	border: solid black thick;
+	width: 850px;
 }
 .review .reviewer{
 	border: solid blue;

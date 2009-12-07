@@ -5,8 +5,8 @@ Feature:  Browse Companies
 	I want to be able to get a list of companies and their scores
 	
 	Scenario: I request the companies page
-		Given a company with name "Company_A"
-		And a company with name "Company_B"
+		Given a company named "Company_A"
+		And a company named "Company_B"
 		When I go to the companies page
 		Then I should see "Company_A" and "Company_B"
 		

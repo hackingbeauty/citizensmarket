@@ -5,7 +5,7 @@ Given /^a company$/ do
 end
 
 
-Given /^a company with name "([^\"]*)"$/ do |name|
+Given /^a company named "([^\"]*)"$/ do |name|
   @company = Factory.create(:company, :name => name)
   @company.save.should be_true
 end
@@ -13,4 +13,9 @@ end
 Given /^a company with name "([^\"]*)" and description "([^\"]*)"$/ do |name, description|
   @company = Factory.create(:company, :name => name, :description => description)
   @company.save.should be_true
+end
+
+
+def company_named(name)
+  Company.find_by_name(name) || Company.create!(:name => name, :description => "description for company #{name}")
 end

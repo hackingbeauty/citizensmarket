@@ -1,21 +1,6 @@
 	
 	<!-- expects: counter, input_name_prefix -->
 	
-	
-<div id="issue_picker_<%= counter %>">
-	
-	<% data = categorized_issues_hash %>
-	
-	<label for="issue_category">Category:</label>
-  	<%= select_tag 'issue_category', options_for_select(['select category'].concat data.keys.select{|x| x.to_s != ''}), :id => "issue_category_select_#{counter}" %>
-	--->
-	<label for="issue">Issue:</label>
-	<%= f.select :issue_id, nil, :id => "issue_select_#{counter}" %>
-	<script type="text/javascript">
-//		string = <%= "'"+@categorized_issues.to_json+"'" %>;
-//		alert(string);
-//		alert(<%= "'"+@categorized_issues.to_json+"'" %>);
-		$("#<%= 'issue_category_select_'+counter.to_s").chained_select("#issue_select_<%= 'issue_select_'+counter.to_s %>", "("+ <%= "'"+ data.to_json+"'" %>+")");
-	</script>
-	
-	<%= link_to_remote 'remove',  %>
+<div class="review_issue_picker">
+	<%= select_tag "review[issues][]", options_for_select(Issue.all.map{|x| [x.name, x.id] }, issue.id ) %>
+</div>

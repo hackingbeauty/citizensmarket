@@ -2,16 +2,17 @@
   <div class="content_header">
     <h2>New Review</h2>
   </div>
-  <div class="content_body">
+ <%= error_messages_for :review %>
+ <div class="content_body">
 
     <%= error_messages_for :review %>
 
-    <% form_for(:review_presenter, @review, :url => reviews_path) do |f| %>
+    <% form_for(:review, setup_review(@review), :url => reviews_path) do |f| %>
       <%= render :partial => "form", :locals => { :f => f, :review => @review } %>
       <div class="submit">
-        <%= image_submit_tag "button_submit.gif" %>
+        <%= f.submit "Save" %>
       </div>
-      <br>
+      <br/>
     <% end %>
   </div>
 </div>

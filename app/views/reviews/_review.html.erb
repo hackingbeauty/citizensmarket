@@ -1,5 +1,11 @@
 <!-- (1/4, 3/4) -->
 <div class="review">
+	<% if review.user == current_user %>
+		status: <span class="status"><%= review.status %></status>
+	<% end %>
+	<% if permitted_to? :edit, review %>
+		<%= link_to "edit", edit_review_path(review) %>
+	<% end %>
 	<div class="reviewer yui-u first">
 		  <%=image_tag "dummy_user.jpg", :class => 'avatar'%>
 		<div class="info">

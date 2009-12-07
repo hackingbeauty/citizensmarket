@@ -1,5 +1,5 @@
 
 <!-- expects:  object_name, object_company_id -->
 
-<%= select_tag object_name.to_s+'[company_id]', options_for_select(Company.all.map{|x| [x.name, x.id]}, object_company_id) %>
+<%= select_tag "#{object_name}[company_id]", options_for_select(Company.all.map{|x| [x.name, x.id]}, object_company_id) %>
 
