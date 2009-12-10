@@ -26,7 +26,7 @@ Feature:  Admin Manage Companies
 	
 	Scenario: Admin deletes a company
 		Given I am logged in as an admin user
-		Given a company with name "CompanyName"
+		Given a company named "CompanyName"
 		When I go to the companies page
 		Then I should see "CompanyName"
 		When I follow "CompanyName"

@@ -5,6 +5,7 @@ RE_User_TYPE = %r{(?: *(\w+)? *)}
 # Setting
 #
 
+
 Given "an anonymous user" do
   log_out!
 end
@@ -110,7 +111,6 @@ def create_user!(user_type, user_params)
   create_user user_params
   response.should redirect_to('/')
   follow_redirect!
-
 end
 
 

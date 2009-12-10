@@ -5,20 +5,22 @@
 	<label for="company_picker_container">Company: </label>
 	<div id="company_picker_container">
 		<% if f.object.company.nil? %>
-			<%= render :partial => 'companies/company_picker', :locals => {:object_name => f.object_name.to_s, :object_company_id => f.object.company_id} %>
+			<%= render :partial => 'companies/company_picker', :locals => {:object_name => f.object_name, :object_company_id => f.object.company_id} %>
 		<% else %>
 			<h2><%= f.object.company.name %></h2>
 			<%= link_to_remote 'change', :url => {:controller => 'companies', :action => 'company_picker', :object_name => f.object_name.to_s, :object_company_id => f.object.company_id}, :update => {:success => 'company_picker_container', :failure => 'errors'} %>
+			<%= f.hidden_field :company_id %>
 		<% end %>
 		
 	</div>
 	<br><br>
-	<label for="review_issue_pickers">Issue(s):</label>
+	
 	<div id="issue_pickers">
-		<%= render :partial => 'issues/issue_picker', :locals => {:parent_div_id => 'issue_pickers', :removable => false }%>
+		<%= render :partial => "reviews/issue_picker", :locals => {:issue => f.object.issues.first || Issue.first} %>
 	</div>
+	
 	<%= link_to_remote 'add another', 
-			:url => {:controller => 'issues', :action => 'issue_picker', :parent_div_id => 'issue_pickers'},
+			:url => {:controller => 'reviews', :action => 'issue_picker', :parent_div_id => 'issue_pickers'},
 			:update => {:success => 'issue_pickers'}, :position => 'bottom' %>
 	
 	
@@ -28,12 +30,12 @@
   <div class="star_rating">
     <label for="review_rating">Rating:</label>
     
-	<%= f.select :rating, (1..10).map{|x| [(x.to_f/2).to_s, (x.to_f/2).to_s]} %>
+	<%= f.select :rating, (1..10).map{|x| [(x.to_f/2).to_s, x.to_s]} %>
 	
     <br class="left">
   </div>
   
-  <label for="review_body">Review:</label>
+  <label for="review_body">Body:</label>
   <%= f.text_area :body, :cols => 110, :rows => 5, :class => 'expanding' %>
   
 </fieldset>

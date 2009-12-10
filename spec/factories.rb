@@ -60,10 +60,9 @@ Factory.define :peer_rating do |p|
 end
 
 Factory.define :review do |r|
-  r.status 'foo'
   r.rating 1
   r.updated_at 'Wed Jul 01 00:23:27 -0400 2009'
-  r.body 'foo'
+  r.body 'factory review body'
   r.company { |a| a.association(:company) }
   r.user { |a| a.association(:user) }
   r.created_at 'Wed Jul 01 00:23:27 -0400 2009'

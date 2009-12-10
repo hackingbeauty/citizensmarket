@@ -1,0 +1,13 @@
+
+
+<% @companies.each do |company| %>
+	
+	<%= render :partial => "companies/company", :locals => {:company => company} %>
+	
+<% end %>
+
+<% @reviews.each do |review| %>
+	
+	<%= render :partial => "reviews/review", :locals => {:review => review} %>
+	
+<% end%>

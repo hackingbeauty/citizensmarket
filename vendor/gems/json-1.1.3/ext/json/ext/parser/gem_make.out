@@ -1,8 +1,0 @@
-/usr/bin/ruby1.8 extconf.rb
-creating Makefile
-
-make
-cc -shared -o parser.so parser.o unicode.o -L"." -L"/usr/lib" -L. -Wl,-Bsymbolic-functions -rdynamic -Wl,-export-dynamic    -lruby1.8  -lpthread -ldl -lcrypt -lm   -lc
-parser.o: file not recognized: File format not recognized
-collect2: ld returned 1 exit status
-make: *** [parser.so] Error 1

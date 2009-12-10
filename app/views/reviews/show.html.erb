@@ -1,13 +1,4 @@
-<p>
-  <b>Body:</b>
-  <%=h @review.body %>
-</p>
+<%= link_to "My Reviews", my_reviews_path %>
 
-<p>
-  <b>Status:</b>
-  <%=h @review.status %>
-</p>
 
-<%= link_to 'Edit', edit_object_url %>
-|
-<%= link_to 'Back', collection_url %>
+<%= render :partial => "review", :locals => {:review => @review, :show_company => true} %>

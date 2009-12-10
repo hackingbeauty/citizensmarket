@@ -5,11 +5,6 @@ class ReviewsController < ApplicationController#ResourceController::Base
   #belongs_to :company
   
   def index
-    @reviews = Review.find(:all)
-  end
-  
-  
-  def index
     @reviews = Review.all
   end
   
@@ -21,22 +16,15 @@ class ReviewsController < ApplicationController#ResourceController::Base
     @review = Review.new
   end
   def create
-
-    company_id = params[:company_picker_id] || params[:company_id]
-
-    #raise "check params"
-    #company_id = params[:company_picker_id] || params[:company_id]
-
-    @review = Review.new(
-      :company_id => params[:review_presenter][:company_id], 
-      :body => params[:review_presenter][:body],  
-      :rating => params[:review_presenter][:rating])
+    #raise "params = #{params.inspect}"
+    @review = Review.new(params[:review])
+    #raise "@review.company = #{@review.company}"
     @review.user = current_user
     if @review.save
-      @review.build_issues(params[:issues])
-      redirect_to company_url(@review.company_id)
-    else
-      render :action => "new"
+      flash[:message] = "Review saved successfully."
+      redirect_to(my_reviews_path) and return
+    else 
+      render(:action => "new") and return
     end
   end
   
@@ -44,9 +32,9 @@ class ReviewsController < ApplicationController#ResourceController::Base
     @review = Review.find(params[:id])
   end
   def update
-    #raise "entered update and params = #{params.inspect}"
     @review = Review.find(params[:id])
     if @review.update_attributes(params[:review])
+      flash[:message] = (params[:review].has_key?(:aasm_event) ? "Your review has been successfully #{params[:review][:aasm_event]}ed" : "Saved successfully!")
       redirect_to review_url(@review)
     else
       render :action => 'edit'
@@ -57,6 +45,19 @@ class ReviewsController < ApplicationController#ResourceController::Base
     @review = Review.find(params[:id])
     @review.destroy
     redirect_to reviews_url
+  end
+  
+  
+  def issue_picker
+    render :partial => 'issue_picker', :locals => {:issue => Issue.first}
+  end
+  
+  # the routing to this function needs to be addressed by someone who knows more about routing than me
+  # - Luke 2009-12-01
+  def my_reviews
+    @owner = current_user
+    @reviews = Review.find(:all, :conditions => ["user_id = ?", @owner.id])
+    render :action => "index"
   end
   
 end

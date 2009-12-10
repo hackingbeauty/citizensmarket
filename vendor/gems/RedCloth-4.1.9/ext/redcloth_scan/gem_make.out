@@ -1,8 +1,0 @@
-/usr/bin/ruby1.8 extconf.rb
-creating Makefile
-
-make
-cc -shared -o redcloth_scan.so redcloth_inline.o redcloth_scan.o redcloth_attributes.o -L"." -L"/usr/lib" -L. -Wl,-Bsymbolic-functions -rdynamic -Wl,-export-dynamic    -lruby1.8  -lpthread -ldl -lcrypt -lm   -lc
-redcloth_inline.o: file not recognized: File format not recognized
-collect2: ld returned 1 exit status
-make: *** [redcloth_scan.so] Error 1

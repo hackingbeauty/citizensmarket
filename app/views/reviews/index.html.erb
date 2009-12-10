@@ -1,7 +1,14 @@
 
+<% if @owner == current_user %>
+	<h1>My Reviews</h1>
+<% end %>
+
+<% if permitted_to? :create, :reviews %>
+	<%= link_to "New Review", new_review_path %>
+<% end %>
+
 <% for review in @reviews %>
 
 	<%= render :partial => 'reviews/review', :locals => {:review => review, :show_company => true} %>
-
 
 <% end %>

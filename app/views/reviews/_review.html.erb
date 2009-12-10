@@ -1,16 +1,33 @@
 <!-- (1/4, 3/4) -->
 <div class="review">
+	
+	<% if permitted_to? :manage, review %>
+		
+	<% end %>
 	<div class="reviewer yui-u first">
 		  <%=image_tag "dummy_user.jpg", :class => 'avatar'%>
 		<div class="info">
 		  <p><%=link_to_user(review.user)%></p>
 		  <p><% unless review.user.profile.nil? %><%=review.user.profile[:location] %><% end %></p>
 		  <p class="comment_count"> <%=link_to_user(review.user, :content_text => "#{review.user.reviews.size} Reviews")%></p>
+			<% if review.user == current_user %>
+				
+			<% end %>
+			<div class="manage">
+				<h3>Manage this review</h3>
+				status: <span class="status"><%= review.status %></span><br/>
+				<% if permitted_to? :edit, review %>
+					<%= link_to "edit", edit_review_path(review) %>
+				<% end %>
+				<% if permitted_to? :publish, review %>
+					<%= link_to "publish", publish_review_path(review), :method => :put %>
+				<% end %>
+			</div>
 		
-			<br><br>
+			<br/><br/>
 			<div class="construction_cruft">
 			<!--<div style="border: solid thin red; background-color: #ffeeee; margin: 20px 5px 0;">-->
-				<h1>this div temporary to observe algorithms.</h1>
+				this div temporary to observe algorithms.
 				<b>THIS USER:</b><br>
 				lifetime reviews (LR): <font color="blue"><%= CmScores.user_lifetime_reviews(review.user) %></font><br>
 				lifetime review score (LRS): <font color="blue"><%= CmScores.user_lifetime_review_score(review.user) %></font><br>
@@ -20,12 +37,14 @@
 		</div>
 	</div>
 	<div class="content yui-u">
+		<h1>[This is a review]</h1>
 		<div class="heading">
-	  
-			<% if show_company %>
-				<%= review.company.name %>
+	  		<% if show_company %>
+				<span class="company"><%= review.company.name %></span>
 			<% end %>
+			<br/>
 			
+	
 			<span class="fixed_star_rating">
 				<%= fixed_star_rating(review.rating)%>
 				&nbsp;&nbsp;<%= review.issues.map{|x| x.name}.join(', ') %>

@@ -66,22 +66,27 @@ describe ReviewsController do
     describe "with valid params" do
       
       it "should expose a newly created review as @review" do        
-        post :create, :review_presenter => {
+        post :create, :review => {
           :body => "body of review",
-          :rating => 5,
-          :company_id => 2
-        },  :issues => {1 => 1} 
+          :rating => "5",
+          :company_id => "2",
+          :issues => ["1"],
+        }
         assigns[:review].should be_valid
-        response.should redirect_to(company_url(2))
+        assigns[:review].company.should_not be_nil
+        response.should redirect_to(my_reviews_url)
       end
 
       it "should redirect to the created review" do
-        post :create, :review_presenter => {
+        post :create, :review => {
           :body => "body of review",
-          :rating => 5, 
-          :company_id => 2
-        }, :issues => {1 => "other"} 
-        response.should redirect_to(company_url(2))
+          :rating => "5", 
+          :company_id => "2",
+          :issues => ["1", "2"]
+        }
+        assigns[:review].company should_not be_nil
+        assigns[:review].should be_valid
+        response.should redirect_to(my_reviews_url)
       end
       
     end
@@ -89,7 +94,7 @@ describe ReviewsController do
     describe "with invalid params" do
 
       it "should render the new action with the errors" do
-        post :create, :review_presenter => {}, :company_id => 1
+        post :create, :review => {}
         response.should render_template('new')
         assigns[:review].errors.empty?.should_not be_true
       end
@@ -113,13 +118,13 @@ describe ReviewsController do
 
       it "should expose the requested review as @review" do
         Review.stub!(:find).and_return(mock_review(:update_attributes => true))
-        put :update, :id => "1"
+        put :update, :id => "1", :review => {}
         assigns(:review).should equal(mock_review)
       end
 
       it "should redirect to the review" do
         Review.stub!(:find).and_return(mock_review(:update_attributes => true))
-        put :update, :id => "1"
+        put :update, :id => "1", :review => {}
         response.should redirect_to(review_url(mock_review))
       end
 

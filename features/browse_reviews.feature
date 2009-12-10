@@ -6,8 +6,10 @@ Feature:  Browse Reviews
   
   Scenario:  Visitor browses reviews
     Given I am not logged in
+    Given an activated contributor user named "Bob"
+    Given a company named "Company_A"
     Given a review with these attributes:
-      | user      | bob                       |
+      | user      | Bob                       |
       | company   | Company_A                 |
       | issues    | Issue_A, Issue_B          |
       | rating    | 4                         |
@@ -26,7 +28,6 @@ Feature:  Browse Reviews
   Scenario:  Admin browses reviews and can delete them
     Given I am logged in as an admin user
     Given a review with these attributes:
-      | user      | bob                       |
       | company   | Company_A                 |
       | issues    | Issue_A, Issue_B          |
       | rating    | 4                         |

@@ -9,4 +9,13 @@ class HomeController < ResourceController::Singleton
     end
   end
   
+  def search
+    
+    @companies = Company.search(params[:search][:q])
+    
+    @reviews = Review.search(params[:search][:q])
+    #raise "@reviews.size = #{@reviews.size}"
+  end
+  
+  
 end
