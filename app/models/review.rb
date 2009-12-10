@@ -11,7 +11,7 @@ class Review < ActiveRecord::Base
   
   accepts_nested_attributes_for :issues
   
-  validates_inclusion_of :rating, :in => (1 .. 10).to_a.map{|x| x/2.0}
+  validates_inclusion_of :rating, :in => (1 .. 10)
   
   before_validation :set_initial_state, :on => :create
   
@@ -58,8 +58,8 @@ class Review < ActiveRecord::Base
   ##########################################################
   ######## FORM HANDLING
   def issues=(issue_ids)
-    issue_ids.each do |issue_id|
-      issues << Issue.find(issue_id)
+    Issue.find(issue_ids).each do |issue|
+      issues << issue unless issues.include?(issue)
       #review_issue = ReviewIssue.new(:issue_id => issue_id, :review => )
       #review_issue.save
     end

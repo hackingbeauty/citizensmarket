@@ -29,4 +29,9 @@ describe Review do
     review.status.should == "published"
   end
   
+  it "should NOT accept 0.5 as a valid rating" do
+    review = @user.reviews.create(Factory.attributes_for(:review, :company => @company, :rating => 0.5)).should be_true
+    review.should_not be_valid
+  end
+  
 end

@@ -25,7 +25,7 @@ authorization do
     includes :guest
     
     has_permission_on :reviews, :to => :create
-    has_permission_on :reviews, :to => [:edit, :update, :destroy, :publish], :join_by => :and do
+    has_permission_on :reviews, :to => [:edit, :update, :destroy, :publish, :manage], :join_by => :and do
       if_attribute :user => is {user}
       if_attribute :status => is_not {"published"}
     end

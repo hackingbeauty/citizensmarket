@@ -1,11 +1,8 @@
 <!-- (1/4, 3/4) -->
 <div class="review">
 	
-	<% if permitted_to? :edit, review %>
-		<%= link_to "edit", edit_review_path(review) %>
-	<% end %>
-	<% if permitted_to? :publish, review %>
-		<%= link_to "publish", publish_review_path(review), :method => :put %>
+	<% if permitted_to? :manage, review %>
+		
 	<% end %>
 	<div class="reviewer yui-u first">
 		  <%=image_tag "dummy_user.jpg", :class => 'avatar'%>
@@ -14,8 +11,18 @@
 		  <p><% unless review.user.profile.nil? %><%=review.user.profile[:location] %><% end %></p>
 		  <p class="comment_count"> <%=link_to_user(review.user, :content_text => "#{review.user.reviews.size} Reviews")%></p>
 			<% if review.user == current_user %>
-				status: <span class="status"><%= review.status %></span>
+				
 			<% end %>
+			<div class="manage">
+				<h3>Manage this review</h3>
+				status: <span class="status"><%= review.status %></span><br/>
+				<% if permitted_to? :edit, review %>
+					<%= link_to "edit", edit_review_path(review) %>
+				<% end %>
+				<% if permitted_to? :publish, review %>
+					<%= link_to "publish", publish_review_path(review), :method => :put %>
+				<% end %>
+			</div>
 		
 			<br/><br/>
 			<div class="construction_cruft">
@@ -30,6 +37,7 @@
 		</div>
 	</div>
 	<div class="content yui-u">
+		<h1>[This is a review]</h1>
 		<div class="heading">
 	  		<% if show_company %>
 				<span class="company"><%= review.company.name %></span>

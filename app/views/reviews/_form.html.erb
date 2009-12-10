@@ -9,6 +9,7 @@
 		<% else %>
 			<h2><%= f.object.company.name %></h2>
 			<%= link_to_remote 'change', :url => {:controller => 'companies', :action => 'company_picker', :object_name => f.object_name.to_s, :object_company_id => f.object.company_id}, :update => {:success => 'company_picker_container', :failure => 'errors'} %>
+			<%= f.hidden_field :company_id %>
 		<% end %>
 		
 	</div>
@@ -29,7 +30,7 @@
   <div class="star_rating">
     <label for="review_rating">Rating:</label>
     
-	<%= f.select :rating, (1..10).map{|x| [(x.to_f/2).to_s, (x.to_f/2).to_s]} %>
+	<%= f.select :rating, (1..10).map{|x| [(x.to_f/2).to_s, x.to_s]} %>
 	
     <br class="left">
   </div>

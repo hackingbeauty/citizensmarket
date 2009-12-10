@@ -93,7 +93,18 @@ li.last {
 	background-color: white;
 	border: solid black thick;
 	width: 850px;
-	height: 250px;
+	height: 300px;
+}
+.review a{
+	text-decoration: underline;
+}
+.review .manage{
+	border: solid black;
+	padding-top: 5px;
+}
+.review .manage h3{
+	font-size: 1.2em;
+	color: red;
 }
 .review .reviewer{
 	border: solid blue;
