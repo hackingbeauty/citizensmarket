@@ -88,7 +88,7 @@ namespace :db do
           review_issue.issue_id = Issue.all.rand.id
         end
         review.rating = 1..5
-        review.user_id = User.all.rand.id
+        review.user_id = [1, 2]
         review.company_id = company.id
         review.body = Populator.paragraphs(2..10)
         review.status = ['draft', 'published']
