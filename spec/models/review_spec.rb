@@ -19,4 +19,14 @@ describe Review do
     review2.save.should be_false
   end
   
+  it "should take update_attributes(:aasm_event => 'publish') and publish the review" do
+    review = @user.reviews.create(Factory.attributes_for(:review, :company => @company)).should be_true
+    review.status.should == "draft"
+    review_id = review.id
+    reivew = Review.find(review_id)
+    review.update_attributes(:aasm_event => "publish").should be_true
+    reivew = Review.find(review_id)
+    review.status.should == "published"
+  end
+  
 end

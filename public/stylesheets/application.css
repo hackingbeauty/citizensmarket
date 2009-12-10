@@ -93,21 +93,28 @@ li.last {
 	background-color: white;
 	border: solid black thick;
 	width: 850px;
+	height: 250px;
 }
 .review .reviewer{
 	border: solid blue;
 	background-color: yellow;
+	float: left;
+	width: 200px;
+	margin-right: 10px;
 }
 .review .body{
 	font: 24px georgia;
 	color: green;
+	padding-top: 15px;
 }
 
-.construction_cruft{
+.review .reviewer .construction_cruft{
 	border: solid thin red; background-color: #ffeeee; margin: 20px 5px 0;
-	width: 600px;
+	width: 190px;
 }
-
+.review .status{
+	font-size: 1.5em;
+}
 
 .rounded {
 
@@ -283,6 +290,10 @@ a#logo img {
 	float:left;
 	margin-bottom:2em;
 	padding-top:2em;
+}
+#main-content h1{
+	font-size:4em;
+	margin-bottom:0.2em;
 }
 
 /******************* =Footer (All Pages) *******************/

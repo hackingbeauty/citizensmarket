@@ -40,6 +40,8 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.connect "reviews/issue_picker", :controller => "reviews", :action => 'issue_picker'
+  map.publish_review "reviews/:id/publish", :controller => "reviews", :action => "update", :review => {:aasm_event => "publish"}
+  #map.publish_review(:review) "reviews/:id/publish", :controller => "reviews", :action => "update", :aasm_event => "publish"
   map.resources :reviews do |review|
     review.resources :peer_ratings,
                      :collection => { :vote_up => :post, :vote_down => :post }

@@ -18,7 +18,8 @@ Feature: My Reviews
     And I should see "draft"
     And I should see "published"
     And I should see "edit"
-    
+  
+  @focus  
   Scenario: Contributor fills out review form and submits it
     Given I am logged in as a contributor user
     Given a company named "NoodleCo"
@@ -36,6 +37,12 @@ Feature: My Reviews
     Then I should see "success"
     And I should see "review body"
     And I should see "draft"
+    And I should see "publish"
+    
+    When I follow "publish"
+    Then I should see "success"
+    And I should see "review body"
+    And I should see "published"
     
     
   

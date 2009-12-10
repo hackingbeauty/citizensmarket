@@ -32,9 +32,9 @@ class ReviewsController < ApplicationController#ResourceController::Base
     @review = Review.find(params[:id])
   end
   def update
-    #raise "entered update and params = #{params.inspect}"
     @review = Review.find(params[:id])
     if @review.update_attributes(params[:review])
+      flash[:message] = (params[:review].has_key?(:aasm_event) ? "Your review has been successfully #{params[:review][:aasm_event]}ed" : "Saved successfully!")
       redirect_to review_url(@review)
     else
       render :action => 'edit'

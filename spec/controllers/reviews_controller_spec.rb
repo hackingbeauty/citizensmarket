@@ -118,13 +118,13 @@ describe ReviewsController do
 
       it "should expose the requested review as @review" do
         Review.stub!(:find).and_return(mock_review(:update_attributes => true))
-        put :update, :id => "1"
+        put :update, :id => "1", :review => {}
         assigns(:review).should equal(mock_review)
       end
 
       it "should redirect to the review" do
         Review.stub!(:find).and_return(mock_review(:update_attributes => true))
-        put :update, :id => "1"
+        put :update, :id => "1", :review => {}
         response.should redirect_to(review_url(mock_review))
       end
 

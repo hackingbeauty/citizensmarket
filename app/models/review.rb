@@ -54,6 +54,9 @@ class Review < ActiveRecord::Base
   ##########################################################
   
   
+  
+  ##########################################################
+  ######## FORM HANDLING
   def issues=(issue_ids)
     issue_ids.each do |issue_id|
       issues << Issue.find(issue_id)
@@ -62,6 +65,14 @@ class Review < ActiveRecord::Base
     end
   end
   
+  def aasm_event=(event_name)
+    unless self.send("#{event_name}!")
+      errors.add_to_base "#{event_name} event failed."
+    end
+  end
+  
+  ######## end FORM HANDLING
+  ##########################################################
   
   
   private
