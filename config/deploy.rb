@@ -1,81 +1,37 @@
-set :application, "citizensmarket"
-default_run_options[:pty]
-set :repository,  "git@github.com:Sporky023/citizensmarket.git"
-
+#========================
+#CONFIG
+#========================
+set :application, "staging.citizensmarket.org"
 set :scm, "git"
-#set :scm_passphrase, ""
-
-
-
+set :repository,  "git@github.com:citizensmarket/citizensmarket.git"
 set :branch, "master"
-
-
-# If you aren't deploying to /u/apps/#{application} on the target
-# servers (which is the default), you can specify the actual location
-# via the :deploy_to variable:
+set :user, "deploy"
+set :use_sudo, false #tells capistrano not to use root
+default_run_options[:pty] = true #enables password entry for git
 set :deploy_to, "/var/www/#{application}"
-
-# If you aren't using Subversion to manage your source code, specify
-# your SCM below:
-# set :scm, :subversion
-
+set :app_server, :passenger
+set :deploy_via, :remote_cache #tells capistrano just to pull down updates, not your entire codebase over and over again
+set :stage, :staging
+default_run_options[:pty] = true
+#========================
+#ROLES
+#========================
 role :app, "staging.citizensmarket.org"
 role :web, "staging.citizensmarket.org"
 role :db,  "staging.citizensmarket.org", :primary => true
 
-set :user, "adeploy"
-
-
-desc "Create database.yml in shared/config" 
-task :after_setup do
-  database_configuration = <<-EOF
-  production:
-    adapter: mysql
-    encoding: utf8
-    database: citizensmarket_production
-    username: root
-    password: Scm248
-    
-EOF
-
-  run "mkdir -p #{deploy_to}/#{shared_dir}/config" 
-  put database_configuration, "#{deploy_to}/#{shared_dir}/config/database.yml" 
-end
-
-desc "Link in the production database.yml" 
-task :after_update_code do
-  run "ln -nfs #{deploy_to}/#{shared_dir}/config/database.yml #{release_path}/config/database.yml" 
-  run "chmod 755 #{latest_release}/script/spin"
-end
-
-### the following is per advice at http://thinedgeofthewedge.blogspot.com/2007/08/mongrel-and-capistrano-20.html
-# added by Luke on 2009-03-24
+#========================
+#CUSTOM
+#========================
 namespace :deploy do
-  namespace :thin do
-    [:stop, :start, :restart ].each do |t|
-      task t, :roles => :app do
-        invoke_command "/etc/init.d/thin #{t.to_s}"
-      end
-    end
-  end
-  
-  desc "Custom restart task for thin cluster"
-  task :restart, :roles => :app do #, :except => {:no_release => true}
-    deploy.thin.restart
-  end
-
-  desc "Custom start task for thin cluster"
   task :start, :roles => :app do
-    deploy.thin.start
+    run "touch #{current_release}/tmp/restart.txt"
   end
-
-  desc "Custom stop task for thin cluster"
   task :stop, :roles => :app do
-    deploy.thin.stop
+    # Do nothing.
   end
-  
-  
+  desc "Restart Application"
+  task :restart, :roles => :app do
+    run "touch #{current_release}/tmp/restart.txt"
+  end
 end
-
-
-### end: added from http://thinedgeofthewedge.blogspot.com/2007/08/mongrel-and-capistrano-20.html
