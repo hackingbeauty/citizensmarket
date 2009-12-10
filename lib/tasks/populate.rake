@@ -20,6 +20,28 @@ namespace :db do
       user.salt = "3d4b9c8d689a0c58eb25ac6629a51fd86dae0e38"
     end
     
+    [
+      ["sdemessieres", "Stephane", "De Messieres"],
+      ["kmagida", "Kyle", "Magida"],
+      ["iwhol", "Isaac", "Whol"],
+      ["gmatthews", "Grace", "Matthews"],
+      ["mmuskardin", "Mark", "Muskardin"],
+      ["lgriffiths", "Luke", "Griffiths"],
+    ].each do |opts|
+      User.populate 1 do |user|
+        user.login = "#{opts[0]}@citizensmarket.org"
+        user.email = "#{opts[0]}@citizensmarket.org"
+        user.firstname = "#{opts[1]}"
+        user.lastname = "#{opts[2]}"
+        user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
+        user.roles = [[:contributor]]
+        user.activated_at = 1.second.ago
+        user.state = "active"
+        user.crypted_password = "27705dff13cb5891f6867c04a95f8eb6a02e0a30" # password = 'password'
+        user.salt = "3d4b9c8d689a0c58eb25ac6629a51fd86dae0e38"
+      end
+    end
+    
     User.populate 1 do |user| # user with roles = [:admin]
       user.login = "admin@citizensmarket.org"
       user.email = "admin@citizensmarket.org"
