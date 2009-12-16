@@ -38,4 +38,11 @@
   <label for="review_body">Body:</label>
   <%= f.text_area :body, :cols => 110, :rows => 5, :class => 'expanding' %>
   
+
+
+	<div id="sources">
+		<%= render :partial => 'source', :collection => f.object.sources %>
+	</div>
+	
+	
 </fieldset>

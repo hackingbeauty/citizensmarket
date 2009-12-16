@@ -1,0 +1,9 @@
+<% fields_for "review[source_attributes][]", source do |source_form| %>
+	
+	<%= source_form.label :title, "Source Name:" %>
+	<%= source_form.text_field :title %><br/>
+	
+	<%= source_form.label :url, "Source Link:" %>
+	<%= source_form.text_field :url %>
+	
+<% end %>
