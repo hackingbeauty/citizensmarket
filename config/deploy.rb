@@ -4,7 +4,7 @@
 set :application, "staging.citizensmarket.org"
 set :scm, "git"
 set :repository,  "git@github.com:citizensmarket/citizensmarket.git"
-set :branch, "master"
+set :branch, "staging"
 set :user, "deploy"
 set :use_sudo, false #tells capistrano not to use root
 default_run_options[:pty] = true #enables password entry for git
