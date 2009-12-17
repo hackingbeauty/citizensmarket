@@ -6,7 +6,7 @@ set :scm, "git"
 set :repository,  "git@github.com:citizensmarket/citizensmarket.git"
 set :branch, "staging"
 set :user, "deploy"
-set :use_sudo, false #tells capistrano not to use root
+set :use_sudo, true #tells capistrano notNOT to use root
 default_run_options[:pty] = true #enables password entry for git
 set :deploy_to, "/var/www/#{application}"
 set :app_server, :passenger
@@ -33,5 +33,6 @@ namespace :deploy do
   desc "Restart Application"
   task :restart, :roles => :app do
     run "touch #{current_release}/tmp/restart.txt"
+    run "#{sudo :as => 'deploy'} /etc/init.d/nginx restart"
   end
 end
