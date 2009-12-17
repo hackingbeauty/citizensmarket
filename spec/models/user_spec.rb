@@ -39,6 +39,11 @@ describe User do
       @user.issue_weights.values.uniq.should == [50] if @user.issue_weights.class == Hash
     end
     
+    it 'accepts roles as an attribute' do
+      @user = User.new(:roles => [:contributor])
+      @user.save.should be_true
+    end
+    
   end
 
   

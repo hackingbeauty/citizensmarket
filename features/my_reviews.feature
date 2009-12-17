@@ -4,7 +4,7 @@ Feature: My Reviews
   As a contributor
   I want to skim over my reviews and see how they are doing, edit saved drafts, publish them 
   
-  
+  @focus
   Scenario: Contributor visits My Reviews and deletes a draft
     Given I am logged in as a contributor user
     Given a typical draft review
@@ -19,7 +19,7 @@ Feature: My Reviews
     And I should see "published"
     And I should see "edit"
   
-  @focus  
+  
   Scenario: Contributor fills out review form and submits it
     Given I am logged in as a contributor user
     Given a company named "NoodleCo"
