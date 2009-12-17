@@ -11,7 +11,7 @@ default_run_options[:pty] = true #enables password entry for git
 set :deploy_to, "/var/www/#{application}"
 set :app_server, :passenger
 set :deploy_via, :remote_cache #tells capistrano just to pull down updates, not your entire codebase over and over again
-set :stage, :staging
+set :rails_env, "staging"
 default_run_options[:pty] = true
 #========================
 #ROLES
