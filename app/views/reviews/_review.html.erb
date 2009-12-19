@@ -55,7 +55,8 @@
 	  		<span class="time_ago">written <%= time_ago_in_words(review.created_at) %> ago</span>
     	</div><!-- class="heading" -->
     	<div class="body">
-      		<%=textilize(snippet(review.body, 100)) %>
+      		<%=textilize(snippet(review.body, 100)) %><br/>
+			<%= render :partial => "sources/source", :collection => review.sources %>
     	</div><!-- class="body" --><br/>
     	<div class="footer">
 	      	<%=link_to 'Comment', '', :class => 'comment' %> |
