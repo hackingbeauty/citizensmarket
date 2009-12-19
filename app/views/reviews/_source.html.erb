@@ -6,6 +6,7 @@
 	
 	<%= source_form.label :url, "Source Link:" %>
 	<%= source_form.text_field :url %>
-	
+	<br/>
+	<%= link_to_function "remove", "jQuery(this).parent().remove();"%>
 <% end %>
 </div>

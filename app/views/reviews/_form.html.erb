@@ -44,5 +44,8 @@
 		<%= render :partial => 'source', :collection => f.object.sources %>
 	</div>
 	
+	<%= link_to_function "Add a source" do |page| 
+		page.insert_html :bottom, :sources, :partial => 'source', :object => Source.new
+	end %>
 	
 </fieldset>
