@@ -127,6 +127,20 @@ li.last {
 	font-size: 1.5em;
 }
 
+.source{
+	background-color: #bdbdbd;
+	padding: 10px;
+	margin: 10px;
+	width: 400px;
+}
+.source label{
+	display: block;
+	float: left;
+	width: 100px;
+	text-align: right;
+}
+
+
 .rounded {
 
 }

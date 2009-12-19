@@ -7,7 +7,7 @@ class Review < ActiveRecord::Base
   has_many    :peer_ratings
   
   has_many    :sources, :dependent => :destroy
-  
+  accepts_nested_attributes_for :sources
 
   validates_presence_of :user_id, :rating, :status, :company_id
   validate_on_create :protect_against_angry_abuse

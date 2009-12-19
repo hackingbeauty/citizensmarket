@@ -1,4 +1,5 @@
-<% fields_for "review[source_attributes][]", source do |source_form| %>
+<div class="source">
+<% fields_for "review[sources_attributes][]", source do |source_form| %>
 	
 	<%= source_form.label :title, "Source Name:" %>
 	<%= source_form.text_field :title %><br/>
@@ -7,3 +8,4 @@
 	<%= source_form.text_field :url %>
 	
 <% end %>
+</div>

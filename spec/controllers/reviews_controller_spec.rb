@@ -7,10 +7,13 @@ describe ReviewsController do
   fixtures :reviews
   before(:each) do
     login_as(mock_user)
+    User.should_receive(:find).at_most(10).times.and_return(mock_user)
   end
   
   def mock_review(stubs={})
     @mock_review ||= mock_model(Review, stubs)
+    @mock_review.stub!(:sources).and_return([]) unless @mock_review.respond_to?(:sources)
+    @mock_review
   end
   
   describe "responding to GET index" do
@@ -43,7 +46,7 @@ describe ReviewsController do
   describe "responding to GET new" do
   
     it "should expose a new review as @review" do
-      Review.should_receive(:new).and_return(mock_review)
+      Review.should_receive(:new).and_return(mock_review(:sources => mock(:build => true)))
       get :new
       assigns[:review].should_not be_nil      
       assigns[:review].should equal(mock_review)
@@ -99,6 +102,26 @@ describe ReviewsController do
         assigns[:review].errors.empty?.should_not be_true
       end
             
+    end
+    
+    describe "with valid params and some sources" do
+      
+      it "should save the sources" do
+        source_count_was = Source.count
+        post :create, :review => {
+          :body => "body of review",
+          :rating => "5",
+          :company_id => "2",
+          :issues => ["1"],
+          :sources_attributes => [
+            {:title => "source 1 title", :url => "source 1 url"}, 
+            {:title => "source 2 title", :url => "source 2 url"}
+          ]
+        }
+        assigns[:review].should be_valid
+        Source.count.should == source_count_was + 2
+      end
+      
     end
     
   end
