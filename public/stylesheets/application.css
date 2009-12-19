@@ -132,6 +132,7 @@ li.last {
 	padding: 10px;
 	margin: 10px;
 	width: 400px;
+	font: 10px courier;
 }
 .source label{
 	display: block;
