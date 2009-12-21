@@ -132,7 +132,7 @@ describe ReviewsController do
       login_as(mock_user)
     end
     
-    describe "with valid params" do      
+    describe "with valid params" do
       it "should update the requested review" do
         Review.should_receive(:find).with("1").and_return(mock_review(:update_attributes => true))
         mock_review.should_receive(:update_attributes).with({'these' => 'params'})
@@ -174,6 +174,7 @@ describe ReviewsController do
       end
 
     end
+
 
   end
 

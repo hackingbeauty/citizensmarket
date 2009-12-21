@@ -1,12 +1,24 @@
 <div class="source">
 <% fields_for "review[sources_attributes][]", source do |source_form| %>
 	
+	<% unless source.new_record? %>
+		<%= source_form.hidden_field :id, :index => nil %>
+	<% end%>
+	
 	<%= source_form.label :title, "Source Name:" %>
-	<%= source_form.text_field :title %><br/>
+	<%= source_form.text_field :title, :index => nil %><br/>
 	
 	<%= source_form.label :url, "Source Link:" %>
-	<%= source_form.text_field :url %>
+	<%= source_form.text_field :url, :index => nil %>
 	<br/>
-	<%= link_to_function "remove", "jQuery(this).parent().remove();"%>
+	<% if source.new_record? %>
+		<%= link_to_function "remove", "jQuery(this).parent().remove();"%>
+	<% else %>
+		<%= source_form.hidden_field :_delete, :index => nil %>
+		<%= link_to_function "remove", "
+			jQuery(this).parent().children(\"input[name*=delete]\")[0].value = '1';
+			jQuery(this).parent().hide();
+			"%>
+	<% end %>
 <% end %>
 </div>
