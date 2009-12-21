@@ -93,7 +93,7 @@ li.last {
 	background-color: white;
 	border: solid black thick;
 	width: 850px;
-	height: 300px;
+	/*height: 300px;*/
 }
 .review a{
 	text-decoration: underline;
@@ -126,6 +126,21 @@ li.last {
 .review .status{
 	font-size: 1.5em;
 }
+
+.source{
+	background-color: #bdbdbd;
+	padding: 10px;
+	margin: 10px;
+	width: 400px;
+	font: 10px courier;
+}
+.source label{
+	display: block;
+	float: left;
+	width: 100px;
+	text-align: right;
+}
+
 
 .rounded {
 

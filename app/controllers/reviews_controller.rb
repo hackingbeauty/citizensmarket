@@ -14,6 +14,9 @@ class ReviewsController < ApplicationController#ResourceController::Base
   
   def new
     @review = Review.new
+    3.times do
+      @review.sources.build
+    end
   end
   def create
     #raise "params = #{params.inspect}"
@@ -32,6 +35,7 @@ class ReviewsController < ApplicationController#ResourceController::Base
     @review = Review.find(params[:id])
   end
   def update
+    #raise "params"
     @review = Review.find(params[:id])
     if @review.update_attributes(params[:review])
       flash[:message] = (params[:review].has_key?(:aasm_event) ? "Your review has been successfully #{params[:review][:aasm_event]}ed" : "Saved successfully!")

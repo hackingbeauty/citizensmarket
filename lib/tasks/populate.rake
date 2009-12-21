@@ -95,6 +95,30 @@ namespace :db do
       end
     end
     
+    [
+      ['Stephane', 'De Messieres', 'sdemessieres'],
+      ['Mark', 'Muskardin', 'mmuskardin'],
+      ['Isaac', 'Whol', 'iwhol'],
+      ['Kyle', 'Magida', 'kmagida'],
+      ['Grace', 'Matthews', 'gmatthews'],
+      ['Luke', 'Griffiths', 'lgriffiths'],
+    ].each do |x|
+
+      User.populate 1 do |user| # user with roles = [:contributor]
+        user.login = "#{x[2]}@citizensmarket.org"
+        user.email = "#{x[2]}@citizensmarket.org"
+        user.firstname = x[0]
+        user.lastname = x[1]
+        user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
+        user.roles = [[:contributor]]
+        user.activated_at = 1.second.ago
+        user.state = "active"
+        user.crypted_password = "27705dff13cb5891f6867c04a95f8eb6a02e0a30" # password = 'password'
+        user.salt = "3d4b9c8d689a0c58eb25ac6629a51fd86dae0e38"
+      end
+
+    end
+    
   end
   
   desc  "Erase and populate issues"

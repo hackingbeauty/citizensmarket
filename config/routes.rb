@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :sources
+
   
   
   map.connect '/issues/issue_picker', :controller => 'issues', :action => 'issue_picker'

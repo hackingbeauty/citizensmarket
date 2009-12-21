@@ -52,7 +52,7 @@ module ApplicationHelper
   end
   
   def fixed_star_rating(rating)
-    rating = ((rating.to_f * 2 + 0.5).floor.to_f)/2
+    rating = ((rating.to_f * 2 + 0.5).floor.to_f)/4
     output = ''
     output += '<select>'
     (1..10).to_a.each do |n|

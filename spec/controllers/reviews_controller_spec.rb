@@ -7,10 +7,13 @@ describe ReviewsController do
   fixtures :reviews
   before(:each) do
     login_as(mock_user)
+    User.should_receive(:find).at_most(10).times.and_return(mock_user)
   end
   
   def mock_review(stubs={})
     @mock_review ||= mock_model(Review, stubs)
+    @mock_review.stub!(:sources).and_return([]) unless @mock_review.respond_to?(:sources)
+    @mock_review
   end
   
   describe "responding to GET index" do
@@ -43,7 +46,7 @@ describe ReviewsController do
   describe "responding to GET new" do
   
     it "should expose a new review as @review" do
-      Review.should_receive(:new).and_return(mock_review)
+      Review.should_receive(:new).and_return(mock_review(:sources => mock(:build => true)))
       get :new
       assigns[:review].should_not be_nil      
       assigns[:review].should equal(mock_review)
@@ -101,6 +104,26 @@ describe ReviewsController do
             
     end
     
+    describe "with valid params and some sources" do
+      
+      it "should save the sources" do
+        source_count_was = Source.count
+        post :create, :review => {
+          :body => "body of review",
+          :rating => "5",
+          :company_id => "2",
+          :issues => ["1"],
+          :sources_attributes => [
+            {:title => "source 1 title", :url => "source 1 url"}, 
+            {:title => "source 2 title", :url => "source 2 url"}
+          ]
+        }
+        assigns[:review].should be_valid
+        Source.count.should == source_count_was + 2
+      end
+      
+    end
+    
   end
 
   describe "responding to PUT udpate" do
@@ -109,7 +132,7 @@ describe ReviewsController do
       login_as(mock_user)
     end
     
-    describe "with valid params" do      
+    describe "with valid params" do
       it "should update the requested review" do
         Review.should_receive(:find).with("1").and_return(mock_review(:update_attributes => true))
         mock_review.should_receive(:update_attributes).with({'these' => 'params'})
@@ -128,6 +151,50 @@ describe ReviewsController do
         response.should redirect_to(review_url(mock_review))
       end
 
+    end
+    
+    describe "with valid params and updating associated sources" do
+      
+      fixtures :sources
+      
+      it "should confirm that we're using the right fixtures" do
+        review = Review.find(1)
+        # these next two lines just confirming assumptions about the fixtures
+        review.should_not be_nil  
+        review.sources.should_not be_empty
+      end
+      
+      it "should be able to add a source" do
+        source_count_was = Source.count
+        put :update, :id => "1", :review => {
+          :sources_attributes => [
+            {"id" => '1', "title" => "source one title", "url" => "source one url", "_delete" => ""},
+            {"title" => "source two title", "url" => "source two url"},  # <-- a new source
+          ]
+        }
+        Source.count.should == source_count_was + 1
+      end
+      
+      it "should be able to modify a source" do
+        source_title_was = Source.find(1).title
+        put :update, :id => "1", :review => {
+          :sources_attributes => [
+            {"id" => '1', "title" => "#{source_title_was}UPDATED!", "url" => "source one url", "_delete" => ""},
+          ]
+        }
+        Source.find(1).title.should == "#{source_title_was}UPDATED!"
+      end
+      
+      it "should be able to delete a source" do
+        Source.find(1).should_not be_nil
+        put :update, :id => "1", :review => {
+          :sources_attributes => [
+            {"id" => '1', "title" => "source one title", "url" => "source one url", "_delete" => "1"},
+          ]
+        }
+        Source.find_by_id(1).should be_nil
+      end
+      
     end
     
     describe "with invalid params" do
@@ -151,6 +218,7 @@ describe ReviewsController do
       end
 
     end
+
 
   end
 

@@ -5,6 +5,9 @@ class Review < ActiveRecord::Base
   has_many    :review_issues
   has_many    :issues, :through => :review_issues
   has_many    :peer_ratings
+  
+  has_many    :sources, :dependent => :destroy
+  accepts_nested_attributes_for :sources, :allow_destroy => true, :reject_if => proc {|a| a['title'].blank? and a['url'].blank? }
 
   validates_presence_of :user_id, :rating, :status, :company_id
   validate_on_create :protect_against_angry_abuse
