@@ -1,4 +1,6 @@
 <div class="source">
 	<%= source.title %>
-	<%= link_to source.url, source.url %>	
+	<% unless source.url.empty? %>
+		<%= link_to source.url, source.url %>
+	<% end %>
 </div>
