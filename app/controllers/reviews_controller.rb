@@ -14,9 +14,7 @@ class ReviewsController < ApplicationController#ResourceController::Base
   
   def new
     @review = Review.new
-    3.times do
-      @review.sources.build
-    end
+    @review.sources.build
   end
   def create
     #raise "params = #{params.inspect}"
