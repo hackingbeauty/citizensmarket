@@ -153,6 +153,50 @@ describe ReviewsController do
 
     end
     
+    describe "with valid params and updating associated sources" do
+      
+      fixtures :sources
+      
+      it "should confirm that we're using the right fixtures" do
+        review = Review.find(1)
+        # these next two lines just confirming assumptions about the fixtures
+        review.should_not be_nil  
+        review.sources.should_not be_empty
+      end
+      
+      it "should be able to add a source" do
+        source_count_was = Source.count
+        put :update, :id => "1", :review => {
+          :sources_attributes => [
+            {"id" => '1', "title" => "source one title", "url" => "source one url", "_delete" => ""},
+            {"title" => "source two title", "url" => "source two url"},  # <-- a new source
+          ]
+        }
+        Source.count.should == source_count_was + 1
+      end
+      
+      it "should be able to modify a source" do
+        source_title_was = Source.find(1).title
+        put :update, :id => "1", :review => {
+          :sources_attributes => [
+            {"id" => '1', "title" => "#{source_title_was}UPDATED!", "url" => "source one url", "_delete" => ""},
+          ]
+        }
+        Source.find(1).title.should == "#{source_title_was}UPDATED!"
+      end
+      
+      it "should be able to delete a source" do
+        Source.find(1).should_not be_nil
+        put :update, :id => "1", :review => {
+          :sources_attributes => [
+            {"id" => '1', "title" => "source one title", "url" => "source one url", "_delete" => "1"},
+          ]
+        }
+        Source.find_by_id(1).should be_nil
+      end
+      
+    end
+    
     describe "with invalid params" do
 
       it "should update the requested review" do
