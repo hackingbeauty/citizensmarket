@@ -1,6 +1,7 @@
 <%=link_to image_tag('logos/new-logo.png'), root_url, :id => 'logo' %>
 <ul id="top-nav">
 	<% if logged_in? %>
+		<li>logged in as <%= current_user.login %></li>
 		<li><%= link_to "My Reviews", my_reviews_path %></li>
         <li><%= link_to "My Profile", '/my_profile' %></li>
         <li><%=link_to 'About Us', '/about' %></li>

@@ -6,15 +6,17 @@ describe PeerRatingsController, "POST create" do
   before(:each) do
     @peer_rating = mock_model(PeerRating, :save => nil)
     PeerRating.stub!(:new).and_return(@peer_rating)
+    login_as(mock_user)
+    User.should_receive(:find).at_most(10).times.and_return(mock_user)
   end
   
   it "should build a new peer_rating" do
-    PeerRating.should_receive(:new).with("review_id" => "1", "score" => "1").and_return(@peer_rating)
+    PeerRating.should_receive(:new).with("review_id" => "1", "score" => "1", "user_id" => "1").and_return(@peer_rating)
     post :create, :peer_rating => {"review_id" => "1", "score" => "1"}
   end
   it "should save the peer_rating" do 
     @peer_rating.should_receive(:save)
-    post :create
+    post :create, :peer_rating => {}
   end
   
   context "when the peer_rating saves successfully" do

@@ -63,20 +63,21 @@
 		    <%=link_to 'Permalink', '' %>
 		</div>
 		<div class="footer" id="thumbs_for_review_<%= review.id %>">
-				Was this review helpful to you?
+				
 			<% if current_user.nil? %>
+				Was this review helpful to you?
 				<span class="thumbs">
 					<%=link_to image_tag('thumbs_down.png'), login_url, :confirm => 'You must login to leave feedback.  Click OK to log in.' %>
 	    			<%=link_to image_tag('thumbs_up.png'), login_url, :confirm => 'You must login to leave feedback.  Click OK to log in.' %>
 				</span>
 			<% else %>
 				<% if current_user.has_rated(review) %>
-					<%= render :partial => "reviews/feedback_given" %>
+					<%= render :partial => "peer_ratings/feedback_given" %>
 				<% else %>
-			
+					Was this review helpful to you?
 					<span class="thumbs">
-						<%=link_to_remote image_tag('thumbs_down.png'), :url => vote_down_review_peer_ratings_url(review), :method => :post, :update => "thumbs_for_review_#{review.id}"  %>
-	       				<%=link_to_remote image_tag('thumbs_up.png'), :url => vote_up_review_peer_ratings_url(review), :method => :post, :update => "thumbs_for_review_#{review.id}" %>
+						<%=link_to_remote "vote down", :url => {:controller => 'peer_ratings', :action => 'create', :peer_rating => {:review_id => review.id, :score => '-1'}}, :method => :post, :update => "thumbs_for_review_#{review.id}"  %>
+	       				<%=link_to_remote "vote up", :url => {:controller => 'peer_ratings', :action => 'create', :peer_rating => {:review_id => review.id, :score => '1'}}, :method => :post, :update => "thumbs_for_review_#{review.id}" %>
 					</span>
 				<% end %>
 			<% end %>

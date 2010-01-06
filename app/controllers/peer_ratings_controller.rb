@@ -12,7 +12,8 @@ class PeerRatingsController < ApplicationController
   # should later be expanded to provide a redirect if .html is requested; a partial if .js is requested
   # i.e. to allow application to gracefully degrade if no javascript turned on for client
   def create
-    peer_rating = PeerRating.new(params[:peer_rating])
+    raise "being passed to PeerRating.new is:  #{params[:peer_rating].merge(:user_id => current_user.id).inspect}"
+    peer_rating = PeerRating.new(params[:peer_rating].merge(:user_id => current_user.id))
     if peer_rating.save
       render :partial => 'feedback_given'
     else

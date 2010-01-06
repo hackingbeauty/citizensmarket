@@ -1,114 +1,18 @@
 namespace :db do
   
   desc "Erase and fill database with random test data"
-  task :populate => :environment do
+  namespace :populate do
     
-    Rake::Task['db:populate_issues'].invoke
-    
-    User.delete_all
-    
-    User.populate 1 do |user| # user with roles = [:contributor]
-      user.login = "contributor@citizensmarket.org"
-      user.email = "contributor@citizensmarket.org"
-      user.firstname = "Joe"
-      user.lastname = "Contributor"
-      user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
-      user.roles = [[:contributor]]
-      user.activated_at = 1.second.ago
-      user.state = "active"
-      user.crypted_password = "27705dff13cb5891f6867c04a95f8eb6a02e0a30" # password = 'password'
-      user.salt = "3d4b9c8d689a0c58eb25ac6629a51fd86dae0e38"
-    end
-    
-    [
-      ["sdemessieres", "Stephane", "De Messieres"],
-      ["kmagida", "Kyle", "Magida"],
-      ["iwhol", "Isaac", "Whol"],
-      ["gmatthews", "Grace", "Matthews"],
-      ["mmuskardin", "Mark", "Muskardin"],
-      ["lgriffiths", "Luke", "Griffiths"],
-    ].each do |opts|
-      User.populate 1 do |user|
-        user.login = "#{opts[0]}@citizensmarket.org"
-        user.email = "#{opts[0]}@citizensmarket.org"
-        user.firstname = "#{opts[1]}"
-        user.lastname = "#{opts[2]}"
-        user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
-        user.roles = [[:contributor]]
-        user.activated_at = 1.second.ago
-        user.state = "active"
-        user.crypted_password = "27705dff13cb5891f6867c04a95f8eb6a02e0a30" # password = 'password'
-        user.salt = "3d4b9c8d689a0c58eb25ac6629a51fd86dae0e38"
-      end
-    end
-    
-    User.populate 1 do |user| # user with roles = [:admin]
-      user.login = "admin@citizensmarket.org"
-      user.email = "admin@citizensmarket.org"
-      user.firstname = "Joe"
-      user.lastname = "Admin"
-      user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
-      user.roles = [[:admin]]
-      user.activated_at = 1.second.ago
-      user.state = "active"
-      user.crypted_password = "f14905ba1f944ee46d0928c0c925deb006830d55" # password = 'password'
-      user.salt = "d75d18195fd3811e368c278204d2d3ef34d79129"
-    end
-    
-    User.all.each(&:initialize_default_issue_weights)
-    
-    [Company, Brand, Review, ReviewIssue].each(&:delete_all)
-    
-    possible_brands = 'BigRig, BigSnacks, DrillOil, LuxLube, SeaOil, Airhair, Lots \'O Locks, Tress Finesse, YouScrub, FairFace, FairHair, FairSkin, Fossil Fools, LoneStar, QwikLube, Mohawk Master, Nectar, ShockWave, SudsySoap, Goop, Goopaline, Goopex, GoopyGas, ExactExtract, Lucky Oil, Shale Sale Company, Conditional Love, Freshin, ManMane, Shaggy, Queen, Royal Refineries, FrizzWhiz, Musky Shampoo, Shower Power, SudsyGrip, Radiance, Thermo-Brush, Wash \'N Go, XX Appeal, Zesty'.split(', ')
-    
-    Company.populate 100 do |company|
-      company.name = Faker::Company.name
-      #company.description = Populator.sentences(2..10)
-      company.description = "#{company.name} is a multinational corporation with joint headquarters in London and Amsterdam that began as a hair care company and now owns many of the world's consumer product brands in personal care products, cleaning agents, foods and beverages. Universal Hair Care Inc. employed 151,000 people and had a worldwide revenue of $33.8 billion in 2009."
-      company.website_url = "http://www.#{Faker::Internet.domain_name}"
-      company.info = { "Type" => "Public (Euronext: OR)", 
-                       "Founded" => "1909",
-                       "Founder" => "Eugène Schueller",
-                       "Headquarters" => "Clichy , France",
-                       "Key people" => "Jean-Paul Agon (CEO), Lindsay Owen-Jones (Chairman of the board), Liliane Bettencourt (Non-executive director and major shareholder)",
-                       "Revenue" => "€17.06 billion (2007)",
-                       "Operating Income" => "€2.827 billion (2007)",
-                       "Profit" => "€2.039 billion (2007)",
-                       "Employees" => "63,360 (2007)",
-                       "Website" => "www.loreal.com"
-                        }
-      Brand.populate 0..20 do |brand|
-        brand.company_id = company.id
-        brand.name = possible_brands.delete(possible_brands.rand) || Populator.words(1..3).titleize
-        brand.description = Populator.sentences(2..10)
-      end
-      Review.populate 0..100 do |review|
-        ReviewIssue.populate 0..5 do |review_issue|
-          review_issue.review_id = review.id
-          review_issue.issue_id = Issue.all.rand.id
-        end
-        review.rating = 1..5
-        review.user_id = [1, 2]
-        review.company_id = company.id
-        review.body = Populator.paragraphs(2..10)
-        review.status = ['draft', 'published']
-      end
-    end
-    
-    [
-      ['Stephane', 'De Messieres', 'sdemessieres'],
-      ['Mark', 'Muskardin', 'mmuskardin'],
-      ['Isaac', 'Whol', 'iwhol'],
-      ['Kyle', 'Magida', 'kmagida'],
-      ['Grace', 'Matthews', 'gmatthews'],
-      ['Luke', 'Griffiths', 'lgriffiths'],
-    ].each do |x|
+    task :small => :environment do
+      Rake::Task['db:populate_issues'].invoke
+
+      User.delete_all
 
       User.populate 1 do |user| # user with roles = [:contributor]
-        user.login = "#{x[2]}@citizensmarket.org"
-        user.email = "#{x[2]}@citizensmarket.org"
-        user.firstname = x[0]
-        user.lastname = x[1]
+        user.login = "contributor@citizensmarket.org"
+        user.email = "contributor@citizensmarket.org"
+        user.firstname = "Joe"
+        user.lastname = "Contributor"
         user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
         user.roles = [[:contributor]]
         user.activated_at = 1.second.ago
@@ -117,6 +21,176 @@ namespace :db do
         user.salt = "3d4b9c8d689a0c58eb25ac6629a51fd86dae0e38"
       end
 
+      [
+        ["sdemessieres", "Stephane", "De Messieres"],
+        ["kmagida", "Kyle", "Magida"],
+        ["iwhol", "Isaac", "Whol"],
+        ["gmatthews", "Grace", "Matthews"],
+        ["mmuskardin", "Mark", "Muskardin"],
+        ["lgriffiths", "Luke", "Griffiths"],
+      ].each do |opts|
+        User.populate 1 do |user|
+          user.login = "#{opts[0]}@citizensmarket.org"
+          user.email = "#{opts[0]}@citizensmarket.org"
+          user.firstname = "#{opts[1]}"
+          user.lastname = "#{opts[2]}"
+          user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
+          user.roles = [[:contributor]]
+          user.activated_at = 1.second.ago
+          user.state = "active"
+          user.crypted_password = "27705dff13cb5891f6867c04a95f8eb6a02e0a30" # password = 'password'
+          user.salt = "3d4b9c8d689a0c58eb25ac6629a51fd86dae0e38"
+        end
+      end
+
+      User.populate 1 do |user| # user with roles = [:admin]
+        user.login = "admin@citizensmarket.org"
+        user.email = "admin@citizensmarket.org"
+        user.firstname = "Joe"
+        user.lastname = "Admin"
+        user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
+        user.roles = [[:admin]]
+        user.activated_at = 1.second.ago
+        user.state = "active"
+        user.crypted_password = "f14905ba1f944ee46d0928c0c925deb006830d55" # password = 'password'
+        user.salt = "d75d18195fd3811e368c278204d2d3ef34d79129"
+      end
+
+      User.all.each(&:initialize_default_issue_weights)
+
+      [Company, Brand, Review, ReviewIssue].each(&:delete_all)
+
+      possible_brands = 'BigRig, BigSnacks, DrillOil, LuxLube, SeaOil, Airhair, Lots \'O Locks, Tress Finesse, YouScrub, FairFace, FairHair, FairSkin, Fossil Fools, LoneStar, QwikLube, Mohawk Master, Nectar, ShockWave, SudsySoap, Goop, Goopaline, Goopex, GoopyGas, ExactExtract, Lucky Oil, Shale Sale Company, Conditional Love, Freshin, ManMane, Shaggy, Queen, Royal Refineries, FrizzWhiz, Musky Shampoo, Shower Power, SudsyGrip, Radiance, Thermo-Brush, Wash \'N Go, XX Appeal, Zesty'.split(', ')
+
+      Company.populate 10 do |company|
+        company.name = Faker::Company.name
+        #company.description = Populator.sentences(2..10)
+        company.description = "#{company.name} is a multinational corporation with joint headquarters in London and Amsterdam that began as a hair care company and now owns many of the world's consumer product brands in personal care products, cleaning agents, foods and beverages. Universal Hair Care Inc. employed 151,000 people and had a worldwide revenue of $33.8 billion in 2009."
+        company.website_url = "http://www.#{Faker::Internet.domain_name}"
+        company.info = { "Type" => "Public (Euronext: OR)", 
+                         "Founded" => "1909",
+                         "Founder" => "Eugène Schueller",
+                         "Headquarters" => "Clichy , France",
+                         "Key people" => "Jean-Paul Agon (CEO), Lindsay Owen-Jones (Chairman of the board), Liliane Bettencourt (Non-executive director and major shareholder)",
+                         "Revenue" => "€17.06 billion (2007)",
+                         "Operating Income" => "€2.827 billion (2007)",
+                         "Profit" => "€2.039 billion (2007)",
+                         "Employees" => "63,360 (2007)",
+                         "Website" => "www.loreal.com"
+                          }
+        Brand.populate 0..5 do |brand|
+          brand.company_id = company.id
+          brand.name = possible_brands.delete(possible_brands.rand) || Populator.words(1..3).titleize
+          brand.description = Populator.sentences(2..10)
+        end
+        Review.populate 0..10 do |review|
+          ReviewIssue.populate 0..5 do |review_issue|
+            review_issue.review_id = review.id
+            review_issue.issue_id = Issue.all.rand.id
+          end
+          review.rating = 1..5
+          review.user_id = [1, 2]
+          review.company_id = company.id
+          review.body = Populator.paragraphs(2..10)
+          review.status = ['draft', 'published']
+        end
+      end
+      
+    end
+    
+    task :large => :environment do
+      Rake::Task['db:populate_issues'].invoke
+
+      User.delete_all
+
+      User.populate 1 do |user| # user with roles = [:contributor]
+        user.login = "contributor@citizensmarket.org"
+        user.email = "contributor@citizensmarket.org"
+        user.firstname = "Joe"
+        user.lastname = "Contributor"
+        user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
+        user.roles = [[:contributor]]
+        user.activated_at = 1.second.ago
+        user.state = "active"
+        user.crypted_password = "27705dff13cb5891f6867c04a95f8eb6a02e0a30" # password = 'password'
+        user.salt = "3d4b9c8d689a0c58eb25ac6629a51fd86dae0e38"
+      end
+
+      [
+        ["sdemessieres", "Stephane", "De Messieres"],
+        ["kmagida", "Kyle", "Magida"],
+        ["iwhol", "Isaac", "Whol"],
+        ["gmatthews", "Grace", "Matthews"],
+        ["mmuskardin", "Mark", "Muskardin"],
+        ["lgriffiths", "Luke", "Griffiths"],
+      ].each do |opts|
+        User.populate 1 do |user|
+          user.login = "#{opts[0]}@citizensmarket.org"
+          user.email = "#{opts[0]}@citizensmarket.org"
+          user.firstname = "#{opts[1]}"
+          user.lastname = "#{opts[2]}"
+          user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
+          user.roles = [[:contributor]]
+          user.activated_at = 1.second.ago
+          user.state = "active"
+          user.crypted_password = "27705dff13cb5891f6867c04a95f8eb6a02e0a30" # password = 'password'
+          user.salt = "3d4b9c8d689a0c58eb25ac6629a51fd86dae0e38"
+        end
+      end
+
+      User.populate 1 do |user| # user with roles = [:admin]
+        user.login = "admin@citizensmarket.org"
+        user.email = "admin@citizensmarket.org"
+        user.firstname = "Joe"
+        user.lastname = "Admin"
+        user.profile = {:location => 'Cambridge, MA', :website => 'www.foo.com'}
+        user.roles = [[:admin]]
+        user.activated_at = 1.second.ago
+        user.state = "active"
+        user.crypted_password = "f14905ba1f944ee46d0928c0c925deb006830d55" # password = 'password'
+        user.salt = "d75d18195fd3811e368c278204d2d3ef34d79129"
+      end
+
+      User.all.each(&:initialize_default_issue_weights)
+
+      [Company, Brand, Review, ReviewIssue].each(&:delete_all)
+
+      possible_brands = 'BigRig, BigSnacks, DrillOil, LuxLube, SeaOil, Airhair, Lots \'O Locks, Tress Finesse, YouScrub, FairFace, FairHair, FairSkin, Fossil Fools, LoneStar, QwikLube, Mohawk Master, Nectar, ShockWave, SudsySoap, Goop, Goopaline, Goopex, GoopyGas, ExactExtract, Lucky Oil, Shale Sale Company, Conditional Love, Freshin, ManMane, Shaggy, Queen, Royal Refineries, FrizzWhiz, Musky Shampoo, Shower Power, SudsyGrip, Radiance, Thermo-Brush, Wash \'N Go, XX Appeal, Zesty'.split(', ')
+
+      Company.populate 100 do |company|
+        company.name = Faker::Company.name
+        #company.description = Populator.sentences(2..10)
+        company.description = "#{company.name} is a multinational corporation with joint headquarters in London and Amsterdam that began as a hair care company and now owns many of the world's consumer product brands in personal care products, cleaning agents, foods and beverages. Universal Hair Care Inc. employed 151,000 people and had a worldwide revenue of $33.8 billion in 2009."
+        company.website_url = "http://www.#{Faker::Internet.domain_name}"
+        company.info = { "Type" => "Public (Euronext: OR)", 
+                         "Founded" => "1909",
+                         "Founder" => "Eugène Schueller",
+                         "Headquarters" => "Clichy , France",
+                         "Key people" => "Jean-Paul Agon (CEO), Lindsay Owen-Jones (Chairman of the board), Liliane Bettencourt (Non-executive director and major shareholder)",
+                         "Revenue" => "€17.06 billion (2007)",
+                         "Operating Income" => "€2.827 billion (2007)",
+                         "Profit" => "€2.039 billion (2007)",
+                         "Employees" => "63,360 (2007)",
+                         "Website" => "www.loreal.com"
+                          }
+        Brand.populate 0..20 do |brand|
+          brand.company_id = company.id
+          brand.name = possible_brands.delete(possible_brands.rand) || Populator.words(1..3).titleize
+          brand.description = Populator.sentences(2..10)
+        end
+        Review.populate 0..100 do |review|
+          ReviewIssue.populate 0..5 do |review_issue|
+            review_issue.review_id = review.id
+            review_issue.issue_id = Issue.all.rand.id
+          end
+          review.rating = 1..5
+          review.user_id = [1, 2]
+          review.company_id = company.id
+          review.body = Populator.paragraphs(2..10)
+          review.status = ['draft', 'published']
+        end
+      end
+      
     end
     
   end

@@ -4,7 +4,6 @@ Feature: My Reviews
   As a contributor
   I want to skim over my reviews and see how they are doing, edit saved drafts, publish them 
   
-  @focus
   Scenario: Contributor visits My Reviews and deletes a draft
     Given I am logged in as a contributor user
     Given a typical draft review
