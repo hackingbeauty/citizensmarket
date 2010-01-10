@@ -239,9 +239,9 @@ describe UsersController, "when editing your profile" do
       assigns(:user).class.should == User
     end
     
-    it "should set a flash[:notice] message" do
+    it "should set a flash[:message] message" do
       flash[:error].should be_nil
-      flash[:notice].should_not be_nil
+      flash[:message].should_not be_nil
     end
     
   end
@@ -277,6 +277,16 @@ describe UsersController, "when editing your profile" do
   
   end
   
+  describe "on PUT 'update' with a picture," do
+    
+    it "should call profile_picture= on the user" do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(User.find(1))
+      put :update, :id => 1, :user => {:firstname => 'NewFirstname', :lastname => 'NewLastname', :profile => {:location => 'newLocation', :website => 'www.NewWebsite.com'}, :profile_picture => 'foo'}
+      assigns[:user].should_receive("profile_picture=".to_sym)
+    end
+    
+  end
   
 end
 
@@ -332,8 +342,8 @@ describe UsersController, ": when editing a user and you're not logged in," do
       assigns(:user).class.should == User
     end
     
-    it "should not set a flash[:notice] message" do
-      flash[:notice].should == "Your user profile has been updated!"
+    it "should not set a flash[:message] message" do
+      flash[:message].should_not be_nil# == "Your user profile has been updated!"
     end
     
   end

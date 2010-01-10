@@ -5,7 +5,7 @@
 
 <h1>Editing My Profile</h1>
 
-<% form_for(:user, :url => user_path(@user), :html => {:method => :put}) do |f| %>
+<% form_for(:user, :url => user_path(@user), :html => {:method => :put, :multipart => true}) do |f| %>
 	
 	<%= render :partial => 'form', :locals => {:f => f}%>
 	<br/>

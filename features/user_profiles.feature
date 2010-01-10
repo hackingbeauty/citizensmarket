@@ -20,7 +20,7 @@ Feature: User Profiles
 	  Then I should see "success"
 	  
 	  When I go to the my profile page
-	  Then I should see an image with src "duck.png"
+	  Then I should see an image with src "duck.jpg"
 	  And I should not see "Duck" 
 	      # which is the alt text
 	  

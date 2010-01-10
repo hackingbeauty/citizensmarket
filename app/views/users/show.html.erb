@@ -3,7 +3,8 @@
 		<%= error_messages_for :user %>
         
 		<div class="heading">
-  		<%=image_tag @user.gravatar_url(:size => 50), :class => 'avatar'%>
+  		<%= image_tag @user.profile_picture.url(:medium) %>
+<%= image_tag @user.profile_picture.url(:small) %>
       
 		<h1>
 			<%=h @user.login %>

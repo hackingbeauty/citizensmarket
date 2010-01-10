@@ -124,7 +124,7 @@ class UsersController < ApplicationController
   
   def update
     @user = current_user
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(params[:user]) and @user.update_attribute(:profile_picture, params[:user][:profile_picture])
       flash[:message] = "Your user profile has been successfully updated!"
       respond_to do |format|
         format.html {redirect_to :action => 'show'}
