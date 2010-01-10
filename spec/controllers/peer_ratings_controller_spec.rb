@@ -11,7 +11,7 @@ describe PeerRatingsController, "POST create" do
   end
   
   it "should build a new peer_rating" do
-    PeerRating.should_receive(:new).with("review_id" => "1", "score" => "1", "user_id" => "1").and_return(@peer_rating)
+    PeerRating.should_receive(:new).with({"review_id" => "1", "score" => "1", "user_id" => 1}).and_return(@peer_rating)
     post :create, :peer_rating => {"review_id" => "1", "score" => "1"}
   end
   it "should save the peer_rating" do 
@@ -24,7 +24,7 @@ describe PeerRatingsController, "POST create" do
       @peer_rating.stub!(:save).and_return true
     end
     it "should render a confirmation" do
-      post :create
+      post :create, :peer_rating => {}
       response.should render_template('_feedback_given')
     end
   end
@@ -33,7 +33,7 @@ describe PeerRatingsController, "POST create" do
       @peer_rating.stub!(:save).and_return false
     end
     it "should render an error indicator" do
-      post :create
+      post :create, :peer_rating => {}
       response.should render_template('_feedback_failed')
     end
   end

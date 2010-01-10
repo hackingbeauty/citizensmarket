@@ -79,8 +79,10 @@ class Review < ActiveRecord::Base
   
   
   private
+  
   def protect_against_angry_abuse
-    [self.class.find(:first, :conditions => ["user_id = ? and company_id = ? and created_at > ?", user, company, Time.now - 180.days])].compact.each do
+    r = Review.find(:first, :conditions => ["user_id = ? and company_id = ? and created_at > ?", user_id, company_id, Time.now - 180.days])
+    unless r.nil?
       errors.add_to_base("You already submitted a review this company on this issue. You must wait at least 180 days between reviews.")
     end
   end

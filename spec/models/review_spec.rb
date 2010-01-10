@@ -13,9 +13,9 @@ describe Review do
   end
   
   it "should not allow a user User to submit no more than one Review per Company-Issue pair per 180 days." do
-    review1 = @user.reviews.create(Factory.attributes_for(:review, :company => @company))
+    review1 = Factory.build(:review, :user => @user, :company => @company)
+    review1.save.should be_true
     review2 = Factory.build(:review, :user => @user, :company => @company)
-    review2.user = @user
     review2.save.should be_false
   end
   
@@ -23,9 +23,9 @@ describe Review do
     review = @user.reviews.create(Factory.attributes_for(:review, :company => @company)).should be_true
     review.status.should == "draft"
     review_id = review.id
-    reivew = Review.find(review_id)
+    review = Review.find(review_id)
     review.update_attributes(:aasm_event => "publish").should be_true
-    reivew = Review.find(review_id)
+    review = Review.find(review_id)
     review.status.should == "published"
   end
   
