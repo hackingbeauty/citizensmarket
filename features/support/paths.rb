@@ -21,7 +21,7 @@ module NavigationHelpers
       '/'
       
     when /the (.*?(?= page)) page/
-      eval("#{$1}_path")
+      eval("#{$1.gsub(' ', '_')}_path")
     
     when /the new ([^\s]*) page/
       eval("new_#{$1}_path")  

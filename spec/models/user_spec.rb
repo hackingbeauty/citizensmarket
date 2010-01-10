@@ -9,6 +9,13 @@ describe User do
   fixtures :users
   fixtures :issues
 
+  it "has a profile picture" do
+    user = create_user#valid_user
+    user.profile_picture = File.open("#{RAILS_ROOT}/spec/test_images/duck.jpg")
+    user.profile_picture.url.should_not be_empty
+  end
+  
+  
   it 'loads the fixtures' do
     u = User.find(:first, :conditions => ["email = ?", 'quentin@example.com'])
     u.class.should == User
@@ -40,7 +47,8 @@ describe User do
     end
     
     it 'accepts roles as an attribute' do
-      @user = User.new(:roles => [:contributor])
+      #@user = new_user(:roles => [:contributor])
+      @user.roles = [:contributor]
       @user.save.should be_true
     end
     
@@ -147,6 +155,8 @@ describe User do
       it "'#{email_str}'" do
         lambda do
           u = create_user(:email => email_str)
+          u.valid?
+          #raise "u.errors.full_messages = #{u.errors.full_messages.inspect}"
           u.errors.on(:email).should_not be_nil
         end.should_not change(User, :count)
       end
@@ -314,9 +324,25 @@ describe User do
 
 protected
   def create_user(options = {})
-    record = User.new({ :firstname=> 'mark', :lastname=>'muskardin', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69', :terms_of_use => "1" }.merge(options))
+    record = new_user(options)
     record.register! if record.valid?
     #raise "record.id is nil and errors = #{record.errors.full_messages.join(', ')}" if record.id.nil?
     record
   end
+  
+  def new_user(options = {})
+    User.new(valid_user_params.merge(options))
+  end
+  
+  def valid_user_params
+    {
+      :firstname=> 'mark', 
+      :lastname=>'muskardin', 
+      :email => 'quire@example.com', 
+      :password => 'quire69', 
+      :password_confirmation => 'quire69', 
+      :terms_of_use => "1" 
+    }
+  end
+  
 end

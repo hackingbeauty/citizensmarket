@@ -114,6 +114,10 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
   
+  def my_profile
+    @user = current_user
+    render :action => 'show'
+  end
   def show
     @user = find_user
   end
@@ -121,7 +125,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Your user profile has been updated!"
+      flash[:message] = "Your user profile has been successfully updated!"
       respond_to do |format|
         format.html {redirect_to :action => 'show'}
       end

@@ -4,7 +4,11 @@
         
 		<div class="heading">
   		<%=image_tag @user.gravatar_url(:size => 50), :class => 'avatar'%>
-      <h1><%=h @user.login %></h1>
+      
+		<h1>
+			<%=h @user.login %>
+			<% if @user == current_user %>(my profile)<% end %>
+		</h1>
     </div>
     <br/>
    	

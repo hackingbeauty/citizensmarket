@@ -8,6 +8,7 @@
 <% form_for(:user, :url => user_path(@user), :html => {:method => :put}) do |f| %>
 	
 	<%= render :partial => 'form', :locals => {:f => f}%>
+	<br/>
 	<%= f.submit "Save Profile" %>
 	
 <% end %>

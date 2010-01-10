@@ -3,6 +3,8 @@ ActionController::Routing::Routes.draw do |map|
 
   
   
+  map.my_profile '/my_profile', :controller => "users", :action => "my_profile"
+  
   map.connect '/issues/issue_picker', :controller => 'issues', :action => 'issue_picker'
   map.resources :issues
 

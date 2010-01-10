@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   has_many :issues, :through => :user_issues
   has_many :peer_ratings
   
+  has_attached_file :profile_picture, :styles => {:small => "80x80", :medium => "250x250"}
+  
   serialize :profile, Hash
   
   serialize :roles, Array

@@ -21,6 +21,10 @@ Then /^I should see a form$/ do
   response.should have_tag("form")
 end
 
+Then /^I should see an image with src "([^"]*)"$/ do |filename|  #"
+  response.should have_selector("img[src*='#{filename}']")
+end
+
 
 
 

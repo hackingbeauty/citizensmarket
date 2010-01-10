@@ -1,7 +1,19 @@
 
 
-<label>First Name: </label><span><%= f.text_field :firstname %></span><br/>
-<label>Last Name: </label><span><%= f.text_field :lastname %></span><br/>
-<label>Email: </label><span><%= f.text_field :email  %></span><br/>
-<label>Location: </label><span><%= text_field_tag 'user[profile][location]', @user.location %></span><br/>
-<label>Website: </label><span><%= text_field_tag 'user[profile][website]', @user.website %></span><br/>
+<%= f.label :firstname, "First Name"%>
+<span><%= f.text_field :firstname %></span><br/>
+
+<%= f.label :lastname, "Last Name" %>
+<span><%= f.text_field :lastname %></span><br/>
+
+<%= f.label :email %>
+<span><%= f.text_field :email  %></span><br/>
+
+<%= f.label :location %>
+<span><%= text_field_tag 'user[profile][location]', @user.location %></span><br/>
+
+<%= f.label "user[profile][website]" %>
+<span><%= text_field_tag 'user[profile][website]', @user.website %></span><br/>
+
+<%= f.label :profile_picture %>
+<span><%= f.file_field :profile_picture %></span>
