@@ -2,17 +2,30 @@
 #CONFIG
 #========================
 set :application, "staging.citizensmarket.org"
-set :scm, "git"
-set :repository,  "git@github.com:citizensmarket/citizensmarket.git"
-set :branch, "staging"
 set :user, "deploy"
-set :use_sudo, true #tells capistrano notNOT to use root
+set :runner, user
 default_run_options[:pty] = true #enables password entry for git
+set :repository,  "git@github.com:citizensmarket/citizensmarket.git"
 set :deploy_to, "/var/www/#{application}"
+set :repository_cache, "git_cache"
+set :deploy_via, :remote_cache #:copy#:remote_cache #tells capistrano just to pull down updates, not your entire codebase over and over again
+set :scm, "git"
+set :scm_verbose, true
+set :branch, "master"
+set :use_sudo, false #tells capistrano NOT to use root
 set :app_server, :passenger
 set :deploy_via, :remote_cache #tells capistrano just to pull down updates, not your entire codebase over and over again
 set :rails_env, "staging"
 default_run_options[:pty] = true
+ssh_options[:forward_agent] = true#allows the server to pull the latest code from github using my local private key and ssh agent
+# default_environment["PATH"] = "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
+
+
+# set :ssh_options, { :forward_agent => true } #allows the server to pull the latest code from github using my local private key and ssh agent
+
+
+
+
 #========================
 #ROLES
 #========================
@@ -28,11 +41,11 @@ namespace :deploy do
     run "touch #{current_release}/tmp/restart.txt"
   end
   task :stop, :roles => :app do
-    # Do nothing.
+    # run "/etc/init.d/nginx stop"
   end
   desc "Restart Application"
   task :restart, :roles => :app do
     run "touch #{current_release}/tmp/restart.txt"
-    run "#{sudo :as => 'deploy'} /etc/init.d/nginx restart"
+    # run "/etc/init.d/nginx restart"
   end
 end
