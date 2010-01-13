@@ -19,7 +19,7 @@ set :rails_env, "staging"
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true#allows the server to pull the latest code from github using my local private key and ssh agent
 # default_environment["PATH"] = "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
-
+set :sudo_password, true
 
 # set :ssh_options, { :forward_agent => true } #allows the server to pull the latest code from github using my local private key and ssh agent
 
@@ -38,14 +38,20 @@ role :db,  "staging.citizensmarket.org", :primary => true
 #========================
 namespace :deploy do
   task :start, :roles => :app do
-    run "touch #{current_release}/tmp/restart.txt"
+    run "cd #{deploy_to}; git pull"
+    run "touch #{deploy_to}/tmp/restart.txt"
+    # run "/etc/init.d/nginx start"
+    
+    # run "#{sudo} /etc/init.d/nginx start"
+    
   end
   task :stop, :roles => :app do
-    # run "/etc/init.d/nginx stop"
+    run "#{sudo} /etc/init.d/nginx stop"
   end
   desc "Restart Application"
   task :restart, :roles => :app do
-    run "touch #{current_release}/tmp/restart.txt"
-    # run "/etc/init.d/nginx restart"
+    run "cd #{deploy_to}; git pull"
+    run "touch #{deploy_to}/tmp/restart.txt"
+    # run "/etc/init.d/nginx start"
   end
 end
