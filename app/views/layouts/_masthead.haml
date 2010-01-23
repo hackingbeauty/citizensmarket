@@ -1,0 +1,42 @@
+%ul#nav
+  %li
+    = link_to "Take Action", '/take_action'
+  - if current_user.nil?
+    %li
+      = link_to "My Profile", '/login'
+  - else
+    %li
+      = link_to "My Profile", edit_user_url(current_user)
+  %li
+    = link_to "Blog", 'http://blog.citizensmarket.org/'
+  %li
+    = link_to "About Us", '/about'
+  /
+    <haml:silent> if current_user.nil? </haml:silent>
+    <li><haml:loud> link_to &amp;quot;Register&amp;quot;, '/signup' </haml:loud></li>
+    <li><haml:loud> link_to &amp;quot;Sign In&amp;quot;, '/login' </haml:loud></li>
+    <haml:silent> else </haml:silent>
+    <li><haml:loud> link_to &amp;quot;Logout&amp;quot;, '/logout' </haml:loud></li>
+    <haml:silent> end </haml:silent>
+/
+  end nav
+= link_to image_tag('mast_logo.png'), root_url
+%span#tag_line
+  Your Values. Your Money. Your Choices.
+#search
+  - form_for :search, :url => nil do |f|
+    %div
+      = f.text_field :q, :value => 'search our site: find a company, review, brand, etc', :size => 60
+      = f.submit 'Search'
+/
+  end search
+/
+  <ul>
+  <li><haml:loud>link_to &amp;quot;Take Action&amp;quot;, '/take_action' </haml:loud></li>
+  <haml:silent> if current_user.nil? </haml:silent>
+  <li><haml:loud>link_to &amp;quot;My Profile&amp;quot;, '/login' </haml:loud></li>
+  <haml:silent> else </haml:silent>
+  <li><haml:loud> link_to &amp;quot;My Profile&amp;quot;, edit_user_url(current_user) </haml:loud></li>
+  <haml:silent> end </haml:silent>
+  <li><haml:loud>link_to &amp;quot;About Us&amp;quot;, '/about' </haml:loud></li>
+  </ul>

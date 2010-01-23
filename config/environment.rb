@@ -24,15 +24,17 @@ Rails::Initializer.run do |config|
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
   config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'stffn-declarative_authorization', :lib => 'declarative_authorization'
-  
+  config.time_zone = 'UTC'
+  # config.gem 'thoughtbot-paperclip', :lib => "paperclip"
+  config.gem 'paperclip', :source => 'http://gemcutter.org'
+  config.gem 'haml', :version => '2.2.17'
   
   # these four lines came from The RSpec Book, page 289
   config.gem 'rspec-rails', :lib => false
   config.gem 'rspec', :lib => false
   config.gem 'cucumber'
   config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com'
-  config.time_zone = 'UTC'
-  config.gem 'thoughtbot-paperclip', :lib => "paperclip"
+
 
   # Your secret key for verifying cookie session data integrity.
   # If you change this key, all old sessions will become invalid!

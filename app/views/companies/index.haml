@@ -1,0 +1,37 @@
+#companies-top
+  %h2
+    Companies
+#companies
+  %table{ :summary => "Companies, their brands, their review scores, and total number of reviews" }
+    %caption
+      Companies
+    %thead
+      %tr#company-headings
+        %th#company-head
+          Company
+        %th#brands-head
+          Brands
+        %th#score-head
+          My Score
+        %th#reviews-head
+          Reviews
+    %tbody
+      - @companies.each do |company|
+        %tr{ :class => cycle('oddrow', 'evenrow') }
+          %td.company-name
+            = link_to company.name, object_url(company)
+          %td.company-brands
+            = brand_name_list(company, :truncate => true)
+            = link_to "More", object_url(company), :class => 'arrow tooltip'
+            %span.hide
+              = brand_name_list(company, :truncate => false)
+          %td.company-score
+            - if logged_in?
+              = fixed_star_rating(CmScores.my_company_score(company, current_user))
+            - else
+              = fixed_star_rating(CmScores.generic_company_score(company))
+          %td.company-reviews
+            = company.reviews.size
+      %tfoot
+    = will_paginate @companies, :semantic => true
+#companies-bottom

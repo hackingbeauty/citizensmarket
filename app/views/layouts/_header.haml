@@ -1,0 +1,47 @@
+= link_to image_tag('logos/new-logo.png'), root_url, :id => 'logo'
+%ul#top-nav
+  - if logged_in?
+    %li
+      logged in as
+      = current_user.login
+    %li
+      = link_to "My Reviews", my_reviews_path
+    %li
+      = link_to "My Profile", '/my_profile'
+    %li
+      = link_to 'About Us', '/about'
+    %li
+      = link_to "Blog", 'http://blog.citizensmarket.org/'
+    %li
+      = link_to "Donate", '/donate'
+    %li.last
+      = link_to "Logout", '/logout'
+  - else
+    %li
+      = link_to "Sign In!", login_url, {:id=>'login-bttn'}
+    %li.last
+      = link_to "About Us", '/about'
+#search
+  %p#search-text
+    Find company reviews, product reviews, and more...
+  - form_for :search, :url => search_path do |f|
+    %div
+      = f.text_field :q, :value => '', :size => 60
+      = submit_tag "temporary search submit"
+      = f.submit 'Search', :class => 'hide-text'
+/
+  end search
+%ul#main-nav
+  = nav_link "Home", {:controller => "home", :action => "show"}
+  = nav_link "Browse Companies", {:controller => "companies", :action => "index"}
+  = nav_link "Browse Reviews", "/reviews"
+  = nav_link "Compare Brands", "/compare"
+  - if !current_user.nil?
+    = nav_link "Rate a Company", "/rate"
+    = nav_link "Add a Company", "/add"
+/
+  end nav
+#login-form.jqmWindow
+  %a.jqmClose{ :href => "#nogo" }
+    Close
+  = render :partial => "sessions/new"

@@ -1,0 +1,20 @@
+#companies-top
+  %h2
+    Company Profile
+#companies
+  %h3
+    = @company.name
+  %table{ :summary => "A company profile for #{@company.name}, including overall score and number of reviews" }
+    %caption
+      = @company.name
+    %thead
+      %tr#company-headings
+        %th#company-head
+          Issue
+        %th#brands-head
+          Issue Score
+        %th#reviews-head
+          Reviews
+    %tbody
+
+#companies-bottom

@@ -861,20 +861,10 @@ a#logo img {
 }
 
 #companies {
-		background: url('../images/backgrounds/back-browse-companies2.png')  repeat-y;
-		margin-left:6px;
+	background: url('../images/backgrounds/back-browse-companies2.png')  repeat-y;
+	margin-left:6px;
 	width:80em;
 
-}
-
-/*#companies table {
-	margin-left:2em;
-	width:80em;
-}*/
-
-#companies tbody th {
-
-/*	padding-left:2em;*/
 }
 
 #companies caption {
