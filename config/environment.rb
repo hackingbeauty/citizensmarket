@@ -27,10 +27,10 @@ Rails::Initializer.run do |config|
   
   
   # these four lines came from The RSpec Book, page 289
-  config.gem 'rspec-rails', :lib => false
-  config.gem 'rspec', :lib => false
-  config.gem 'cucumber'
-  config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com'
+  # config.gem 'rspec-rails', :lib => false
+  # config.gem 'rspec', :lib => false
+  # config.gem 'cucumber'
+  # config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com'
   config.time_zone = 'UTC'
   config.gem 'paperclip', :version => '2.3.1.1'
   
@@ -79,3 +79,4 @@ end
 
 require 'memcache'
 CACHE = MemCache.new('127.0.0.1')
+# CACHE.flush_all

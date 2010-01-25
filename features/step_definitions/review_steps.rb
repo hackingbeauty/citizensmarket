@@ -43,7 +43,8 @@ def typical_review(custom_params = {})
 end
 
 def next_company
-  @company = Company.find(:first, :conditions => ["id > ?", @last_company_id || 0])
+  
+  @company = Factory(:company)#Company.find(:first, :conditions => ["id > ?", @last_company_id || 0]) # replaced this find with a factory, was crashing otherwise
   @company.should_not be_nil
   @last_company_id = @company.id
   @company
@@ -56,7 +57,7 @@ def default_review_params
     "company" => company,
     "user" => @user || create_user,
     "body" => "typical review body",
-    "issues" => [Issue.find_by_name("hunger")],
+    "issues" => [],# [Issue.find_by_name("hunger")] removed this since 1) it wasn't being tested for, and 2) it was crashing since there is no issue called hunger,
     "rating" => 1,
   }
 end

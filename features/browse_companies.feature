@@ -3,7 +3,7 @@ Feature:  Browse Companies
 	In order to find information on companies
 	As a user
 	I want to be able to get a list of companies and their scores
-	
+
 	Scenario: I request the companies page
 		Given a company named "Company_A"
 		And a company named "Company_B"

@@ -19,5 +19,8 @@ config.gem 'cucumber',    :lib => false,        :version => '>=0.3.104' unless F
 config.gem 'webrat',      :lib => false,        :version => '>=0.5.0' unless File.directory?(File.join(Rails.root, 'vendor/plugins/webrat'))
 config.gem 'rspec',       :lib => false,        :version => '>=1.2.8' unless File.directory?(File.join(Rails.root, 'vendor/plugins/rspec'))
 config.gem 'rspec-rails', :lib => false,        :version => '>=1.2.7.1' unless File.directory?(File.join(Rails.root, 'vendor/plugins/rspec-rails'))
+config.gem 'memcache-client', :lib => false,    :version => '1.7.7'
+config.gem 'SystemTimer', :lib => false,        :version => '1.1.3'
+
 
 SHOW_GA = false

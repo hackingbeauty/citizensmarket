@@ -4,7 +4,7 @@ Feature: Peer Rate Reviews
   As a contributor ot the site
   I want to leave peer ratings on reviews
   
-  @focus
+  
   Scenario: Contributor browses reviews and leaves peer ratings
   
     Given I am logged in as a contributor user
