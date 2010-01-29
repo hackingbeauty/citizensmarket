@@ -1,14 +1,22 @@
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: mysql
+  encoding: utf8
+  database: citizen_development
   pool: 5
-  timeout: 5000
+  username: root
+  password:
+  # socket: /tmp/mysql.sock
 
 test: &TEST
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: mysql
+  encoding: utf8
+  database: citizen_test
   pool: 5
-  timeout: 5000
+  username: root
+  password:
+  # socket: /tmp/mysql.sock
 
 cucumber:
   <<: *TEST
+
+

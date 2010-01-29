@@ -32,7 +32,16 @@ Rails::Initializer.run do |config|
   config.gem 'cucumber'
   config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com'
   config.time_zone = 'UTC'
-  config.gem 'thoughtbot-paperclip', :lib => "paperclip"
+  config.gem 'paperclip', :version => '2.3.1.1'
+  
+  # i was getting sh: identify: command not found errors until
+  # i installed imagemagick (not a gem)
+  # not sure how we should announce this requirement
+  
+  # also some specs involving transactions were failing for me,
+  # as i was using sqlite3 for testing - and transactions only work
+  # with mysql - correct me if wrong please
+  # -- chris
 
   # Your secret key for verifying cookie session data integrity.
   # If you change this key, all old sessions will become invalid!
