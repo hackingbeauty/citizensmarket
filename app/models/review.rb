@@ -87,7 +87,4 @@ class Review < ActiveRecord::Base
     end
   end
   
-
-  
-  
 end
