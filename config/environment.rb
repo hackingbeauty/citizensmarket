@@ -1,3 +1,9 @@
+
+  # for future generations, this app needs:
+  # sphinx
+  # imagemagick (or similar)
+  # mysql (until a transaction issue is resolved)
+
 # Be sure to restart your server when you modify this file
 
 # Uncomment below to force Rails into production mode when
@@ -24,24 +30,10 @@ Rails::Initializer.run do |config|
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
   config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'stffn-declarative_authorization', :lib => 'declarative_authorization'
+  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.3.15'
+  config.gem 'paperclip', :version => '2.3.1.1'  
   
-  
-  # these four lines came from The RSpec Book, page 289
-  # config.gem 'rspec-rails', :lib => false
-  # config.gem 'rspec', :lib => false
-  # config.gem 'cucumber'
-  # config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com'
   config.time_zone = 'UTC'
-  config.gem 'paperclip', :version => '2.3.1.1'
-  
-  # i was getting sh: identify: command not found errors until
-  # i installed imagemagick (not a gem)
-  # not sure how we should announce this requirement
-  
-  # also some specs involving transactions were failing for me,
-  # as i was using sqlite3 for testing - and transactions only work
-  # with mysql - correct me if wrong please
-  # -- chris
 
   # Your secret key for verifying cookie session data integrity.
   # If you change this key, all old sessions will become invalid!
