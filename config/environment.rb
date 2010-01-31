@@ -1,8 +1,8 @@
 
-  # for future generations, this app needs:
-  # sphinx
-  # imagemagick (or similar)
-  # mysql (until a transaction issue is resolved)
+# for future generations, this app needs:
+# sphinx
+# imagemagick (or similar)
+# mysql (until a transaction issue is resolved)
 
 # Be sure to restart your server when you modify this file
 
@@ -17,7 +17,7 @@ RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  
+
   config.gem 'resource_controller', :version => '0.5.2'
   config.gem 'active_presenter', :version => '0.0.3'
   config.gem 'rubyist-aasm', :version => '2.0.2', :lib => 'aasm', :source => 'http://gems.github.com'
@@ -31,8 +31,8 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'stffn-declarative_authorization', :lib => 'declarative_authorization'
   config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.3.15'
-  config.gem 'paperclip', :version => '2.3.1.1'  
-  
+  config.gem 'paperclip', :version => '2.3.1.1'
+
   config.time_zone = 'UTC'
 
   # Your secret key for verifying cookie session data integrity.
@@ -55,20 +55,20 @@ Rails::Initializer.run do |config|
   # config.active_record.schema_format = :sql
 
   config.action_mailer.delivery_method = :smtp
-  
+
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
   config.active_record.observers = :user_observer
 
   # Load Presenters
   config.load_paths += %W( #{RAILS_ROOT}/app/presenters )
-  
-  #reCaptcha Keys
-  ENV['RECAPTCHA_PUBLIC_KEY'] = '6LdoDAcAAAAAAJPWZ8_b8Nm2tvKqyet7hs3iXVjD'
-  ENV['RECAPTCHA_PRIVATE_KEY'] = '6LdoDAcAAAAAAG8fzeLUZIxxxS72N-iOKp9G89is'
-  
-end
 
-require 'memcache'
-CACHE = MemCache.new('127.0.0.1')
-# CACHE.flush_all
+                           #reCaptcha Keys
+                           ENV['RECAPTCHA_PUBLIC_KEY'] = '6LdoDAcAAAAAAJPWZ8_b8Nm2tvKqyet7hs3iXVjD'
+                           ENV['RECAPTCHA_PRIVATE_KEY'] = '6LdoDAcAAAAAAG8fzeLUZIxxxS72N-iOKp9G89is'
+
+                           end
+
+                           require 'memcache'
+                           CACHE = MemCache.new('127.0.0.1')
+                           # CACHE.flush_all

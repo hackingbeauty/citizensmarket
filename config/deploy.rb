@@ -39,9 +39,9 @@ namespace :deploy do
     run "cd #{deploy_to}; git pull"
     run "touch #{deploy_to}/tmp/restart.txt"
     # run "/etc/init.d/nginx start"
-    
+
     # run "#{sudo} /etc/init.d/nginx start"
-    
+
   end
   task :stop, :roles => :app do
     run "#{sudo} /etc/init.d/nginx stop"

@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  
+
   def signup_notification(user)
     setup_email(user)
     @subject    += 'Welcome!  Please activate your new Citizens Market account'
@@ -13,14 +13,14 @@ class UserMailer < ActionMailer::Base
     # @body[:url]  = "http://staging.citizensmarket.org/"
     @body[:url]  = "http://#{SITE_URL}/"
   end
-  
+
   def forgot_password(user)
     setup_email(user)
     @subject    += 'Your account has been activated!'
     # @body[:url]  = "http://staging.citizensmarket.org/"
     @body[:url]  = "Your password is: #{user.password}"
   end
-  
+
   def reset_notification(user)
     setup_email(user)
     @subject    += 'Link to reset your password'
@@ -35,5 +35,5 @@ class UserMailer < ActionMailer::Base
       @sent_on     = Time.now
       @body[:user] = user
     end
-    
+
 end

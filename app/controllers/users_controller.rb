@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
 
   def change_password
-    
+
   end
-  
+
   def update_password
     if User.authenticate(current_user.login, params[:old_password])
       @user = current_user
@@ -23,22 +23,22 @@ class UsersController < ApplicationController
       render :action => 'change_password'
     end
   end
-  
+
   before_filter :login_required, :only => [:edit, :update]
 
   # render new.rhtml
   def new
     @user = User.new
   end
-  
+
   def edit
     @user = current_user
   end
-    
+
   def create
     #raise "check params"
     logout_keeping_session!
-    @user = User.new(params[:user])      
+    @user = User.new(params[:user])
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if verify_recaptcha(@user) && success && @user.errors.empty?
@@ -48,21 +48,21 @@ class UsersController < ApplicationController
     end
     redirect_to signup_url
   end
-  
+
   def activate
     logout_keeping_session!
     user = User.find_by_activation_code(params[:id]) unless params[:id].blank?
     case
-    when (!params[:id].blank?) && user && !user.active?
-      user.activate!
-      flash[:message] = "<p class=\"big\">Signup complete!</p><p>Please sign in to continue.</p>"
-      redirect_to '/login'
-    when params[:id].blank?
-      flash[:error] = "<p>The activation code was missing.  Please follow the URL from your email.</p>"
-      redirect_back_or_default('/')
-    else
-      flash[:error]  = "<p>We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in.</p>"
-      redirect_back_or_default('/')
+      when (!params[:id].blank?) && user && !user.active?
+        user.activate!
+        flash[:message] = "<p class=\"big\">Signup complete!</p><p>Please sign in to continue.</p>"
+        redirect_to '/login'
+      when params[:id].blank?
+        flash[:error] = "<p>The activation code was missing.  Please follow the URL from your email.</p>"
+        redirect_back_or_default('/')
+      else
+        flash[:error]  = "<p>We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in.</p>"
+        redirect_back_or_default('/')
     end
   end
 
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
       render :template => '/users/forgot'
     end
   end
-  
+
   def reset
     @user = User.find_by_reset_code(params[:reset_code]) unless params[:reset_code].nil?
     logger.info('reset code is ' + params[:reset_code])
@@ -113,7 +113,7 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path
   end
-  
+
   def my_profile
     @user = current_user
     render :action => 'show'
@@ -121,7 +121,7 @@ class UsersController < ApplicationController
   def show
     @user = find_user
   end
-  
+
   def update
     @user = current_user
     if @user.update_attributes(params[:user]) and @user.update_attribute(:profile_picture, params[:user][:profile_picture])
@@ -136,7 +136,7 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def update_issue_weights
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
@@ -146,19 +146,19 @@ class UsersController < ApplicationController
       flash[:error] = "We could not update your priorities - did you supply invalid data?"
       render :action => 'edit_issue_weights'
     end
-    
+
   end
 
   def edit_issue_weights
     @user = User.find(params[:id])
   end
-  
+
   # There's no page here to update or destroy a user.  If you add those, be
   # smart -- make sure you check that the visitor is authorized to do so, that they
   # supply their old password along with a new one to update it, etc.
 
-protected
-  def find_user
-    @user ||= User.find(params[:id])
-  end
+  protected
+    def find_user
+      @user ||= User.find(params[:id])
+    end
 end

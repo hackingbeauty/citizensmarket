@@ -1,5 +1,5 @@
 module CompaniesHelper
-  
+
   def brand_name_list(company, opts = {})
     if opts[:truncate]
       output = company.brands.find(:all, :limit => 9)
@@ -8,7 +8,7 @@ module CompaniesHelper
     end
     output = output.map{|x| x.name}.join(', ')
   end
-  
+
   def brand_name_list_old(company, opts = {})
     total_brands = company.brand_names.size
     top_9_brands = company.brand_names[0..9].join(', ')
@@ -18,7 +18,7 @@ module CompaniesHelper
       top_9_brands
     end
   end
-  
+
   def random_score
     score = rand(100)
     color_class = case score
@@ -31,5 +31,5 @@ module CompaniesHelper
     score = score / 10.0
     "<div class=\"score #{color_class} rounded\">#{score}</div>"
   end
-  
+
 end
