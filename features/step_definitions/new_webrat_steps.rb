@@ -1,3 +1,9 @@
+When /^I attach the file at "([^\"]*)" to "([^\"]*)"$/ do |path, field|
+  path.gsub!('RAILS_ROOT', Rails.root)
+  puts "path now = #{path}"
+  attach_file(field, path)
+end
+
 When /^I try to get '([^\']*)'$/ do |url|
   visit url
 end

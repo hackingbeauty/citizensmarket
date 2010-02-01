@@ -55,7 +55,7 @@ Feature:  Admin Manage Companies
 		And I should see "British Petroleum"
 		And I should see "An energy company"
 			
-  
+  @focus
 	Scenario: Contributor visits page (no edit or destroy links)
 		#As an owner
 		#I don't want contributors to be able to edit or destroy companies

@@ -4,7 +4,7 @@
 class CmSnippets
   
   def self.not_authorized_message
-    "You're not authorized for that.  Try logging in first."
+    "You're not authorized for that. Try logging in first."
   end
   
   

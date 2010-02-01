@@ -20,7 +20,7 @@ describe Review do
   end
   
   it "should take update_attributes(:aasm_event => 'publish') and publish the review" do
-    review = @user.reviews.create(Factory.attributes_for(:review, :company => @company)).should be_true
+    (review = @user.reviews.create(Factory.attributes_for(:review, :company => @company))).should be_true
     review.status.should == "draft"
     review_id = review.id
     review = Review.find(review_id)
@@ -30,7 +30,7 @@ describe Review do
   end
   
   it "should NOT accept 0.5 as a valid rating" do
-    review = @user.reviews.create(Factory.attributes_for(:review, :company => @company, :rating => 0.5)).should be_true
+    (review = @user.reviews.create(Factory.attributes_for(:review, :company => @company, :rating => 0.5))).should be_true
     review.should_not be_valid
   end
   
