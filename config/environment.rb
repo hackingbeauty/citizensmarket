@@ -34,6 +34,8 @@ Rails::Initializer.run do |config|
   # config.gem 'thoughtbot-paperclip', :lib => "paperclip"
   config.gem 'paperclip', :source => 'http://gemcutter.org'
   config.gem 'haml', :version => '2.2.17'
+  config.gem 'thinking-sphinx', :version => '1.3.15'
+  
   
   # these four lines came from The RSpec Book, page 289
   config.gem 'rspec-rails', :lib => false
