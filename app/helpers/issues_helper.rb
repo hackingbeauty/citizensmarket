@@ -6,7 +6,7 @@ module IssuesHelper
     end
     whole = value.to_i
     part = value - value.to_i
-    if part < 0.25 
+    if part < 0.25
       return whole
     elsif part < 0.75
       return whole + 0.5

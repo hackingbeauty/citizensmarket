@@ -14,9 +14,7 @@ set :scm_verbose, true
 set :branch, "staging"
 set :use_sudo, false #tells capistrano NOT to use root
 set :app_server, :passenger
-set :deploy_via, :remote_cache #tells capistrano just to pull down updates, not your entire codebase over and over again
 set :rails_env, "staging"
-default_run_options[:pty] = true
 ssh_options[:forward_agent] = true#allows the server to pull the latest code from github using my local private key and ssh agent
 # default_environment["PATH"] = "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
 set :sudo_password, true
@@ -41,9 +39,9 @@ namespace :deploy do
     run "cd #{deploy_to}; git pull"
     run "touch #{deploy_to}/tmp/restart.txt"
     # run "/etc/init.d/nginx start"
-    
+
     # run "#{sudo} /etc/init.d/nginx start"
-    
+
   end
   task :stop, :roles => :app do
     run "#{sudo} /etc/init.d/nginx stop"

@@ -4,11 +4,11 @@ SHELL = /bin/sh
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /usr/local/lib/ruby/1.8/i686-darwin9.5.2
+topdir = /Users/chris/.rvm/rubies/ruby-1.8.7-p72/lib/ruby/1.8/i686-darwin10.2.0
 hdrdir = $(topdir)
 VPATH = $(srcdir):$(topdir):$(hdrdir)
 exec_prefix = $(prefix)
-prefix = $(DESTDIR)/usr/local
+prefix = $(DESTDIR)/Users/chris/.rvm/rubies/ruby-1.8.7-p72
 sharedstatedir = $(prefix)/com
 mandir = $(datarootdir)/man
 psdir = $(docdir)
@@ -38,13 +38,13 @@ localstatedir = $(prefix)/var
 sitelibdir = $(sitedir)/$(ruby_version)
 
 CC = gcc
-LIBRUBY = $(LIBRUBY_SO)
+LIBRUBY = $(LIBRUBY_A)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
-LIBRUBYARG_SHARED = -l$(RUBY_SO_NAME)
+LIBRUBYARG_SHARED = 
 LIBRUBYARG_STATIC = -l$(RUBY_SO_NAME)-static
 
 RUBY_EXTCONF_H = 
-CFLAGS   =  -fno-common -D_XOPEN_SOURCE=1  -fno-common -pipe -fno-common $(cflags) -Wall 
+CFLAGS   =  -fno-common -g -O2 -pipe -fno-common $(cflags) -Wall 
 INCFLAGS = -I. -I$(topdir) -I$(hdrdir) -I$(srcdir)
 DEFS     = 
 CPPFLAGS =   -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE $(DEFS) $(cppflags)
@@ -59,10 +59,10 @@ EXEEXT =
 
 RUBY_INSTALL_NAME = ruby
 RUBY_SO_NAME = ruby
-arch = i686-darwin9.5.2
-sitearch = i686-darwin9.5.2
+arch = i686-darwin10.2.0
+sitearch = i686-darwin10.2.0
 ruby_version = 1.8
-ruby = /usr/local/bin/ruby
+ruby = /Users/chris/.rvm/rubies/ruby-1.8.7-p72/bin/ruby
 RUBY = $(ruby)
 RM = rm -f
 MAKEDIRS = mkdir -p
@@ -86,7 +86,7 @@ extout =
 extout_prefix = 
 target_prefix = 
 LOCAL_LIBS = 
-LIBS = $(LIBRUBYARG_SHARED)  -lpthread -ldl -lobjc  
+LIBS =   -ldl -lobjc  
 SRCS = parser.c unicode.c
 OBJS = parser.o unicode.o
 TARGET = parser
@@ -96,8 +96,8 @@ STATIC_LIB =
 
 BINDIR        = $(bindir)
 RUBYCOMMONDIR = $(sitedir)$(target_prefix)
-RUBYLIBDIR = /Users/luke/Sites/citizensmarket/vendor/gems/json-1.1.3/ext/json/ext$(target_prefix)
-RUBYARCHDIR = /Users/luke/Sites/citizensmarket/vendor/gems/json-1.1.3/ext/json/ext$(target_prefix)
+RUBYLIBDIR = /Users/chris/rails_apps/citizensmarket/vendor/gems/json-1.1.3/ext/json/ext$(target_prefix)
+RUBYARCHDIR = /Users/chris/rails_apps/citizensmarket/vendor/gems/json-1.1.3/ext/json/ext$(target_prefix)
 
 TARGET_SO     = $(DLLIB)
 CLEANLIBS     = $(TARGET).bundle $(TARGET).il? $(TARGET).tds $(TARGET).map

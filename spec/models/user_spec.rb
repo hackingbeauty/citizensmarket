@@ -70,6 +70,7 @@ describe User do
     it 'does not update any user_issues if issue_weights receives invalid data' do
       @user.issue_weights = {1 => 5, 2 => 3, 3 => -10}
       iws = UserIssue.find(:all, :conditions => ["user_id = ?", @user.id])
+      
       Hash[*iws.map{|x| [x.issue_id, x.weight]}.flatten].should == {1 => 50, 2 => 50, 3 => 50}
     end
     

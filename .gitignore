@@ -10,3 +10,4 @@ db/sphinx/**/*
 vendor/gems/**/*
 log/searchd.development.pid
 public/system
+rerun.txt

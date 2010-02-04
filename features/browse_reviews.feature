@@ -3,7 +3,7 @@ Feature:  Browse Reviews
   In order to find out what others are saying about companies
   As a visitor to the site (not logged in)
   I want to browse and read reviews
-  
+
   Scenario:  Visitor browses reviews
     Given I am not logged in
     Given an activated contributor user named "Bob"
@@ -23,8 +23,7 @@ Feature:  Browse Reviews
       And I should see "Issue_A"
       And I should see "Issue_B"
       And I should not see "delete this review"
-      
-  
+
   Scenario:  Admin browses reviews and can delete them
     Given I am logged in as an admin user
     Given a review with these attributes:

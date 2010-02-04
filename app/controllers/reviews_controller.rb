@@ -1,17 +1,17 @@
 class ReviewsController < ApplicationController#ResourceController::Base
-  
+
   #before_filter :login_required, :only => ['new', 'create', 'edit', 'update']
   #filter_access_to :all
   #belongs_to :company
-  
+
   def index
     @reviews = Review.all
   end
-  
+
   def show
     @review = Review.find(params[:id])
   end
-  
+
   def new
     @review = Review.new
     @review.sources.build
@@ -24,11 +24,11 @@ class ReviewsController < ApplicationController#ResourceController::Base
     if @review.save
       flash[:message] = "Review saved successfully."
       redirect_to(my_reviews_path) and return
-    else 
+    else
       render(:action => "new") and return
     end
   end
-  
+
   def edit
     @review = Review.find(params[:id])
   end
@@ -42,18 +42,18 @@ class ReviewsController < ApplicationController#ResourceController::Base
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
     redirect_to reviews_url
   end
-  
-  
+
+
   def issue_picker
     render :partial => 'issue_picker', :locals => {:issue => Issue.first}
   end
-  
+
   # the routing to this function needs to be addressed by someone who knows more about routing than me
   # - Luke 2009-12-01
   def my_reviews
@@ -61,5 +61,5 @@ class ReviewsController < ApplicationController#ResourceController::Base
     @reviews = Review.find(:all, :conditions => ["user_id = ?", @owner.id])
     render :action => "index"
   end
-  
+
 end

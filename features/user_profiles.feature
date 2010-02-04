@@ -5,7 +5,7 @@ Feature: User Profiles
   I want to create and edit my profile
   
   
-  @focus
+  
   Scenario:  User uploads a profile photo then views it on their profile
     Given I am logged in as a contributor user
 		

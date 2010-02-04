@@ -9,11 +9,10 @@ Feature:  Admin Manage Companies
 		Given I am logged in as an admin user
 		When I go to the homepage
 		Then I should see "Add a Company"
-	
+
 	Scenario: Admin requests company form, fills it out, and submits it
 		Given I am logged in as an admin user
 		When I go to the new_company page
-		#Then save_and_open_page
 		When I fill in the following:
 			| Name				| Brand New Company	|
 			| Description 		| description		|
@@ -23,7 +22,6 @@ Feature:  Admin Manage Companies
 		When I follow "Brand New Company"
 		Then I should see "description"
 		
-	
 	Scenario: Admin deletes a company
 		Given I am logged in as an admin user
 		Given a company named "CompanyName"
@@ -57,7 +55,7 @@ Feature:  Admin Manage Companies
 		And I should see "British Petroleum"
 		And I should see "An energy company"
 			
-  
+  @focus
 	Scenario: Contributor visits page (no edit or destroy links)
 		#As an owner
 		#I don't want contributors to be able to edit or destroy companies
