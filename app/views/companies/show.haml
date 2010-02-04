@@ -1,20 +1,38 @@
-#companies-top
-  %h2
-    Company Profile
-#companies
-  %h3
-    = @company.name
-  %table{ :summary => "A company profile for #{@company.name}, including overall score and number of reviews" }
-    %caption
-      = @company.name
-    %thead
-      %tr#company-headings
-        %th#company-head
-          Issue
-        %th#brands-head
-          Issue Score
-        %th#reviews-head
-          Reviews
-    %tbody
+#company-page
+  #companies-top
+    %h2
+      Company Profile
+  #companies
+    #company-summary
+      .info.name
+        %h3
+          = @company.name
+      .info.overall-score       
+        %h4
+          Overall Score:
+        %span
+          3 stars
+      .info.total-reviews
+        %h4
+          Total Reviews:
+        %span
+          459
+    %table{ :summary => "A company profile for #{@company.name}, including overall score and number of reviews" }
+      %caption
+        = @company.name
+      %thead
+        %tr#company-headings
+          %th#company-head
+            Issue
+          %th#brands-head
+            Issue Score
+          %th#score-head
+            Reviews
+      %tbody
+  #companies-bottom
+#company-about
+  %a{:title=>'Browse Reviews', :href=>'/'}
+    Browse Reviews
+  %a
+    = "Rate #{@company.name}"
 
-#companies-bottom
