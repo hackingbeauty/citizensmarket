@@ -11,7 +11,7 @@ set :repository_cache, "git_cache"
 set :deploy_via, :remote_cache #:copy#:remote_cache #tells capistrano just to pull down updates, not your entire codebase over and over again
 set :scm, "git"
 set :scm_verbose, true
-set :branch, "master"
+set :branch, "staging"
 set :use_sudo, false #tells capistrano NOT to use root
 set :app_server, :passenger
 set :deploy_via, :remote_cache #tells capistrano just to pull down updates, not your entire codebase over and over again
@@ -50,7 +50,7 @@ namespace :deploy do
   end
   desc "Restart Application"
   task :restart, :roles => :app do
-    run "cd #{deploy_to}; git pull"
+    run "cd #{deploy_to}; git pull origin staging"
     run "touch #{deploy_to}/tmp/restart.txt"
     # run "/etc/init.d/nginx start"
   end
